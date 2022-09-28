@@ -1,0 +1,656 @@
+
+%{
+
+#include <unistd.h>
+#include <stdio.h>
+#include <iostream.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <sys/mman.h>
+#include <netinet/in.h>
+#include <fcntl.h>
+#include <dirent.h>
+#include <string.h>
+#include <rw/cstring.h>
+#include <rw/tvslist.h>
+
+#include "dmi_db.hh"
+#include "util.hh"
+
+/***** DEFINE *****/
+
+#define DMI_DB_DEBUG_YACC(string) printf("\t\tYACC: %s: %s at line %d\n", string, yytext, yylineno);
+
+
+#if(defined(__cpluscplus))
+extern "C" int yyerror(char*s);
+#endif
+
+/* macro for action stmt */
+#define StrAssignment(src,tgt) \
+	DmiString_t *str; \
+	if(!(str=Rwstr2Dmistr((src)))) YYABORT; \
+	(tgt) = str; \
+	delete src;	
+
+
+static DmiString_t* Rwstr2Dmistr(RWCString *);
+static RWTValSlist<int> *int_list = NULL;
+
+%}
+
+%union {
+	RWCString	*sval;	/* string value */
+	int		ival;	/* intger value */
+	char 		cval; 	/* char value */
+	DmiAttributeIds_t *attrids;
+}
+
+%token <ival> DECNUMBER
+%token <ival> OCTNUMBER
+%token <ival> HEXNUMBER
+%token <sval> QUOTEDSTRING
+%token EQUAL
+%token OPENBRACE
+%token CLOSEBRACE
+%token OPENBRACKET
+%token CLOSEBRACKET
+%token WILDCHAR
+%token IDENTIFIER
+%token COMA
+%token MINUS
+
+%token LANGUAGE
+%token START
+%token END
+%token COMPONENT
+%token NAME
+%token DIRECTINTERFACE
+%token DESCRIPTION
+%token PATH
+%token DOS
+%token MACOS
+%token OS2
+%token UNIX
+%token WIN16
+%token WIN32
+%token WIN9X
+%token WINNT
+%token ENUM
+%token TYPE
+%token GROUP
+%token CLASS
+%token ID
+%token KEY
+%token PRAGMA
+%token TABLE
+%token ATTRIBUTE
+%token ACCESS
+%token READONLY
+%token READWRITE
+%token WRITEONLY
+%token STORAGE
+%token SPECIFIC
+%token COMMON
+%token UNSUPPORTED
+%token UNKNOWN
+%token COUNTER
+%token COUNTER64
+%token DATE
+%token GAUGE
+%token OCTETSTRING
+%token DISPLAYSTRING
+%token STRING
+%token INTEGER64
+%token INT64
+%token INTEGER
+%token INT
+%token VALUE
+
+%type <sval> t_lang t_comp_id t_description t_description_string
+%type <sval> t_comp_pragma_stmt t_grp_name_stmt t_class_stmt t_grp_pragma_stmt
+%type <ival> t_id_stmt t_mif_integer
+%type <attrids> t_grp_key_stmt
+
+%%
+start : t_mif_src_file
+	{
+		DMI_DB_DEBUG_YACC("start")
+	}
+	;
+
+t_mif_src_file : t_lang	t_comp_def
+	{
+		RWTPtrSlist<DmiString> *list;
+		DmiString_t *str;
+
+		DMI_DB_DEBUG_YACC("t_mif_src_file")
+		list = new RWTPtrSlist<DmiString>;
+		if(!(str=Rwstr2Dmistr($1))) YYABORT;
+		list->insert(str);
+		DBComp->SetLanguages(list);
+
+		/** testing **
+		str = (*(DBComp->GetLanguages()))[0];
+		cout << "!!!TESTING" << endl;
+		printDmiString(str);
+		cout << "!!!END OF TESTING" << endl;
+		** testing **/
+	
+		delete $1;
+	}
+	;
+
+t_lang : LANGUAGE EQUAL QUOTEDSTRING
+	{
+		DMI_DB_DEBUG_YACC("t_lang")
+		$$ = $3;
+	}		
+	;
+
+
+t_comp_def : START COMPONENT
+	{
+		DMI_DB_DEBUG_YACC("t_comp_def:start component")
+
+		Component *comp=new Component;
+		if(!comp) YYABORT;
+		db_server.set_comp(comp);
+		
+		RWTIsvSlist<Group> *groups;
+		if(!(groups=new RWTIsvSlist<Group>)) YYABORT;
+		DBComp->SetGroups(groups);
+	}
+	t_comp_id t_comp_body END COMPONENT 
+	{
+		DMI_DB_DEBUG_YACC("t_comp_def:end component")
+		StrAssignment($4,DBComp->GetComponentInfo()->name)
+	}
+	;
+
+t_comp_id : NAME EQUAL QUOTEDSTRING
+	{
+		DMI_DB_DEBUG_YACC("t_comp_id")
+		$$ = $3;
+	}
+	;
+
+t_comp_body : t_comp_body t_comp_body_item |
+	{
+		DMI_DB_DEBUG_YACC("t_comp_body")
+	}
+	;
+
+t_comp_body_item :   	
+		t_description 
+	{
+		DMI_DB_DEBUG_YACC("t_comp_body_item:desc")
+		StrAssignment($1,DBComp->GetComponentInfo()->description)
+
+	}
+    	|	t_path_def 
+	{
+		DMI_DB_DEBUG_YACC("t_comp_body_item:path")
+	}
+	|	t_gbl_enum_def 
+	{
+		DMI_DB_DEBUG_YACC("t_comp_body_item:enum")
+	}
+	|	t_grp_def 
+	{
+		DMI_DB_DEBUG_YACC("t_comp_body_item:grp")
+	}
+	|	t_tbl_def 
+	{
+		DMI_DB_DEBUG_YACC("t_comp_body_item:tbl")
+	}
+	|	t_comp_pragma_stmt 
+	{
+		DMI_DB_DEBUG_YACC("t_comp_body_item:prag")
+		StrAssignment($1,DBComp->GetComponentInfo()->pragma)
+	}
+	;
+
+t_description :	DESCRIPTION EQUAL t_description_string
+	{
+		DMI_DB_DEBUG_YACC("t_description")
+		$$ = $3;
+	}
+	;
+
+t_description_string : t_description_string QUOTEDSTRING
+	{
+		DMI_DB_DEBUG_YACC("t_description_string")
+		/* append the string into the RWCString */
+		*($1) += *($2);
+		delete $2;
+		$$ = $1;
+	}
+	| QUOTEDSTRING
+	{
+		DMI_DB_DEBUG_YACC("t_description_string")
+		$$ = $1;
+	}
+	;
+
+t_comp_pragma_stmt : PRAGMA EQUAL QUOTEDSTRING
+	{
+		DMI_DB_DEBUG_YACC("t_comp_pragma_stmt")
+		$$ = $3;
+	}
+	;
+
+
+t_path_def : START PATH t_path_id t_path_body END PATH
+	{
+		DMI_DB_DEBUG_YACC("t_path_def")
+	}
+	;
+
+t_path_id : NAME EQUAL QUOTEDSTRING
+        {
+                DMI_DB_DEBUG_YACC("t_path_id")
+        }
+        ;
+ 
+t_path_body : t_path_body t_path_stmt | t_path_stmt
+        {
+                DMI_DB_DEBUG_YACC("t_path_body")
+        }
+        ;
+ 
+t_path_stmt : t_os_name EQUAL QUOTEDSTRING |
+              t_os_name EQUAL DIRECTINTERFACE
+        {
+                DMI_DB_DEBUG_YACC("t_path_stmt")
+        }
+        ;
+ 
+t_os_name : DOS | MACOS | OS2 | UNIX | WIN16 | WIN32 | WIN9X | WINNT
+        {
+                DMI_DB_DEBUG_YACC("t_os_name")
+        }
+        ;
+
+t_gbl_enum_def : START ENUM t_enum_id t_opt_enum_type t_enum_body END ENUM 
+        {
+                DMI_DB_DEBUG_YACC("t_gbl_enum_def")
+        }
+        ;
+
+t_enum_id : NAME EQUAL QUOTEDSTRING
+        {
+                DMI_DB_DEBUG_YACC("t_enum_id")
+        }
+        ;
+
+t_opt_enum_type : TYPE EQUAL INT | TYPE EQUAL INTEGER |
+        {
+                DMI_DB_DEBUG_YACC("t_opt_enum_type")
+        }
+        ;
+
+t_enum_body : t_enum_body t_enum_stmt | t_enum_stmt
+        {
+                DMI_DB_DEBUG_YACC("t_enum_body")
+        }
+        ;
+ 
+t_enum_stmt : t_mif_integer EQUAL QUOTEDSTRING
+        {
+                DMI_DB_DEBUG_YACC("t_enum_stmt")
+        }
+        ;
+
+t_grp_def : START GROUP
+        {
+		/* it is possible for a group not belonging
+		   to any component */
+                DMI_DB_DEBUG_YACC("t_grp_def:start group")
+		Group  *group;
+		if(!(group=new Group())) YYABORT;
+		DBComp->GetGroups()->insert(group);
+
+		RWTIsvSlist<Attribute> *attrs;
+		if(!(attrs=new RWTIsvSlist<Attribute>)) YYABORT;
+		group->SetAttributes(attrs);
+        }
+	t_grp_identifier t_grp_body_list END GROUP
+	{
+                DMI_DB_DEBUG_YACC("t_grp_def:end group")
+	}
+        ;
+
+t_grp_identifier : t_grp_id_list
+	{
+                DMI_DB_DEBUG_YACC("t_grp_identifier")
+	}
+	;
+
+t_grp_id_list : t_grp_id_list t_grp_id | t_grp_id
+	{
+                DMI_DB_DEBUG_YACC("t_grp_id_list")
+	}
+	;
+
+t_grp_id : 	t_grp_name_stmt 
+	{
+                DMI_DB_DEBUG_YACC("t_grp_id:grp_name")
+		StrAssignment($1,
+		DBComp->GetGroups()->last()->GetGroupInfo()->name)
+	}
+	|	t_class_stmt 
+	{
+                DMI_DB_DEBUG_YACC("t_grp_id:class")
+		StrAssignment($1,
+		DBComp->GetGroups()->last()->GetGroupInfo()->className)
+	}
+	|	t_id_stmt
+        {
+                DMI_DB_DEBUG_YACC("t_grp_id:id")
+		DBComp->GetGroups()->last()->GetGroupInfo()->id = $1;
+        }
+        ;
+
+t_grp_name_stmt : NAME EQUAL QUOTEDSTRING
+        {
+                DMI_DB_DEBUG_YACC("t_grp_name_stmt")
+		$$ = $3;
+        }
+        ;
+
+t_class_stmt : CLASS EQUAL QUOTEDSTRING
+        {
+                DMI_DB_DEBUG_YACC("t_class_stmt")
+		$$ = $3;
+        }
+        ;
+ 
+t_grp_body_list : t_grp_body_list t_grp_body |
+	{
+	}
+
+t_grp_body :    
+		t_description 
+	{
+                DMI_DB_DEBUG_YACC("t_grp_body:desc")
+		StrAssignment($1,
+		DBComp->GetGroups()->last()->GetGroupInfo()->description)
+	}
+	|	t_grp_key_stmt 
+	{
+                DMI_DB_DEBUG_YACC("t_grp_body:key")
+		DBComp->GetGroups()->last()->GetGroupInfo()->keyList =
+		$1;
+	}
+	|	t_grp_pragma_stmt 
+	{
+                DMI_DB_DEBUG_YACC("t_grp_body:pragma")
+		StrAssignment($1,
+		DBComp->GetGroups()->last()->GetGroupInfo()->pragma)
+	}
+	|	t_grp_attr_def
+        {
+                DMI_DB_DEBUG_YACC("t_grp_body:attr_def")
+        }
+        ;
+
+t_grp_key_stmt : KEY EQUAL 
+	{
+		DMI_DB_DEBUG_YACC("t_grp_key_stmt:key equal")
+		if(int_list) free(int_list);
+		int_list = new RWTValSlist<int>;
+	}
+		t_key_list
+	{
+		DMI_DB_DEBUG_YACC("t_grp_key_stmt")
+		DmiAttributeIds *attrid = 
+		  newDmiAttributeIds(int_list->entries());
+		for(int i=0;i<int_list->entries();i++)
+		  attrid->list.list_val[i] = int_list->at(i);
+		if(int_list) free(int_list);
+		$<attrids>$ = attrid;
+	}
+	;
+
+t_key_list : t_key_list COMA t_mif_integer
+	{
+		DMI_DB_DEBUG_YACC("t_key_list:key,integer")
+		if(int_list) int_list->insert($3);
+	}
+	| t_mif_integer
+	{
+		DMI_DB_DEBUG_YACC("t_key_list:integer")
+		if(int_list) int_list->insert($1);
+	}
+	;
+
+t_tbl_def : START TABLE t_tbl_id t_tbl_body END TABLE
+	{
+		DMI_DB_DEBUG_YACC("t_tbl_def")
+	}
+	;
+
+t_tbl_id : t_tbl_name_stmt t_class_stmt t_id_stmt
+	{
+		DMI_DB_DEBUG_YACC("t_tbl_id")
+	}
+	;
+
+t_id_stmt : ID EQUAL DECNUMBER 
+        {
+                DMI_DB_DEBUG_YACC("t_id_stmt")
+		$$ = $3;
+        }
+        ;
+
+t_tbl_name_stmt : NAME EQUAL QUOTEDSTRING
+	{
+		DMI_DB_DEBUG_YACC("t_tbl_name_stmt")
+	}
+	;
+
+t_tbl_body : t_tbl_body t_tbl_row | t_tbl_row
+	{
+		DMI_DB_DEBUG_YACC("t_tbl_body")
+	}
+	;
+
+t_tbl_row : OPENBRACE t_tbl_row_list CLOSEBRACE
+	{
+		DMI_DB_DEBUG_YACC("t_tbl_row")
+	}
+	;
+
+t_tbl_row_list :  t_tbl_row_list COMA t_tbl_item | t_tbl_item
+	{
+		DMI_DB_DEBUG_YACC("t_tbl_row_list")
+	}
+	;
+
+t_tbl_item : t_const_expr |
+	{
+		DMI_DB_DEBUG_YACC("t_tbl_item")
+	}
+	;
+
+
+t_grp_pragma_stmt : PRAGMA EQUAL QUOTEDSTRING
+	{
+                DMI_DB_DEBUG_YACC("t_grp_pragma_stmt")
+		$$ = $3;
+        }
+	;
+ 
+t_grp_attr_def : START ATTRIBUTE 
+        {
+                DMI_DB_DEBUG_YACC("t_grp_attr_def:start attr")
+		Attribute *attr;
+		if(!(attr=new Attribute())) YYABORT;
+		DBComp->GetGroups()->last()->GetAttributes()->insert(attr);
+        }
+	t_attr_definition t_attr_body_list END ATTRIBUTE
+        {
+                DMI_DB_DEBUG_YACC("t_grp_attr_def:end attr")
+        }
+        ;
+
+t_attr_definition : t_attr_def t_attr_def
+	{
+	}
+
+
+t_attr_def : t_attr_name_stmt | t_attr_id_stmt
+	{
+		DMI_DB_DEBUG_YACC("t_attr_def")
+	}
+	;
+
+t_attr_name_stmt : NAME EQUAL QUOTEDSTRING 
+	{
+		DMI_DB_DEBUG_YACC("t_attr_name_stmt")
+	}
+	;
+
+t_attr_id_stmt : ID EQUAL t_mif_integer
+	{
+		DMI_DB_DEBUG_YACC("t_attr_id_stmt")
+	}
+	;
+
+t_attr_body_list : t_attr_body_list t_attr_body |
+	{
+		DMI_DB_DEBUG_YACC("t_attr_body_list")
+	}
+	;
+
+
+t_attr_body : 	t_description |
+		t_access_stmt |
+		t_storage_stmt |
+		t_pragma_stmt |
+		t_type_stmt |
+		t_value_stmt
+	{
+		DMI_DB_DEBUG_YACC("t_opt_attr_body")
+	}
+	;
+
+t_access_stmt :  ACCESS EQUAL t_access_type
+	{
+		DMI_DB_DEBUG_YACC("t_access_stmt")
+	}
+	;
+
+t_access_type : READONLY | 
+		READWRITE |
+		WRITEONLY
+	{
+		DMI_DB_DEBUG_YACC("t_access_type")
+	}
+	;
+
+t_storage_stmt : STORAGE EQUAL t_storage_type
+	{
+		DMI_DB_DEBUG_YACC("t_storage_type")
+	}
+	;
+
+t_storage_type : SPECIFIC | COMMON
+	{
+		DMI_DB_DEBUG_YACC("t_storage_type")
+	}
+	;
+
+t_pragma_stmt : PRAGMA EQUAL QUOTEDSTRING
+	{
+		DMI_DB_DEBUG_YACC("t_pragma_stmt")
+	}
+	;
+
+
+t_type_stmt : TYPE EQUAL t_attr_type
+	{
+		DMI_DB_DEBUG_YACC("t_type_Stmt")
+	}
+	;
+
+t_attr_type : 	QUOTEDSTRING |
+		t_local_enum_def |
+		COUNTER |
+		COUNTER64 |
+		DATE |
+		GAUGE |
+		OCTETSTRING OPENBRACKET t_mif_integer CLOSEBRACKET |
+		DISPLAYSTRING OPENBRACKET t_mif_integer CLOSEBRACKET |
+		STRING OPENBRACKET t_mif_integer CLOSEBRACKET |
+		INT |
+		INTEGER |
+		INTEGER64 |
+		INT64
+	{
+		DMI_DB_DEBUG_YACC("t_attr_type")
+	}
+	;
+
+t_local_enum_def : START ENUM t_enum_id t_opt_enum_type t_enum_body
+		   END ENUM
+	{
+		DMI_DB_DEBUG_YACC("t_local_enum_def")
+	}
+	;
+
+
+t_value_stmt : VALUE EQUAL t_const_expr
+	{
+		DMI_DB_DEBUG_YACC("t_value_stmt")
+	}
+	;
+
+t_const_expr : 	QUOTEDSTRING |
+		WILDCHAR QUOTEDSTRING |	
+		t_mif_integer
+	{
+	}
+	;
+
+
+
+t_mif_integer : DECNUMBER 
+	{
+                DMI_DB_DEBUG_YACC("t_mif_integer")
+		$$ = $1;
+	}
+	|	OCTNUMBER
+	{
+                DMI_DB_DEBUG_YACC("t_mif_integer")
+		$$ = $1;
+	}
+	|	HEXNUMBER
+        {
+                DMI_DB_DEBUG_YACC("t_mif_integer")
+		$$ = $1;
+        }
+        ;
+
+
+
+%%
+
+#include "config.lex.cc"
+
+/****************************************************************/
+
+int yywrap()
+{
+  return 1;
+}
+
+void yyerror(char*)
+{
+}
+
+static DmiString_t* Rwstr2Dmistr(RWCString *rwstr)
+{
+  return( newDmiString( (char*)(const char*)(*rwstr) ) );
+}

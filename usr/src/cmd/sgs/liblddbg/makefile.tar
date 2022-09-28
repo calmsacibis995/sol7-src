@@ -1,0 +1,54 @@
+#
+# Copyright (c) 1996 by Sun Microsystems, Inc.
+# All rights reserved.
+#
+#ident	"@(#)Makefile.targ	1.12	98/01/05 SMI"
+#
+
+pics/%.o:	../common/%.c
+		$(COMPILE.c) -o $@ $<
+		$(POST_PROCESS_O)
+
+pics/%64.o:	../common/%.c
+		$(COMPILE.c) -D_ELF64 -o $@ $<
+		$(POST_PROCESS_O)
+
+
+$(DYNLIB):	$(MAPFILE)
+
+$(LIBLINKS):
+		-$(RM) $@; $(SYMLINK) $(DYNLIB) $@
+
+delete:
+		$(RM) $(DYNLIB)
+
+# Special target for native builds (ie. when we need to build a version of ld
+# to build a version of ld :-).
+ 
+native:		$(SGSPROTO)/$(DYNLIB)
+
+$(SGSPROTO)/$(DYNLIB): \
+		pics .WAIT $$(PICS) $(MAPFILE)
+		$(CC) -o $@ -dy -G -znoversion $(DYNFLAGS) $(PICS) $(LDLIBS)
+		$(POST_PROCESS_SO)
+		-@$(RM) $(SGSPROTO)/$(LIBLINKS);
+		$(SYMLINK) $(DYNLIB) $(SGSPROTO)/$(LIBLINKS)
+
+include		$(SRC)/lib/Makefile.targ
+
+# Derived source and header files (messaging)
+
+catalog:	$(BLTMESG)
+
+$(BLTDEFS) + \
+$(BLTDATA) + \
+$(BLTMESG) :	../common/liblddbg.msg
+		$(SGSTOOLS)/sgsmsg $(SGSMSGFLAGS) ../common/liblddbg.msg
+		@ csh $(SGSTOOLS)/../chkmsg.csh ../common/liblddbg.msg $(LIBSRCS)
+
+lint:		$(LINTLIB)
+
+$(LINTLIB):	$(XLINTOUT)
+
+$(XLINTOUT):	$(LIBSRCS)
+		$(LINT.c) $(LIBSRCS) $(LDLIBS) > $(XLINTOUT) 2>&1

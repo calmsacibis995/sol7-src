@@ -1,0 +1,32 @@
+# Copyright 03/08/96 Sun Microsystems, Inc. All Rights Reserved.
+#pragma ident  "@(#)Makefile.trapsend	1.3 96/03/08 Sun Microsystems"#ident "@(#)Makefile.trapsend	1.3 03/08/96 SMI"
+
+#########################################################
+#
+# Makefile for trapsend top
+#
+#########################################################
+
+
+#
+# Makefile.vars
+#
+
+include ../Makefile.vars
+
+
+#
+# all
+#
+
+all:
+	cd snmplib; make all;
+	cd trapsend; make all;
+
+#
+# clean
+#
+
+clean:
+	cd snmplib; make clean;
+	cd trapsend; make clean;

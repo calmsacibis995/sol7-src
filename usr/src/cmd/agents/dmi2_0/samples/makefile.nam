@@ -1,0 +1,33 @@
+# Copyright 02/03/97 Sun Microsystems, Inc. All Rights Reserved.
+#pragma ident  "@(#)Makefile.namedir	1.9 97/02/03 Sun Microsystems"
+
+LD_RUN_PATH		= /usr/lib
+LINKLIBDIR		= -L/usr/lib -L./
+
+INCLUDES		= -I/usr/include/dmi
+DEBUG			= -g
+FLAGS           = -DSVR4 -D_REENTRANT 
+CCFLAGS         = $(DEBUG) $(FLAGS) $(INCLUDES)
+
+
+TARGETS= namedir
+	 
+OBJECTS = 	namedir_callbacks.o	namedir.o
+
+LIBS = $(LINKLIBDIR) -ldmici -ldmimi -ldmi -lnsl -lrwtool 
+
+
+%.o: %.cc
+	$(CCC) $(CCFLAGS) -c $< -o $@
+
+# Targets 
+
+all:   $(TARGETS)
+
+$(TARGETS):  $(OBJECTS) 
+	$(CCC) -o $@ -R $(LD_RUN_PATH)  $(OBJECTS) $(LIBS)
+
+clean:
+	$(RM) -f $(TARGETS) $(OBJECTS)
+	$(RM) -rf Templates.DB
+

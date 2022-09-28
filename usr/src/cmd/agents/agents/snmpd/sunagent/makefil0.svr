@@ -1,0 +1,235 @@
+# Copyright 12/11/96 Sun Microsystems, Inc. All Rights Reserved.
+#pragma ident  "@(#)Makefile.SVR4	1.22 96/12/11 Sun Microsystems"
+
+# Sun considers its source code as an unpublished, proprietary trade 
+# secret, and it is available only under strict license provisions.  
+# This copyright notice is placed here only to protect Sun in the event
+# the source is deemed a published work.  Disassembly, decompilation, 
+# or other means of reducing the object code to human readable form is 
+# prohibited by the license agreement under which this code is provided
+# to the user or company in possession of this copy.
+# 
+# RESTRICTED RIGHTS LEGEND: Use, duplication, or disclosure by the 
+# Government is subject to restrictions as set forth in subparagraph 
+# (c)(1)(ii) of the Rights in Technical Data and Computer Software 
+# clause at DFARS 52.227-7013 and in similar clauses in the FAR and 
+# NASA FAR Supplement.
+#
+# This makefile is for use on Solaris 2.X
+
+.KEEP_STATE:
+
+OBJS =	main.o
+NAME = mibiisa
+SCHEMA = sun-snmp.schema sun.mib
+ASN1 = sun-mib.asn
+EXT = c
+CEES =	main.c
+CFILES = main.c
+
+
+LIBCEES = agent.c arp-svr4.c contbl-svr4.c icmp-svr4.c \
+         if-svr4.c ip-svr4.c iprte-svr4.c  general-svr4.c \
+        libfuncs.c mib.c read_con.c sendtrap.c setup-svr4.c snmpvars.c  \
+        sys-svr4.c tcp-svr4.c udp-svr4.c pstable-svr4.c rstat.c
+
+LIBOBJS = $(LIBCEES:%.c=static$(TARGET_ARCH)/%.o)
+COBJS = $(CEES:%.c=static$(TARGET_ARCH)/%.o)
+HFILES = agent.h general.h snmpvars.h
+LIBNAME = static$(TARGET_ARCH)/libsun.a
+SUNLIBDIR = static$(TARGET_ARCH)
+INCDIRS = -I../h
+
+LINTLIB = ../lib/llib-lsnmp.ln
+# Solaris 2.6 integration does not allow reset of CC.
+# CC = cc
+
+
+# headers + yacc, lex, C & CC files make source code
+SCODE = $(HFILES) $(YFILES) $(LFILES) $(CFILES) $(CCFILES)
+ 
+# convert source file list into object file list
+OBJS = $(CFILES:.c=.o) $(CCFILES:.cc=.o)
+ 
+SHARED  = $(NAME:%=shared$(TARGET_ARCH)/%)
+DEBUG   = $(NAME:%=debug$(TARGET_ARCH)/%)
+PURIFY   = $(NAME:%=purify$(TARGET_ARCH)/%)
+ 
+# modifications for shared
+$(SHARED)  := CFLAGS += -O
+$(SHARED)  := DIR.v = shared$(TARGET_ARCH)
+$(SHARED)  := SDIR.v = static$(TARGET_ARCH)
+$(SHARED)  := SNMPLIB = ../lib/static$(TARGET_ARCH)/libsnmp.a
+$(SHARED)  := SNMPLIBDIR = ../lib/static$(TARGET_ARCH)
+$(SHARED)  := MIBCOMP = ../mibcomp/static$(TARGET_ARCH)/mibcomp
+
+#$(SHARED)  := LIBNAM.v = $(NETLIBSRC)/$(DIR.v)/lib$(NETLIB).so.$(LIBVERS)
+ 
+# modifications for debugging
+$(DEBUG)   := CFLAGS += -g
+$(DEBUG)   := DDEBUG = -DDEBUG
+$(DEBUG)   := MALLOC = /usr/lib/debug/malloc.o
+$(DEBUG)   := DIR.v = debug$(TARGET_ARCH)
+$(DEBUG)   := SDIR.v = debug$(TARGET_ARCH)
+$(DEBUG)   := SNMPLIBDIR = ../lib/debug$(TARGET_ARCH)
+$(DEBUG)   := SNMPLIB = ../lib/debug$(TARGET_ARCH)/libsnmp.a
+$(DEBUG)   := MIBCOMP = ../mibcomp/debug$(TARGET_ARCH)/mibcomp
+
+#$(DEBUG)   := LIBNAM.v = $(NETLIBSRC)/$(DIR.v)/lib$(NETLIB).a
+ 
+# modifications for make purify
+$(PURIFY)   := CFLAGS += -g
+$(PURIFY)   := DDEBUG = -DDEBUG
+$(PURIFY)   := MALLOC = /usr/lib/debug/malloc.o
+$(PURIFY)   := DIR.v = purify$(TARGET_ARCH)
+$(PURIFY)   := SDIR.v = purify$(TARGET_ARCH)
+$(PURIFY)   := SNMPLIBDIR = ../lib/purify$(TARGET_ARCH)
+$(PURIFY)   := SNMPLIB = ../lib/purify$(TARGET_ARCH)/libsnmp.a
+$(PURIFY)   := MIBCOMP = ../mibcomp/purify$(TARGET_ARCH)/mibcomp
+$(PURIFY)   := PURIFYTOOL = purify
+
+# names of the target .o files (with target directory)
+VARIANTS.o = $(OBJS:%=%)
+
+# Flags to pass to the C compiler
+NEWDEF = -DBOGEY -DSVR4
+CFLAGS += $(NEWDEF) $(DEFINES) $(DDEBUG) $(INCDIRS) $(ARCH_DEF) $(OS_VER)
+
+#
+# In order to conform with the Solaris 2.6 way of packaging things,
+# we now need to put any deliverable that is specified in the
+# prototype file into a common "proto" area, so that their
+# packaging scheme knows where to obtain the input binaries.
+#
+ 
+#
+# Output directories in the proto area
+#
+
+TOP = ../..
+DESTBINDIR = $(SRC)/$(TOP)/proto/root_sparc/usr/lib/snmp
+DESTMIBDIR = $(SRC)/$(TOP)/proto/root_sparc/var/snmp/mib
+DESTMANDIR = $(SRC)/$(TOP)/proto/root_sparc/usr/man/man1m
+
+#
+# Input directories within our build area
+#
+
+BINDIR = $(SRC)/cmd/agents/agents/snmpd/sunagent/shared-sparc
+MIBDIR = $(SRC)/cmd/agents/agents/snmpd/etc
+MANDIR = $(SRC)/cmd/agents/doc/man
+ 
+shared:  shared$(TARGET_ARCH)  $(HFILES) $(SHARED)
+debug:   debug$(TARGET_ARCH)   $(HFILES) $(DEBUG)
+purify:   purify$(TARGET_ARCH)   $(HFILES) $(PURIFY)
+share dynamic: shared
+all: shared
+
+install: all $(MIBDIR)/sun.mib
+	$(RM) $(DESTBINDIR)/mibiisa
+	$(RM) $(DESTMIBDIR)/sun.mib
+	$(RM) $(DESTMANDIR)/mibiisa.8
+	@test -d $(DESTBINDIR) || mkdir -p $(DESTBINDIR)
+	@test -d $(DESTMIBDIR) || mkdir -p $(DESTMIBDIR)
+	@test -d $(DESTMANDIR) || mkdir -p $(DESTMANDIR)
+	cd $(BINDIR); $(INS.file) -f $(DESTBINDIR) -s -m 755 -u root -g sys mibiisa
+	cd $(MIBDIR); $(INS.file) -f $(DESTMIBDIR) -s -m 644 -u root -g sys sun.mib
+	cd $(MANDIR); $(INS.file) -f $(DESTMANDIR) -s -m 444 -u root -g sys mibiisa.8
+	
+bin: all
+
+# create the target directory
+shared$(TARGET_ARCH) debug$(TARGET_ARCH) \
+ purify$(TARGET_ARCH) static$(TARGET_ARCH):
+	@install -d $@
+
+ 
+# names of the target .o files (with target directory)
+VARIANTS.o = $(OBJS:%=$(DIR.v)/%)
+ 
+# how to link the files into an executable
+$(SHARED) $(DEBUG) $(PURIFY): $$(VARIANTS.o) numbers $(LIBNAME)
+	$(PURIFYTOOL) cc -o $@ $(VARIANTS.o) \
+	-L$(ROOT)/usr/lib -L$(SNMPLIBDIR) -L$(SUNLIBDIR) \
+        -lsnmp -lsun -lrpcsvc -lnsl -lkstat -lsocket
+
+# SNM-custom compilation rules
+COMPILE.c=$(PURIFYTOOL) $(CC) $(CPPFLAGS) $(CFLAGS) -c
+# how to convert .c files into .o files
+$$(DIR.v)/%.o: %.$(EXT)
+	$(COMPILE.$(EXT)) -o $@ $<
+ 
+debug$(TARGET_ARCH)/%.o static$(TARGET_ARCH)/%.o \
+ purify$(TARGET_ARCH)/%.o shared$(TARGET_ARCH)/%.o: %.$(EXT)
+	$(COMPILE.$(EXT)) -o $@ $<
+ 
+
+$(LIBNAME):	static$(TARGET_ARCH) ${LIBOBJS} $(HFILES)
+		$(RM) $(LIBNAME)
+		(ar r $(LIBNAME) ${LIBOBJS})
+
+#It seems that some sun libraries have strnicmp() and some do not.
+# define STRNICMP if the strnicmp() in setup.c should be generated.
+
+CFLAGS += -DNO_STDLIB -DNO_PP -DSTRNICMP -DBSD_RELEASE=43 -DSGRP -DOIDC_32
+LINTFLAGS = -I../h -DBOGEY -DSVR4 -DSOL24HIGHER -DSOL25HIGHER -DNO_STDLIB -DNO_PP -DSTRNICMP -DBSD_RELEASE=43 -DSGRP -DOIDC_32
+
+PROG=$(SHARED) $(DEBUG) $(PURIFY)
+CLOBBERFILES=$(CEES) $(LIBCEES)
+
+.c.o: 
+	${CC} -c -o static$(TARGET_ARCH)/$@ $(CFLAGS) $<
+
+
+
+$(CEES) $(LIBCEES): $(HFILES)
+
+#
+# cpp is disallowed in the Solaris 2.6 build environment.
+# Use cc -E instead.
+# Turns out that cc -E is not fully equivalent to cpp.
+# There is no equiv to cpp -undef.
+# CC -U <name> only undef's one symbol name.
+# No equivalent to undef'ing all predefined symbols.
+# So we're using mib.cpp as the input file.
+# Note that if sun-mib.asn gets changed, mib.cpp
+# will need to be re-generated by:
+# cpp -C -P -undef "-D__AGNT_DSCR__=\"Sun Microsystems SNMP Agent\"" $(ASN1) mib.tmp
+#
+
+mib.c: mib.cpp ${MIBCOMP}
+	${MIBCOMP} -o mib.c mib.cpp
+
+numbers: $(ASN1) ${MIBCOMP}
+	${MIBCOMP} -o numbers -numbers $(ASN1)
+
+
+install-sunos: $(SCHEMA) shared
+	install -m 555  -f $(DESTDIR)/agents shared$(TARGET_ARCH)/mibiisa 
+	install -m 444  -f $(DESTDIR)/agents sun.mib 
+	install -m 444  -f $(DESTDIR)/agents sun-snmp.schema 
+
+
+install-svr4: $(SCHEMA) shared
+	install -m 555 -f $(DESTDIR)/agents shared$(TARGET_ARCH)/mibiisa
+	install -m 444 -f $(DESTDIR)/agents sun.mib
+	install -m 444 -f $(DESTDIR)/agents sun-snmp.schema
+
+install-debug: $(SCHEMA) debug
+	install -m 555 -f $(DESTDIR)/agents debug$(TARGET_ARCH)/mibiisa 
+	install -m 444 -f $(DESTDIR)/agents $(SCHEMA) 
+
+install-purify: $(SCHEMA) purify
+	install -m 555 -f $(DESTDIR)/agents purify$(TARGET_ARCH)/mibiisa 
+	install -m 444 -f $(DESTDIR)/agents $(SCHEMA) 
+
+cleanobj:
+		-rm ${OBJS} ${LIBOBJS}
+
+clean:
+	$(RM) a.out core *.s *.o *.ln errs *.bak *.BAK *.d *.tcov *mon.out tags TAGS
+	$(RM) -r debug$(TARGET_ARCH) purify$(TARGET_ARCH) static$(TARGET_ARCH) shared$(TARGET_ARCH) profile$(TARGET_ARCH) $(LINTDIR)
+ 
+lint:
+	lint -hn ${INC} ${LINTFLAGS} ${LINTLIB} ${LIBCEES}
+

@@ -1,0 +1,33 @@
+\
+\ Copyright (c) 1997, by Sun Microsystems, Inc.
+\ All rights reserved.
+\
+\"@(#)pid2proc.chain.dbg	1.6	98/01/28 SMI"
+
+#include <sys/proc.h>
+#include "dummy.h"
+
+\	'pid_id' is a 32-bit access.
+\
+pid     ""      	pid2proc.chain
+{adb_inline_begin}
+.>P
+,#(<P)$<
+#if defined(sparcv9)
+*(<P+{OFFSET, pid_id})>/i/J
+#else
+*(<P+{OFFSET, pid_id})>J
+#endif
+*(<P+{OFFSET, pid_link}),#(#(<p-<J))$<pid2proc.chain
+#if defined(sparcv9)
+*(<P)>/i/Q
+#else
+*(<P)>Q
+#endif
+#if defined(sparc)
+(<Q&0xffffff)*{PTRSIZE}>Q
+*(*procdir+<Q)$<proc
+#elif defined(i386)
+*(*procdir+((<Q&0xffffff00)%40))$<proc
+#endif
+{adb_inline_end}

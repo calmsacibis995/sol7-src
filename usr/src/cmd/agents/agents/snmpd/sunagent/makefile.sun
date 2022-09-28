@@ -1,0 +1,182 @@
+# Copyright 1988 - 10/06/96 Sun Microsystems, Inc. All Rights Reserved.
+#pragma ident  "@(#)Makefile.SUNOS	1.12 96/10/06 Sun Microsystems"
+
+# Sun considers its source code as an unpublished, proprietary trade 
+# secret, and it is available only under strict license provisions.  
+# This copyright notice is placed here only to protect Sun in the event
+# the source is deemed a published work.  Disassembly, decompilation, 
+# or other means of reducing the object code to human readable form is 
+# prohibited by the license agreement under which this code is provided
+# to the user or company in possession of this copy.
+# 
+# RESTRICTED RIGHTS LEGEND: Use, duplication, or disclosure by the 
+# Government is subject to restrictions as set forth in subparagraph 
+# (c)(1)(ii) of the Rights in Technical Data and Computer Software 
+# clause at DFARS 52.227-7013 and in similar clauses in the FAR and 
+# NASA FAR Supplement.
+#
+# This makefile is for use on Sun OS 4.x
+
+#MAKE_DATE:sh=date
+.KEEP_STATE:
+
+OBJS =	main.o
+NAME = snmpd
+SCHEMA = sun-snmp.schema sun.mib
+ASN1 = sun-mib.asn
+EXT = c
+CEES =	main.c
+CFILES = main.c
+
+LIBCEES = agent.c arp.c contbl.c icmp.c if.c ip.c iprte.c general.c	\
+	libfuncs.c mib.c read_con.c sendtrap.c setup.c snmpvars.c	\
+	sys.c tcp.c udp.c pstable.c rstat.c
+
+LIBOBJS = $(LIBCEES:%.c=static$(TARGET_ARCH)/%.o)
+COBJS = $(CEES:%.c=static$(TARGET_ARCH)/%.o)
+HFILES = agent.h general.h snmpvars.h
+LIBNAME = static$(TARGET_ARCH)/libsun.a
+INCDIRS = -I../h
+
+LINTLIB = ../lib/llib-lsnmp.ln
+CC = acc
+
+
+# headers + yacc, lex, C & CC files make source code
+SCODE = $(HFILES) $(YFILES) $(LFILES) $(CFILES) $(CCFILES)
+ 
+# convert source file list into object file list
+OBJS = $(CFILES:.c=.o) $(CCFILES:.cc=.o)
+ 
+SHARED  = $(NAME:%=shared$(TARGET_ARCH)/%)
+DEBUG   = $(NAME:%=debug$(TARGET_ARCH)/%)
+PURIFY   = $(NAME:%=purify$(TARGET_ARCH)/%)
+ 
+# modifications for shared
+$(SHARED)  := CFLAGS += -O
+$(SHARED)  := DIR.v = shared$(TARGET_ARCH)
+$(SHARED)  := SDIR.v = static$(TARGET_ARCH)
+$(SHARED)  := SNMPLIB = ../lib/static$(TARGET_ARCH)/libsnmp.a
+$(SHARED)  := MIBCOMP = ../mibcomp/static$(TARGET_ARCH)/mibcomp
+
+#$(SHARED)  := LIBNAM.v = $(NETLIBSRC)/$(DIR.v)/lib$(NETLIB).so.$(LIBVERS)
+ 
+# modifications for debugging
+$(DEBUG)   := CFLAGS += -g
+$(DEBUG)   := DDEBUG = -DDEBUG
+$(DEBUG)   := MALLOC = /usr/lib/debug/malloc.o
+$(DEBUG)   := DIR.v = debug$(TARGET_ARCH)
+$(DEBUG)   := SDIR.v = debug$(TARGET_ARCH)
+$(DEBUG)   := SNMPLIB = ../lib/debug$(TARGET_ARCH)/libsnmp.a
+$(DEBUG)   := MIBCOMP = ../mibcomp/debug$(TARGET_ARCH)/mibcomp
+
+#$(DEBUG)   := LIBNAM.v = $(NETLIBSRC)/$(DIR.v)/lib$(NETLIB).a
+
+# modifications for make purify
+$(PURIFY)   := CFLAGS += -g
+$(PURIFY)   := DDEBUG = -DDEBUG
+$(PURIFY)   := MALLOC = /usr/lib/debug/malloc.o
+$(PURIFY)   := DIR.v = purify$(TARGET_ARCH)
+$(PURIFY)   := SDIR.v = purify$(TARGET_ARCH)
+$(PURIFY)   := SNMPLIB = ../lib/purify$(TARGET_ARCH)/libsnmp.a
+$(PURIFY)   := MIBCOMP = ../mibcomp/purify$(TARGET_ARCH)/mibcomp
+$(PURIFY)   := PURIFYTOOL = purify
+ 
+# names of the target .o files (with target directory)
+VARIANTS.o = $(OBJS:%=$(DIR.v)/%)
+
+# Flags to pass to the C compiler
+NEWDEFS = -DBOGEY -DSUNOS_4_X
+CFLAGS += $(NEWDEFS) $(DEFINES) $(DDEBUG) $(INCDIRS)
+
+
+PROG=$(SHARED) $(DEBUG) $(PURIFY)
+CLOBBERFILES=$(CEES) $(LIBCEES)
+
+shared:  shared$(TARGET_ARCH)  $(HFILES) $(SHARED)
+debug:   debug$(TARGET_ARCH)   $(HFILES) $(DEBUG)
+purify:   purify$(TARGET_ARCH)   $(HFILES) $(PURIFY)
+share dynamic: shared
+all: shared
+bin: all
+
+#static$(TARGET_ARCH)/%.o: %.c
+#	${CC} -c -o $@ ${INCDIRS} $(CFLAGS) $<
+
+# create the target directory
+shared$(TARGET_ARCH) debug$(TARGET_ARCH) \
+ purify$(TARGET_ARCH) static$(TARGET_ARCH):
+	@install -d $@
+
+ 
+# names of the target .o files (with target directory)
+VARIANTS.o = $(OBJS:%=$(DIR.v)/%)
+ 
+# how to link the files into an executable
+$(SHARED) $(DEBUG) $(PURIFY): $$(VARIANTS.o) numbers $(LIBNAME) $$(SNMPLIB)
+	$(PURIFYTOOL) $(CC) -o $@ $(VARIANTS.o) ${SNMPLIB} $(LIBNAME) \
+        ${SNMPLIB} $(LIBNAME) -lrpcsvc 
+
+
+# SNM-custom compilation rules
+COMPILE.c=$(PURIFYTOOL) $(CC) $(CPPFLAGS) $(CFLAGS) -c
+# how to convert .c files into .o files
+$$(DIR.v)/%.o: %.$(EXT)
+	$(COMPILE.$(EXT)) -o $@ $<
+ 
+debug$(TARGET_ARCH)/%.o purify$(TARGET_ARCH)/%.o \
+ static$(TARGET_ARCH)/%.o shared$(TARGET_ARCH)/%.o: %.$(EXT)
+	$(COMPILE.$(EXT)) -o $@ $<
+ 
+
+$(LIBNAME):	static$(TARGET_ARCH) ${LIBOBJS} $(HFILES)
+		$(RM) $(LIBNAME)
+		(ar r $(LIBNAME) ${LIBOBJS})
+		ranlib $(LIBNAME)
+
+#It seems that some sun libraries have strnicmp() and some do not.
+# define STRNICMP if the strnicmp() in setup.c should be generated.
+
+CFLAGS += -DNO_STDLIB -DNO_PP -DSTRNICMP -DBSD_RELEASE=43 -DSGRP -DOIDC_32
+LINTFLAGS = -I../h -DBOGEY -DSVR4 -DSOL24HIGHER -DSOL25HIGHER -DNO_STDLIB -DNO_PP -DSTRNICMP -DBSD_RELEASE=43 -DSGRP -DOIDC_32
+
+.c.o: 
+	${CC} -c -o static$(TARGET_ARCH)/$@ $(CFLAGS) $<
+
+
+
+$(CEES) $(LIBCEES): $(HFILES)
+
+mib.c: $(ASN1)
+	cpp -C -P -undef "-D__AGNT_DSCR__=\"Sun Microsystems SNMP Agent\"" $(ASN1) mib.tmp
+	${MIBCOMP} -o mib.c mib.tmp
+	$(RM) mib.tmp
+
+numbers: $(ASN1)
+	${MIBCOMP} -o numbers -numbers $(ASN1)
+
+
+
+install-sunos install: $(SCHEMA) shared shared$(TARGET_ARCH)/snmpd
+	install -m 555 shared$(TARGET_ARCH)/snmpd $(DESTDIR)/agents
+	install -m 444 sun.mib $(DESTDIR)/agents
+	install -m 444 sun-snmp.schema $(DESTDIR)/agents
+
+install-debug: $(SCHEMA) debug
+	install -m 555 debug$(TARGET_ARCH)/snmpd $(DESTDIR)/agents
+	install -m 444 $(SCHEMA) $(DESTDIR)/agents
+
+install-purify: $(SCHEMA) purify
+	install -m 555 purify$(TARGET_ARCH)/snmpd $(DESTDIR)/agents
+	install -m 444 $(SCHEMA) $(DESTDIR)/agents
+
+cleanobj:
+		-rm ${OBJS} ${LIBOBJS}
+
+clean:
+	$(RM) a.out core *.s *.o *.ln errs *.bak *.BAK *.d *.tcov *mon.out tags TAGS
+	$(RM) -r debug$(TARGET_ARCH) purify$(TARGET_ARCH) static$(TARGET_ARCH) shared$(TARGET_ARCH) profile$(TARGET_ARCH) $(LINTDIR)
+ 
+lint:
+	lint -hn ${INC} ${LINTFLAGS} ${LINTLIB} ${LIBCEES}
+

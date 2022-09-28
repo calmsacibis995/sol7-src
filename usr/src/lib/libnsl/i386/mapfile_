@@ -1,0 +1,22 @@
+#
+#ident	"@(#)mapfile-vers	1.7	97/05/28 SMI"
+#
+# Copyright (c) 1996 by Sun Microsystems, Inc.
+# All rights reserved.
+#
+# Intel386 specific interface definition for usr/src/lib/libnsl.
+
+
+SUNW_0.7 {	# Solaris ABI as of Solaris 2.3
+	global:
+		    # Entries from the SPARC compliance definition.
+
+		    rpc_broadcast_exp;
+		    gethostbyaddr;
+		    gethostbyname;
+		    inet_addr;
+		    inet_netof;
+		    inet_ntoa;
+		   _null_auth;
+		    svc_fdset;
+} SYSVABI_1.3;

@@ -1,0 +1,20 @@
+# Copyright 1988 - 09/20/96 Sun Microsystems, Inc. All Rights Reserved.
+#pragma ident  "@(#)pkginfo	1.19 96/09/20 Sun Microsystems"
+
+#
+# pkginfo: Solstice Enterprise Agent snmp daemon 
+#
+ 
+PKG=SUNWmibii
+NAME=Solstice Enterprise Agent SNMP daemon
+ARCH=sparc
+VERSION=1.0
+CATEGORY=application
+DESC=Solstice Enterprise Agent snmp daemon
+VENDOR=Sun Microsystems, Inc.
+CLASSES=sed none
+BASEDIR=/opt
+MAXINST=1000
+VSTOCK=258-6365-05
+PRODNAME=Solstice Enterprise Agent 1.0
+PRODVERS=SSA1.0

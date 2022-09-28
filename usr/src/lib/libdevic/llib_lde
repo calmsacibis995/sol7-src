@@ -1,0 +1,27 @@
+/* LINTLIBRARY */
+/* PROTOLIB1 */
+
+/*
+ * Copyright (c) 1997 by Sun Microsystems, Inc.
+ * All rights reserved.
+ */
+#pragma ident	"@(#)llib-ldevice	1.1	97/11/09 SMI"
+
+#include <sys/types.h>
+
+/*
+ * usr/src/lib/libdevice
+ */
+
+/* devctl.c */
+int devctl_acquire(char *devfs_path, uint_t flags, devctl_hdl_t *dcp);
+void devctl_release(devctl_hdl_t hdl);
+int devctl_device_offline(devctl_hdl_t hdl);
+int devctl_device_online(devctl_hdl_t hdl);
+int devctl_device_reset(devctl_hdl_t hdl);
+int devctl_device_getstate(devctl_hdl_t hdl, uint_t *statep);
+int devctl_bus_quiesce(devctl_hdl_t hdl);
+int devctl_bus_unquiesce(devctl_hdl_t hdl);
+int devctl_bus_reset(devctl_hdl_t hdl);
+int devctl_bus_resetall(devctl_hdl_t hdl);
+int devctl_bus_getstate(devctl_hdl_t hdl, uint_t *statep);

@@ -1,0 +1,18 @@
+#
+# Copyright (c) 1997, by Sun Microsystems, Inc.
+# All rights reserved.
+#
+#ident	"@(#)Makefile	1.6	97/08/28 SMI"
+#
+# lib/libmp/sparcv9/Makefile
+
+include ../Makefile.com
+include ../../Makefile.lib.64
+
+LIBS = $(DYNLIB)
+
+.KEEP_STATE:
+
+all: $(LIBS)
+
+install: all $(ROOTLIBS64) $(ROOTLINKS64)

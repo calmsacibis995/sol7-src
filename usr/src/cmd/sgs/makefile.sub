@@ -1,0 +1,47 @@
+#
+#ident	"@(#)Makefile.sub	1.7	97/11/12 SMI"
+#
+# Copyright (c) 1995-1997, by Sun Microsystems, Inc.
+# All rights reserved.
+#
+# Standard subdirs makefile for the sgs area.
+#
+
+include		../../../Makefile.master
+
+# This is how the SUBDIRS stuff should look by the time the SGS
+# directory is fully converted:
+#
+# SUBDIRS=	$(MACH) $(BUILD64) $(MACH64)
+#
+# $(SUBDIRS):	FRC
+#	@cd $@; pwd; $(MAKE) $(TARGET)
+#
+# In the meantime, we use an sneaky trick on the $(SUBDIRS) target
+# to build whatever 64-bit directories we actually find as a side-effect
+# of descending into the 32-bit directories.  Ick.
+
+SUBDIRS=	$(MACH)
+ 
+all :=		TARGET= all
+clean :=	TARGET= clean
+clobber :=	TARGET= clobber
+delete :=	TARGET= delete
+install :=	TARGET= install
+lint :=		TARGET= lint
+catalog :=	TARGET= catalog
+package :=	TARGET= package
+
+.KEEP_STATE_FILE: .make.state.$(MACH)
+.KEEP_STATE:
+
+all clean clobber delete install lint catalog package: \
+		$(SUBDIRS)
+
+$(SUBDIRS):	FRC
+		@cd $@; pwd; $(MAKE) $(TARGET)
+		@if [ -d $(MACH64) ]; then			\
+			cd $(MACH64); pwd; $(MAKE) $(TARGET);	\
+		else /bin/true; fi
+
+FRC:

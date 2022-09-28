@@ -1,0 +1,24 @@
+\
+\ Copyright (c) 1997, by Sun Microsystems, Inc.
+\ All rights reserved.
+\
+\"@(#)kmastat.dbg	1.3	98/01/19 SMI"
+
+#include <sys/kmem.h>
+#include <sys/kmem_impl.h>
+#include "dummy.h"
+
+\
+\
+kmem_cache	""	kmastat
+{adb_inline_begin}
+0="global statistics"
+<_>U;1>_
+kmem_misc_kstat,7/n32c8tD12+
+<U>_
+0=n"per-cache statistics"
+kmem_null_cache>k
+<k>e
+*(<k+{OFFSET, cache_next})>k
+<k,#(#(<k))$<kmastat.nxt
+{adb_inline_end}

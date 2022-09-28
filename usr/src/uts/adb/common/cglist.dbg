@@ -1,0 +1,25 @@
+\
+\ Copyright (c) 1997, by Sun Microsystems, Inc.
+\ All rights reserved.
+\
+\"@(#)cglist.dbg	1.5	98/01/28 SMI"
+
+#include <sys/types.h>
+#include <sys/var.h>
+#include "dummy.h"
+
+\
+\
+var		""		cglist
+{adb_inline_begin}
+v>V
+0>I
+#if defined(sparcv9)
+*(<V+{OFFSET, v_hbuf})>/i/V
+#else
+*(<V+{OFFSET, v_hbuf})>V
+#endif
+<V="Hash buckets:"Dn
+*hbuf>H
+,#(#(<V))$<cglist.nxt
+{adb_inline_end}

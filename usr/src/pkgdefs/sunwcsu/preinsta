@@ -1,0 +1,44 @@
+#
+#ident	"@(#)preinstall	1.1	98/03/01 SMI"
+#
+# Copyright (c) 1998 by Sun Microsystems, Inc.
+# All rights reserved.
+
+if [ "$PKG_INSTALL_ROOT" = "/" ]; then
+	PKG_INSTALL_ROOT="";
+fi
+
+if [ ! -h $PKG_INSTALL_ROOT/usr/ccs/lib ]
+then
+	pwd=`pwd`
+	rm -f /tmp/xpkg$$
+	find $PKG_INSTALL_ROOT/usr/ccs/lib -type f -print >/tmp/xpkg$$
+	cat /tmp/xpkg$$ | while read a
+	do
+		pkgchk -R $PKG_INSTALL_ROOT/ -L -p $a |
+		nawk '{
+			for (i=10; i<=NF; i++)
+				 printf("%s %s\n", $1, $i)
+		}' |
+		while read b
+		do
+			set -- $b
+			curfile=$1
+			shift
+			curpkg=$1
+			if [ -n "$curpkg" ]
+			then
+				removef -R $PKG_INSTALL_ROOT/ $curpkg $curfile |
+				while read pathname
+				do
+					rm -f $pathname
+				done
+				removef -R $PKG_INSTALL_ROOT/ -f $curpkg ||
+					 exit 2
+			fi
+		done
+	done
+	cd $pwd
+	rm -rf $PKG_INSTALL_ROOT/usr/ccs/lib
+fi
+exit 0

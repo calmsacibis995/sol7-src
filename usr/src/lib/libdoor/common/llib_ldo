@@ -1,0 +1,25 @@
+/* LINTLIBRARY */
+/* PROTOLIB1 */
+
+/*
+ * Copyright (c) 1997 by Sun Microsystems, Inc.
+ * All rights reserved.
+ */
+#pragma ident "@(#)llib-ldoor	1.1	97/08/30 SMI"
+
+#include <unistd.h>
+#include <thread.h>
+#include <pthread.h>
+#include <stdio.h>
+#include <errno.h>
+#include <door.h>
+
+/* door_calls.c */
+int door_create(void (*)(), void *, u_int);
+int door_revoke(int);
+int door_info(int, door_info_t *);
+int door_cred(door_cred_t *);
+int door_bind(int);
+int door_unbind(void);
+int door_call(int, door_arg_t *);
+int door_return(char *, size_t, door_sesc_t *, size_t);

@@ -1,0 +1,105 @@
+# Copyright 1988 - 07/23/96 Sun Microsystems, Inc. All Rights Reserved.
+#pragma ident  "@(#)makefile.svr4	2.16 96/07/23 Sun Microsystems"
+
+# Sun considers its source code as an unpublished, proprietary trade 
+# secret, and it is available only under strict license provisions.  
+# This copyright notice is placed here only to protect Sun in the event
+# the source is deemed a published work.  Disassembly, decompilation, 
+# or other means of reducing the object code to human readable form is 
+# prohibited by the license agreement under which this code is provided
+# to the user or company in possession of this copy.
+# 
+# RESTRICTED RIGHTS LEGEND: Use, duplication, or disclosure by the 
+# Government is subject to restrictions as set forth in subparagraph 
+# (c)(1)(ii) of the Rights in Technical Data and Computer Software 
+# clause at DFARS 52.227-7013 and in similar clauses in the FAR and 
+# NASA FAR Supplement.
+#
+# This makefile is for use on Sun OS 4.x
+
+MAKE_DATE:sh=date
+
+OBJS =	main.o
+
+CEES =	main.c
+
+#LIBCEES = agent.c arp.c contbl.c icmp.c if.c ip.c iprte.c general.c	\
+#	libfuncs.c mib.c read_con.c sendtrap.c setup.c snmpvars.c	\
+#	sys.c tcp.c udp.c
+
+#LIBOBJS = agent.o arp.o contbl.o icmp.o if.o ip.o iprte.o general.o	\
+#	libfuncs.o mib.o read_con.o sendtrap.o setup.o snmpvars.o	\
+#	sys.o tcp.o udp.o
+
+LIBCEES = agent.c general.c	\
+	libfuncs.c mib.c read_con.c sendtrap.c setup.c snmpvars.c sys.c
+
+LIBOBJS = agent.o general.o	\
+	libfuncs.o mib.o read_con.o sendtrap.o setup.o snmpvars.o sys.o
+
+HFILES = agent.h general.h snmpvars.h
+
+INC = -I../h
+
+MIBCOMP = ../mibcomp/mibcomp
+LINTLIB = ../snmp/llib-lsnmp.ln
+CC = cc
+CPP = /usr/ccs/lib/cpp
+
+SNMPLIB = ../snmp/libsnmp.a
+
+#It seems that some sun libraries have strnicmp() and some do not.
+# define STRNICMP if the strnicmp() in setup.c should be generated.
+
+CFLAGS = -O  -DSTRNICMP -DBSD_RELEASE=43 -DSGRP -DOIDC_32 -DSVR4
+LINTFLAGS =  -DSTRNICMP -DBSD_RELEASE=43 -DSGRP -DOIDC_32 -DSVR4
+
+.c.o:
+	${CC} -c ${INC} $(CFLAGS) $<
+
+sunagent:	main.o ${SNMPLIB} libsun.a numbers
+	cc -o sunagent main.o ${SNMPLIB} libsun.a	\
+		${SNMPLIB} libsun.a -lkvm -lsocket -ltcpip -lnsl -lelf
+
+cleanobj:
+		-rm ${OBJS} ${LIBOBJS}
+
+clean:
+		-rm -f ${OBJS} ${LIBOBJS}
+		-rm -f sunagent
+
+
+libsun.a:	${LIBOBJS}
+		rm -f libsun.a
+		ar r libsun.a ${LIBOBJS}
+
+agent.o:	agent.c ${HFILES}
+arp.o:		arp.c ${HFILES}
+contbl.o:	contbl.c ${HFILES}
+icmp.o:		icmp.c ${HFILES}
+if.o:		if.c ${HFILES}
+ip.o:		ip.c ${HFILES}
+iprte.o:	iprte.c ${HFILES}
+general.o:	general.c ${HFILES}
+libfuncs.o:	libfuncs.c ${HFILES}
+mib.o:		mib.c ${HFILES}
+read_con.o:	read_con.c ${HFILES}
+sendtrap.o:	sendtrap.c ${HFILES}
+setup.o:	setup.c ${HFILES}
+snmpvars.o:	snmpvars.c ${HFILES}
+sys.o:		sys.c ${HFILES}
+tcp.o:		tcp.c ${HFILES}
+udp.o:		udp.c ${HFILES}
+
+mib.c: mib.asn
+	${CPP} -C -P -undef "-D__AGNT_DSCR__=\"Epilogue Technology Agent ${MAKE_DATE}\"" mib.asn mib.tmp
+	${MIBCOMP} -o mib.c mib.tmp
+	rm -f mib.tmp
+
+numbers: mib.asn
+	${MIBCOMP} -o numbers -numbers mib.asn
+
+
+lint:
+	lint -hn ${INC} ${LINTFLAGS} ${LINTLIB} ${LIBCEES}
+

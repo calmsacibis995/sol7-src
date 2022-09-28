@@ -1,0 +1,19 @@
+#
+#ident	"@(#)mapfile-vers	1.3	97/01/20 SMI"
+#
+# Copyright (c) 1995 by Sun Microsystems, Inc.
+# All rights reserved.
+
+SUNWprivate_1.1 {
+	global:
+		memcmp;
+		_memcmp;
+		memcpy;
+		_memcpy;
+		memmove;
+		_memmove;
+		memset;
+		_memset;
+	local:
+		*;
+};

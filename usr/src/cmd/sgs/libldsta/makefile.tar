@@ -1,0 +1,44 @@
+#
+#ident	"@(#)Makefile.targ	1.10	97/07/11 SMI"
+#
+# Copyright (c) 1996 by Sun Microsystems, Inc.
+# All rights reserved.
+
+pics/%.o:	../common/%.c
+		$(COMPILE.c) -o $@ $<
+		$(POST_PROCESS_O)
+
+pics/%64.o:	../common/%.c
+		$(COMPILE.c) -o $@ -D_ELF64 $<
+		$(POST_PROCESS_O)
+
+lint:		$(LINTLIB)
+
+delete:
+		-$(RM) $(DYNLIB)
+
+$(DYNLIB):	$(MAPFILE)
+
+# Special target for native builds (ie. when we need to build a version of ld
+# to build a version of ld :-).
+
+native:		$(SGSPROTO)/$(DYNLIB)
+
+native:=	DYNFLAGS += -znoversion
+
+$(SGSPROTO)/$(DYNLIB): \
+		pics .WAIT $$(PICS)
+		$(CC) -o $@ -dy -G $(DYNFLAGS) $(PICS) $(LDLIBS)
+		$(POST_PROCESS_SO)
+
+include		$(SRC)/lib/Makefile.targ
+
+# Derived source and header files (messaging).
+
+catalog:	$(BLTMESG)
+
+$(BLTDEFS) + \
+$(BLTDATA) + \
+$(BLTMESG) :	../common/libldstab.msg
+		$(SGSTOOLS)/sgsmsg $(SGSMSGFLAGS) ../common/libldstab.msg
+		@ csh $(SGSTOOLS)/../chkmsg.csh ../common/libldstab.msg $(SRCS)

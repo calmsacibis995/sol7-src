@@ -1,0 +1,20 @@
+#
+# Copyright (c) 1997, by Sun Microsystems, Inc.
+# All rights reserved.
+#
+#pragma	ident	"@(#)Makefile.psm.64	1.2	97/07/10 SMI"
+#
+# psm/Makefile.psm.64
+#
+#	This makefile contains the compiler fiddling needed to build
+#	64-bit objects.
+#
+# Include overrides for builds of 64-bit objects
+#
+include $(SRC)/Makefile.master.64
+
+ALWAYS_DEFS	+= -D__sparc -D__sparcv9 -D_SYSCALL32_IMPL
+AS_DEFS		+= -D__sparc -D__sparcv9
+CPPFLAGS	+= -D__sparc -D__sparcv9 -D_SYSCALL32 
+ASFLAGS		+= -D__sparc -D__sparcv9
+LINTFLAGS64	+= -errchk=longptr64

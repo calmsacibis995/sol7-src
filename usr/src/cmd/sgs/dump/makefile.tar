@@ -1,0 +1,30 @@
+#
+#ident	"@(#)Makefile.targ	1.3	97/11/23 SMI"
+#
+# Copyright (c) 1994 by Sun Microsystems, Inc.
+#
+# cmd/sgs/dump/Makefile.targ
+
+%.o:		../common/%.c
+		$(COMPILE.c) $<
+
+.KEEP_STATE:
+
+all:		$(PROG)
+
+$(PROG):	$(OBJS)
+		$(LINK.c) $(OBJS) -o $@ $(LDLIBS)
+		$(POST_PROCESS)
+
+package \
+install:	all $(ROOTCCSBINPROG)
+
+clean:
+		$(RM) $(OBJS) $(CLEANFILES)
+
+lint:		$(LINTOUT)
+
+$(LINTOUT):	$(SRCS)
+		$(LINT.c) $(SRCS) > $(LINTOUT) 2>&1
+
+include		../../../Makefile.targ

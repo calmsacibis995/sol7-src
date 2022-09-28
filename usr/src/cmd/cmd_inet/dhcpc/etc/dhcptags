@@ -1,0 +1,129 @@
+# DHCPTAGS
+#
+# This file defines the following:
+#    Types,descriptions and mnemonics for DHCP/BOOTP options
+
+# These are the so-called "pseudo" tags and types used internally by
+# the DHCP client. The only useful edit you can perform on these is
+# to change the description. If you delete any of these or change
+# the tag number you will undoubtedly disable the client.
+
+513  Yiaddr     pseudo  IP           IP_address 
+514  Siaddr     pseudo  IP           Boot_File_Server_Address 
+516  Hwtype     pseudo  String       Hardware_Type 
+515  Hwaddr     pseudo  String       Client_ID 
+517  IPnet      pseudo  IP           Net_or_Subnet_IP_Address 
+519  tc         pseudo  String       Member_of_Group 
+520  hd         pseudo  String       Home_Directory 
+521  td         pseudo  String       TFTP_root_directory 
+522  hn         pseudo  Boolean      Send_client's_hostname 
+523  vm         pseudo  Byte         Vendor_Magic_Cookie 
+524  Ciaddr     pseudo  IP           ciaddr 
+525  Giaddr     pseudo  IP           giaddr 
+526  ra         pseudo  IP           Reply_Address_Override 
+
+# Standard DHCP options. These are defined by the IANA and are universally
+# applicable. Do *not* change the types of any of these. You may add to
+# the list as new opions are defined. You may also change the long name.
+# If you wish you may change the short name but beware: the boot scripts
+# S30rootusr.sh, S69inet, S72inetsvc require *known* tags to operate properly.
+
+1    Subnet     -       IP           Subnet_Mask 
+2    UTCoffst   -       Time         Time_Offset 
+3    Router     -       IPList       Routers 
+4    Timeserv   -       IPList       Time_Servers 
+5    IEN116ns   -       IPList       IEN-116_Name_Servers 
+6    DNSserv    -       IPList       DNS_Servers 
+7    Logserv    -       IPList       Log_Servers 
+8    Cookie     -       IPList       Cookie_Servers 
+9    Lprserv    -       IPList       LPR_Servers 
+10   Impress    -       IPList       Impress_Servers 
+11   Resource   -       IPList       Resource_Location_Servers 
+12   Hostname   -       String       Host_Name 
+13   Bootsize   -       Int16        Bootfile_Size 
+14   Dumpfile   -       String       Merit_Dump_File 
+15   DNSdmain   -       String       DNS_Domain_Name 
+16   Swapserv   -       IP           Swap_Server 
+17   Rootpath   -       String       Root_Path 
+18   ExtendP    -       String       Extensions_Path 
+19   IpFwdF     -       Boolean      IP_Forwarding 
+20   NLrouteF   -       Boolean      Forward_Non-Local_Datagrams 
+21   PFilter    -       IPList       Policy_Filters 
+22   MaxIpSiz   -       Int16        Maximum_Reassembly_Size 
+23   IpTTL      -       Byte         IP_Time_To_Live 
+24   PathTO     -       Time         PMTU_Timeout 
+25   PathTbl    -       Int16list    PMTU_Plateaus 
+26   MTU        -       Int16        Interface_MTU 
+27   SameMtuF   -       Boolean      Subnets_Are_Local 
+28   Broadcst   -       IP           Broadcast_Address 
+29   MaskDscF   -       Boolean      Perform_Mask_Discovery 
+30   MaskSupF   -       Boolean      Supply_Masks 
+31   RDiscvyF   -       Boolean      Perform_Route_Discovery 
+32   RSolictS   -       IP           Solicit_Router 
+33   StaticRt   -       IPList       Static_Routes 
+34   TrailerF   -       Boolean      Trailer_Encapsulation 
+35   ArpTimeO   -       Time         Arp_Cache_Timeout 
+36   EthEncap   -       Boolean      Ethernet_Encapsulation 
+37   TcpTTL     -       Byte         TCP_Default_Time_To_Live 
+38   TcpKaInt   -       Time         Keep_Alive_Interval 
+39   TcpKaGbF   -       Boolean      Keep_Alive_Octet 
+40   NISdmain   -       String       NIS_Domain_Name 
+41   NISservs   -       IPList       NIS_Servers 
+42   NTPservs   -       IPList       NTP_Servers 
+44   NetBNms    -       IPList       Netbios_Name_Servers 
+45   NetBDsts   -       IPList       Netbios_Datagram_Dist_Servers 
+46   NetBNdT    -       Byte         Netbios_Node_Type 
+47   NetBScop   -       String       Netbios_Scope 
+48   XFontSrv   -       IPList       X_Font_Servers 
+49   XDispMgr   -       IPList       X_Display_Managers 
+50   RequestIP  -       IP           Requested_IP_Address
+51   LeaseTim   -       Time         Lease_Time 
+52   Overload   -       Byte         Overload_File/Sname 
+53   MsgTYpe    -       Byte         Message_Type 
+54   ServerIP   -       IP           Server_IP 
+55   ReqVec     -       Opaque       Request_Vector 
+56   Message    -       String       Server_Error_Message  
+57   MaxMsgSz   -       Int16        Maximum_Message_Size 
+58   T1Time     -       Time         DHCP_Renewal_time 
+59   T2Time     -       Time         DHCP_Rebinding_time 
+60   Vendor     -       String       Vendor_Class 
+61   ClientID   -       Opaque       Client_Identifier 
+62   NW_dmain   -       String       Netware_Domain 
+63   NWIPOpts   -       String       Netware_Options 
+64   NIS+dom    -       String       NIS+_Domain_Name 
+65   NIS+serv   -       IPList       NIS+_Servers 
+66   TFTPsrvN   -       String       Boot_File_Server_Name 
+67   OptBootF   -       String       Boot_File 
+68   MblIPAgt   -       IPList       MobileIP_Home_Agents 
+69   SMTPserv   -       IPList       SMTP_Servers 
+70   POP3serv   -       IPList       POP3_Servers 
+71   NNTPserv   -       IPList       NNTP_Servers 
+72   WWWservs   -       IPList       WWW_Servers 
+73   Fingersv   -       IPList       Finger_Servers 
+74   IRCservs   -       IPList       IRC_Servers 
+75   STservs    -       IPList       StreetTalk_Servers 
+76   STDAservs  -       IPList       STDA_Servers 
+77   UserClass  -       String       User_Class 
+
+# Site specific tags.
+# These tags are defined by the system adminstrator
+# and are in the range 128 to 254. Note that all
+# DHCP clients and servers must agree on both the
+# type and semantics of these options. DHCP clients
+# and servers at another site may have types and
+# meanings for these tags which are totally different.
+
+# Vendor specific tags.
+# These are unique to a specific vendor class which
+# is given by the third field. The tag number is
+# offset by 256 in this file: thus a vendor tag of
+# 1 (one) is enumerated as being number 257.
+# 
+
+# Competitive Automation:
+258  pr  JOIN    StringList   Printers 
+259  mf  JOIN    StringList   NFS_Mounted_File_Systems 
+261  jv  JOIN    Byte         Join_Version 
+267  cb  JOIN    String       Client_Binary 
+268  ps  JOIN    StringList   SVR4_Printer_Setup 
+269  ss  JOIN    String       Name_Service_Switch 

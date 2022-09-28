@@ -1,0 +1,18 @@
+# Copyright 09/30/96 Sun Microsystems, Inc. All Rights Reserved.
+#pragma ident  "@(#)pkginfo	1.7 96/09/30 Sun Microsystems"
+#
+# pkginfo: SA DMI
+#
+ARCH=sparc
+BASEDIR=/opt
+CATEGORY=Application
+CLASSES=sed none
+DESC=Solstice Enterprise Agent Desktop Management Interface
+MAXINST=1000
+NAME=Solstice Enterprise Agent Desktop Management Interface
+PKG=SUNWsadmi
+PRODNAME=Solstice Enterprise Agent Desktop Management Interface
+PRODVERS=SA1.0
+VENDOR=Sun Microsystems, Inc.
+VERSION=1.0
+VSTOCK=258-6264-05

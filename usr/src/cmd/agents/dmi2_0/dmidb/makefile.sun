@@ -1,0 +1,37 @@
+RANLIB        = /bin/true 
+AR            = ar      
+RM            = rm      
+RMF           = rm -f   
+CP            = cp      # Normal UNIX cp command
+LN            = ln      # Normal UNIX ln command
+MV            = mv      # Normal UNIX mv command
+CC            = cc      # name of compiler
+CCC			  = CC
+DEBUG		  = -g -DDEBUG
+
+TOP	            = ../..
+
+INCLUDES     =  -I../include
+
+#FLAGS           = -DSVR4 -D_REENTRANT 
+FLAGS           = -DSVR4
+
+CFLAGS          = $(DEBUG) $(FLAGS) $(INCLUDES)
+
+LINKLIBDIR		= -L$(LIB_DIR) 
+
+LIBS		=   $(LIB_DIR)/libsp.a -lsocket -lnsl -ly -ll -lgen -lrwtool
+
+
+
+# use ANSI C
+
+OBJ_DIR			= ../obj
+LIB_DIR			= ../lib
+BIN_DIR			= ../bin
+
+$(OBJ_DIR)/%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
+$(OBJ_DIR)/%.o: %.cc
+	$(CCC) $(CCFLAGS) -c $< -o $@

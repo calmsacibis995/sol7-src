@@ -1,0 +1,14 @@
+start table
+	Name = "SP Indication Subscription"
+	class = "DMTF|SP Indication Subscription|001"
+	id = 2
+
+	{"","","",0,"","",0}
+end table
+start table
+	Name = "SP Filter Information"
+	class = "DMTF|SPFilterInformation|001"
+	id = 3
+
+	{"","","",0,0,"",0}
+end table

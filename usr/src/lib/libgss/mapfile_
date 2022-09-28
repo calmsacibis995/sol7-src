@@ -1,0 +1,96 @@
+#
+#ident	"@(#)mapfile-vers	1.4	97/12/10 SMI"
+#
+# Copyright (c) 1997, by Sun Microsystems, Inc.
+# All rights reserved.
+#
+#
+# Generic interface definition for usr/src/lib/libgss.
+#
+# For information regarding the establishment of versioned definitions see:
+#	The Linker and Libraries Manual (version 2.5 or greater)
+# This is part of the Developers Guide in the Answerbook.  Specifically refer
+# to Chapter 2 under section "Defining Additional Symbols" through section
+# "Reducing Symbol Scope", and Chapter 5 "Versioning".
+#
+# For specific OSNET rules for the modification (evolution) of these version
+# definitions see:
+#	Policy for Shared Library Version Names and Interface Definitions
+
+SUNW_1.1 {
+	global:
+};
+
+SUNWprivate_1.1 {
+	global:
+		GSS_C_NT_USER_NAME;
+		GSS_C_NT_MACHINE_UID_NAME;
+		GSS_C_NT_STRING_UID_NAME;
+		GSS_C_NT_HOSTBASED_SERVICE;
+		GSS_C_NT_ANONYMOUS;
+		GSS_C_NT_EXPORT_NAME;
+
+		gss_acquire_cred;
+		gss_release_cred;
+		gss_init_sec_context;
+		gss_accept_sec_context;
+		gss_process_context_token;
+		gss_delete_sec_context;
+		gss_context_time;
+		gss_display_status;
+		gss_indicate_mechs;
+		gss_compare_name;
+		gss_display_name;
+		gss_import_name;
+		gss_release_name;
+		gss_release_buffer;
+		gss_release_oid_set;
+		gss_inquire_cred;
+
+		gss_inquire_context;		# New for V2 
+		gss_get_mic;
+		gss_verify_mic;
+		gss_wrap;
+		gss_unwrap;
+		gss_wrap_size_limit;
+		gss_export_name;
+		gss_add_cred;
+		gss_inquire_cred_by_mech;
+		gss_export_sec_context;
+		gss_import_sec_context;
+		gss_release_oid;
+		gss_create_empty_oid_set;
+		gss_add_oid_set_member;
+		gss_test_oid_set_member;
+		gss_str_to_oid;
+		gss_oid_to_str;
+		gss_inquire_names_for_mech;
+		gss_canonicalize_name;
+		gss_duplicate_name;
+		gss_copy_oid_set;
+
+		gss_sign;		# GSSAPI V1
+		gss_verify;
+		gss_seal;
+		gss_unseal;
+
+		gss_nt_service_name;
+
+		__gss_qop_to_num;
+		__gss_num_to_qop;
+		__gss_get_mech_info;
+		__gss_mech_qops;
+		__gss_mech_to_oid;
+		__gss_oid_to_mech;
+		__gss_get_mechanisms;
+		gsscred_expname_to_unix_cred;
+		gsscred_name_to_unix_cred;
+		gss_get_group_info;
+		__gss_get_kmodName;	
+
+		generic_gss_copy_oid;		# mech_dummy.so needs these two
+		generic_gss_release_oid;	# to run rpcgss_sample with -m 2
+
+	local:
+		*;
+};

@@ -1,0 +1,1366 @@
+#
+#pragma ident	"@(#)Makefile.dep	1.4	97/05/14 SMI"
+#
+Allocator.o: Allocator.cxx splib.h $(srcdir)/../include/config.h \
+ $(srcdir)/../include/Allocator.h $(srcdir)/../include/macros.h
+Link.o: Link.cxx splib.h $(srcdir)/../include/config.h $(srcdir)/../include/Link.h
+IListBase.o: IListBase.cxx splib.h $(srcdir)/../include/config.h \
+ $(srcdir)/../include/IListBase.h $(srcdir)/../include/Link.h $(srcdir)/../include/Boolean.h
+TypeId.o: TypeId.cxx splib.h $(srcdir)/../include/config.h $(srcdir)/../include/TypeId.h
+assert.o: assert.cxx splib.h $(srcdir)/../include/config.h $(srcdir)/../include/macros.h
+CharsetInfo.o: CharsetInfo.cxx splib.h $(srcdir)/../include/config.h \
+ $(srcdir)/../include/CharsetInfo.h $(srcdir)/../include/UnivCharsetDesc.h \
+ $(srcdir)/../include/types.h $(srcdir)/../include/RangeMap.h $(srcdir)/../include/Vector.h \
+ $(srcdir)/../include/xnew.h $(srcdir)/../include/Boolean.h $(srcdir)/../include/ISet.h \
+ $(srcdir)/../include/StringC.h $(srcdir)/../include/StringOf.h $(srcdir)/../include/constant.h
+EntityCatalog.o: EntityCatalog.cxx splib.h $(srcdir)/../include/config.h \
+ $(srcdir)/../include/EntityCatalog.h $(srcdir)/../include/types.h $(srcdir)/../include/StringC.h \
+ $(srcdir)/../include/StringOf.h $(srcdir)/../include/Boolean.h $(srcdir)/../include/Resource.h \
+ $(srcdir)/../include/SubstTable.h $(srcdir)/../include/EntityDecl.h \
+ $(srcdir)/../include/NamedResource.h $(srcdir)/../include/Named.h $(srcdir)/../include/Ptr.h \
+ $(srcdir)/../include/StringResource.h $(srcdir)/../include/Location.h $(srcdir)/../include/Vector.h \
+ $(srcdir)/../include/xnew.h $(srcdir)/../include/Owner.h $(srcdir)/../include/rtti.h \
+ $(srcdir)/../include/TypeId.h
+EntityDecl.o: EntityDecl.cxx splib.h $(srcdir)/../include/config.h \
+ $(srcdir)/../include/EntityDecl.h $(srcdir)/../include/NamedResource.h $(srcdir)/../include/Named.h \
+ $(srcdir)/../include/StringC.h $(srcdir)/../include/types.h $(srcdir)/../include/StringOf.h \
+ $(srcdir)/../include/Boolean.h $(srcdir)/../include/Resource.h $(srcdir)/../include/Ptr.h \
+ $(srcdir)/../include/StringResource.h $(srcdir)/../include/Location.h $(srcdir)/../include/Vector.h \
+ $(srcdir)/../include/xnew.h $(srcdir)/../include/Owner.h $(srcdir)/../include/rtti.h \
+ $(srcdir)/../include/TypeId.h
+EntityManager.o: EntityManager.cxx splib.h $(srcdir)/../include/config.h \
+ $(srcdir)/../include/EntityManager.h $(srcdir)/../include/types.h $(srcdir)/../include/StringC.h \
+ $(srcdir)/../include/StringOf.h $(srcdir)/../include/Boolean.h $(srcdir)/../include/Resource.h \
+ $(srcdir)/../include/EntityCatalog.h $(srcdir)/../include/SubstTable.h $(srcdir)/../include/Ptr.h
+Hash.o: Hash.cxx splib.h $(srcdir)/../include/config.h $(srcdir)/../include/Hash.h \
+ $(srcdir)/../include/StringC.h $(srcdir)/../include/types.h $(srcdir)/../include/StringOf.h \
+ $(srcdir)/../include/Boolean.h
+InputSource.o: InputSource.cxx splib.h $(srcdir)/../include/config.h \
+ $(srcdir)/../include/InputSource.h $(srcdir)/../include/types.h $(srcdir)/../include/Link.h \
+ $(srcdir)/../include/Ptr.h $(srcdir)/../include/Boolean.h $(srcdir)/../include/Location.h \
+ $(srcdir)/../include/Resource.h $(srcdir)/../include/Vector.h $(srcdir)/../include/xnew.h \
+ $(srcdir)/../include/Owner.h $(srcdir)/../include/StringC.h $(srcdir)/../include/StringOf.h \
+ $(srcdir)/../include/rtti.h $(srcdir)/../include/TypeId.h $(srcdir)/../include/XcharMap.h \
+ $(srcdir)/../include/constant.h MarkupScan.h
+Location.o: Location.cxx splib.h $(srcdir)/../include/config.h \
+ $(srcdir)/../include/Location.h $(srcdir)/../include/types.h $(srcdir)/../include/Boolean.h \
+ $(srcdir)/../include/Ptr.h $(srcdir)/../include/Resource.h $(srcdir)/../include/Vector.h \
+ $(srcdir)/../include/xnew.h $(srcdir)/../include/Owner.h $(srcdir)/../include/StringC.h \
+ $(srcdir)/../include/StringOf.h $(srcdir)/../include/rtti.h $(srcdir)/../include/TypeId.h
+Message.o: Message.cxx splib.h $(srcdir)/../include/config.h \
+ $(srcdir)/../include/Message.h $(srcdir)/../include/Location.h $(srcdir)/../include/types.h \
+ $(srcdir)/../include/Boolean.h $(srcdir)/../include/Ptr.h $(srcdir)/../include/Resource.h \
+ $(srcdir)/../include/Vector.h $(srcdir)/../include/xnew.h $(srcdir)/../include/Owner.h \
+ $(srcdir)/../include/StringC.h $(srcdir)/../include/StringOf.h $(srcdir)/../include/rtti.h \
+ $(srcdir)/../include/TypeId.h $(srcdir)/../include/CopyOwner.h $(srcdir)/../include/MessageArg.h
+MessageArg.o: MessageArg.cxx splib.h $(srcdir)/../include/config.h \
+ $(srcdir)/../include/MessageArg.h $(srcdir)/../include/StringC.h $(srcdir)/../include/types.h \
+ $(srcdir)/../include/StringOf.h $(srcdir)/../include/Boolean.h $(srcdir)/../include/rtti.h \
+ $(srcdir)/../include/TypeId.h $(srcdir)/../include/MessageBuilder.h
+UnivCharsetDesc.o: UnivCharsetDesc.cxx splib.h $(srcdir)/../include/config.h \
+ $(srcdir)/../include/UnivCharsetDesc.h $(srcdir)/../include/types.h $(srcdir)/../include/RangeMap.h \
+ $(srcdir)/../include/Vector.h $(srcdir)/../include/xnew.h $(srcdir)/../include/Boolean.h \
+ $(srcdir)/../include/ISet.h $(srcdir)/../include/macros.h $(srcdir)/../include/constant.h
+entmgr_inst.o: entmgr_inst.cxx splib.h $(srcdir)/../include/config.h \
+ $(srcdir)/../include/Owner.h $(srcdir)/../include/Owner.cxx $(srcdir)/../include/CopyOwner.h \
+ $(srcdir)/../include/CopyOwner.cxx $(srcdir)/../include/RangeMap.h $(srcdir)/../include/Vector.h \
+ $(srcdir)/../include/xnew.h $(srcdir)/../include/Vector.cxx $(srcdir)/../include/Boolean.h \
+ $(srcdir)/../include/ISet.h $(srcdir)/../include/ISet.cxx $(srcdir)/../include/types.h \
+ $(srcdir)/../include/RangeMap.cxx $(srcdir)/../include/Ptr.h $(srcdir)/../include/Ptr.cxx \
+ $(srcdir)/../include/StringOf.h $(srcdir)/../include/StringOf.cxx $(srcdir)/../include/StringC.h \
+ $(srcdir)/../include/ISetIter.h $(srcdir)/../include/XcharMap.h $(srcdir)/../include/Resource.h \
+ $(srcdir)/../include/constant.h $(srcdir)/../include/XcharMap.cxx $(srcdir)/../include/SubstTable.h \
+ $(srcdir)/../include/SubstTable.cxx $(srcdir)/../include/StringResource.h \
+ $(srcdir)/../include/Location.h $(srcdir)/../include/rtti.h $(srcdir)/../include/TypeId.h \
+ $(srcdir)/../include/Message.h $(srcdir)/../include/MessageArg.h \
+ $(srcdir)/../include/NamedResource.h $(srcdir)/../include/Named.h \
+ $(srcdir)/../include/EntityManager.h $(srcdir)/../include/EntityCatalog.h
+LiteralStorage.o: LiteralStorage.cxx splib.h $(srcdir)/../include/config.h \
+ $(srcdir)/../include/LiteralStorage.h $(srcdir)/../include/StorageManager.h \
+ $(srcdir)/../include/StringC.h $(srcdir)/../include/types.h $(srcdir)/../include/StringOf.h \
+ $(srcdir)/../include/Boolean.h $(srcdir)/../include/CharsetInfo.h \
+ $(srcdir)/../include/UnivCharsetDesc.h $(srcdir)/../include/RangeMap.h \
+ $(srcdir)/../include/Vector.h $(srcdir)/../include/xnew.h $(srcdir)/../include/ISet.h \
+ $(srcdir)/../include/CodingSystem.h
+URLStorage.o: URLStorage.cxx splib.h $(srcdir)/../include/config.h \
+ $(srcdir)/../include/URLStorage.h $(srcdir)/../include/StorageManager.h \
+ $(srcdir)/../include/StringC.h $(srcdir)/../include/types.h $(srcdir)/../include/StringOf.h \
+ $(srcdir)/../include/Boolean.h $(srcdir)/../include/CharsetInfo.h \
+ $(srcdir)/../include/UnivCharsetDesc.h $(srcdir)/../include/RangeMap.h \
+ $(srcdir)/../include/Vector.h $(srcdir)/../include/xnew.h $(srcdir)/../include/ISet.h \
+ URLStorageMessages.h $(srcdir)/../include/Message.h $(srcdir)/../include/Location.h \
+ $(srcdir)/../include/Ptr.h $(srcdir)/../include/Resource.h $(srcdir)/../include/Owner.h \
+ $(srcdir)/../include/rtti.h $(srcdir)/../include/TypeId.h $(srcdir)/../include/CopyOwner.h \
+ $(srcdir)/../include/MessageArg.h $(srcdir)/../include/RewindStorageObject.h \
+ $(srcdir)/../include/MessageBuilder.h $(srcdir)/../include/macros.h
+RewindStorageObject.o: RewindStorageObject.cxx splib.h \
+ $(srcdir)/../include/config.h $(srcdir)/../include/RewindStorageObject.h \
+ $(srcdir)/../include/StorageManager.h $(srcdir)/../include/StringC.h $(srcdir)/../include/types.h \
+ $(srcdir)/../include/StringOf.h $(srcdir)/../include/Boolean.h $(srcdir)/../include/CharsetInfo.h \
+ $(srcdir)/../include/UnivCharsetDesc.h $(srcdir)/../include/RangeMap.h \
+ $(srcdir)/../include/Vector.h $(srcdir)/../include/xnew.h $(srcdir)/../include/ISet.h \
+ $(srcdir)/../include/macros.h
+ErrnoMessageArg.o: ErrnoMessageArg.cxx splib.h $(srcdir)/../include/config.h \
+ $(srcdir)/../include/ErrnoMessageArg.h $(srcdir)/../include/MessageArg.h \
+ $(srcdir)/../include/StringC.h $(srcdir)/../include/types.h $(srcdir)/../include/StringOf.h \
+ $(srcdir)/../include/Boolean.h $(srcdir)/../include/rtti.h $(srcdir)/../include/TypeId.h \
+ $(srcdir)/../include/MessageBuilder.h
+OffsetOrderedList.o: OffsetOrderedList.cxx splib.h $(srcdir)/../include/config.h \
+ OffsetOrderedList.h $(srcdir)/../include/types.h $(srcdir)/../include/Owner.h \
+ $(srcdir)/../include/NCVector.h $(srcdir)/../include/Vector.h $(srcdir)/../include/xnew.h \
+ $(srcdir)/../include/Boolean.h $(srcdir)/../include/macros.h
+DescriptorManager.o: DescriptorManager.cxx splib.h $(srcdir)/../include/config.h \
+ $(srcdir)/../include/DescriptorManager.h $(srcdir)/../include/Boolean.h $(srcdir)/../include/List.h \
+ $(srcdir)/../include/IList.h $(srcdir)/../include/IListBase.h $(srcdir)/../include/Link.h \
+ $(srcdir)/../include/ListIter.h $(srcdir)/../include/IListIter.h \
+ $(srcdir)/../include/IListIterBase.h
+ExtendEntityManager.o: ExtendEntityManager.cxx splib.h \
+ $(srcdir)/../include/config.h $(srcdir)/../include/ExtendEntityManager.h \
+ $(srcdir)/../include/EntityManager.h $(srcdir)/../include/types.h $(srcdir)/../include/StringC.h \
+ $(srcdir)/../include/StringOf.h $(srcdir)/../include/Boolean.h $(srcdir)/../include/Resource.h \
+ $(srcdir)/../include/EntityCatalog.h $(srcdir)/../include/SubstTable.h $(srcdir)/../include/Ptr.h \
+ $(srcdir)/../include/CharsetInfo.h $(srcdir)/../include/UnivCharsetDesc.h \
+ $(srcdir)/../include/RangeMap.h $(srcdir)/../include/Vector.h $(srcdir)/../include/xnew.h \
+ $(srcdir)/../include/ISet.h $(srcdir)/../include/Location.h $(srcdir)/../include/Owner.h \
+ $(srcdir)/../include/rtti.h $(srcdir)/../include/TypeId.h $(srcdir)/../include/Message.h \
+ $(srcdir)/../include/CopyOwner.h $(srcdir)/../include/MessageArg.h OffsetOrderedList.h \
+ $(srcdir)/../include/NCVector.h $(srcdir)/../include/StorageManager.h \
+ RegisteredCodingSystem.h $(srcdir)/../include/constant.h \
+ EntityManagerMessages.h StorageObjectPosition.h \
+ $(srcdir)/../include/CodingSystem.h $(srcdir)/../include/InputSource.h $(srcdir)/../include/Link.h \
+ $(srcdir)/../include/XcharMap.h $(srcdir)/../include/macros.h
+PosixStorage.o: PosixStorage.cxx splib.h $(srcdir)/../include/config.h \
+ $(srcdir)/../include/PosixStorage.h $(srcdir)/../include/StorageManager.h \
+ $(srcdir)/../include/StringC.h $(srcdir)/../include/types.h $(srcdir)/../include/StringOf.h \
+ $(srcdir)/../include/Boolean.h $(srcdir)/../include/CharsetInfo.h \
+ $(srcdir)/../include/UnivCharsetDesc.h $(srcdir)/../include/RangeMap.h \
+ $(srcdir)/../include/Vector.h $(srcdir)/../include/xnew.h $(srcdir)/../include/ISet.h \
+ $(srcdir)/../include/DescriptorManager.h $(srcdir)/../include/List.h $(srcdir)/../include/IList.h \
+ $(srcdir)/../include/IListBase.h $(srcdir)/../include/Link.h \
+ $(srcdir)/../include/RewindStorageObject.h $(srcdir)/../include/MessageArg.h \
+ $(srcdir)/../include/rtti.h $(srcdir)/../include/TypeId.h $(srcdir)/../include/ErrnoMessageArg.h \
+ $(srcdir)/../include/SearchResultMessageArg.h $(srcdir)/../include/Message.h \
+ $(srcdir)/../include/Location.h $(srcdir)/../include/Ptr.h $(srcdir)/../include/Resource.h \
+ $(srcdir)/../include/Owner.h $(srcdir)/../include/CopyOwner.h $(srcdir)/../include/CodingSystem.h \
+ $(srcdir)/../include/macros.h PosixStorageMessages.h
+StdioStorage.o: StdioStorage.cxx splib.h $(srcdir)/../include/config.h \
+ $(srcdir)/../include/StdioStorage.h $(srcdir)/../include/StorageManager.h \
+ $(srcdir)/../include/StringC.h $(srcdir)/../include/types.h $(srcdir)/../include/StringOf.h \
+ $(srcdir)/../include/Boolean.h $(srcdir)/../include/CharsetInfo.h \
+ $(srcdir)/../include/UnivCharsetDesc.h $(srcdir)/../include/RangeMap.h \
+ $(srcdir)/../include/Vector.h $(srcdir)/../include/xnew.h $(srcdir)/../include/ISet.h \
+ $(srcdir)/../include/DescriptorManager.h $(srcdir)/../include/List.h $(srcdir)/../include/IList.h \
+ $(srcdir)/../include/IListBase.h $(srcdir)/../include/Link.h $(srcdir)/../include/Message.h \
+ $(srcdir)/../include/Location.h $(srcdir)/../include/Ptr.h $(srcdir)/../include/Resource.h \
+ $(srcdir)/../include/Owner.h $(srcdir)/../include/rtti.h $(srcdir)/../include/TypeId.h \
+ $(srcdir)/../include/CopyOwner.h $(srcdir)/../include/MessageArg.h \
+ $(srcdir)/../include/ErrnoMessageArg.h $(srcdir)/../include/CodingSystem.h \
+ StdioStorageMessages.h
+StorageManager.o: StorageManager.cxx splib.h $(srcdir)/../include/config.h \
+ $(srcdir)/../include/StorageManager.h $(srcdir)/../include/StringC.h $(srcdir)/../include/types.h \
+ $(srcdir)/../include/StringOf.h $(srcdir)/../include/Boolean.h $(srcdir)/../include/CharsetInfo.h \
+ $(srcdir)/../include/UnivCharsetDesc.h $(srcdir)/../include/RangeMap.h \
+ $(srcdir)/../include/Vector.h $(srcdir)/../include/xnew.h $(srcdir)/../include/ISet.h
+CodingSystem.o: CodingSystem.cxx splib.h $(srcdir)/../include/config.h \
+ $(srcdir)/../include/CodingSystem.h $(srcdir)/../include/types.h $(srcdir)/../include/Boolean.h \
+ $(srcdir)/../include/StringC.h $(srcdir)/../include/StringOf.h
+IdentityCodingSystem.o: IdentityCodingSystem.cxx splib.h \
+ $(srcdir)/../include/config.h $(srcdir)/../include/IdentityCodingSystem.h \
+ $(srcdir)/../include/CodingSystem.h $(srcdir)/../include/types.h $(srcdir)/../include/Boolean.h \
+ $(srcdir)/../include/StringC.h $(srcdir)/../include/StringOf.h
+UTF8CodingSystem.o: UTF8CodingSystem.cxx splib.h $(srcdir)/../include/config.h \
+ $(srcdir)/../include/UTF8CodingSystem.h $(srcdir)/../include/CodingSystem.h \
+ $(srcdir)/../include/types.h $(srcdir)/../include/Boolean.h $(srcdir)/../include/StringC.h \
+ $(srcdir)/../include/StringOf.h $(srcdir)/../include/constant.h
+Fixed2CodingSystem.o: Fixed2CodingSystem.cxx splib.h \
+ $(srcdir)/../include/config.h $(srcdir)/../include/Fixed2CodingSystem.h \
+ $(srcdir)/../include/CodingSystem.h $(srcdir)/../include/types.h $(srcdir)/../include/Boolean.h \
+ $(srcdir)/../include/StringC.h $(srcdir)/../include/StringOf.h $(srcdir)/../include/macros.h
+UnicodeCodingSystem.o: UnicodeCodingSystem.cxx splib.h \
+ $(srcdir)/../include/config.h $(srcdir)/../include/UnicodeCodingSystem.h \
+ $(srcdir)/../include/CodingSystem.h $(srcdir)/../include/types.h $(srcdir)/../include/Boolean.h \
+ $(srcdir)/../include/StringC.h $(srcdir)/../include/StringOf.h $(srcdir)/../include/macros.h \
+ $(srcdir)/../include/Owner.h
+EUCJPCodingSystem.o: EUCJPCodingSystem.cxx splib.h $(srcdir)/../include/config.h \
+ $(srcdir)/../include/EUCJPCodingSystem.h $(srcdir)/../include/CodingSystem.h \
+ $(srcdir)/../include/types.h $(srcdir)/../include/Boolean.h $(srcdir)/../include/StringC.h \
+ $(srcdir)/../include/StringOf.h
+SJISCodingSystem.o: SJISCodingSystem.cxx splib.h $(srcdir)/../include/config.h \
+ $(srcdir)/../include/SJISCodingSystem.h $(srcdir)/../include/CodingSystem.h \
+ $(srcdir)/../include/types.h $(srcdir)/../include/Boolean.h $(srcdir)/../include/StringC.h \
+ $(srcdir)/../include/StringOf.h
+TranslateInputCodingSystem.o: TranslateInputCodingSystem.cxx splib.h \
+ $(srcdir)/../include/config.h $(srcdir)/../include/TranslateInputCodingSystem.h \
+ $(srcdir)/../include/CodingSystem.h $(srcdir)/../include/types.h $(srcdir)/../include/Boolean.h \
+ $(srcdir)/../include/StringC.h $(srcdir)/../include/StringOf.h
+ISO8859InputCodingSystem.o: ISO8859InputCodingSystem.cxx splib.h \
+ $(srcdir)/../include/config.h $(srcdir)/../include/ISO8859InputCodingSystem.h \
+ $(srcdir)/../include/TranslateInputCodingSystem.h $(srcdir)/../include/CodingSystem.h \
+ $(srcdir)/../include/types.h $(srcdir)/../include/Boolean.h $(srcdir)/../include/StringC.h \
+ $(srcdir)/../include/StringOf.h $(srcdir)/../include/macros.h
+SearchResultMessageArg.o: SearchResultMessageArg.cxx splib.h \
+ $(srcdir)/../include/config.h $(srcdir)/../include/SearchResultMessageArg.h \
+ $(srcdir)/../include/MessageArg.h $(srcdir)/../include/StringC.h $(srcdir)/../include/types.h \
+ $(srcdir)/../include/StringOf.h $(srcdir)/../include/Boolean.h $(srcdir)/../include/rtti.h \
+ $(srcdir)/../include/TypeId.h $(srcdir)/../include/Vector.h $(srcdir)/../include/xnew.h
+SOEntityCatalog.o: SOEntityCatalog.cxx splib.h $(srcdir)/../include/config.h \
+ $(srcdir)/../include/CharsetInfo.h $(srcdir)/../include/UnivCharsetDesc.h \
+ $(srcdir)/../include/types.h $(srcdir)/../include/RangeMap.h $(srcdir)/../include/Vector.h \
+ $(srcdir)/../include/xnew.h $(srcdir)/../include/Boolean.h $(srcdir)/../include/ISet.h \
+ $(srcdir)/../include/StringC.h $(srcdir)/../include/StringOf.h $(srcdir)/../include/MessageArg.h \
+ $(srcdir)/../include/rtti.h $(srcdir)/../include/TypeId.h CatalogMessages.h \
+ $(srcdir)/../include/Message.h $(srcdir)/../include/Location.h $(srcdir)/../include/Ptr.h \
+ $(srcdir)/../include/Resource.h $(srcdir)/../include/Owner.h $(srcdir)/../include/CopyOwner.h \
+ $(srcdir)/../include/SOEntityCatalog.h $(srcdir)/../include/ExtendEntityManager.h \
+ $(srcdir)/../include/EntityManager.h $(srcdir)/../include/EntityCatalog.h \
+ $(srcdir)/../include/SubstTable.h $(srcdir)/../include/EntityDecl.h \
+ $(srcdir)/../include/NamedResource.h $(srcdir)/../include/Named.h \
+ $(srcdir)/../include/StringResource.h $(srcdir)/../include/HashTable.h \
+ $(srcdir)/../include/OwnerTable.h $(srcdir)/../include/PointerTable.h $(srcdir)/../include/Hash.h \
+ $(srcdir)/../include/HashTableItemBase.h $(srcdir)/../include/InputSource.h \
+ $(srcdir)/../include/Link.h $(srcdir)/../include/XcharMap.h $(srcdir)/../include/constant.h \
+ CatalogEntry.h $(srcdir)/../include/StorageManager.h $(srcdir)/../include/macros.h
+xentmgr_inst.o: xentmgr_inst.cxx splib.h $(srcdir)/../include/config.h \
+ $(srcdir)/../include/StringOf.h $(srcdir)/../include/Boolean.h $(srcdir)/../include/StringOf.cxx \
+ $(srcdir)/../include/Vector.h $(srcdir)/../include/xnew.h $(srcdir)/../include/Vector.cxx \
+ $(srcdir)/../include/NCVector.h $(srcdir)/../include/ListIter.h $(srcdir)/../include/List.h \
+ $(srcdir)/../include/IList.h $(srcdir)/../include/IListBase.h $(srcdir)/../include/Link.h \
+ $(srcdir)/../include/List.cxx $(srcdir)/../include/IListIter.h $(srcdir)/../include/IListIterBase.h \
+ $(srcdir)/../include/Owner.h $(srcdir)/../include/Owner.cxx $(srcdir)/../include/OwnerTable.h \
+ $(srcdir)/../include/PointerTable.h $(srcdir)/../include/PointerTable.cxx \
+ $(srcdir)/../include/OwnerTable.cxx $(srcdir)/../include/HashTableItemBase.h \
+ $(srcdir)/../include/HashTableItemBase.cxx $(srcdir)/../include/HashTable.h \
+ $(srcdir)/../include/Hash.h $(srcdir)/../include/StringC.h $(srcdir)/../include/types.h \
+ $(srcdir)/../include/HashTable.cxx $(srcdir)/../include/Ptr.h $(srcdir)/../include/Ptr.cxx \
+ $(srcdir)/../include/StorageManager.h $(srcdir)/../include/CharsetInfo.h \
+ $(srcdir)/../include/UnivCharsetDesc.h $(srcdir)/../include/RangeMap.h $(srcdir)/../include/ISet.h \
+ $(srcdir)/../include/ExtendEntityManager.h $(srcdir)/../include/EntityManager.h \
+ $(srcdir)/../include/Resource.h $(srcdir)/../include/EntityCatalog.h \
+ $(srcdir)/../include/SubstTable.h $(srcdir)/../include/Location.h $(srcdir)/../include/rtti.h \
+ $(srcdir)/../include/TypeId.h OffsetOrderedList.h $(srcdir)/../include/CodingSystem.h \
+ $(srcdir)/../include/DescriptorManager.h RegisteredCodingSystem.h \
+ StorageObjectPosition.h CatalogEntry.h
+ContentState.o: ContentState.cxx splib.h $(srcdir)/../include/config.h \
+ $(srcdir)/../include/ContentState.h $(srcdir)/../include/OpenElement.h \
+ $(srcdir)/../include/Boolean.h $(srcdir)/../include/ContentToken.h $(srcdir)/../include/Owner.h \
+ $(srcdir)/../include/Text.h $(srcdir)/../include/types.h $(srcdir)/../include/StringC.h \
+ $(srcdir)/../include/StringOf.h $(srcdir)/../include/Vector.h $(srcdir)/../include/xnew.h \
+ $(srcdir)/../include/Location.h $(srcdir)/../include/Ptr.h $(srcdir)/../include/Resource.h \
+ $(srcdir)/../include/rtti.h $(srcdir)/../include/TypeId.h $(srcdir)/../include/SubstTable.h \
+ $(srcdir)/../include/NCVector.h $(srcdir)/../include/ElementType.h $(srcdir)/../include/Named.h \
+ $(srcdir)/../include/Attributed.h $(srcdir)/../include/Attribute.h $(srcdir)/../include/CopyOwner.h \
+ $(srcdir)/../include/Message.h $(srcdir)/../include/MessageArg.h $(srcdir)/../include/Mode.h \
+ $(srcdir)/../include/Link.h $(srcdir)/../include/Allocator.h $(srcdir)/../include/IList.h \
+ $(srcdir)/../include/IListBase.h $(srcdir)/../include/Dtd.h $(srcdir)/../include/NamedTable.h \
+ $(srcdir)/../include/Hash.h $(srcdir)/../include/OwnerTable.h $(srcdir)/../include/PointerTable.h \
+ $(srcdir)/../include/NamedResourceTable.h $(srcdir)/../include/NamedResource.h \
+ $(srcdir)/../include/Notation.h $(srcdir)/../include/ExternalId.h \
+ $(srcdir)/../include/StringResource.h $(srcdir)/../include/EntityDecl.h \
+ $(srcdir)/../include/Entity.h $(srcdir)/../include/Markup.h $(srcdir)/../include/Syntax.h \
+ $(srcdir)/../include/ISet.h $(srcdir)/../include/HashTable.h \
+ $(srcdir)/../include/HashTableItemBase.h $(srcdir)/../include/XcharMap.h \
+ $(srcdir)/../include/constant.h $(srcdir)/../include/EntityCatalog.h $(srcdir)/../include/Sd.h \
+ $(srcdir)/../include/CharsetInfo.h $(srcdir)/../include/UnivCharsetDesc.h \
+ $(srcdir)/../include/RangeMap.h $(srcdir)/../include/CharsetDecl.h $(srcdir)/../include/SdText.h \
+ $(srcdir)/../include/ShortReferenceMap.h $(srcdir)/../include/IListIter.h \
+ $(srcdir)/../include/IListIterBase.h $(srcdir)/../include/macros.h
+ParserState.o: ParserState.cxx splib.h $(srcdir)/../include/config.h Trie.h \
+ ParserState.h $(srcdir)/../include/Allocator.h $(srcdir)/../include/Attribute.h \
+ $(srcdir)/../include/Resource.h $(srcdir)/../include/Owner.h $(srcdir)/../include/StringC.h \
+ $(srcdir)/../include/types.h $(srcdir)/../include/StringOf.h $(srcdir)/../include/Boolean.h \
+ $(srcdir)/../include/Vector.h $(srcdir)/../include/xnew.h $(srcdir)/../include/CopyOwner.h \
+ $(srcdir)/../include/Text.h $(srcdir)/../include/Location.h $(srcdir)/../include/Ptr.h \
+ $(srcdir)/../include/rtti.h $(srcdir)/../include/TypeId.h $(srcdir)/../include/SubstTable.h \
+ $(srcdir)/../include/Message.h $(srcdir)/../include/MessageArg.h $(srcdir)/../include/Dtd.h \
+ $(srcdir)/../include/NamedTable.h $(srcdir)/../include/Hash.h $(srcdir)/../include/Named.h \
+ $(srcdir)/../include/OwnerTable.h $(srcdir)/../include/PointerTable.h \
+ $(srcdir)/../include/NamedResourceTable.h $(srcdir)/../include/NamedResource.h \
+ $(srcdir)/../include/ElementType.h $(srcdir)/../include/Attributed.h $(srcdir)/../include/Mode.h \
+ $(srcdir)/../include/ContentToken.h $(srcdir)/../include/NCVector.h $(srcdir)/../include/Notation.h \
+ $(srcdir)/../include/ExternalId.h $(srcdir)/../include/StringResource.h \
+ $(srcdir)/../include/EntityDecl.h $(srcdir)/../include/Entity.h $(srcdir)/../include/Markup.h \
+ $(srcdir)/../include/Syntax.h $(srcdir)/../include/ISet.h $(srcdir)/../include/HashTable.h \
+ $(srcdir)/../include/HashTableItemBase.h $(srcdir)/../include/XcharMap.h \
+ $(srcdir)/../include/constant.h $(srcdir)/../include/EntityCatalog.h $(srcdir)/../include/Sd.h \
+ $(srcdir)/../include/CharsetInfo.h $(srcdir)/../include/UnivCharsetDesc.h \
+ $(srcdir)/../include/RangeMap.h $(srcdir)/../include/CharsetDecl.h $(srcdir)/../include/SdText.h \
+ $(srcdir)/../include/ShortReferenceMap.h $(srcdir)/../include/EntityManager.h \
+ $(srcdir)/../include/Event.h $(srcdir)/../include/Link.h $(srcdir)/../include/Lpd.h EventQueue.h \
+ $(srcdir)/../include/IQueue.h events.h Id.h $(srcdir)/../include/InputSource.h \
+ $(srcdir)/../include/IList.h $(srcdir)/../include/IListBase.h $(srcdir)/../include/OpenElement.h \
+ OutputState.h $(srcdir)/../include/EventsWanted.h $(srcdir)/../include/ParserOptions.h \
+ Recognizer.h LpdEntityRef.h $(srcdir)/../include/ContentState.h \
+ $(srcdir)/../include/InternalInputSource.h $(srcdir)/../include/macros.h \
+ $(srcdir)/../include/SgmlParser.h $(srcdir)/../include/IListIter.h \
+ $(srcdir)/../include/IListIterBase.h ParserMessages.h Undo.h
+parser_inst.o: parser_inst.cxx splib.h $(srcdir)/../include/config.h \
+ $(srcdir)/../include/Owner.h $(srcdir)/../include/Owner.cxx $(srcdir)/../include/CopyOwner.h \
+ $(srcdir)/../include/CopyOwner.cxx $(srcdir)/../include/Vector.h $(srcdir)/../include/xnew.h \
+ $(srcdir)/../include/Vector.cxx $(srcdir)/../include/NCVector.h $(srcdir)/../include/Ptr.h \
+ $(srcdir)/../include/Boolean.h $(srcdir)/../include/Ptr.cxx $(srcdir)/../include/IList.h \
+ $(srcdir)/../include/IListBase.h $(srcdir)/../include/Link.h $(srcdir)/../include/IQueue.h \
+ $(srcdir)/../include/IQueue.cxx $(srcdir)/../include/List.h $(srcdir)/../include/List.cxx \
+ $(srcdir)/../include/IListIter.h $(srcdir)/../include/IListIterBase.h \
+ $(srcdir)/../include/OwnerTable.h $(srcdir)/../include/PointerTable.h \
+ $(srcdir)/../include/PointerTable.cxx $(srcdir)/../include/OwnerTable.cxx \
+ $(srcdir)/../include/HashTable.h $(srcdir)/../include/Hash.h $(srcdir)/../include/StringC.h \
+ $(srcdir)/../include/types.h $(srcdir)/../include/StringOf.h $(srcdir)/../include/StringOf.cxx \
+ $(srcdir)/../include/HashTableItemBase.h $(srcdir)/../include/HashTableItemBase.cxx \
+ $(srcdir)/../include/HashTable.cxx $(srcdir)/../include/ListIter.h \
+ $(srcdir)/../include/NamedResourceTable.h $(srcdir)/../include/NamedResource.h \
+ $(srcdir)/../include/Named.h $(srcdir)/../include/Resource.h $(srcdir)/../include/Attribute.h \
+ $(srcdir)/../include/Text.h $(srcdir)/../include/Location.h $(srcdir)/../include/rtti.h \
+ $(srcdir)/../include/TypeId.h $(srcdir)/../include/SubstTable.h $(srcdir)/../include/Message.h \
+ $(srcdir)/../include/MessageArg.h $(srcdir)/../include/Attributed.h \
+ $(srcdir)/../include/CharsetDecl.h $(srcdir)/../include/ExternalId.h $(srcdir)/../include/ISet.h \
+ $(srcdir)/../include/ContentToken.h $(srcdir)/../include/Dtd.h $(srcdir)/../include/NamedTable.h \
+ $(srcdir)/../include/ElementType.h $(srcdir)/../include/Mode.h $(srcdir)/../include/Notation.h \
+ $(srcdir)/../include/StringResource.h $(srcdir)/../include/EntityDecl.h \
+ $(srcdir)/../include/Entity.h $(srcdir)/../include/Allocator.h $(srcdir)/../include/Markup.h \
+ $(srcdir)/../include/Syntax.h $(srcdir)/../include/XcharMap.h $(srcdir)/../include/constant.h \
+ $(srcdir)/../include/EntityCatalog.h $(srcdir)/../include/Sd.h $(srcdir)/../include/CharsetInfo.h \
+ $(srcdir)/../include/UnivCharsetDesc.h $(srcdir)/../include/RangeMap.h \
+ $(srcdir)/../include/SdText.h $(srcdir)/../include/ShortReferenceMap.h \
+ $(srcdir)/../include/EntityManager.h EquivClass.h $(srcdir)/../include/Event.h \
+ $(srcdir)/../include/Lpd.h $(srcdir)/../include/InputSource.h $(srcdir)/../include/LinkProcess.h \
+ LpdEntityRef.h NameToken.h $(srcdir)/../include/OpenElement.h OutputState.h \
+ $(srcdir)/../include/EventsWanted.h Recognizer.h SdFormalError.h SrInfo.h \
+ Trie.h Priority.h Undo.h Id.h
+parseSd.o: parseSd.cxx splib.h $(srcdir)/../include/config.h Parser.h \
+ $(srcdir)/../include/types.h $(srcdir)/../include/Attribute.h $(srcdir)/../include/Resource.h \
+ $(srcdir)/../include/Owner.h $(srcdir)/../include/StringC.h $(srcdir)/../include/StringOf.h \
+ $(srcdir)/../include/Boolean.h $(srcdir)/../include/Vector.h $(srcdir)/../include/xnew.h \
+ $(srcdir)/../include/CopyOwner.h $(srcdir)/../include/Text.h $(srcdir)/../include/Location.h \
+ $(srcdir)/../include/Ptr.h $(srcdir)/../include/rtti.h $(srcdir)/../include/TypeId.h \
+ $(srcdir)/../include/SubstTable.h $(srcdir)/../include/Message.h $(srcdir)/../include/MessageArg.h \
+ $(srcdir)/../include/Attributed.h $(srcdir)/../include/ElementType.h $(srcdir)/../include/Named.h \
+ $(srcdir)/../include/Mode.h $(srcdir)/../include/ContentToken.h $(srcdir)/../include/NCVector.h \
+ $(srcdir)/../include/Entity.h $(srcdir)/../include/NamedResource.h \
+ $(srcdir)/../include/ExternalId.h $(srcdir)/../include/StringResource.h \
+ $(srcdir)/../include/Allocator.h $(srcdir)/../include/EntityDecl.h $(srcdir)/../include/Markup.h \
+ $(srcdir)/../include/Syntax.h $(srcdir)/../include/ISet.h $(srcdir)/../include/HashTable.h \
+ $(srcdir)/../include/OwnerTable.h $(srcdir)/../include/PointerTable.h $(srcdir)/../include/Hash.h \
+ $(srcdir)/../include/HashTableItemBase.h $(srcdir)/../include/XcharMap.h \
+ $(srcdir)/../include/constant.h $(srcdir)/../include/EntityCatalog.h $(srcdir)/../include/Sd.h \
+ $(srcdir)/../include/CharsetInfo.h $(srcdir)/../include/UnivCharsetDesc.h \
+ $(srcdir)/../include/RangeMap.h $(srcdir)/../include/CharsetDecl.h $(srcdir)/../include/SdText.h \
+ $(srcdir)/../include/Event.h $(srcdir)/../include/Link.h $(srcdir)/../include/Notation.h \
+ $(srcdir)/../include/Dtd.h $(srcdir)/../include/NamedTable.h \
+ $(srcdir)/../include/NamedResourceTable.h $(srcdir)/../include/ShortReferenceMap.h \
+ $(srcdir)/../include/Lpd.h $(srcdir)/../include/IList.h $(srcdir)/../include/IListBase.h \
+ ParserState.h $(srcdir)/../include/EntityManager.h EventQueue.h \
+ $(srcdir)/../include/IQueue.h events.h Id.h $(srcdir)/../include/InputSource.h \
+ $(srcdir)/../include/OpenElement.h OutputState.h $(srcdir)/../include/EventsWanted.h \
+ $(srcdir)/../include/ParserOptions.h Recognizer.h LpdEntityRef.h \
+ $(srcdir)/../include/ContentState.h $(srcdir)/../include/SgmlParser.h Undo.h \
+ $(srcdir)/../include/macros.h SdFormalError.h $(srcdir)/../include/MessageBuilder.h \
+ ParserMessages.h CharsetRegistry.h $(srcdir)/../include/ISetIter.h token.h \
+ TokenMessageArg.h NumericCharRefOrigin.h
+Parser.o: Parser.cxx splib.h $(srcdir)/../include/config.h Trie.h Parser.h \
+ $(srcdir)/../include/types.h $(srcdir)/../include/Attribute.h $(srcdir)/../include/Resource.h \
+ $(srcdir)/../include/Owner.h $(srcdir)/../include/StringC.h $(srcdir)/../include/StringOf.h \
+ $(srcdir)/../include/Boolean.h $(srcdir)/../include/Vector.h $(srcdir)/../include/xnew.h \
+ $(srcdir)/../include/CopyOwner.h $(srcdir)/../include/Text.h $(srcdir)/../include/Location.h \
+ $(srcdir)/../include/Ptr.h $(srcdir)/../include/rtti.h $(srcdir)/../include/TypeId.h \
+ $(srcdir)/../include/SubstTable.h $(srcdir)/../include/Message.h $(srcdir)/../include/MessageArg.h \
+ $(srcdir)/../include/Attributed.h $(srcdir)/../include/ElementType.h $(srcdir)/../include/Named.h \
+ $(srcdir)/../include/Mode.h $(srcdir)/../include/ContentToken.h $(srcdir)/../include/NCVector.h \
+ $(srcdir)/../include/Entity.h $(srcdir)/../include/NamedResource.h \
+ $(srcdir)/../include/ExternalId.h $(srcdir)/../include/StringResource.h \
+ $(srcdir)/../include/Allocator.h $(srcdir)/../include/EntityDecl.h $(srcdir)/../include/Markup.h \
+ $(srcdir)/../include/Syntax.h $(srcdir)/../include/ISet.h $(srcdir)/../include/HashTable.h \
+ $(srcdir)/../include/OwnerTable.h $(srcdir)/../include/PointerTable.h $(srcdir)/../include/Hash.h \
+ $(srcdir)/../include/HashTableItemBase.h $(srcdir)/../include/XcharMap.h \
+ $(srcdir)/../include/constant.h $(srcdir)/../include/EntityCatalog.h $(srcdir)/../include/Sd.h \
+ $(srcdir)/../include/CharsetInfo.h $(srcdir)/../include/UnivCharsetDesc.h \
+ $(srcdir)/../include/RangeMap.h $(srcdir)/../include/CharsetDecl.h $(srcdir)/../include/SdText.h \
+ $(srcdir)/../include/Event.h $(srcdir)/../include/Link.h $(srcdir)/../include/Notation.h \
+ $(srcdir)/../include/Dtd.h $(srcdir)/../include/NamedTable.h \
+ $(srcdir)/../include/NamedResourceTable.h $(srcdir)/../include/ShortReferenceMap.h \
+ $(srcdir)/../include/Lpd.h $(srcdir)/../include/IList.h $(srcdir)/../include/IListBase.h \
+ ParserState.h $(srcdir)/../include/EntityManager.h EventQueue.h \
+ $(srcdir)/../include/IQueue.h events.h Id.h $(srcdir)/../include/InputSource.h \
+ $(srcdir)/../include/OpenElement.h OutputState.h $(srcdir)/../include/EventsWanted.h \
+ $(srcdir)/../include/ParserOptions.h Recognizer.h LpdEntityRef.h \
+ $(srcdir)/../include/ContentState.h $(srcdir)/../include/SgmlParser.h Undo.h \
+ ParserMessages.h
+parseInstance.o: parseInstance.cxx splib.h $(srcdir)/../include/config.h \
+ Parser.h $(srcdir)/../include/types.h $(srcdir)/../include/Attribute.h \
+ $(srcdir)/../include/Resource.h $(srcdir)/../include/Owner.h $(srcdir)/../include/StringC.h \
+ $(srcdir)/../include/StringOf.h $(srcdir)/../include/Boolean.h $(srcdir)/../include/Vector.h \
+ $(srcdir)/../include/xnew.h $(srcdir)/../include/CopyOwner.h $(srcdir)/../include/Text.h \
+ $(srcdir)/../include/Location.h $(srcdir)/../include/Ptr.h $(srcdir)/../include/rtti.h \
+ $(srcdir)/../include/TypeId.h $(srcdir)/../include/SubstTable.h $(srcdir)/../include/Message.h \
+ $(srcdir)/../include/MessageArg.h $(srcdir)/../include/Attributed.h \
+ $(srcdir)/../include/ElementType.h $(srcdir)/../include/Named.h $(srcdir)/../include/Mode.h \
+ $(srcdir)/../include/ContentToken.h $(srcdir)/../include/NCVector.h $(srcdir)/../include/Entity.h \
+ $(srcdir)/../include/NamedResource.h $(srcdir)/../include/ExternalId.h \
+ $(srcdir)/../include/StringResource.h $(srcdir)/../include/Allocator.h \
+ $(srcdir)/../include/EntityDecl.h $(srcdir)/../include/Markup.h $(srcdir)/../include/Syntax.h \
+ $(srcdir)/../include/ISet.h $(srcdir)/../include/HashTable.h $(srcdir)/../include/OwnerTable.h \
+ $(srcdir)/../include/PointerTable.h $(srcdir)/../include/Hash.h \
+ $(srcdir)/../include/HashTableItemBase.h $(srcdir)/../include/XcharMap.h \
+ $(srcdir)/../include/constant.h $(srcdir)/../include/EntityCatalog.h $(srcdir)/../include/Sd.h \
+ $(srcdir)/../include/CharsetInfo.h $(srcdir)/../include/UnivCharsetDesc.h \
+ $(srcdir)/../include/RangeMap.h $(srcdir)/../include/CharsetDecl.h $(srcdir)/../include/SdText.h \
+ $(srcdir)/../include/Event.h $(srcdir)/../include/Link.h $(srcdir)/../include/Notation.h \
+ $(srcdir)/../include/Dtd.h $(srcdir)/../include/NamedTable.h \
+ $(srcdir)/../include/NamedResourceTable.h $(srcdir)/../include/ShortReferenceMap.h \
+ $(srcdir)/../include/Lpd.h $(srcdir)/../include/IList.h $(srcdir)/../include/IListBase.h \
+ ParserState.h $(srcdir)/../include/EntityManager.h EventQueue.h \
+ $(srcdir)/../include/IQueue.h events.h Id.h $(srcdir)/../include/InputSource.h \
+ $(srcdir)/../include/OpenElement.h OutputState.h $(srcdir)/../include/EventsWanted.h \
+ $(srcdir)/../include/ParserOptions.h Recognizer.h LpdEntityRef.h \
+ $(srcdir)/../include/ContentState.h $(srcdir)/../include/SgmlParser.h Undo.h \
+ ParserMessages.h TokenMessageArg.h StringVectorMessageArg.h token.h \
+ $(srcdir)/../include/macros.h
+parseMode.o: parseMode.cxx splib.h $(srcdir)/../include/config.h Parser.h \
+ $(srcdir)/../include/types.h $(srcdir)/../include/Attribute.h $(srcdir)/../include/Resource.h \
+ $(srcdir)/../include/Owner.h $(srcdir)/../include/StringC.h $(srcdir)/../include/StringOf.h \
+ $(srcdir)/../include/Boolean.h $(srcdir)/../include/Vector.h $(srcdir)/../include/xnew.h \
+ $(srcdir)/../include/CopyOwner.h $(srcdir)/../include/Text.h $(srcdir)/../include/Location.h \
+ $(srcdir)/../include/Ptr.h $(srcdir)/../include/rtti.h $(srcdir)/../include/TypeId.h \
+ $(srcdir)/../include/SubstTable.h $(srcdir)/../include/Message.h $(srcdir)/../include/MessageArg.h \
+ $(srcdir)/../include/Attributed.h $(srcdir)/../include/ElementType.h $(srcdir)/../include/Named.h \
+ $(srcdir)/../include/Mode.h $(srcdir)/../include/ContentToken.h $(srcdir)/../include/NCVector.h \
+ $(srcdir)/../include/Entity.h $(srcdir)/../include/NamedResource.h \
+ $(srcdir)/../include/ExternalId.h $(srcdir)/../include/StringResource.h \
+ $(srcdir)/../include/Allocator.h $(srcdir)/../include/EntityDecl.h $(srcdir)/../include/Markup.h \
+ $(srcdir)/../include/Syntax.h $(srcdir)/../include/ISet.h $(srcdir)/../include/HashTable.h \
+ $(srcdir)/../include/OwnerTable.h $(srcdir)/../include/PointerTable.h $(srcdir)/../include/Hash.h \
+ $(srcdir)/../include/HashTableItemBase.h $(srcdir)/../include/XcharMap.h \
+ $(srcdir)/../include/constant.h $(srcdir)/../include/EntityCatalog.h $(srcdir)/../include/Sd.h \
+ $(srcdir)/../include/CharsetInfo.h $(srcdir)/../include/UnivCharsetDesc.h \
+ $(srcdir)/../include/RangeMap.h $(srcdir)/../include/CharsetDecl.h $(srcdir)/../include/SdText.h \
+ $(srcdir)/../include/Event.h $(srcdir)/../include/Link.h $(srcdir)/../include/Notation.h \
+ $(srcdir)/../include/Dtd.h $(srcdir)/../include/NamedTable.h \
+ $(srcdir)/../include/NamedResourceTable.h $(srcdir)/../include/ShortReferenceMap.h \
+ $(srcdir)/../include/Lpd.h $(srcdir)/../include/IList.h $(srcdir)/../include/IListBase.h \
+ ParserState.h $(srcdir)/../include/EntityManager.h EventQueue.h \
+ $(srcdir)/../include/IQueue.h events.h Id.h $(srcdir)/../include/InputSource.h \
+ $(srcdir)/../include/OpenElement.h OutputState.h $(srcdir)/../include/EventsWanted.h \
+ $(srcdir)/../include/ParserOptions.h Recognizer.h LpdEntityRef.h \
+ $(srcdir)/../include/ContentState.h $(srcdir)/../include/SgmlParser.h Undo.h \
+ ParserMessages.h TokenMessageArg.h ModeInfo.h Priority.h Partition.h \
+ SrInfo.h $(srcdir)/../include/ISetIter.h token.h TrieBuilder.h Trie.h \
+ $(srcdir)/../include/macros.h
+parseAttribute.o: parseAttribute.cxx splib.h $(srcdir)/../include/config.h \
+ Parser.h $(srcdir)/../include/types.h $(srcdir)/../include/Attribute.h \
+ $(srcdir)/../include/Resource.h $(srcdir)/../include/Owner.h $(srcdir)/../include/StringC.h \
+ $(srcdir)/../include/StringOf.h $(srcdir)/../include/Boolean.h $(srcdir)/../include/Vector.h \
+ $(srcdir)/../include/xnew.h $(srcdir)/../include/CopyOwner.h $(srcdir)/../include/Text.h \
+ $(srcdir)/../include/Location.h $(srcdir)/../include/Ptr.h $(srcdir)/../include/rtti.h \
+ $(srcdir)/../include/TypeId.h $(srcdir)/../include/SubstTable.h $(srcdir)/../include/Message.h \
+ $(srcdir)/../include/MessageArg.h $(srcdir)/../include/Attributed.h \
+ $(srcdir)/../include/ElementType.h $(srcdir)/../include/Named.h $(srcdir)/../include/Mode.h \
+ $(srcdir)/../include/ContentToken.h $(srcdir)/../include/NCVector.h $(srcdir)/../include/Entity.h \
+ $(srcdir)/../include/NamedResource.h $(srcdir)/../include/ExternalId.h \
+ $(srcdir)/../include/StringResource.h $(srcdir)/../include/Allocator.h \
+ $(srcdir)/../include/EntityDecl.h $(srcdir)/../include/Markup.h $(srcdir)/../include/Syntax.h \
+ $(srcdir)/../include/ISet.h $(srcdir)/../include/HashTable.h $(srcdir)/../include/OwnerTable.h \
+ $(srcdir)/../include/PointerTable.h $(srcdir)/../include/Hash.h \
+ $(srcdir)/../include/HashTableItemBase.h $(srcdir)/../include/XcharMap.h \
+ $(srcdir)/../include/constant.h $(srcdir)/../include/EntityCatalog.h $(srcdir)/../include/Sd.h \
+ $(srcdir)/../include/CharsetInfo.h $(srcdir)/../include/UnivCharsetDesc.h \
+ $(srcdir)/../include/RangeMap.h $(srcdir)/../include/CharsetDecl.h $(srcdir)/../include/SdText.h \
+ $(srcdir)/../include/Event.h $(srcdir)/../include/Link.h $(srcdir)/../include/Notation.h \
+ $(srcdir)/../include/Dtd.h $(srcdir)/../include/NamedTable.h \
+ $(srcdir)/../include/NamedResourceTable.h $(srcdir)/../include/ShortReferenceMap.h \
+ $(srcdir)/../include/Lpd.h $(srcdir)/../include/IList.h $(srcdir)/../include/IListBase.h \
+ ParserState.h $(srcdir)/../include/EntityManager.h EventQueue.h \
+ $(srcdir)/../include/IQueue.h events.h Id.h $(srcdir)/../include/InputSource.h \
+ $(srcdir)/../include/OpenElement.h OutputState.h $(srcdir)/../include/EventsWanted.h \
+ $(srcdir)/../include/ParserOptions.h Recognizer.h LpdEntityRef.h \
+ $(srcdir)/../include/ContentState.h $(srcdir)/../include/SgmlParser.h Undo.h token.h \
+ $(srcdir)/../include/macros.h ParserMessages.h
+LinkProcess.o: LinkProcess.cxx splib.h $(srcdir)/../include/config.h \
+ $(srcdir)/../include/LinkProcess.h $(srcdir)/../include/Lpd.h $(srcdir)/../include/Attribute.h \
+ $(srcdir)/../include/Resource.h $(srcdir)/../include/Owner.h $(srcdir)/../include/StringC.h \
+ $(srcdir)/../include/types.h $(srcdir)/../include/StringOf.h $(srcdir)/../include/Boolean.h \
+ $(srcdir)/../include/Vector.h $(srcdir)/../include/xnew.h $(srcdir)/../include/CopyOwner.h \
+ $(srcdir)/../include/Text.h $(srcdir)/../include/Location.h $(srcdir)/../include/Ptr.h \
+ $(srcdir)/../include/rtti.h $(srcdir)/../include/TypeId.h $(srcdir)/../include/SubstTable.h \
+ $(srcdir)/../include/Message.h $(srcdir)/../include/MessageArg.h $(srcdir)/../include/Named.h \
+ $(srcdir)/../include/NamedTable.h $(srcdir)/../include/Hash.h $(srcdir)/../include/OwnerTable.h \
+ $(srcdir)/../include/PointerTable.h $(srcdir)/../include/Syntax.h $(srcdir)/../include/ISet.h \
+ $(srcdir)/../include/HashTable.h $(srcdir)/../include/HashTableItemBase.h \
+ $(srcdir)/../include/XcharMap.h $(srcdir)/../include/constant.h \
+ $(srcdir)/../include/EntityCatalog.h $(srcdir)/../include/Dtd.h \
+ $(srcdir)/../include/NamedResourceTable.h $(srcdir)/../include/NamedResource.h \
+ $(srcdir)/../include/ElementType.h $(srcdir)/../include/Attributed.h $(srcdir)/../include/Mode.h \
+ $(srcdir)/../include/ContentToken.h $(srcdir)/../include/NCVector.h $(srcdir)/../include/Notation.h \
+ $(srcdir)/../include/ExternalId.h $(srcdir)/../include/StringResource.h \
+ $(srcdir)/../include/EntityDecl.h $(srcdir)/../include/Entity.h $(srcdir)/../include/Allocator.h \
+ $(srcdir)/../include/Markup.h $(srcdir)/../include/Sd.h $(srcdir)/../include/CharsetInfo.h \
+ $(srcdir)/../include/UnivCharsetDesc.h $(srcdir)/../include/RangeMap.h \
+ $(srcdir)/../include/CharsetDecl.h $(srcdir)/../include/SdText.h \
+ $(srcdir)/../include/ShortReferenceMap.h $(srcdir)/../include/IList.h \
+ $(srcdir)/../include/IListBase.h $(srcdir)/../include/Link.h ParserState.h \
+ $(srcdir)/../include/EntityManager.h $(srcdir)/../include/Event.h EventQueue.h \
+ $(srcdir)/../include/IQueue.h events.h Id.h $(srcdir)/../include/InputSource.h \
+ $(srcdir)/../include/OpenElement.h OutputState.h $(srcdir)/../include/EventsWanted.h \
+ $(srcdir)/../include/ParserOptions.h Recognizer.h LpdEntityRef.h \
+ $(srcdir)/../include/ContentState.h ParserMessages.h
+Lpd.o: Lpd.cxx splib.h $(srcdir)/../include/config.h $(srcdir)/../include/Lpd.h \
+ $(srcdir)/../include/Attribute.h $(srcdir)/../include/Resource.h $(srcdir)/../include/Owner.h \
+ $(srcdir)/../include/StringC.h $(srcdir)/../include/types.h $(srcdir)/../include/StringOf.h \
+ $(srcdir)/../include/Boolean.h $(srcdir)/../include/Vector.h $(srcdir)/../include/xnew.h \
+ $(srcdir)/../include/CopyOwner.h $(srcdir)/../include/Text.h $(srcdir)/../include/Location.h \
+ $(srcdir)/../include/Ptr.h $(srcdir)/../include/rtti.h $(srcdir)/../include/TypeId.h \
+ $(srcdir)/../include/SubstTable.h $(srcdir)/../include/Message.h $(srcdir)/../include/MessageArg.h \
+ $(srcdir)/../include/Named.h $(srcdir)/../include/NamedTable.h $(srcdir)/../include/Hash.h \
+ $(srcdir)/../include/OwnerTable.h $(srcdir)/../include/PointerTable.h $(srcdir)/../include/Syntax.h \
+ $(srcdir)/../include/ISet.h $(srcdir)/../include/HashTable.h \
+ $(srcdir)/../include/HashTableItemBase.h $(srcdir)/../include/XcharMap.h \
+ $(srcdir)/../include/constant.h $(srcdir)/../include/EntityCatalog.h $(srcdir)/../include/Dtd.h \
+ $(srcdir)/../include/NamedResourceTable.h $(srcdir)/../include/NamedResource.h \
+ $(srcdir)/../include/ElementType.h $(srcdir)/../include/Attributed.h $(srcdir)/../include/Mode.h \
+ $(srcdir)/../include/ContentToken.h $(srcdir)/../include/NCVector.h $(srcdir)/../include/Notation.h \
+ $(srcdir)/../include/ExternalId.h $(srcdir)/../include/StringResource.h \
+ $(srcdir)/../include/EntityDecl.h $(srcdir)/../include/Entity.h $(srcdir)/../include/Allocator.h \
+ $(srcdir)/../include/Markup.h $(srcdir)/../include/Sd.h $(srcdir)/../include/CharsetInfo.h \
+ $(srcdir)/../include/UnivCharsetDesc.h $(srcdir)/../include/RangeMap.h \
+ $(srcdir)/../include/CharsetDecl.h $(srcdir)/../include/SdText.h \
+ $(srcdir)/../include/ShortReferenceMap.h
+parseDecl.o: parseDecl.cxx splib.h $(srcdir)/../include/config.h Parser.h \
+ $(srcdir)/../include/types.h $(srcdir)/../include/Attribute.h $(srcdir)/../include/Resource.h \
+ $(srcdir)/../include/Owner.h $(srcdir)/../include/StringC.h $(srcdir)/../include/StringOf.h \
+ $(srcdir)/../include/Boolean.h $(srcdir)/../include/Vector.h $(srcdir)/../include/xnew.h \
+ $(srcdir)/../include/CopyOwner.h $(srcdir)/../include/Text.h $(srcdir)/../include/Location.h \
+ $(srcdir)/../include/Ptr.h $(srcdir)/../include/rtti.h $(srcdir)/../include/TypeId.h \
+ $(srcdir)/../include/SubstTable.h $(srcdir)/../include/Message.h $(srcdir)/../include/MessageArg.h \
+ $(srcdir)/../include/Attributed.h $(srcdir)/../include/ElementType.h $(srcdir)/../include/Named.h \
+ $(srcdir)/../include/Mode.h $(srcdir)/../include/ContentToken.h $(srcdir)/../include/NCVector.h \
+ $(srcdir)/../include/Entity.h $(srcdir)/../include/NamedResource.h \
+ $(srcdir)/../include/ExternalId.h $(srcdir)/../include/StringResource.h \
+ $(srcdir)/../include/Allocator.h $(srcdir)/../include/EntityDecl.h $(srcdir)/../include/Markup.h \
+ $(srcdir)/../include/Syntax.h $(srcdir)/../include/ISet.h $(srcdir)/../include/HashTable.h \
+ $(srcdir)/../include/OwnerTable.h $(srcdir)/../include/PointerTable.h $(srcdir)/../include/Hash.h \
+ $(srcdir)/../include/HashTableItemBase.h $(srcdir)/../include/XcharMap.h \
+ $(srcdir)/../include/constant.h $(srcdir)/../include/EntityCatalog.h $(srcdir)/../include/Sd.h \
+ $(srcdir)/../include/CharsetInfo.h $(srcdir)/../include/UnivCharsetDesc.h \
+ $(srcdir)/../include/RangeMap.h $(srcdir)/../include/CharsetDecl.h $(srcdir)/../include/SdText.h \
+ $(srcdir)/../include/Event.h $(srcdir)/../include/Link.h $(srcdir)/../include/Notation.h \
+ $(srcdir)/../include/Dtd.h $(srcdir)/../include/NamedTable.h \
+ $(srcdir)/../include/NamedResourceTable.h $(srcdir)/../include/ShortReferenceMap.h \
+ $(srcdir)/../include/Lpd.h $(srcdir)/../include/IList.h $(srcdir)/../include/IListBase.h \
+ ParserState.h $(srcdir)/../include/EntityManager.h EventQueue.h \
+ $(srcdir)/../include/IQueue.h events.h Id.h $(srcdir)/../include/InputSource.h \
+ $(srcdir)/../include/OpenElement.h OutputState.h $(srcdir)/../include/EventsWanted.h \
+ $(srcdir)/../include/ParserOptions.h Recognizer.h LpdEntityRef.h \
+ $(srcdir)/../include/ContentState.h $(srcdir)/../include/SgmlParser.h Undo.h Param.h \
+ NameToken.h ParserMessages.h TokenMessageArg.h token.h \
+ $(srcdir)/../include/macros.h
+ShortReferenceMap.o: ShortReferenceMap.cxx splib.h $(srcdir)/../include/config.h \
+ $(srcdir)/../include/ShortReferenceMap.h $(srcdir)/../include/Vector.h $(srcdir)/../include/xnew.h \
+ $(srcdir)/../include/StringC.h $(srcdir)/../include/types.h $(srcdir)/../include/StringOf.h \
+ $(srcdir)/../include/Boolean.h $(srcdir)/../include/Named.h $(srcdir)/../include/Entity.h \
+ $(srcdir)/../include/NamedResource.h $(srcdir)/../include/Resource.h \
+ $(srcdir)/../include/Location.h $(srcdir)/../include/Ptr.h $(srcdir)/../include/Owner.h \
+ $(srcdir)/../include/rtti.h $(srcdir)/../include/TypeId.h $(srcdir)/../include/Attribute.h \
+ $(srcdir)/../include/CopyOwner.h $(srcdir)/../include/Text.h $(srcdir)/../include/SubstTable.h \
+ $(srcdir)/../include/Message.h $(srcdir)/../include/MessageArg.h $(srcdir)/../include/ExternalId.h \
+ $(srcdir)/../include/StringResource.h $(srcdir)/../include/Allocator.h \
+ $(srcdir)/../include/EntityDecl.h $(srcdir)/../include/Markup.h $(srcdir)/../include/Syntax.h \
+ $(srcdir)/../include/ISet.h $(srcdir)/../include/HashTable.h $(srcdir)/../include/OwnerTable.h \
+ $(srcdir)/../include/PointerTable.h $(srcdir)/../include/Hash.h \
+ $(srcdir)/../include/HashTableItemBase.h $(srcdir)/../include/XcharMap.h \
+ $(srcdir)/../include/constant.h $(srcdir)/../include/EntityCatalog.h $(srcdir)/../include/Sd.h \
+ $(srcdir)/../include/CharsetInfo.h $(srcdir)/../include/UnivCharsetDesc.h \
+ $(srcdir)/../include/RangeMap.h $(srcdir)/../include/CharsetDecl.h $(srcdir)/../include/SdText.h
+parseParam.o: parseParam.cxx splib.h $(srcdir)/../include/config.h Parser.h \
+ $(srcdir)/../include/types.h $(srcdir)/../include/Attribute.h $(srcdir)/../include/Resource.h \
+ $(srcdir)/../include/Owner.h $(srcdir)/../include/StringC.h $(srcdir)/../include/StringOf.h \
+ $(srcdir)/../include/Boolean.h $(srcdir)/../include/Vector.h $(srcdir)/../include/xnew.h \
+ $(srcdir)/../include/CopyOwner.h $(srcdir)/../include/Text.h $(srcdir)/../include/Location.h \
+ $(srcdir)/../include/Ptr.h $(srcdir)/../include/rtti.h $(srcdir)/../include/TypeId.h \
+ $(srcdir)/../include/SubstTable.h $(srcdir)/../include/Message.h $(srcdir)/../include/MessageArg.h \
+ $(srcdir)/../include/Attributed.h $(srcdir)/../include/ElementType.h $(srcdir)/../include/Named.h \
+ $(srcdir)/../include/Mode.h $(srcdir)/../include/ContentToken.h $(srcdir)/../include/NCVector.h \
+ $(srcdir)/../include/Entity.h $(srcdir)/../include/NamedResource.h \
+ $(srcdir)/../include/ExternalId.h $(srcdir)/../include/StringResource.h \
+ $(srcdir)/../include/Allocator.h $(srcdir)/../include/EntityDecl.h $(srcdir)/../include/Markup.h \
+ $(srcdir)/../include/Syntax.h $(srcdir)/../include/ISet.h $(srcdir)/../include/HashTable.h \
+ $(srcdir)/../include/OwnerTable.h $(srcdir)/../include/PointerTable.h $(srcdir)/../include/Hash.h \
+ $(srcdir)/../include/HashTableItemBase.h $(srcdir)/../include/XcharMap.h \
+ $(srcdir)/../include/constant.h $(srcdir)/../include/EntityCatalog.h $(srcdir)/../include/Sd.h \
+ $(srcdir)/../include/CharsetInfo.h $(srcdir)/../include/UnivCharsetDesc.h \
+ $(srcdir)/../include/RangeMap.h $(srcdir)/../include/CharsetDecl.h $(srcdir)/../include/SdText.h \
+ $(srcdir)/../include/Event.h $(srcdir)/../include/Link.h $(srcdir)/../include/Notation.h \
+ $(srcdir)/../include/Dtd.h $(srcdir)/../include/NamedTable.h \
+ $(srcdir)/../include/NamedResourceTable.h $(srcdir)/../include/ShortReferenceMap.h \
+ $(srcdir)/../include/Lpd.h $(srcdir)/../include/IList.h $(srcdir)/../include/IListBase.h \
+ ParserState.h $(srcdir)/../include/EntityManager.h EventQueue.h \
+ $(srcdir)/../include/IQueue.h events.h Id.h $(srcdir)/../include/InputSource.h \
+ $(srcdir)/../include/OpenElement.h OutputState.h $(srcdir)/../include/EventsWanted.h \
+ $(srcdir)/../include/ParserOptions.h Recognizer.h LpdEntityRef.h \
+ $(srcdir)/../include/ContentState.h $(srcdir)/../include/SgmlParser.h Undo.h Param.h \
+ NameToken.h Group.h ParserMessages.h TokenMessageArg.h token.h \
+ $(srcdir)/../include/macros.h
+parseCommon.o: parseCommon.cxx splib.h $(srcdir)/../include/config.h Parser.h \
+ $(srcdir)/../include/types.h $(srcdir)/../include/Attribute.h $(srcdir)/../include/Resource.h \
+ $(srcdir)/../include/Owner.h $(srcdir)/../include/StringC.h $(srcdir)/../include/StringOf.h \
+ $(srcdir)/../include/Boolean.h $(srcdir)/../include/Vector.h $(srcdir)/../include/xnew.h \
+ $(srcdir)/../include/CopyOwner.h $(srcdir)/../include/Text.h $(srcdir)/../include/Location.h \
+ $(srcdir)/../include/Ptr.h $(srcdir)/../include/rtti.h $(srcdir)/../include/TypeId.h \
+ $(srcdir)/../include/SubstTable.h $(srcdir)/../include/Message.h $(srcdir)/../include/MessageArg.h \
+ $(srcdir)/../include/Attributed.h $(srcdir)/../include/ElementType.h $(srcdir)/../include/Named.h \
+ $(srcdir)/../include/Mode.h $(srcdir)/../include/ContentToken.h $(srcdir)/../include/NCVector.h \
+ $(srcdir)/../include/Entity.h $(srcdir)/../include/NamedResource.h \
+ $(srcdir)/../include/ExternalId.h $(srcdir)/../include/StringResource.h \
+ $(srcdir)/../include/Allocator.h $(srcdir)/../include/EntityDecl.h $(srcdir)/../include/Markup.h \
+ $(srcdir)/../include/Syntax.h $(srcdir)/../include/ISet.h $(srcdir)/../include/HashTable.h \
+ $(srcdir)/../include/OwnerTable.h $(srcdir)/../include/PointerTable.h $(srcdir)/../include/Hash.h \
+ $(srcdir)/../include/HashTableItemBase.h $(srcdir)/../include/XcharMap.h \
+ $(srcdir)/../include/constant.h $(srcdir)/../include/EntityCatalog.h $(srcdir)/../include/Sd.h \
+ $(srcdir)/../include/CharsetInfo.h $(srcdir)/../include/UnivCharsetDesc.h \
+ $(srcdir)/../include/RangeMap.h $(srcdir)/../include/CharsetDecl.h $(srcdir)/../include/SdText.h \
+ $(srcdir)/../include/Event.h $(srcdir)/../include/Link.h $(srcdir)/../include/Notation.h \
+ $(srcdir)/../include/Dtd.h $(srcdir)/../include/NamedTable.h \
+ $(srcdir)/../include/NamedResourceTable.h $(srcdir)/../include/ShortReferenceMap.h \
+ $(srcdir)/../include/Lpd.h $(srcdir)/../include/IList.h $(srcdir)/../include/IListBase.h \
+ ParserState.h $(srcdir)/../include/EntityManager.h EventQueue.h \
+ $(srcdir)/../include/IQueue.h events.h Id.h $(srcdir)/../include/InputSource.h \
+ $(srcdir)/../include/OpenElement.h OutputState.h $(srcdir)/../include/EventsWanted.h \
+ $(srcdir)/../include/ParserOptions.h Recognizer.h LpdEntityRef.h \
+ $(srcdir)/../include/ContentState.h $(srcdir)/../include/SgmlParser.h Undo.h token.h \
+ ParserMessages.h NumericCharRefOrigin.h
+SgmlParser.o: SgmlParser.cxx splib.h $(srcdir)/../include/config.h \
+ $(srcdir)/../include/SgmlParser.h $(srcdir)/../include/StringC.h $(srcdir)/../include/types.h \
+ $(srcdir)/../include/StringOf.h $(srcdir)/../include/Boolean.h $(srcdir)/../include/Ptr.h \
+ $(srcdir)/../include/Location.h $(srcdir)/../include/Resource.h $(srcdir)/../include/Vector.h \
+ $(srcdir)/../include/xnew.h $(srcdir)/../include/Owner.h $(srcdir)/../include/rtti.h \
+ $(srcdir)/../include/TypeId.h $(srcdir)/../include/EntityManager.h \
+ $(srcdir)/../include/EntityCatalog.h $(srcdir)/../include/SubstTable.h Parser.h \
+ $(srcdir)/../include/Attribute.h $(srcdir)/../include/CopyOwner.h $(srcdir)/../include/Text.h \
+ $(srcdir)/../include/Message.h $(srcdir)/../include/MessageArg.h $(srcdir)/../include/Attributed.h \
+ $(srcdir)/../include/ElementType.h $(srcdir)/../include/Named.h $(srcdir)/../include/Mode.h \
+ $(srcdir)/../include/ContentToken.h $(srcdir)/../include/NCVector.h $(srcdir)/../include/Entity.h \
+ $(srcdir)/../include/NamedResource.h $(srcdir)/../include/ExternalId.h \
+ $(srcdir)/../include/StringResource.h $(srcdir)/../include/Allocator.h \
+ $(srcdir)/../include/EntityDecl.h $(srcdir)/../include/Markup.h $(srcdir)/../include/Syntax.h \
+ $(srcdir)/../include/ISet.h $(srcdir)/../include/HashTable.h $(srcdir)/../include/OwnerTable.h \
+ $(srcdir)/../include/PointerTable.h $(srcdir)/../include/Hash.h \
+ $(srcdir)/../include/HashTableItemBase.h $(srcdir)/../include/XcharMap.h \
+ $(srcdir)/../include/constant.h $(srcdir)/../include/Sd.h $(srcdir)/../include/CharsetInfo.h \
+ $(srcdir)/../include/UnivCharsetDesc.h $(srcdir)/../include/RangeMap.h \
+ $(srcdir)/../include/CharsetDecl.h $(srcdir)/../include/SdText.h $(srcdir)/../include/Event.h \
+ $(srcdir)/../include/Link.h $(srcdir)/../include/Notation.h $(srcdir)/../include/Dtd.h \
+ $(srcdir)/../include/NamedTable.h $(srcdir)/../include/NamedResourceTable.h \
+ $(srcdir)/../include/ShortReferenceMap.h $(srcdir)/../include/Lpd.h $(srcdir)/../include/IList.h \
+ $(srcdir)/../include/IListBase.h ParserState.h EventQueue.h $(srcdir)/../include/IQueue.h \
+ events.h Id.h $(srcdir)/../include/InputSource.h $(srcdir)/../include/OpenElement.h \
+ OutputState.h $(srcdir)/../include/EventsWanted.h $(srcdir)/../include/ParserOptions.h \
+ Recognizer.h LpdEntityRef.h $(srcdir)/../include/ContentState.h Undo.h
+Entity.o: Entity.cxx splib.h $(srcdir)/../include/config.h $(srcdir)/../include/Entity.h \
+ $(srcdir)/../include/types.h $(srcdir)/../include/StringC.h $(srcdir)/../include/StringOf.h \
+ $(srcdir)/../include/Boolean.h $(srcdir)/../include/NamedResource.h $(srcdir)/../include/Named.h \
+ $(srcdir)/../include/Resource.h $(srcdir)/../include/Location.h $(srcdir)/../include/Ptr.h \
+ $(srcdir)/../include/Vector.h $(srcdir)/../include/xnew.h $(srcdir)/../include/Owner.h \
+ $(srcdir)/../include/rtti.h $(srcdir)/../include/TypeId.h $(srcdir)/../include/Attribute.h \
+ $(srcdir)/../include/CopyOwner.h $(srcdir)/../include/Text.h $(srcdir)/../include/SubstTable.h \
+ $(srcdir)/../include/Message.h $(srcdir)/../include/MessageArg.h $(srcdir)/../include/ExternalId.h \
+ $(srcdir)/../include/StringResource.h $(srcdir)/../include/Allocator.h \
+ $(srcdir)/../include/EntityDecl.h $(srcdir)/../include/Markup.h $(srcdir)/../include/Syntax.h \
+ $(srcdir)/../include/ISet.h $(srcdir)/../include/HashTable.h $(srcdir)/../include/OwnerTable.h \
+ $(srcdir)/../include/PointerTable.h $(srcdir)/../include/Hash.h \
+ $(srcdir)/../include/HashTableItemBase.h $(srcdir)/../include/XcharMap.h \
+ $(srcdir)/../include/constant.h $(srcdir)/../include/EntityCatalog.h $(srcdir)/../include/Sd.h \
+ $(srcdir)/../include/CharsetInfo.h $(srcdir)/../include/UnivCharsetDesc.h \
+ $(srcdir)/../include/RangeMap.h $(srcdir)/../include/CharsetDecl.h $(srcdir)/../include/SdText.h \
+ ParserState.h $(srcdir)/../include/Dtd.h $(srcdir)/../include/NamedTable.h \
+ $(srcdir)/../include/NamedResourceTable.h $(srcdir)/../include/ElementType.h \
+ $(srcdir)/../include/Attributed.h $(srcdir)/../include/Mode.h $(srcdir)/../include/ContentToken.h \
+ $(srcdir)/../include/NCVector.h $(srcdir)/../include/Notation.h \
+ $(srcdir)/../include/ShortReferenceMap.h $(srcdir)/../include/EntityManager.h \
+ $(srcdir)/../include/Event.h $(srcdir)/../include/Link.h $(srcdir)/../include/Lpd.h EventQueue.h \
+ $(srcdir)/../include/IQueue.h events.h Id.h $(srcdir)/../include/InputSource.h \
+ $(srcdir)/../include/IList.h $(srcdir)/../include/IListBase.h $(srcdir)/../include/OpenElement.h \
+ OutputState.h $(srcdir)/../include/EventsWanted.h $(srcdir)/../include/ParserOptions.h \
+ Recognizer.h LpdEntityRef.h $(srcdir)/../include/ContentState.h \
+ $(srcdir)/../include/macros.h $(srcdir)/../include/InternalInputSource.h ParserMessages.h
+Attribute.o: Attribute.cxx splib.h $(srcdir)/../include/config.h \
+ $(srcdir)/../include/Attribute.h $(srcdir)/../include/Resource.h $(srcdir)/../include/Owner.h \
+ $(srcdir)/../include/StringC.h $(srcdir)/../include/types.h $(srcdir)/../include/StringOf.h \
+ $(srcdir)/../include/Boolean.h $(srcdir)/../include/Vector.h $(srcdir)/../include/xnew.h \
+ $(srcdir)/../include/CopyOwner.h $(srcdir)/../include/Text.h $(srcdir)/../include/Location.h \
+ $(srcdir)/../include/Ptr.h $(srcdir)/../include/rtti.h $(srcdir)/../include/TypeId.h \
+ $(srcdir)/../include/SubstTable.h $(srcdir)/../include/Message.h $(srcdir)/../include/MessageArg.h \
+ $(srcdir)/../include/macros.h ParserMessages.h StringVectorMessageArg.h \
+ $(srcdir)/../include/Syntax.h $(srcdir)/../include/ISet.h $(srcdir)/../include/HashTable.h \
+ $(srcdir)/../include/OwnerTable.h $(srcdir)/../include/PointerTable.h $(srcdir)/../include/Hash.h \
+ $(srcdir)/../include/HashTableItemBase.h $(srcdir)/../include/XcharMap.h \
+ $(srcdir)/../include/constant.h $(srcdir)/../include/EntityCatalog.h $(srcdir)/../include/Entity.h \
+ $(srcdir)/../include/NamedResource.h $(srcdir)/../include/Named.h $(srcdir)/../include/ExternalId.h \
+ $(srcdir)/../include/StringResource.h $(srcdir)/../include/Allocator.h \
+ $(srcdir)/../include/EntityDecl.h $(srcdir)/../include/Markup.h $(srcdir)/../include/Sd.h \
+ $(srcdir)/../include/CharsetInfo.h $(srcdir)/../include/UnivCharsetDesc.h \
+ $(srcdir)/../include/RangeMap.h $(srcdir)/../include/CharsetDecl.h $(srcdir)/../include/SdText.h \
+ $(srcdir)/../include/Notation.h $(srcdir)/../include/Attributed.h
+OpenElement.o: OpenElement.cxx splib.h $(srcdir)/../include/config.h \
+ $(srcdir)/../include/OpenElement.h $(srcdir)/../include/Boolean.h \
+ $(srcdir)/../include/ContentToken.h $(srcdir)/../include/Owner.h $(srcdir)/../include/Text.h \
+ $(srcdir)/../include/types.h $(srcdir)/../include/StringC.h $(srcdir)/../include/StringOf.h \
+ $(srcdir)/../include/Vector.h $(srcdir)/../include/xnew.h $(srcdir)/../include/Location.h \
+ $(srcdir)/../include/Ptr.h $(srcdir)/../include/Resource.h $(srcdir)/../include/rtti.h \
+ $(srcdir)/../include/TypeId.h $(srcdir)/../include/SubstTable.h $(srcdir)/../include/NCVector.h \
+ $(srcdir)/../include/ElementType.h $(srcdir)/../include/Named.h $(srcdir)/../include/Attributed.h \
+ $(srcdir)/../include/Attribute.h $(srcdir)/../include/CopyOwner.h $(srcdir)/../include/Message.h \
+ $(srcdir)/../include/MessageArg.h $(srcdir)/../include/Mode.h $(srcdir)/../include/Link.h \
+ $(srcdir)/../include/Allocator.h
+Notation.o: Notation.cxx splib.h $(srcdir)/../include/config.h \
+ $(srcdir)/../include/Notation.h $(srcdir)/../include/Owner.h $(srcdir)/../include/StringC.h \
+ $(srcdir)/../include/types.h $(srcdir)/../include/StringOf.h $(srcdir)/../include/Boolean.h \
+ $(srcdir)/../include/NamedResource.h $(srcdir)/../include/Named.h $(srcdir)/../include/Resource.h \
+ $(srcdir)/../include/Ptr.h $(srcdir)/../include/ExternalId.h $(srcdir)/../include/Text.h \
+ $(srcdir)/../include/Vector.h $(srcdir)/../include/xnew.h $(srcdir)/../include/Location.h \
+ $(srcdir)/../include/rtti.h $(srcdir)/../include/TypeId.h $(srcdir)/../include/SubstTable.h \
+ $(srcdir)/../include/Message.h $(srcdir)/../include/CopyOwner.h $(srcdir)/../include/MessageArg.h \
+ $(srcdir)/../include/Attributed.h $(srcdir)/../include/Attribute.h \
+ $(srcdir)/../include/StringResource.h $(srcdir)/../include/EntityDecl.h ParserState.h \
+ $(srcdir)/../include/Allocator.h $(srcdir)/../include/Dtd.h $(srcdir)/../include/NamedTable.h \
+ $(srcdir)/../include/Hash.h $(srcdir)/../include/OwnerTable.h $(srcdir)/../include/PointerTable.h \
+ $(srcdir)/../include/NamedResourceTable.h $(srcdir)/../include/ElementType.h \
+ $(srcdir)/../include/Mode.h $(srcdir)/../include/ContentToken.h $(srcdir)/../include/NCVector.h \
+ $(srcdir)/../include/Entity.h $(srcdir)/../include/Markup.h $(srcdir)/../include/Syntax.h \
+ $(srcdir)/../include/ISet.h $(srcdir)/../include/HashTable.h \
+ $(srcdir)/../include/HashTableItemBase.h $(srcdir)/../include/XcharMap.h \
+ $(srcdir)/../include/constant.h $(srcdir)/../include/EntityCatalog.h $(srcdir)/../include/Sd.h \
+ $(srcdir)/../include/CharsetInfo.h $(srcdir)/../include/UnivCharsetDesc.h \
+ $(srcdir)/../include/RangeMap.h $(srcdir)/../include/CharsetDecl.h $(srcdir)/../include/SdText.h \
+ $(srcdir)/../include/ShortReferenceMap.h $(srcdir)/../include/EntityManager.h \
+ $(srcdir)/../include/Event.h $(srcdir)/../include/Link.h $(srcdir)/../include/Lpd.h EventQueue.h \
+ $(srcdir)/../include/IQueue.h events.h Id.h $(srcdir)/../include/InputSource.h \
+ $(srcdir)/../include/IList.h $(srcdir)/../include/IListBase.h $(srcdir)/../include/OpenElement.h \
+ OutputState.h $(srcdir)/../include/EventsWanted.h $(srcdir)/../include/ParserOptions.h \
+ Recognizer.h LpdEntityRef.h $(srcdir)/../include/ContentState.h \
+ ParserMessages.h
+ParserOptions.o: ParserOptions.cxx splib.h $(srcdir)/../include/config.h \
+ $(srcdir)/../include/ParserOptions.h $(srcdir)/../include/types.h \
+ $(srcdir)/../include/EventsWanted.h $(srcdir)/../include/Boolean.h $(srcdir)/../include/Vector.h \
+ $(srcdir)/../include/xnew.h $(srcdir)/../include/StringC.h $(srcdir)/../include/StringOf.h
+Dtd.o: Dtd.cxx splib.h $(srcdir)/../include/config.h $(srcdir)/../include/Dtd.h \
+ $(srcdir)/../include/NamedTable.h $(srcdir)/../include/Hash.h $(srcdir)/../include/StringC.h \
+ $(srcdir)/../include/types.h $(srcdir)/../include/StringOf.h $(srcdir)/../include/Boolean.h \
+ $(srcdir)/../include/Named.h $(srcdir)/../include/OwnerTable.h $(srcdir)/../include/PointerTable.h \
+ $(srcdir)/../include/Vector.h $(srcdir)/../include/xnew.h $(srcdir)/../include/NamedResourceTable.h \
+ $(srcdir)/../include/NamedResource.h $(srcdir)/../include/Resource.h $(srcdir)/../include/Ptr.h \
+ $(srcdir)/../include/ElementType.h $(srcdir)/../include/Owner.h $(srcdir)/../include/Location.h \
+ $(srcdir)/../include/rtti.h $(srcdir)/../include/TypeId.h $(srcdir)/../include/Attributed.h \
+ $(srcdir)/../include/Attribute.h $(srcdir)/../include/CopyOwner.h $(srcdir)/../include/Text.h \
+ $(srcdir)/../include/SubstTable.h $(srcdir)/../include/Message.h $(srcdir)/../include/MessageArg.h \
+ $(srcdir)/../include/Mode.h $(srcdir)/../include/ContentToken.h $(srcdir)/../include/NCVector.h \
+ $(srcdir)/../include/Notation.h $(srcdir)/../include/ExternalId.h \
+ $(srcdir)/../include/StringResource.h $(srcdir)/../include/EntityDecl.h \
+ $(srcdir)/../include/Entity.h $(srcdir)/../include/Allocator.h $(srcdir)/../include/Markup.h \
+ $(srcdir)/../include/Syntax.h $(srcdir)/../include/ISet.h $(srcdir)/../include/HashTable.h \
+ $(srcdir)/../include/HashTableItemBase.h $(srcdir)/../include/XcharMap.h \
+ $(srcdir)/../include/constant.h $(srcdir)/../include/EntityCatalog.h $(srcdir)/../include/Sd.h \
+ $(srcdir)/../include/CharsetInfo.h $(srcdir)/../include/UnivCharsetDesc.h \
+ $(srcdir)/../include/RangeMap.h $(srcdir)/../include/CharsetDecl.h $(srcdir)/../include/SdText.h \
+ $(srcdir)/../include/ShortReferenceMap.h
+Undo.o: Undo.cxx splib.h $(srcdir)/../include/config.h Undo.h $(srcdir)/../include/Link.h \
+ $(srcdir)/../include/ContentToken.h $(srcdir)/../include/Owner.h $(srcdir)/../include/Text.h \
+ $(srcdir)/../include/types.h $(srcdir)/../include/StringC.h $(srcdir)/../include/StringOf.h \
+ $(srcdir)/../include/Boolean.h $(srcdir)/../include/Vector.h $(srcdir)/../include/xnew.h \
+ $(srcdir)/../include/Location.h $(srcdir)/../include/Ptr.h $(srcdir)/../include/Resource.h \
+ $(srcdir)/../include/rtti.h $(srcdir)/../include/TypeId.h $(srcdir)/../include/SubstTable.h \
+ $(srcdir)/../include/NCVector.h $(srcdir)/../include/OpenElement.h \
+ $(srcdir)/../include/ElementType.h $(srcdir)/../include/Named.h $(srcdir)/../include/Attributed.h \
+ $(srcdir)/../include/Attribute.h $(srcdir)/../include/CopyOwner.h $(srcdir)/../include/Message.h \
+ $(srcdir)/../include/MessageArg.h $(srcdir)/../include/Mode.h $(srcdir)/../include/Allocator.h \
+ ParserState.h $(srcdir)/../include/Dtd.h $(srcdir)/../include/NamedTable.h \
+ $(srcdir)/../include/Hash.h $(srcdir)/../include/OwnerTable.h $(srcdir)/../include/PointerTable.h \
+ $(srcdir)/../include/NamedResourceTable.h $(srcdir)/../include/NamedResource.h \
+ $(srcdir)/../include/Notation.h $(srcdir)/../include/ExternalId.h \
+ $(srcdir)/../include/StringResource.h $(srcdir)/../include/EntityDecl.h \
+ $(srcdir)/../include/Entity.h $(srcdir)/../include/Markup.h $(srcdir)/../include/Syntax.h \
+ $(srcdir)/../include/ISet.h $(srcdir)/../include/HashTable.h \
+ $(srcdir)/../include/HashTableItemBase.h $(srcdir)/../include/XcharMap.h \
+ $(srcdir)/../include/constant.h $(srcdir)/../include/EntityCatalog.h $(srcdir)/../include/Sd.h \
+ $(srcdir)/../include/CharsetInfo.h $(srcdir)/../include/UnivCharsetDesc.h \
+ $(srcdir)/../include/RangeMap.h $(srcdir)/../include/CharsetDecl.h $(srcdir)/../include/SdText.h \
+ $(srcdir)/../include/ShortReferenceMap.h $(srcdir)/../include/EntityManager.h \
+ $(srcdir)/../include/Event.h $(srcdir)/../include/Lpd.h EventQueue.h $(srcdir)/../include/IQueue.h \
+ events.h Id.h $(srcdir)/../include/InputSource.h $(srcdir)/../include/IList.h \
+ $(srcdir)/../include/IListBase.h OutputState.h $(srcdir)/../include/EventsWanted.h \
+ $(srcdir)/../include/ParserOptions.h Recognizer.h LpdEntityRef.h \
+ $(srcdir)/../include/ContentState.h
+Param.o: Param.cxx splib.h $(srcdir)/../include/config.h Param.h \
+ $(srcdir)/../include/Boolean.h $(srcdir)/../include/ContentToken.h $(srcdir)/../include/Owner.h \
+ $(srcdir)/../include/Text.h $(srcdir)/../include/types.h $(srcdir)/../include/StringC.h \
+ $(srcdir)/../include/StringOf.h $(srcdir)/../include/Vector.h $(srcdir)/../include/xnew.h \
+ $(srcdir)/../include/Location.h $(srcdir)/../include/Ptr.h $(srcdir)/../include/Resource.h \
+ $(srcdir)/../include/rtti.h $(srcdir)/../include/TypeId.h $(srcdir)/../include/SubstTable.h \
+ $(srcdir)/../include/NCVector.h $(srcdir)/../include/MessageArg.h $(srcdir)/../include/Mode.h \
+ NameToken.h $(srcdir)/../include/Syntax.h $(srcdir)/../include/ISet.h \
+ $(srcdir)/../include/HashTable.h $(srcdir)/../include/OwnerTable.h \
+ $(srcdir)/../include/PointerTable.h $(srcdir)/../include/Hash.h \
+ $(srcdir)/../include/HashTableItemBase.h $(srcdir)/../include/XcharMap.h \
+ $(srcdir)/../include/constant.h $(srcdir)/../include/EntityCatalog.h \
+ $(srcdir)/../include/MessageBuilder.h $(srcdir)/../include/macros.h ParserMessages.h \
+ $(srcdir)/../include/Message.h $(srcdir)/../include/CopyOwner.h
+TokenMessageArg.o: TokenMessageArg.cxx splib.h $(srcdir)/../include/config.h \
+ TokenMessageArg.h $(srcdir)/../include/MessageArg.h $(srcdir)/../include/StringC.h \
+ $(srcdir)/../include/types.h $(srcdir)/../include/StringOf.h $(srcdir)/../include/Boolean.h \
+ $(srcdir)/../include/rtti.h $(srcdir)/../include/TypeId.h $(srcdir)/../include/Mode.h \
+ $(srcdir)/../include/Syntax.h $(srcdir)/../include/ISet.h $(srcdir)/../include/Vector.h \
+ $(srcdir)/../include/xnew.h $(srcdir)/../include/SubstTable.h $(srcdir)/../include/HashTable.h \
+ $(srcdir)/../include/OwnerTable.h $(srcdir)/../include/PointerTable.h $(srcdir)/../include/Hash.h \
+ $(srcdir)/../include/HashTableItemBase.h $(srcdir)/../include/Resource.h \
+ $(srcdir)/../include/XcharMap.h $(srcdir)/../include/Ptr.h $(srcdir)/../include/constant.h \
+ $(srcdir)/../include/EntityCatalog.h $(srcdir)/../include/Sd.h $(srcdir)/../include/CharsetInfo.h \
+ $(srcdir)/../include/UnivCharsetDesc.h $(srcdir)/../include/RangeMap.h \
+ $(srcdir)/../include/ExternalId.h $(srcdir)/../include/Text.h $(srcdir)/../include/Location.h \
+ $(srcdir)/../include/Owner.h $(srcdir)/../include/Message.h $(srcdir)/../include/CopyOwner.h \
+ $(srcdir)/../include/CharsetDecl.h $(srcdir)/../include/MessageBuilder.h token.h \
+ ParserMessages.h ModeInfo.h Priority.h $(srcdir)/../include/macros.h
+Group.o: Group.cxx splib.h $(srcdir)/../include/config.h Group.h \
+ $(srcdir)/../include/Boolean.h $(srcdir)/../include/ContentToken.h $(srcdir)/../include/Owner.h \
+ $(srcdir)/../include/Text.h $(srcdir)/../include/types.h $(srcdir)/../include/StringC.h \
+ $(srcdir)/../include/StringOf.h $(srcdir)/../include/Vector.h $(srcdir)/../include/xnew.h \
+ $(srcdir)/../include/Location.h $(srcdir)/../include/Ptr.h $(srcdir)/../include/Resource.h \
+ $(srcdir)/../include/rtti.h $(srcdir)/../include/TypeId.h $(srcdir)/../include/SubstTable.h \
+ $(srcdir)/../include/NCVector.h $(srcdir)/../include/MessageArg.h $(srcdir)/../include/Syntax.h \
+ $(srcdir)/../include/ISet.h $(srcdir)/../include/HashTable.h $(srcdir)/../include/OwnerTable.h \
+ $(srcdir)/../include/PointerTable.h $(srcdir)/../include/Hash.h \
+ $(srcdir)/../include/HashTableItemBase.h $(srcdir)/../include/XcharMap.h \
+ $(srcdir)/../include/constant.h $(srcdir)/../include/EntityCatalog.h \
+ $(srcdir)/../include/MessageBuilder.h ParserMessages.h $(srcdir)/../include/Message.h \
+ $(srcdir)/../include/CopyOwner.h $(srcdir)/../include/macros.h
+CharsetDecl.o: CharsetDecl.cxx splib.h $(srcdir)/../include/config.h \
+ $(srcdir)/../include/CharsetDecl.h $(srcdir)/../include/types.h $(srcdir)/../include/Vector.h \
+ $(srcdir)/../include/xnew.h $(srcdir)/../include/ExternalId.h $(srcdir)/../include/Boolean.h \
+ $(srcdir)/../include/StringC.h $(srcdir)/../include/StringOf.h $(srcdir)/../include/Text.h \
+ $(srcdir)/../include/Location.h $(srcdir)/../include/Ptr.h $(srcdir)/../include/Resource.h \
+ $(srcdir)/../include/Owner.h $(srcdir)/../include/rtti.h $(srcdir)/../include/TypeId.h \
+ $(srcdir)/../include/SubstTable.h $(srcdir)/../include/Message.h $(srcdir)/../include/CopyOwner.h \
+ $(srcdir)/../include/MessageArg.h $(srcdir)/../include/ISet.h $(srcdir)/../include/macros.h \
+ $(srcdir)/../include/constant.h
+CharsetRegistry.o: CharsetRegistry.cxx splib.h $(srcdir)/../include/config.h \
+ CharsetRegistry.h $(srcdir)/../include/Boolean.h $(srcdir)/../include/types.h \
+ $(srcdir)/../include/StringC.h $(srcdir)/../include/StringOf.h $(srcdir)/../include/ExternalId.h \
+ $(srcdir)/../include/Text.h $(srcdir)/../include/Vector.h $(srcdir)/../include/xnew.h \
+ $(srcdir)/../include/Location.h $(srcdir)/../include/Ptr.h $(srcdir)/../include/Resource.h \
+ $(srcdir)/../include/Owner.h $(srcdir)/../include/rtti.h $(srcdir)/../include/TypeId.h \
+ $(srcdir)/../include/SubstTable.h $(srcdir)/../include/Message.h $(srcdir)/../include/CopyOwner.h \
+ $(srcdir)/../include/MessageArg.h $(srcdir)/../include/CharsetInfo.h \
+ $(srcdir)/../include/UnivCharsetDesc.h $(srcdir)/../include/RangeMap.h $(srcdir)/../include/ISet.h \
+ $(srcdir)/../include/macros.h
+ExternalId.o: ExternalId.cxx splib.h $(srcdir)/../include/config.h \
+ $(srcdir)/../include/ExternalId.h $(srcdir)/../include/Boolean.h $(srcdir)/../include/StringC.h \
+ $(srcdir)/../include/types.h $(srcdir)/../include/StringOf.h $(srcdir)/../include/Text.h \
+ $(srcdir)/../include/Vector.h $(srcdir)/../include/xnew.h $(srcdir)/../include/Location.h \
+ $(srcdir)/../include/Ptr.h $(srcdir)/../include/Resource.h $(srcdir)/../include/Owner.h \
+ $(srcdir)/../include/rtti.h $(srcdir)/../include/TypeId.h $(srcdir)/../include/SubstTable.h \
+ $(srcdir)/../include/Message.h $(srcdir)/../include/CopyOwner.h $(srcdir)/../include/MessageArg.h \
+ $(srcdir)/../include/CharsetInfo.h $(srcdir)/../include/UnivCharsetDesc.h \
+ $(srcdir)/../include/RangeMap.h $(srcdir)/../include/ISet.h $(srcdir)/../include/macros.h \
+ ParserMessages.h
+TrieBuilder.o: TrieBuilder.cxx splib.h $(srcdir)/../include/config.h \
+ $(srcdir)/../include/types.h $(srcdir)/../include/macros.h $(srcdir)/../include/StringOf.h \
+ $(srcdir)/../include/Boolean.h Trie.h $(srcdir)/../include/Vector.h $(srcdir)/../include/xnew.h \
+ $(srcdir)/../include/CopyOwner.h $(srcdir)/../include/Owner.h Priority.h TrieBuilder.h
+Sd.o: Sd.cxx splib.h $(srcdir)/../include/config.h $(srcdir)/../include/Sd.h \
+ $(srcdir)/../include/types.h $(srcdir)/../include/Boolean.h $(srcdir)/../include/Resource.h \
+ $(srcdir)/../include/CharsetInfo.h $(srcdir)/../include/UnivCharsetDesc.h \
+ $(srcdir)/../include/RangeMap.h $(srcdir)/../include/Vector.h $(srcdir)/../include/xnew.h \
+ $(srcdir)/../include/ISet.h $(srcdir)/../include/StringC.h $(srcdir)/../include/StringOf.h \
+ $(srcdir)/../include/ExternalId.h $(srcdir)/../include/Text.h $(srcdir)/../include/Location.h \
+ $(srcdir)/../include/Ptr.h $(srcdir)/../include/Owner.h $(srcdir)/../include/rtti.h \
+ $(srcdir)/../include/TypeId.h $(srcdir)/../include/SubstTable.h $(srcdir)/../include/Message.h \
+ $(srcdir)/../include/CopyOwner.h $(srcdir)/../include/MessageArg.h $(srcdir)/../include/Syntax.h \
+ $(srcdir)/../include/HashTable.h $(srcdir)/../include/OwnerTable.h \
+ $(srcdir)/../include/PointerTable.h $(srcdir)/../include/Hash.h \
+ $(srcdir)/../include/HashTableItemBase.h $(srcdir)/../include/XcharMap.h \
+ $(srcdir)/../include/constant.h $(srcdir)/../include/EntityCatalog.h \
+ $(srcdir)/../include/CharsetDecl.h $(srcdir)/../include/macros.h
+Syntax.o: Syntax.cxx splib.h $(srcdir)/../include/config.h $(srcdir)/../include/Syntax.h \
+ $(srcdir)/../include/types.h $(srcdir)/../include/Boolean.h $(srcdir)/../include/ISet.h \
+ $(srcdir)/../include/Vector.h $(srcdir)/../include/xnew.h $(srcdir)/../include/StringC.h \
+ $(srcdir)/../include/StringOf.h $(srcdir)/../include/SubstTable.h $(srcdir)/../include/HashTable.h \
+ $(srcdir)/../include/OwnerTable.h $(srcdir)/../include/PointerTable.h $(srcdir)/../include/Hash.h \
+ $(srcdir)/../include/HashTableItemBase.h $(srcdir)/../include/Resource.h \
+ $(srcdir)/../include/XcharMap.h $(srcdir)/../include/Ptr.h $(srcdir)/../include/constant.h \
+ $(srcdir)/../include/EntityCatalog.h $(srcdir)/../include/Sd.h $(srcdir)/../include/CharsetInfo.h \
+ $(srcdir)/../include/UnivCharsetDesc.h $(srcdir)/../include/RangeMap.h \
+ $(srcdir)/../include/ExternalId.h $(srcdir)/../include/Text.h $(srcdir)/../include/Location.h \
+ $(srcdir)/../include/Owner.h $(srcdir)/../include/rtti.h $(srcdir)/../include/TypeId.h \
+ $(srcdir)/../include/Message.h $(srcdir)/../include/CopyOwner.h $(srcdir)/../include/MessageArg.h \
+ $(srcdir)/../include/CharsetDecl.h $(srcdir)/../include/ISetIter.h $(srcdir)/../include/macros.h \
+ MarkupScan.h
+Partition.o: Partition.cxx splib.h $(srcdir)/../include/config.h Partition.h \
+ $(srcdir)/../include/types.h $(srcdir)/../include/SubstTable.h $(srcdir)/../include/StringOf.h \
+ $(srcdir)/../include/Boolean.h $(srcdir)/../include/ISet.h $(srcdir)/../include/Vector.h \
+ $(srcdir)/../include/xnew.h $(srcdir)/../include/XcharMap.h $(srcdir)/../include/Resource.h \
+ $(srcdir)/../include/Ptr.h $(srcdir)/../include/constant.h $(srcdir)/../include/ISetIter.h \
+ $(srcdir)/../include/Link.h $(srcdir)/../include/IList.h $(srcdir)/../include/IListBase.h \
+ $(srcdir)/../include/IListIter.h $(srcdir)/../include/IListIterBase.h $(srcdir)/../include/Owner.h \
+ $(srcdir)/../include/macros.h EquivClass.h $(srcdir)/../include/StringC.h
+ModeInfo.o: ModeInfo.cxx splib.h $(srcdir)/../include/config.h \
+ $(srcdir)/../include/macros.h $(srcdir)/../include/types.h $(srcdir)/../include/Syntax.h \
+ $(srcdir)/../include/Boolean.h $(srcdir)/../include/ISet.h $(srcdir)/../include/Vector.h \
+ $(srcdir)/../include/xnew.h $(srcdir)/../include/StringC.h $(srcdir)/../include/StringOf.h \
+ $(srcdir)/../include/SubstTable.h $(srcdir)/../include/HashTable.h \
+ $(srcdir)/../include/OwnerTable.h $(srcdir)/../include/PointerTable.h $(srcdir)/../include/Hash.h \
+ $(srcdir)/../include/HashTableItemBase.h $(srcdir)/../include/Resource.h \
+ $(srcdir)/../include/XcharMap.h $(srcdir)/../include/Ptr.h $(srcdir)/../include/constant.h \
+ $(srcdir)/../include/EntityCatalog.h token.h $(srcdir)/../include/Sd.h \
+ $(srcdir)/../include/CharsetInfo.h $(srcdir)/../include/UnivCharsetDesc.h \
+ $(srcdir)/../include/RangeMap.h $(srcdir)/../include/ExternalId.h $(srcdir)/../include/Text.h \
+ $(srcdir)/../include/Location.h $(srcdir)/../include/Owner.h $(srcdir)/../include/rtti.h \
+ $(srcdir)/../include/TypeId.h $(srcdir)/../include/Message.h $(srcdir)/../include/CopyOwner.h \
+ $(srcdir)/../include/MessageArg.h $(srcdir)/../include/CharsetDecl.h $(srcdir)/../include/Mode.h \
+ ModeInfo.h Priority.h
+Recognizer.o: Recognizer.cxx splib.h $(srcdir)/../include/config.h \
+ $(srcdir)/../include/Resource.h Trie.h $(srcdir)/../include/types.h $(srcdir)/../include/Boolean.h \
+ $(srcdir)/../include/Vector.h $(srcdir)/../include/xnew.h $(srcdir)/../include/CopyOwner.h \
+ $(srcdir)/../include/Owner.h Priority.h $(srcdir)/../include/XcharMap.h $(srcdir)/../include/Ptr.h \
+ $(srcdir)/../include/constant.h Recognizer.h $(srcdir)/../include/InputSource.h \
+ $(srcdir)/../include/Link.h $(srcdir)/../include/Location.h $(srcdir)/../include/StringC.h \
+ $(srcdir)/../include/StringOf.h $(srcdir)/../include/rtti.h $(srcdir)/../include/TypeId.h
+Markup.o: Markup.cxx splib.h $(srcdir)/../include/config.h $(srcdir)/../include/Markup.h \
+ $(srcdir)/../include/StringC.h $(srcdir)/../include/types.h $(srcdir)/../include/StringOf.h \
+ $(srcdir)/../include/Boolean.h $(srcdir)/../include/Syntax.h $(srcdir)/../include/ISet.h \
+ $(srcdir)/../include/Vector.h $(srcdir)/../include/xnew.h $(srcdir)/../include/SubstTable.h \
+ $(srcdir)/../include/HashTable.h $(srcdir)/../include/OwnerTable.h \
+ $(srcdir)/../include/PointerTable.h $(srcdir)/../include/Hash.h \
+ $(srcdir)/../include/HashTableItemBase.h $(srcdir)/../include/Resource.h \
+ $(srcdir)/../include/XcharMap.h $(srcdir)/../include/Ptr.h $(srcdir)/../include/constant.h \
+ $(srcdir)/../include/EntityCatalog.h $(srcdir)/../include/Sd.h $(srcdir)/../include/CharsetInfo.h \
+ $(srcdir)/../include/UnivCharsetDesc.h $(srcdir)/../include/RangeMap.h \
+ $(srcdir)/../include/ExternalId.h $(srcdir)/../include/Text.h $(srcdir)/../include/Location.h \
+ $(srcdir)/../include/Owner.h $(srcdir)/../include/rtti.h $(srcdir)/../include/TypeId.h \
+ $(srcdir)/../include/Message.h $(srcdir)/../include/CopyOwner.h $(srcdir)/../include/MessageArg.h \
+ $(srcdir)/../include/CharsetDecl.h $(srcdir)/../include/SdText.h $(srcdir)/../include/InputSource.h \
+ $(srcdir)/../include/Link.h $(srcdir)/../include/macros.h $(srcdir)/../include/Entity.h \
+ $(srcdir)/../include/NamedResource.h $(srcdir)/../include/Named.h $(srcdir)/../include/Attribute.h \
+ $(srcdir)/../include/StringResource.h $(srcdir)/../include/Allocator.h \
+ $(srcdir)/../include/EntityDecl.h
+Text.o: Text.cxx splib.h $(srcdir)/../include/config.h $(srcdir)/../include/Text.h \
+ $(srcdir)/../include/types.h $(srcdir)/../include/StringC.h $(srcdir)/../include/StringOf.h \
+ $(srcdir)/../include/Boolean.h $(srcdir)/../include/Vector.h $(srcdir)/../include/xnew.h \
+ $(srcdir)/../include/Location.h $(srcdir)/../include/Ptr.h $(srcdir)/../include/Resource.h \
+ $(srcdir)/../include/Owner.h $(srcdir)/../include/rtti.h $(srcdir)/../include/TypeId.h \
+ $(srcdir)/../include/SubstTable.h $(srcdir)/../include/Entity.h \
+ $(srcdir)/../include/NamedResource.h $(srcdir)/../include/Named.h $(srcdir)/../include/Attribute.h \
+ $(srcdir)/../include/CopyOwner.h $(srcdir)/../include/Message.h $(srcdir)/../include/MessageArg.h \
+ $(srcdir)/../include/ExternalId.h $(srcdir)/../include/StringResource.h \
+ $(srcdir)/../include/Allocator.h $(srcdir)/../include/EntityDecl.h $(srcdir)/../include/Markup.h \
+ $(srcdir)/../include/Syntax.h $(srcdir)/../include/ISet.h $(srcdir)/../include/HashTable.h \
+ $(srcdir)/../include/OwnerTable.h $(srcdir)/../include/PointerTable.h $(srcdir)/../include/Hash.h \
+ $(srcdir)/../include/HashTableItemBase.h $(srcdir)/../include/XcharMap.h \
+ $(srcdir)/../include/constant.h $(srcdir)/../include/EntityCatalog.h $(srcdir)/../include/Sd.h \
+ $(srcdir)/../include/CharsetInfo.h $(srcdir)/../include/UnivCharsetDesc.h \
+ $(srcdir)/../include/RangeMap.h $(srcdir)/../include/CharsetDecl.h $(srcdir)/../include/SdText.h
+ContentToken.o: ContentToken.cxx splib.h $(srcdir)/../include/config.h \
+ $(srcdir)/../include/ContentToken.h $(srcdir)/../include/Owner.h $(srcdir)/../include/Text.h \
+ $(srcdir)/../include/types.h $(srcdir)/../include/StringC.h $(srcdir)/../include/StringOf.h \
+ $(srcdir)/../include/Boolean.h $(srcdir)/../include/Vector.h $(srcdir)/../include/xnew.h \
+ $(srcdir)/../include/Location.h $(srcdir)/../include/Ptr.h $(srcdir)/../include/Resource.h \
+ $(srcdir)/../include/rtti.h $(srcdir)/../include/TypeId.h $(srcdir)/../include/SubstTable.h \
+ $(srcdir)/../include/NCVector.h $(srcdir)/../include/macros.h $(srcdir)/../include/ElementType.h \
+ $(srcdir)/../include/Named.h $(srcdir)/../include/Attributed.h $(srcdir)/../include/Attribute.h \
+ $(srcdir)/../include/CopyOwner.h $(srcdir)/../include/Message.h $(srcdir)/../include/MessageArg.h \
+ $(srcdir)/../include/Mode.h $(srcdir)/../include/Dtd.h $(srcdir)/../include/NamedTable.h \
+ $(srcdir)/../include/Hash.h $(srcdir)/../include/OwnerTable.h $(srcdir)/../include/PointerTable.h \
+ $(srcdir)/../include/NamedResourceTable.h $(srcdir)/../include/NamedResource.h \
+ $(srcdir)/../include/Notation.h $(srcdir)/../include/ExternalId.h \
+ $(srcdir)/../include/StringResource.h $(srcdir)/../include/EntityDecl.h \
+ $(srcdir)/../include/Entity.h $(srcdir)/../include/Allocator.h $(srcdir)/../include/Markup.h \
+ $(srcdir)/../include/Syntax.h $(srcdir)/../include/ISet.h $(srcdir)/../include/HashTable.h \
+ $(srcdir)/../include/HashTableItemBase.h $(srcdir)/../include/XcharMap.h \
+ $(srcdir)/../include/constant.h $(srcdir)/../include/EntityCatalog.h $(srcdir)/../include/Sd.h \
+ $(srcdir)/../include/CharsetInfo.h $(srcdir)/../include/UnivCharsetDesc.h \
+ $(srcdir)/../include/RangeMap.h $(srcdir)/../include/CharsetDecl.h $(srcdir)/../include/SdText.h \
+ $(srcdir)/../include/ShortReferenceMap.h
+ElementType.o: ElementType.cxx splib.h $(srcdir)/../include/config.h \
+ $(srcdir)/../include/ElementType.h $(srcdir)/../include/Boolean.h $(srcdir)/../include/Vector.h \
+ $(srcdir)/../include/xnew.h $(srcdir)/../include/Owner.h $(srcdir)/../include/Location.h \
+ $(srcdir)/../include/types.h $(srcdir)/../include/Ptr.h $(srcdir)/../include/Resource.h \
+ $(srcdir)/../include/StringC.h $(srcdir)/../include/StringOf.h $(srcdir)/../include/rtti.h \
+ $(srcdir)/../include/TypeId.h $(srcdir)/../include/Named.h $(srcdir)/../include/Attributed.h \
+ $(srcdir)/../include/Attribute.h $(srcdir)/../include/CopyOwner.h $(srcdir)/../include/Text.h \
+ $(srcdir)/../include/SubstTable.h $(srcdir)/../include/Message.h $(srcdir)/../include/MessageArg.h \
+ $(srcdir)/../include/Mode.h $(srcdir)/../include/ContentToken.h $(srcdir)/../include/NCVector.h \
+ $(srcdir)/../include/macros.h
+Event.o: Event.cxx splib.h $(srcdir)/../include/config.h $(srcdir)/../include/Event.h \
+ $(srcdir)/../include/Link.h $(srcdir)/../include/Allocator.h $(srcdir)/../include/Location.h \
+ $(srcdir)/../include/types.h $(srcdir)/../include/Boolean.h $(srcdir)/../include/Ptr.h \
+ $(srcdir)/../include/Resource.h $(srcdir)/../include/Vector.h $(srcdir)/../include/xnew.h \
+ $(srcdir)/../include/Owner.h $(srcdir)/../include/StringC.h $(srcdir)/../include/StringOf.h \
+ $(srcdir)/../include/rtti.h $(srcdir)/../include/TypeId.h $(srcdir)/../include/Notation.h \
+ $(srcdir)/../include/NamedResource.h $(srcdir)/../include/Named.h $(srcdir)/../include/ExternalId.h \
+ $(srcdir)/../include/Text.h $(srcdir)/../include/SubstTable.h $(srcdir)/../include/Message.h \
+ $(srcdir)/../include/CopyOwner.h $(srcdir)/../include/MessageArg.h \
+ $(srcdir)/../include/Attributed.h $(srcdir)/../include/Attribute.h \
+ $(srcdir)/../include/StringResource.h $(srcdir)/../include/EntityDecl.h $(srcdir)/../include/Sd.h \
+ $(srcdir)/../include/CharsetInfo.h $(srcdir)/../include/UnivCharsetDesc.h \
+ $(srcdir)/../include/RangeMap.h $(srcdir)/../include/ISet.h $(srcdir)/../include/Syntax.h \
+ $(srcdir)/../include/HashTable.h $(srcdir)/../include/OwnerTable.h \
+ $(srcdir)/../include/PointerTable.h $(srcdir)/../include/Hash.h \
+ $(srcdir)/../include/HashTableItemBase.h $(srcdir)/../include/XcharMap.h \
+ $(srcdir)/../include/constant.h $(srcdir)/../include/EntityCatalog.h \
+ $(srcdir)/../include/CharsetDecl.h $(srcdir)/../include/Dtd.h $(srcdir)/../include/NamedTable.h \
+ $(srcdir)/../include/NamedResourceTable.h $(srcdir)/../include/ElementType.h \
+ $(srcdir)/../include/Mode.h $(srcdir)/../include/ContentToken.h $(srcdir)/../include/NCVector.h \
+ $(srcdir)/../include/Entity.h $(srcdir)/../include/Markup.h $(srcdir)/../include/SdText.h \
+ $(srcdir)/../include/ShortReferenceMap.h $(srcdir)/../include/Lpd.h EventQueue.h \
+ $(srcdir)/../include/IQueue.h events.h
+InternalInputSource.o: InternalInputSource.cxx splib.h \
+ $(srcdir)/../include/config.h $(srcdir)/../include/InternalInputSource.h \
+ $(srcdir)/../include/InputSource.h $(srcdir)/../include/types.h $(srcdir)/../include/Link.h \
+ $(srcdir)/../include/Ptr.h $(srcdir)/../include/Boolean.h $(srcdir)/../include/Location.h \
+ $(srcdir)/../include/Resource.h $(srcdir)/../include/Vector.h $(srcdir)/../include/xnew.h \
+ $(srcdir)/../include/Owner.h $(srcdir)/../include/StringC.h $(srcdir)/../include/StringOf.h \
+ $(srcdir)/../include/rtti.h $(srcdir)/../include/TypeId.h $(srcdir)/../include/XcharMap.h \
+ $(srcdir)/../include/constant.h $(srcdir)/../include/Allocator.h $(srcdir)/../include/macros.h
+OutputState.o: OutputState.cxx splib.h $(srcdir)/../include/config.h \
+ OutputState.h $(srcdir)/../include/Location.h $(srcdir)/../include/types.h \
+ $(srcdir)/../include/Boolean.h $(srcdir)/../include/Ptr.h $(srcdir)/../include/Resource.h \
+ $(srcdir)/../include/Vector.h $(srcdir)/../include/xnew.h $(srcdir)/../include/Owner.h \
+ $(srcdir)/../include/StringC.h $(srcdir)/../include/StringOf.h $(srcdir)/../include/rtti.h \
+ $(srcdir)/../include/TypeId.h $(srcdir)/../include/IList.h $(srcdir)/../include/IListBase.h \
+ $(srcdir)/../include/Link.h $(srcdir)/../include/EventsWanted.h $(srcdir)/../include/Event.h \
+ $(srcdir)/../include/Allocator.h $(srcdir)/../include/Notation.h \
+ $(srcdir)/../include/NamedResource.h $(srcdir)/../include/Named.h $(srcdir)/../include/ExternalId.h \
+ $(srcdir)/../include/Text.h $(srcdir)/../include/SubstTable.h $(srcdir)/../include/Message.h \
+ $(srcdir)/../include/CopyOwner.h $(srcdir)/../include/MessageArg.h \
+ $(srcdir)/../include/Attributed.h $(srcdir)/../include/Attribute.h \
+ $(srcdir)/../include/StringResource.h $(srcdir)/../include/EntityDecl.h $(srcdir)/../include/Sd.h \
+ $(srcdir)/../include/CharsetInfo.h $(srcdir)/../include/UnivCharsetDesc.h \
+ $(srcdir)/../include/RangeMap.h $(srcdir)/../include/ISet.h $(srcdir)/../include/Syntax.h \
+ $(srcdir)/../include/HashTable.h $(srcdir)/../include/OwnerTable.h \
+ $(srcdir)/../include/PointerTable.h $(srcdir)/../include/Hash.h \
+ $(srcdir)/../include/HashTableItemBase.h $(srcdir)/../include/XcharMap.h \
+ $(srcdir)/../include/constant.h $(srcdir)/../include/EntityCatalog.h \
+ $(srcdir)/../include/CharsetDecl.h $(srcdir)/../include/Dtd.h $(srcdir)/../include/NamedTable.h \
+ $(srcdir)/../include/NamedResourceTable.h $(srcdir)/../include/ElementType.h \
+ $(srcdir)/../include/Mode.h $(srcdir)/../include/ContentToken.h $(srcdir)/../include/NCVector.h \
+ $(srcdir)/../include/Entity.h $(srcdir)/../include/Markup.h $(srcdir)/../include/SdText.h \
+ $(srcdir)/../include/ShortReferenceMap.h $(srcdir)/../include/Lpd.h
+ParserMessages.o: ParserMessages.cxx splib.h $(srcdir)/../include/config.h \
+ ParserMessages.h $(srcdir)/../include/Message.h $(srcdir)/../include/Location.h \
+ $(srcdir)/../include/types.h $(srcdir)/../include/Boolean.h $(srcdir)/../include/Ptr.h \
+ $(srcdir)/../include/Resource.h $(srcdir)/../include/Vector.h $(srcdir)/../include/xnew.h \
+ $(srcdir)/../include/Owner.h $(srcdir)/../include/StringC.h $(srcdir)/../include/StringOf.h \
+ $(srcdir)/../include/rtti.h $(srcdir)/../include/TypeId.h $(srcdir)/../include/CopyOwner.h \
+ $(srcdir)/../include/MessageArg.h
+SdText.o: SdText.cxx splib.h $(srcdir)/../include/config.h $(srcdir)/../include/SdText.h \
+ $(srcdir)/../include/types.h $(srcdir)/../include/StringOf.h $(srcdir)/../include/Boolean.h \
+ $(srcdir)/../include/Vector.h $(srcdir)/../include/xnew.h $(srcdir)/../include/Location.h \
+ $(srcdir)/../include/Ptr.h $(srcdir)/../include/Resource.h $(srcdir)/../include/Owner.h \
+ $(srcdir)/../include/StringC.h $(srcdir)/../include/rtti.h $(srcdir)/../include/TypeId.h
+NumericCharRefOrigin.o: NumericCharRefOrigin.cxx splib.h \
+ $(srcdir)/../include/config.h NumericCharRefOrigin.h $(srcdir)/../include/Location.h \
+ $(srcdir)/../include/types.h $(srcdir)/../include/Boolean.h $(srcdir)/../include/Ptr.h \
+ $(srcdir)/../include/Resource.h $(srcdir)/../include/Vector.h $(srcdir)/../include/xnew.h \
+ $(srcdir)/../include/Owner.h $(srcdir)/../include/StringC.h $(srcdir)/../include/StringOf.h \
+ $(srcdir)/../include/rtti.h $(srcdir)/../include/TypeId.h $(srcdir)/../include/Markup.h \
+ $(srcdir)/../include/Syntax.h $(srcdir)/../include/ISet.h $(srcdir)/../include/SubstTable.h \
+ $(srcdir)/../include/HashTable.h $(srcdir)/../include/OwnerTable.h \
+ $(srcdir)/../include/PointerTable.h $(srcdir)/../include/Hash.h \
+ $(srcdir)/../include/HashTableItemBase.h $(srcdir)/../include/XcharMap.h \
+ $(srcdir)/../include/constant.h $(srcdir)/../include/EntityCatalog.h $(srcdir)/../include/Sd.h \
+ $(srcdir)/../include/CharsetInfo.h $(srcdir)/../include/UnivCharsetDesc.h \
+ $(srcdir)/../include/RangeMap.h $(srcdir)/../include/ExternalId.h $(srcdir)/../include/Text.h \
+ $(srcdir)/../include/Message.h $(srcdir)/../include/CopyOwner.h $(srcdir)/../include/MessageArg.h \
+ $(srcdir)/../include/CharsetDecl.h $(srcdir)/../include/SdText.h
+Id.o: Id.cxx splib.h $(srcdir)/../include/config.h Id.h $(srcdir)/../include/Named.h \
+ $(srcdir)/../include/StringC.h $(srcdir)/../include/types.h $(srcdir)/../include/StringOf.h \
+ $(srcdir)/../include/Boolean.h $(srcdir)/../include/Location.h $(srcdir)/../include/Ptr.h \
+ $(srcdir)/../include/Resource.h $(srcdir)/../include/Vector.h $(srcdir)/../include/xnew.h \
+ $(srcdir)/../include/Owner.h $(srcdir)/../include/rtti.h $(srcdir)/../include/TypeId.h
+StringVectorMessageArg.o: StringVectorMessageArg.cxx splib.h \
+ $(srcdir)/../include/config.h StringVectorMessageArg.h $(srcdir)/../include/MessageArg.h \
+ $(srcdir)/../include/StringC.h $(srcdir)/../include/types.h $(srcdir)/../include/StringOf.h \
+ $(srcdir)/../include/Boolean.h $(srcdir)/../include/rtti.h $(srcdir)/../include/TypeId.h \
+ $(srcdir)/../include/Vector.h $(srcdir)/../include/xnew.h $(srcdir)/../include/MessageBuilder.h \
+ ParserMessages.h $(srcdir)/../include/Message.h $(srcdir)/../include/Location.h \
+ $(srcdir)/../include/Ptr.h $(srcdir)/../include/Resource.h $(srcdir)/../include/Owner.h \
+ $(srcdir)/../include/CopyOwner.h
+ErrorCountEventHandler.o: ErrorCountEventHandler.cxx splib.h \
+ $(srcdir)/../include/config.h $(srcdir)/../include/ErrorCountEventHandler.h \
+ $(srcdir)/../include/Event.h $(srcdir)/../include/Link.h $(srcdir)/../include/Allocator.h \
+ $(srcdir)/../include/Location.h $(srcdir)/../include/types.h $(srcdir)/../include/Boolean.h \
+ $(srcdir)/../include/Ptr.h $(srcdir)/../include/Resource.h $(srcdir)/../include/Vector.h \
+ $(srcdir)/../include/xnew.h $(srcdir)/../include/Owner.h $(srcdir)/../include/StringC.h \
+ $(srcdir)/../include/StringOf.h $(srcdir)/../include/rtti.h $(srcdir)/../include/TypeId.h \
+ $(srcdir)/../include/Notation.h $(srcdir)/../include/NamedResource.h $(srcdir)/../include/Named.h \
+ $(srcdir)/../include/ExternalId.h $(srcdir)/../include/Text.h $(srcdir)/../include/SubstTable.h \
+ $(srcdir)/../include/Message.h $(srcdir)/../include/CopyOwner.h $(srcdir)/../include/MessageArg.h \
+ $(srcdir)/../include/Attributed.h $(srcdir)/../include/Attribute.h \
+ $(srcdir)/../include/StringResource.h $(srcdir)/../include/EntityDecl.h $(srcdir)/../include/Sd.h \
+ $(srcdir)/../include/CharsetInfo.h $(srcdir)/../include/UnivCharsetDesc.h \
+ $(srcdir)/../include/RangeMap.h $(srcdir)/../include/ISet.h $(srcdir)/../include/Syntax.h \
+ $(srcdir)/../include/HashTable.h $(srcdir)/../include/OwnerTable.h \
+ $(srcdir)/../include/PointerTable.h $(srcdir)/../include/Hash.h \
+ $(srcdir)/../include/HashTableItemBase.h $(srcdir)/../include/XcharMap.h \
+ $(srcdir)/../include/constant.h $(srcdir)/../include/EntityCatalog.h \
+ $(srcdir)/../include/CharsetDecl.h $(srcdir)/../include/Dtd.h $(srcdir)/../include/NamedTable.h \
+ $(srcdir)/../include/NamedResourceTable.h $(srcdir)/../include/ElementType.h \
+ $(srcdir)/../include/Mode.h $(srcdir)/../include/ContentToken.h $(srcdir)/../include/NCVector.h \
+ $(srcdir)/../include/Entity.h $(srcdir)/../include/Markup.h $(srcdir)/../include/SdText.h \
+ $(srcdir)/../include/ShortReferenceMap.h $(srcdir)/../include/Lpd.h
+MessageEventHandler.o: MessageEventHandler.cxx splib.h \
+ $(srcdir)/../include/config.h $(srcdir)/../include/MessageEventHandler.h \
+ $(srcdir)/../include/Event.h $(srcdir)/../include/Link.h $(srcdir)/../include/Allocator.h \
+ $(srcdir)/../include/Location.h $(srcdir)/../include/types.h $(srcdir)/../include/Boolean.h \
+ $(srcdir)/../include/Ptr.h $(srcdir)/../include/Resource.h $(srcdir)/../include/Vector.h \
+ $(srcdir)/../include/xnew.h $(srcdir)/../include/Owner.h $(srcdir)/../include/StringC.h \
+ $(srcdir)/../include/StringOf.h $(srcdir)/../include/rtti.h $(srcdir)/../include/TypeId.h \
+ $(srcdir)/../include/Notation.h $(srcdir)/../include/NamedResource.h $(srcdir)/../include/Named.h \
+ $(srcdir)/../include/ExternalId.h $(srcdir)/../include/Text.h $(srcdir)/../include/SubstTable.h \
+ $(srcdir)/../include/Message.h $(srcdir)/../include/CopyOwner.h $(srcdir)/../include/MessageArg.h \
+ $(srcdir)/../include/Attributed.h $(srcdir)/../include/Attribute.h \
+ $(srcdir)/../include/StringResource.h $(srcdir)/../include/EntityDecl.h $(srcdir)/../include/Sd.h \
+ $(srcdir)/../include/CharsetInfo.h $(srcdir)/../include/UnivCharsetDesc.h \
+ $(srcdir)/../include/RangeMap.h $(srcdir)/../include/ISet.h $(srcdir)/../include/Syntax.h \
+ $(srcdir)/../include/HashTable.h $(srcdir)/../include/OwnerTable.h \
+ $(srcdir)/../include/PointerTable.h $(srcdir)/../include/Hash.h \
+ $(srcdir)/../include/HashTableItemBase.h $(srcdir)/../include/XcharMap.h \
+ $(srcdir)/../include/constant.h $(srcdir)/../include/EntityCatalog.h \
+ $(srcdir)/../include/CharsetDecl.h $(srcdir)/../include/Dtd.h $(srcdir)/../include/NamedTable.h \
+ $(srcdir)/../include/NamedResourceTable.h $(srcdir)/../include/ElementType.h \
+ $(srcdir)/../include/Mode.h $(srcdir)/../include/ContentToken.h $(srcdir)/../include/NCVector.h \
+ $(srcdir)/../include/Entity.h $(srcdir)/../include/Markup.h $(srcdir)/../include/SdText.h \
+ $(srcdir)/../include/ShortReferenceMap.h $(srcdir)/../include/Lpd.h \
+ $(srcdir)/../include/ErrorCountEventHandler.h $(srcdir)/../include/SgmlParser.h \
+ $(srcdir)/../include/EntityManager.h $(srcdir)/../include/ParserOptions.h \
+ $(srcdir)/../include/EventsWanted.h
+MessageReporter.o: MessageReporter.cxx splib.h $(srcdir)/../include/config.h \
+ $(srcdir)/../include/MessageReporter.h $(srcdir)/../include/types.h \
+ $(srcdir)/../include/MessageBuilder.h $(srcdir)/../include/Boolean.h \
+ $(srcdir)/../include/OutputCharStream.h $(srcdir)/../include/StringC.h \
+ $(srcdir)/../include/StringOf.h $(srcdir)/../include/Owner.h $(srcdir)/../include/CodingSystem.h \
+ $(srcdir)/../include/Message.h $(srcdir)/../include/Location.h $(srcdir)/../include/Ptr.h \
+ $(srcdir)/../include/Resource.h $(srcdir)/../include/Vector.h $(srcdir)/../include/xnew.h \
+ $(srcdir)/../include/rtti.h $(srcdir)/../include/TypeId.h $(srcdir)/../include/CopyOwner.h \
+ $(srcdir)/../include/MessageArg.h $(srcdir)/../include/ExtendEntityManager.h \
+ $(srcdir)/../include/EntityManager.h $(srcdir)/../include/EntityCatalog.h \
+ $(srcdir)/../include/SubstTable.h $(srcdir)/../include/CharsetInfo.h \
+ $(srcdir)/../include/UnivCharsetDesc.h $(srcdir)/../include/RangeMap.h $(srcdir)/../include/ISet.h \
+ $(srcdir)/../include/StorageManager.h $(srcdir)/../include/macros.h \
+ $(srcdir)/../include/ErrnoMessageArg.h $(srcdir)/../include/SearchResultMessageArg.h \
+ MessageReporterMessages.h
+MessageTable.o: MessageTable.cxx splib.h $(srcdir)/../include/config.h \
+ $(srcdir)/../include/MessageTable.h $(srcdir)/../include/Message.h $(srcdir)/../include/Location.h \
+ $(srcdir)/../include/types.h $(srcdir)/../include/Boolean.h $(srcdir)/../include/Ptr.h \
+ $(srcdir)/../include/Resource.h $(srcdir)/../include/Vector.h $(srcdir)/../include/xnew.h \
+ $(srcdir)/../include/Owner.h $(srcdir)/../include/StringC.h $(srcdir)/../include/StringOf.h \
+ $(srcdir)/../include/rtti.h $(srcdir)/../include/TypeId.h $(srcdir)/../include/CopyOwner.h \
+ $(srcdir)/../include/MessageArg.h $(srcdir)/../include/sptchar.h
+OutputCharStream.o: OutputCharStream.cxx splib.h $(srcdir)/../include/config.h \
+ $(srcdir)/../include/OutputCharStream.h $(srcdir)/../include/types.h $(srcdir)/../include/StringC.h \
+ $(srcdir)/../include/StringOf.h $(srcdir)/../include/Boolean.h $(srcdir)/../include/Owner.h \
+ $(srcdir)/../include/CodingSystem.h $(srcdir)/../include/macros.h
+ConsoleOutput.o: ConsoleOutput.cxx splib.h $(srcdir)/../include/config.h \
+ $(srcdir)/../include/ConsoleOutput.h $(srcdir)/../include/OutputCharStream.h \
+ $(srcdir)/../include/types.h $(srcdir)/../include/StringC.h $(srcdir)/../include/StringOf.h \
+ $(srcdir)/../include/Boolean.h $(srcdir)/../include/Owner.h $(srcdir)/../include/CodingSystem.h
+CmdLineApp.o: CmdLineApp.cxx splib.h $(srcdir)/../include/config.h \
+ $(srcdir)/../include/CmdLineApp.h $(srcdir)/../include/MessageReporter.h \
+ $(srcdir)/../include/types.h $(srcdir)/../include/MessageBuilder.h $(srcdir)/../include/Boolean.h \
+ $(srcdir)/../include/OutputCharStream.h $(srcdir)/../include/StringC.h \
+ $(srcdir)/../include/StringOf.h $(srcdir)/../include/Owner.h $(srcdir)/../include/CodingSystem.h \
+ $(srcdir)/../include/Message.h $(srcdir)/../include/Location.h $(srcdir)/../include/Ptr.h \
+ $(srcdir)/../include/Resource.h $(srcdir)/../include/Vector.h $(srcdir)/../include/xnew.h \
+ $(srcdir)/../include/rtti.h $(srcdir)/../include/TypeId.h $(srcdir)/../include/CopyOwner.h \
+ $(srcdir)/../include/MessageArg.h CmdLineAppMessages.h \
+ $(srcdir)/../include/ErrnoMessageArg.h $(srcdir)/../include/Options.h version.h \
+ $(srcdir)/../include/macros.h $(srcdir)/../include/sptchar.h $(srcdir)/../include/MessageTable.h \
+ $(srcdir)/../include/UTF8CodingSystem.h $(srcdir)/../include/Fixed2CodingSystem.h \
+ $(srcdir)/../include/UnicodeCodingSystem.h $(srcdir)/../include/EUCJPCodingSystem.h \
+ $(srcdir)/../include/SJISCodingSystem.h $(srcdir)/../include/ISO8859InputCodingSystem.h \
+ $(srcdir)/../include/TranslateInputCodingSystem.h \
+ $(srcdir)/../include/IdentityCodingSystem.h $(srcdir)/../include/ConsoleOutput.h
+EntityApp.o: EntityApp.cxx splib.h $(srcdir)/../include/config.h \
+ $(srcdir)/../include/EntityApp.h $(srcdir)/../include/CmdLineApp.h \
+ $(srcdir)/../include/MessageReporter.h $(srcdir)/../include/types.h \
+ $(srcdir)/../include/MessageBuilder.h $(srcdir)/../include/Boolean.h \
+ $(srcdir)/../include/OutputCharStream.h $(srcdir)/../include/StringC.h \
+ $(srcdir)/../include/StringOf.h $(srcdir)/../include/Owner.h $(srcdir)/../include/CodingSystem.h \
+ $(srcdir)/../include/Message.h $(srcdir)/../include/Location.h $(srcdir)/../include/Ptr.h \
+ $(srcdir)/../include/Resource.h $(srcdir)/../include/Vector.h $(srcdir)/../include/xnew.h \
+ $(srcdir)/../include/rtti.h $(srcdir)/../include/TypeId.h $(srcdir)/../include/CopyOwner.h \
+ $(srcdir)/../include/MessageArg.h $(srcdir)/../include/CharsetInfo.h \
+ $(srcdir)/../include/UnivCharsetDesc.h $(srcdir)/../include/RangeMap.h $(srcdir)/../include/ISet.h \
+ $(srcdir)/../include/ExtendEntityManager.h $(srcdir)/../include/EntityManager.h \
+ $(srcdir)/../include/EntityCatalog.h $(srcdir)/../include/SubstTable.h \
+ $(srcdir)/../include/sptchar.h $(srcdir)/../include/ISO8859InputCodingSystem.h \
+ $(srcdir)/../include/TranslateInputCodingSystem.h $(srcdir)/../include/PosixStorage.h \
+ $(srcdir)/../include/StorageManager.h $(srcdir)/../include/DescriptorManager.h \
+ $(srcdir)/../include/List.h $(srcdir)/../include/IList.h $(srcdir)/../include/IListBase.h \
+ $(srcdir)/../include/Link.h $(srcdir)/../include/URLStorage.h $(srcdir)/../include/LiteralStorage.h \
+ $(srcdir)/../include/SOEntityCatalog.h $(srcdir)/../include/macros.h
+ParserApp.o: ParserApp.cxx splib.h $(srcdir)/../include/config.h \
+ $(srcdir)/../include/ParserApp.h $(srcdir)/../include/SgmlParser.h $(srcdir)/../include/StringC.h \
+ $(srcdir)/../include/types.h $(srcdir)/../include/StringOf.h $(srcdir)/../include/Boolean.h \
+ $(srcdir)/../include/Ptr.h $(srcdir)/../include/Location.h $(srcdir)/../include/Resource.h \
+ $(srcdir)/../include/Vector.h $(srcdir)/../include/xnew.h $(srcdir)/../include/Owner.h \
+ $(srcdir)/../include/rtti.h $(srcdir)/../include/TypeId.h $(srcdir)/../include/EntityManager.h \
+ $(srcdir)/../include/EntityCatalog.h $(srcdir)/../include/SubstTable.h \
+ $(srcdir)/../include/ParserOptions.h $(srcdir)/../include/EventsWanted.h \
+ $(srcdir)/../include/EntityApp.h $(srcdir)/../include/CmdLineApp.h \
+ $(srcdir)/../include/MessageReporter.h $(srcdir)/../include/MessageBuilder.h \
+ $(srcdir)/../include/OutputCharStream.h $(srcdir)/../include/CodingSystem.h \
+ $(srcdir)/../include/Message.h $(srcdir)/../include/CopyOwner.h $(srcdir)/../include/MessageArg.h \
+ $(srcdir)/../include/CharsetInfo.h $(srcdir)/../include/UnivCharsetDesc.h \
+ $(srcdir)/../include/RangeMap.h $(srcdir)/../include/ISet.h \
+ $(srcdir)/../include/ExtendEntityManager.h $(srcdir)/../include/ErrorCountEventHandler.h \
+ $(srcdir)/../include/Event.h $(srcdir)/../include/Link.h $(srcdir)/../include/Allocator.h \
+ $(srcdir)/../include/Notation.h $(srcdir)/../include/NamedResource.h $(srcdir)/../include/Named.h \
+ $(srcdir)/../include/ExternalId.h $(srcdir)/../include/Text.h $(srcdir)/../include/Attributed.h \
+ $(srcdir)/../include/Attribute.h $(srcdir)/../include/StringResource.h \
+ $(srcdir)/../include/EntityDecl.h $(srcdir)/../include/Sd.h $(srcdir)/../include/Syntax.h \
+ $(srcdir)/../include/HashTable.h $(srcdir)/../include/OwnerTable.h \
+ $(srcdir)/../include/PointerTable.h $(srcdir)/../include/Hash.h \
+ $(srcdir)/../include/HashTableItemBase.h $(srcdir)/../include/XcharMap.h \
+ $(srcdir)/../include/constant.h $(srcdir)/../include/CharsetDecl.h $(srcdir)/../include/Dtd.h \
+ $(srcdir)/../include/NamedTable.h $(srcdir)/../include/NamedResourceTable.h \
+ $(srcdir)/../include/ElementType.h $(srcdir)/../include/Mode.h $(srcdir)/../include/ContentToken.h \
+ $(srcdir)/../include/NCVector.h $(srcdir)/../include/Entity.h $(srcdir)/../include/Markup.h \
+ $(srcdir)/../include/SdText.h $(srcdir)/../include/ShortReferenceMap.h $(srcdir)/../include/Lpd.h \
+ ParserAppMessages.h $(srcdir)/../include/macros.h $(srcdir)/../include/sptchar.h \
+ $(srcdir)/../include/ArcEngine.h
+app_inst.o: app_inst.cxx splib.h $(srcdir)/../include/config.h \
+ $(srcdir)/../include/Vector.h $(srcdir)/../include/xnew.h $(srcdir)/../include/Vector.cxx \
+ $(srcdir)/../include/Owner.h $(srcdir)/../include/Owner.cxx $(srcdir)/../include/Options.h \
+ $(srcdir)/../include/Boolean.h $(srcdir)/../include/Options.cxx $(srcdir)/../include/CodingSystem.h \
+ $(srcdir)/../include/types.h $(srcdir)/../include/StringC.h $(srcdir)/../include/StringOf.h \
+ $(srcdir)/../include/CmdLineApp.h $(srcdir)/../include/MessageReporter.h \
+ $(srcdir)/../include/MessageBuilder.h $(srcdir)/../include/OutputCharStream.h \
+ $(srcdir)/../include/Message.h $(srcdir)/../include/Location.h $(srcdir)/../include/Ptr.h \
+ $(srcdir)/../include/Resource.h $(srcdir)/../include/rtti.h $(srcdir)/../include/TypeId.h \
+ $(srcdir)/../include/CopyOwner.h $(srcdir)/../include/MessageArg.h $(srcdir)/../include/Event.h \
+ $(srcdir)/../include/Link.h $(srcdir)/../include/Allocator.h $(srcdir)/../include/Notation.h \
+ $(srcdir)/../include/NamedResource.h $(srcdir)/../include/Named.h $(srcdir)/../include/ExternalId.h \
+ $(srcdir)/../include/Text.h $(srcdir)/../include/SubstTable.h $(srcdir)/../include/Attributed.h \
+ $(srcdir)/../include/Attribute.h $(srcdir)/../include/StringResource.h \
+ $(srcdir)/../include/EntityDecl.h $(srcdir)/../include/Sd.h $(srcdir)/../include/CharsetInfo.h \
+ $(srcdir)/../include/UnivCharsetDesc.h $(srcdir)/../include/RangeMap.h $(srcdir)/../include/ISet.h \
+ $(srcdir)/../include/Syntax.h $(srcdir)/../include/HashTable.h $(srcdir)/../include/OwnerTable.h \
+ $(srcdir)/../include/PointerTable.h $(srcdir)/../include/Hash.h \
+ $(srcdir)/../include/HashTableItemBase.h $(srcdir)/../include/XcharMap.h \
+ $(srcdir)/../include/constant.h $(srcdir)/../include/EntityCatalog.h \
+ $(srcdir)/../include/CharsetDecl.h $(srcdir)/../include/Dtd.h $(srcdir)/../include/NamedTable.h \
+ $(srcdir)/../include/NamedResourceTable.h $(srcdir)/../include/ElementType.h \
+ $(srcdir)/../include/Mode.h $(srcdir)/../include/ContentToken.h $(srcdir)/../include/NCVector.h \
+ $(srcdir)/../include/Entity.h $(srcdir)/../include/Markup.h $(srcdir)/../include/SdText.h \
+ $(srcdir)/../include/ShortReferenceMap.h $(srcdir)/../include/Lpd.h
+ArcEngine.o: ArcEngine.cxx splib.h $(srcdir)/../include/config.h \
+ $(srcdir)/../include/ArcEngine.h $(srcdir)/../include/Event.h $(srcdir)/../include/Link.h \
+ $(srcdir)/../include/Allocator.h $(srcdir)/../include/Location.h $(srcdir)/../include/types.h \
+ $(srcdir)/../include/Boolean.h $(srcdir)/../include/Ptr.h $(srcdir)/../include/Resource.h \
+ $(srcdir)/../include/Vector.h $(srcdir)/../include/xnew.h $(srcdir)/../include/Owner.h \
+ $(srcdir)/../include/StringC.h $(srcdir)/../include/StringOf.h $(srcdir)/../include/rtti.h \
+ $(srcdir)/../include/TypeId.h $(srcdir)/../include/Notation.h $(srcdir)/../include/NamedResource.h \
+ $(srcdir)/../include/Named.h $(srcdir)/../include/ExternalId.h $(srcdir)/../include/Text.h \
+ $(srcdir)/../include/SubstTable.h $(srcdir)/../include/Message.h $(srcdir)/../include/CopyOwner.h \
+ $(srcdir)/../include/MessageArg.h $(srcdir)/../include/Attributed.h \
+ $(srcdir)/../include/Attribute.h $(srcdir)/../include/StringResource.h \
+ $(srcdir)/../include/EntityDecl.h $(srcdir)/../include/Sd.h $(srcdir)/../include/CharsetInfo.h \
+ $(srcdir)/../include/UnivCharsetDesc.h $(srcdir)/../include/RangeMap.h $(srcdir)/../include/ISet.h \
+ $(srcdir)/../include/Syntax.h $(srcdir)/../include/HashTable.h $(srcdir)/../include/OwnerTable.h \
+ $(srcdir)/../include/PointerTable.h $(srcdir)/../include/Hash.h \
+ $(srcdir)/../include/HashTableItemBase.h $(srcdir)/../include/XcharMap.h \
+ $(srcdir)/../include/constant.h $(srcdir)/../include/EntityCatalog.h \
+ $(srcdir)/../include/CharsetDecl.h $(srcdir)/../include/Dtd.h $(srcdir)/../include/NamedTable.h \
+ $(srcdir)/../include/NamedResourceTable.h $(srcdir)/../include/ElementType.h \
+ $(srcdir)/../include/Mode.h $(srcdir)/../include/ContentToken.h $(srcdir)/../include/NCVector.h \
+ $(srcdir)/../include/Entity.h $(srcdir)/../include/Markup.h $(srcdir)/../include/SdText.h \
+ $(srcdir)/../include/ShortReferenceMap.h $(srcdir)/../include/Lpd.h \
+ $(srcdir)/../include/SgmlParser.h $(srcdir)/../include/EntityManager.h ArcProcessor.h \
+ $(srcdir)/../include/ContentState.h $(srcdir)/../include/OpenElement.h $(srcdir)/../include/IList.h \
+ $(srcdir)/../include/IListBase.h Id.h $(srcdir)/../include/IQueue.h ArcEngineMessages.h \
+ $(srcdir)/../include/ParserOptions.h $(srcdir)/../include/EventsWanted.h \
+ $(srcdir)/../include/LinkProcess.h $(srcdir)/../include/macros.h events.h
+arc_inst.o: arc_inst.cxx splib.h $(srcdir)/../include/config.h \
+ $(srcdir)/../include/Vector.h $(srcdir)/../include/xnew.h $(srcdir)/../include/Vector.cxx \
+ $(srcdir)/../include/NCVector.h $(srcdir)/../include/Owner.h $(srcdir)/../include/Owner.cxx \
+ ArcProcessor.h $(srcdir)/../include/Event.h $(srcdir)/../include/Link.h \
+ $(srcdir)/../include/Allocator.h $(srcdir)/../include/Location.h $(srcdir)/../include/types.h \
+ $(srcdir)/../include/Boolean.h $(srcdir)/../include/Ptr.h $(srcdir)/../include/Resource.h \
+ $(srcdir)/../include/StringC.h $(srcdir)/../include/StringOf.h $(srcdir)/../include/rtti.h \
+ $(srcdir)/../include/TypeId.h $(srcdir)/../include/Notation.h $(srcdir)/../include/NamedResource.h \
+ $(srcdir)/../include/Named.h $(srcdir)/../include/ExternalId.h $(srcdir)/../include/Text.h \
+ $(srcdir)/../include/SubstTable.h $(srcdir)/../include/Message.h $(srcdir)/../include/CopyOwner.h \
+ $(srcdir)/../include/MessageArg.h $(srcdir)/../include/Attributed.h \
+ $(srcdir)/../include/Attribute.h $(srcdir)/../include/StringResource.h \
+ $(srcdir)/../include/EntityDecl.h $(srcdir)/../include/Sd.h $(srcdir)/../include/CharsetInfo.h \
+ $(srcdir)/../include/UnivCharsetDesc.h $(srcdir)/../include/RangeMap.h $(srcdir)/../include/ISet.h \
+ $(srcdir)/../include/Syntax.h $(srcdir)/../include/HashTable.h $(srcdir)/../include/OwnerTable.h \
+ $(srcdir)/../include/PointerTable.h $(srcdir)/../include/Hash.h \
+ $(srcdir)/../include/HashTableItemBase.h $(srcdir)/../include/XcharMap.h \
+ $(srcdir)/../include/constant.h $(srcdir)/../include/EntityCatalog.h \
+ $(srcdir)/../include/CharsetDecl.h $(srcdir)/../include/Dtd.h $(srcdir)/../include/NamedTable.h \
+ $(srcdir)/../include/NamedResourceTable.h $(srcdir)/../include/ElementType.h \
+ $(srcdir)/../include/Mode.h $(srcdir)/../include/ContentToken.h $(srcdir)/../include/Entity.h \
+ $(srcdir)/../include/Markup.h $(srcdir)/../include/SdText.h \
+ $(srcdir)/../include/ShortReferenceMap.h $(srcdir)/../include/Lpd.h \
+ $(srcdir)/../include/ContentState.h $(srcdir)/../include/OpenElement.h $(srcdir)/../include/IList.h \
+ $(srcdir)/../include/IListBase.h Id.h $(srcdir)/../include/ArcEngine.h \
+ $(srcdir)/../include/SgmlParser.h $(srcdir)/../include/EntityManager.h
+ParserEventGeneratorKit.o: ParserEventGeneratorKit.cxx splib.h \
+ $(srcdir)/../include/config.h $(srcdir)/../include/Boolean.h $(srcdir)/../include/ParserApp.h \
+ $(srcdir)/../include/SgmlParser.h $(srcdir)/../include/StringC.h $(srcdir)/../include/types.h \
+ $(srcdir)/../include/StringOf.h $(srcdir)/../include/Ptr.h $(srcdir)/../include/Location.h \
+ $(srcdir)/../include/Resource.h $(srcdir)/../include/Vector.h $(srcdir)/../include/xnew.h \
+ $(srcdir)/../include/Owner.h $(srcdir)/../include/rtti.h $(srcdir)/../include/TypeId.h \
+ $(srcdir)/../include/EntityManager.h $(srcdir)/../include/EntityCatalog.h \
+ $(srcdir)/../include/SubstTable.h $(srcdir)/../include/ParserOptions.h \
+ $(srcdir)/../include/EventsWanted.h $(srcdir)/../include/EntityApp.h \
+ $(srcdir)/../include/CmdLineApp.h $(srcdir)/../include/MessageReporter.h \
+ $(srcdir)/../include/MessageBuilder.h $(srcdir)/../include/OutputCharStream.h \
+ $(srcdir)/../include/CodingSystem.h $(srcdir)/../include/Message.h $(srcdir)/../include/CopyOwner.h \
+ $(srcdir)/../include/MessageArg.h $(srcdir)/../include/CharsetInfo.h \
+ $(srcdir)/../include/UnivCharsetDesc.h $(srcdir)/../include/RangeMap.h $(srcdir)/../include/ISet.h \
+ $(srcdir)/../include/ExtendEntityManager.h $(srcdir)/../include/ErrorCountEventHandler.h \
+ $(srcdir)/../include/Event.h $(srcdir)/../include/Link.h $(srcdir)/../include/Allocator.h \
+ $(srcdir)/../include/Notation.h $(srcdir)/../include/NamedResource.h $(srcdir)/../include/Named.h \
+ $(srcdir)/../include/ExternalId.h $(srcdir)/../include/Text.h $(srcdir)/../include/Attributed.h \
+ $(srcdir)/../include/Attribute.h $(srcdir)/../include/StringResource.h \
+ $(srcdir)/../include/EntityDecl.h $(srcdir)/../include/Sd.h $(srcdir)/../include/Syntax.h \
+ $(srcdir)/../include/HashTable.h $(srcdir)/../include/OwnerTable.h \
+ $(srcdir)/../include/PointerTable.h $(srcdir)/../include/Hash.h \
+ $(srcdir)/../include/HashTableItemBase.h $(srcdir)/../include/XcharMap.h \
+ $(srcdir)/../include/constant.h $(srcdir)/../include/CharsetDecl.h $(srcdir)/../include/Dtd.h \
+ $(srcdir)/../include/NamedTable.h $(srcdir)/../include/NamedResourceTable.h \
+ $(srcdir)/../include/ElementType.h $(srcdir)/../include/Mode.h $(srcdir)/../include/ContentToken.h \
+ $(srcdir)/../include/NCVector.h $(srcdir)/../include/Entity.h $(srcdir)/../include/Markup.h \
+ $(srcdir)/../include/SdText.h $(srcdir)/../include/ShortReferenceMap.h $(srcdir)/../include/Lpd.h \
+ $(srcdir)/../include/macros.h $(srcdir)/../generic/SGMLApplication.h \
+ $(srcdir)/../generic/ParserEventGeneratorKit.h $(srcdir)/../generic/EventGenerator.h \
+ $(srcdir)/../include/GenericEventHandler.h
+SGMLApplication.o: SGMLApplication.cxx splib.h $(srcdir)/../include/config.h \
+ $(srcdir)/../include/Boolean.h $(srcdir)/../generic/SGMLApplication.h
+EventGenerator.o: EventGenerator.cxx splib.h $(srcdir)/../include/config.h \
+ $(srcdir)/../include/Boolean.h $(srcdir)/../generic/EventGenerator.h \
+ $(srcdir)/../generic/SGMLApplication.h
+GenericEventHandler.o: GenericEventHandler.cxx splib.h \
+ $(srcdir)/../include/config.h $(srcdir)/../include/GenericEventHandler.h \
+ $(srcdir)/../include/Boolean.h $(srcdir)/../generic/SGMLApplication.h $(srcdir)/../include/Event.h \
+ $(srcdir)/../include/Link.h $(srcdir)/../include/Allocator.h $(srcdir)/../include/Location.h \
+ $(srcdir)/../include/types.h $(srcdir)/../include/Ptr.h $(srcdir)/../include/Resource.h \
+ $(srcdir)/../include/Vector.h $(srcdir)/../include/xnew.h $(srcdir)/../include/Owner.h \
+ $(srcdir)/../include/StringC.h $(srcdir)/../include/StringOf.h $(srcdir)/../include/rtti.h \
+ $(srcdir)/../include/TypeId.h $(srcdir)/../include/Notation.h $(srcdir)/../include/NamedResource.h \
+ $(srcdir)/../include/Named.h $(srcdir)/../include/ExternalId.h $(srcdir)/../include/Text.h \
+ $(srcdir)/../include/SubstTable.h $(srcdir)/../include/Message.h $(srcdir)/../include/CopyOwner.h \
+ $(srcdir)/../include/MessageArg.h $(srcdir)/../include/Attributed.h \
+ $(srcdir)/../include/Attribute.h $(srcdir)/../include/StringResource.h \
+ $(srcdir)/../include/EntityDecl.h $(srcdir)/../include/Sd.h $(srcdir)/../include/CharsetInfo.h \
+ $(srcdir)/../include/UnivCharsetDesc.h $(srcdir)/../include/RangeMap.h $(srcdir)/../include/ISet.h \
+ $(srcdir)/../include/Syntax.h $(srcdir)/../include/HashTable.h $(srcdir)/../include/OwnerTable.h \
+ $(srcdir)/../include/PointerTable.h $(srcdir)/../include/Hash.h \
+ $(srcdir)/../include/HashTableItemBase.h $(srcdir)/../include/XcharMap.h \
+ $(srcdir)/../include/constant.h $(srcdir)/../include/EntityCatalog.h \
+ $(srcdir)/../include/CharsetDecl.h $(srcdir)/../include/Dtd.h $(srcdir)/../include/NamedTable.h \
+ $(srcdir)/../include/NamedResourceTable.h $(srcdir)/../include/ElementType.h \
+ $(srcdir)/../include/Mode.h $(srcdir)/../include/ContentToken.h $(srcdir)/../include/NCVector.h \
+ $(srcdir)/../include/Entity.h $(srcdir)/../include/Markup.h $(srcdir)/../include/SdText.h \
+ $(srcdir)/../include/ShortReferenceMap.h $(srcdir)/../include/Lpd.h \
+ $(srcdir)/../include/MessageReporter.h $(srcdir)/../include/MessageBuilder.h \
+ $(srcdir)/../include/OutputCharStream.h $(srcdir)/../include/CodingSystem.h \
+ $(srcdir)/../include/ErrorCountEventHandler.h $(srcdir)/../include/macros.h \
+ $(srcdir)/../include/ExtendEntityManager.h $(srcdir)/../include/EntityManager.h

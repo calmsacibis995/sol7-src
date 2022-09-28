@@ -1,0 +1,287 @@
+Language = "languange string"
+Start Component
+	Name = "DMTF Developers -  SP"
+	Description = "This is a list of the people who actually wrote the code."
+
+	start group
+		Name = "ComponentID"
+		id = 1
+		class = "DMTF|ComponentID|001"
+		description = "This group defines attributes common to all components.This group is required."
+
+			start attribute
+				name = "Manufacturer"
+				id = 1
+				description = "The name of the manufacturer that produces this component."
+				access = READ-ONLY
+				storage = Common
+				type = String(64)
+				value = "IBM Corp."
+			end attribute
+
+			start attribute
+				name = "Product"
+				id = 2
+				description = "The name of the component."
+				access = READ-ONLY
+				storage = Common
+				type = String(64)
+				value = "DMTF Demonstration"
+			end attribute
+
+			start attribute
+				name = "Version"
+				id = 3
+				description = "The version for the component."
+				access = READ-ONLY
+				storage = Common
+				type = String(64)
+				value = "Version 1.0"
+			end attribute
+
+			start attribute
+				name = "Serial Number"
+				id = 4
+				description = "The serial number for this instance of this component."
+				access = READ-ONLY
+				storage = Specific
+				type = String(64)
+				value = "1.00000"
+			end attribute
+
+			start attribute
+				name = "Installation"
+				id = 5
+				description = "The time and date of the last install of this component."
+				access = READ-ONLY
+				storage = Specific
+				type = Date
+				value = "19940603090000.000000+003"
+			end attribute
+
+			start attribute
+				name = "Verify"
+				id = 6
+				description = "A code that provides a level of verfication that the component is still installed and working."
+				access = READ-ONLY
+				storage = Specific
+				type = Integer
+				value = 0
+			end attribute
+
+			start attribute
+				name = "ComponentId"
+				id = 7
+				description = "The trap info. of the new installed component."
+				access = READ-ONLY
+				storage = Specific
+				type = Integer
+				value = 0
+			end attribute
+
+			start attribute
+				name = "ComponentName"
+				id = 8
+				description = "The trap info for Component name."
+				access = READ-ONLY
+				storage = Specific
+				type = String(256)
+				value = ""
+			end attribute
+
+			start attribute
+				name = "ComponentDesc"
+				id = 9
+				description = "The trap info for Component Desc."
+				access = READ-ONLY
+				storage = Specific
+				type = String(256)
+				value = ""
+			end attribute
+
+			start attribute
+				name = "GroupId"
+				id = 10
+				description = "The trap info for Group Id."
+				access = READ-ONLY
+				storage = Specific
+				type = Integer
+				value = 0
+			end attribute
+
+			start attribute
+				name = "GroupName"
+				id = 11
+				description = "The trap info for Group Name."
+				access = READ-ONLY
+				storage = Specific
+				type = String(256)
+				value = ""
+			end attribute
+
+			start attribute
+				name = "LanguageName"
+				id = 12
+				description = "The trap info for Language Name."
+				access = READ-ONLY
+				storage = Specific
+				type = String(256)
+				value = ""
+			end attribute
+
+	end group
+	start group
+		Name = "SP Indication Subscription"
+		class = "DMTF|SP Indication Subscription|001"
+		description = "This group defines the subscription information for a managing node interested in indications from thissystem.  The DMI Service Provider will maintain this as a table, with each row representing an individualmanaging node."
+		key = 1, 2, 3, 4
+
+			start attribute
+				name = "Subscriber RPC Type"
+				id = 1
+				description = "This is an identifier of the type of RPC in useby the Subscriber."
+				access = READ-WRITE
+				storage = Common
+				type = String(64)
+				value = ""
+			end attribute
+
+			start attribute
+				name = "Subscriber Transport TypeSubscriber Transport Type"
+				id = 2
+				description = "This is an identifier of the type of Transport inuse by the Subscriber."
+				access = READ-WRITE
+				storage = Common
+				type = String(64)
+				value = ""
+			end attribute
+
+			start attribute
+				name = "Subscriber Addressing"
+				id = 3
+				description = "Addressing information of the managing node thathas subscribed to receive indications from thismanaged node."
+				access = READ-WRITE
+				storage = Common
+				type = String(1024)
+				value = ""
+			end attribute
+
+			start attribute
+				name = "Subscriber IDSubscriber ID"
+				id = 4
+				description = "An ID or handle passed by the managing node to theSP.  It is opaque to the DMI Service Provider, butis used in all indications to the managing node asa correlator, or multiplexing handle.  It isintended only for use by the managing node."
+				access = READ-ONLY
+				storage = Specific
+				type = Integer
+				value = 0
+			end attribute
+
+			start attribute
+				name = "Subscription Expiration Warning Date Stamp"
+				id = 5
+				description = "On this date and time, the DMI Service Providerwill send an indication to the subscriber,notifying it that the subscription is about tolapse."
+				access = READ-ONLY
+				storage = Specific
+				type = Date
+				value = ""
+			end attribute
+
+			start attribute
+				name = "Subscription Expiration DateStamp"
+				id = 6
+				description = "On this date, after having issued the appropriatenumber of warning indications as described by theSubscription Expiration Warning Timestamp, thissubscription will lapse.NOTE: that then, this entryis to be removed by the DMI Service Provider, along with any filter table entries associatedwith it."
+				access = READ-ONLY
+				storage = Specific
+				type = Date
+				value = ""
+			end attribute
+
+			start attribute
+				name = "Indication Failure Threshold"
+				id = 7
+				description = "This is a number that corresponds to the number ofindication transmission failures to allow, beforethe indication subscription is considered to beinvalid, and removed."
+				access = READ-ONLY
+				storage = Specific
+				type = Integer
+				value = 0
+			end attribute
+
+	end group
+	start group
+		Name = "SP Filter Information"
+		class = "DMTF|SPFilterInformation|001"
+		description = "This group defines a row in a table of event filters.One filter is created for each combination ofComponentID, Class, and severity that the managing nodeis interested in."
+		key = 1, 2, 3, 4, 5, 6
+
+			start attribute
+				name = "Subscriber RPC Type"
+				id = 1
+				description = "This is an identifier of the type of RPC in useby the Subscriber."
+				access = READ-WRITE
+				storage = Common
+				type = String(64)
+				value = ""
+			end attribute
+
+			start attribute
+				name = "Subscriber Transport TypeSubscriber Transport Type"
+				id = 2
+				description = "This is an identifier of the type of Transport inuse by the Subscriber."
+				access = READ-WRITE
+				storage = Common
+				type = String(64)
+				value = ""
+			end attribute
+
+			start attribute
+				name = "Subscriber Addressing"
+				id = 3
+				description = "Addressing information of the managing node thathas subscribed to receive indications from thismanaged node."
+				access = READ-WRITE
+				storage = Common
+				type = String(1024)
+				value = ""
+			end attribute
+
+			start attribute
+				name = "Subscriber IDSubscriber ID"
+				id = 4
+				description = "An ID or handle passed by the managing node to theSP.  It is opaque to the DMI Service Provider, butis used in all indications to the managing node asa correlator, or multiplexing handle.  It isintended only for use by the managing node."
+				access = READ-ONLY
+				storage = Specific
+				type = Integer
+				value = 0
+			end attribute
+
+			start attribute
+				name = "Component ID"
+				id = 5
+				description = "The component ID, as assigned by the DMI ServiceProvider, of the component from which the managingnode wishes to receive events."
+				access = READ-WRITE
+				storage = Specific
+				type = Integer
+				value = 0
+			end attribute
+
+			start attribute
+				name = "Group Class String"
+				id = 6
+				description = "The Class string corresponding to the groupswithin the above mentioned component, from whichthe managing node wishes to receive events."
+				access = READ-WRITE
+				storage = Specific
+				type = String(64)
+				value = ""
+			end attribute
+
+			start attribute
+				name = "Event Severity"
+				id = 7
+				description = "The event severityevent severity level, at whichan event originating in a group described by theprevious class and componentID, should be forwardedto the managing nodemanaging node. Note that The Severity enumeration is defined as a bit maskso that events at more than one level of Severitymay be requested by OR'ing together the appropriateSeverity selectors."
+				access = READ-WRITE
+				storage = Specific
+				type = Integer
+				value = 0
+			end attribute
+
+	end group
+END Component

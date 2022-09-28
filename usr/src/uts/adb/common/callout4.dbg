@@ -1,0 +1,37 @@
+\
+\ Copyright (c) 1997, by Sun Microsystems, Inc.
+\ All rights reserved.
+\
+\"@(#)callout_table.dbg	1.4	98/01/19 SMI"
+
+\ arg             : address of a struct callout_table
+\ uses            : mutex, callout_bucket.nxt
+\ registers       : s, n
+\ description     : prints the contents of callout_table structure,
+\		    then executes callout_bucket to print the
+\		    callouts
+\
+
+#include <sys/types.h>
+#include <sys/thread.h>
+#include <sys/t_lock.h>
+#include <sys/callo.h>
+#include "dummy.h"
+
+callout_table
+{adb_inline_begin}
+.>s
+0t512>n
+<s$<<mutex
+{adb_inline_end}
+        ct_freelist     hex             "freelist"
+        ct_curtime      decimal         "curtime"
+        ct_runtime      decimal         "runtime"
+        ct_threadpool   hex             "threadpool"
+        ct_type         sdecimal        "type"
+        ct_short_id     hex             "short_id"
+        ct_long_id      hex             "long_id"
+{adb_inline_begin}
++/n
++$<callout_bucket.nxt
+{adb_inline_end}

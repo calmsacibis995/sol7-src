@@ -1,0 +1,226 @@
+/* LINTLIBRARY */
+/* PROTOLIB1 */
+
+/*
+ * Copyright (c) 1997-1998 by Sun Microsystems, Inc.
+ * All rights reserved.
+ */
+#pragma ident	"@(#)llib-lproc	1.3	98/01/29 SMI"
+
+#include "libproc.h"
+
+/*
+ * usr/src/lib/libproc
+ */
+
+/* Pcontrol.c */
+int	_libproc_debug;
+struct ps_prochandle *Pcreate(const char *file, char *const *argv,
+		int *perr, char *path, size_t len);
+const char *Pcreate_error(int error);
+struct ps_prochandle *Pgrab(pid_t pid, int flags, int *perr);
+const char *Pgrab_error(int error);
+void	Pfree(struct ps_prochandle *Pr);
+int	Pstate(struct ps_prochandle *Pr);
+int	Pasfd(struct ps_prochandle *Pr);
+int	Pctlfd(struct ps_prochandle *Pr);
+pstatus_t *Pstatus(struct ps_prochandle *Pr);
+void	Psync(struct ps_prochandle *Pr);
+int	Pcreate_agent(struct ps_prochandle *Pr);
+void	Pdestroy_agent(struct ps_prochandle *Pr);
+int	Preopen(struct ps_prochandle *Pr);
+void	Prelease(struct ps_prochandle *Pr, int flags);
+int	Pwait(struct ps_prochandle *Pr, u_int msec);
+int	Pstop(struct ps_prochandle *Pr, u_int msec);
+int	Pgetareg(struct ps_prochandle *Pr, int regno, prgreg_t *preg);
+int	Pputareg(struct ps_prochandle *Pr, int regno, prgreg_t reg);
+int	Psetrun(struct ps_prochandle *Pr, int sig, int flags);
+ssize_t	Pread(struct ps_prochandle *Pr,
+		void *buf, size_t nbyte, uintptr_t address);
+ssize_t	Pwrite(struct ps_prochandle *Pr,
+		const void *buf, size_t nbyte, uintptr_t address);
+int	Pclearsig(struct ps_prochandle *Pr);
+int	Pclearfault(struct ps_prochandle *Pr);
+int	Psetbkpt(struct ps_prochandle *Pr, uintptr_t address, u_long *saved);
+int	Pdelbkpt(struct ps_prochandle *Pr, uintptr_t address, u_long saved);
+int	Pxecbkpt(struct ps_prochandle *Pr, u_long saved);
+int	Psetflags(struct ps_prochandle *Pr, long flags);
+int	Punsetflags(struct ps_prochandle *Pr, long flags);
+int	Psignal(struct ps_prochandle *Pr, int which, int stop);
+void	Psetsignal(struct ps_prochandle *Pr, const sigset_t *set);
+int	Pfault(struct ps_prochandle *Pr, int which, int stop);
+void	Psetfault(struct ps_prochandle *Pr, const fltset_t *set);
+int	Psysentry(struct ps_prochandle *Pr, int which, int stop);
+void	Psetsysentry(struct ps_prochandle *Pr, const sysset_t *set);
+int	Psysexit(struct ps_prochandle *Pr, int which, int stop);
+void	Psetsysexit(struct ps_prochandle *Pr, const sysset_t *set);
+int	proc_lwp_iter(struct ps_prochandle *Pr, proc_lwp_f *func, void *cd);
+sysret_t Psyscall(struct ps_prochandle *Pr,
+		int sysindex, u_int nargs, argdes_t *argp);
+
+/* Pisprocdir.c */
+int	Pisprocdir(struct ps_prochandle *Pr, const char *dir);
+
+/* Pservice.c */
+ps_err_e ps_pdmodel(struct ps_prochandle *Pr, int *modelp);
+ps_err_e ps_pread(struct ps_prochandle *Pr,
+		psaddr_t addr, void *buf, size_t size);
+ps_err_e ps_pwrite(struct ps_prochandle *Pr,
+		psaddr_t addr, const void *buf, size_t size);
+ps_err_e ps_pdread(struct ps_prochandle *Pr,
+		psaddr_t addr, void *buf, size_t size);
+ps_err_e ps_pdwrite(struct ps_prochandle *Pr,
+		psaddr_t addr, const void *buf, size_t size);
+ps_err_e ps_ptread(struct ps_prochandle *Pr,
+		psaddr_t addr, void *buf, size_t size);
+ps_err_e ps_ptwrite(struct ps_prochandle *Pr,
+		psaddr_t addr, const void *buf, size_t size);
+ps_err_e ps_pstop(struct ps_prochandle *Pr);
+ps_err_e ps_pcontinue(struct ps_prochandle *Pr);
+ps_err_e ps_lstop(struct ps_prochandle *Pr, lwpid_t lwpid);
+ps_err_e ps_lcontinue(struct ps_prochandle *Pr, lwpid_t lwpid);
+ps_err_e ps_lgetregs(struct ps_prochandle *Pr,
+		lwpid_t lwpid, prgregset_t regs);
+ps_err_e ps_lsetregs(struct ps_prochandle *Pr,
+		lwpid_t lwpid, const prgregset_t regs);
+ps_err_e ps_lgetfpregs(struct ps_prochandle *Pr,
+		lwpid_t lwpid, prfpregset_t *regs);
+ps_err_e ps_lsetfpregs(struct ps_prochandle *Pr,
+		lwpid_t lwpid, const prfpregset_t *regs);
+#if defined(sparc) || defined(__sparc)
+ps_err_e ps_lgetxregsize(struct ps_prochandle *Pr,
+		lwpid_t lwpid, int *xrsize);
+ps_err_e ps_lgetxregs(struct ps_prochandle *Pr,
+		lwpid_t lwpid, caddr_t xregs);
+ps_err_e ps_lsetxregs(struct ps_prochandle *Pr,
+		lwpid_t lwpid, caddr_t xregs);
+#endif	/* sparc */
+#if defined(i386) || defined(__i386)
+ps_err_e ps_lgetLDT(struct ps_prochandle *Pr,
+		lwpid_t lwpid, struct ssd *ldt);
+#endif	/* i386 */
+void	ps_plog(const char *fmt, ...);
+
+/* Psymtab.c */
+void	proc_update_maps(struct ps_prochandle *Pr);
+rd_agent_t *proc_rd_agent(struct ps_prochandle *Pr);
+const prmap_t *proc_addr_to_map(struct ps_prochandle *Pr, uintptr_t addr);
+int	proc_lookup_by_addr(struct ps_prochandle *Pr, uintptr_t addr,
+		char *sym_name_buffer, size_t bufsize, GElf_Sym *symbolp);
+int	proc_lookup_by_name(struct ps_prochandle *Pr,
+		const char *object_name, const char *symbol_name,
+		GElf_Sym *sym);
+int	proc_mapping_iter(struct ps_prochandle *Pr, proc_map_f *func, void *cd);
+int	proc_object_iter(struct ps_prochandle *Pr, proc_map_f *func, void *cd);
+char	*proc_objname(struct ps_prochandle *Pr, uintptr_t addr,
+		char *buffer, size_t bufsize);
+int	proc_symbol_iter(struct ps_prochandle *Pr, const char *object_name,
+		int which, int type, proc_sym_f *func, void *cd);
+char	*proc_getenv(struct ps_prochandle *Pr, const char *name,
+		char *buffer, size_t bufsize);
+char	*proc_execname(struct ps_prochandle *Pr, char *buffer, size_t bufsize);
+void	proc_reset_maps(struct ps_prochandle *Pr);
+ps_err_e ps_pglobal_lookup(struct ps_prochandle *Pr,
+		const char *object_name, const char *sym_name,
+		psaddr_t *sym_addr);
+ps_err_e ps_pglobal_sym(struct ps_prochandle *Pr,
+		const char *object_name, const char *sym_name,
+		ps_sym_t *symp);
+ps_err_e ps_pauxv(struct ps_prochandle *Pr, const auxv_t **aux);
+
+/* pr_door.c */
+int	pr_door_info(struct ps_prochandle *Pr, int did, door_info_t *di);
+
+/* pr_exit.c */
+int	pr_exit(struct ps_prochandle *Pr, int status);
+int	pr_lwp_exit(struct ps_prochandle *Pr);
+
+/* pr_fcntl.c */
+int	pr_fcntl(struct ps_prochandle *Pr, int fd, int cmd, void *argp);
+
+/* pr_getitimer.c */
+int	pr_getitimer(struct ps_prochandle *Pr,
+		int which, struct itimerval *itv);
+int	pr_setitimer(struct ps_prochandle *Pr,
+		int which, const struct itimerval *itv, struct itimerval *oitv);
+
+/* pr_getrlimit.c */
+int	pr_getrlimit(struct ps_prochandle *Pr,
+		int resource, struct rlimit *rlp);
+int	pr_setrlimit(struct ps_prochandle *Pr,
+		int resource, const struct rlimit *rlp);
+
+/* pr_ioctl.c */
+int	pr_ioctl(struct ps_prochandle *Pr,
+		int fd, int code, void *buf, size_t size);
+
+/* pr_lseek.c */
+off_t	pr_lseek(struct ps_prochandle *Pr,
+		int filedes, off_t offset, int whence);
+offset_t pr_llseek(struct ps_prochandle *Pr,
+		int filedes, offset_t offset, int whence);
+
+/* pr_memcntl.c */
+int	pr_memcntl(struct ps_prochandle *Pr,
+	caddr_t addr, size_t len, int cmd, caddr_t arg, int attr, int mask);
+
+/* pr_mmap.c */
+void	*pr_mmap(struct ps_prochandle *Pr,
+		void *addr, size_t len, int prot, int flags, int fd, off_t off);
+int	pr_munmap(struct ps_prochandle *Pr,
+		void *addr, size_t len);
+void	*pr_zmap(struct ps_prochandle *Pr,
+		void *addr, size_t len, int prot, int flags);
+
+/* pr_open.c */
+int	pr_open(struct ps_prochandle *Pr,
+		const char *filename, int flags, mode_t mode);
+int	pr_creat(struct ps_prochandle *Pr,
+		const char *filename, mode_t mode);
+int	pr_close(struct ps_prochandle *Pr, int fd);
+
+/* pr_rename.c */
+int	pr_rename(struct ps_prochandle *Pr, const char *old, const char *new);
+int	pr_link(struct ps_prochandle *Pr, const char *exist, const char *new);
+int	pr_unlink(struct ps_prochandle *Pr, const char *);
+
+/* pr_sigaction.c */
+int	pr_sigaction(struct ps_prochandle *Pr,
+		int sig, const struct sigaction *act, struct sigaction *oact);
+
+/* pr_stat.c */
+int	pr_stat(struct ps_prochandle *Pr, const char *path, struct stat *buf);
+int	pr_lstat(struct ps_prochandle *Pr, const char *path, struct stat *buf);
+int	pr_fstat(struct ps_prochandle *Pr, int fd, struct stat *buf);
+
+/* pr_statvfs.c */
+int	pr_statvfs(struct ps_prochandle *Pr, const char *path, statvfs_t *buf);
+int	pr_fstatvfs(struct ps_prochandle *Pr, int fd, statvfs_t *buf);
+
+/* pr_waitid.c */
+int	pr_waitid(struct ps_prochandle *Pr,
+		idtype_t idtype, id_t id, siginfo_t *infop, int options);
+
+/* proc_dirname.c */
+char	*proc_dirname(const char *dirname, char *buf, size_t size);
+
+/* proc_get_info.c */
+int	proc_get_cred(pid_t pid, prcred_t *credp, int ngroups);
+int	proc_get_psinfo(pid_t pid, psinfo_t *psp);
+int	proc_get_status(pid_t pid, pstatus_t *psp);
+int	proc_get_auxv(pid_t pid, auxv_t *pauxv, int naux);
+
+/* proc_names.c */
+char	*proc_fltname(int flt, char *buf, size_t bufsz);
+char	*proc_signame(int sig, char *buf, size_t bufsz);
+char	*proc_sysname(int sys, char *buf, size_t bufsz);
+
+/* proc_pidarg.c */
+pid_t	proc_pidarg(const char *arg, psinfo_t *psp);
+
+/* proc_read_string.c */
+ssize_t	proc_read_string(int asfd, char *buf, size_t size, off_t addr);
+
+/* proc_stack_iter.c */
+int	proc_stack_iter(struct ps_prochandle *Pr,
+		const prgregset_t regs, proc_stack_f *func, void *arg);

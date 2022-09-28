@@ -1,0 +1,22 @@
+# Copyright 1988 - 06/09/97 Sun Microsystems, Inc. All Rights Reserved.
+#pragma ident  "@(#)pkginfo.tmpl	1.22 97/06/09 Sun Microsystems"
+
+#
+# pkginfo: SunNet Manager snmp daemon 
+#
+ 
+PKG="SUNWmibii"
+NAME="Solstice Enterprise Agent SNMP daemon"
+ARCH="ISA"
+VERSION="1.1,REV=0.0.0"
+CATEGORY="system"
+DESC="Solstice Enterprise Agent snmp daemon"
+VENDOR="Sun Microsystems, Inc."
+CLASSES="none"
+BASEDIR=/
+MAXINST="1000"
+PRODNAME="SunOS"
+PRODVERS="RELEASE/VERSION"
+SUNW_PKGTYPE="usr"
+EMAIL=""
+HOTLINE="Please contact your local service provider"

@@ -1,0 +1,70 @@
+#
+#ident	"@(#)mapfile-vers	1.2	97/08/15 SMI"
+#
+# Copyright (c) 1996 by Sun Microsystems, Inc.
+# All rights reserved.
+#
+# SPARC specific interface definition for usr/src/lib/libnsl/sparcv9
+# These version numbers match the ones in libc
+
+SUNW_1.15 {
+} SISCD_2.3;
+
+SUNW_1.14 {
+} SISCD_2.3;
+
+SUNW_1.13 {
+} SISCD_2.3;
+
+SUNW_1.12 {
+} SISCD_2.3; 
+
+SUNW_1.11 {
+} SISCD_2.3; 
+
+SUNW_1.10 {
+} SISCD_2.3; 
+
+SUNW_1.9 {
+} SISCD_2.3; 
+
+SUNW_1.8 {
+} SISCD_2.3; 
+
+SUNW_1.7 {
+} SISCD_2.3;
+
+SUNW_1.6 {
+} SISCD_2.3; 
+
+SUNW_1.5 {
+} SISCD_2.3; 
+
+SUNW_1.4 {
+} SISCD_2.3; 
+
+SUNW_1.3 {
+} SISCD_2.3; 
+
+SUNW_1.2 {
+} SISCD_2.3; 
+
+SUNW_1.1 {
+} SISCD_2.3;
+
+SUNW_0.7 {	# Solaris ABI as of Solaris 2.3 FCS
+
+} SISCD_2.3;
+
+SISCD_2.3 {
+	global:
+		    rpc_broadcast_exp;		# Table 6-7
+
+		    gethostbyaddr;		# Table 6-8
+		    gethostbyname;
+		    inet_addr;
+		    inet_netof;
+		    inet_ntoa;
+		   _null_auth;
+		    svc_fdset;
+} SYSVABI_1.3;

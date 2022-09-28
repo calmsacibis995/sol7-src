@@ -1,0 +1,1996 @@
+#
+#ident	"@(#)mapfile-vers-64	1.18	98/02/20 SMI"
+#
+# Copyright (c) 1998, by Sun Microsystems, Inc.
+# All rights reserved.
+#
+#
+# Generic interface definition for 64-bit usr/src/lib/libc.
+#
+# For information regarding the establishment of versioned definitions see:
+#	The Linker and Libraries Manual (version 2.5 or greater)
+# This is part of the Developers Guide in the Answerbook.  Specifically refer
+# to Chapter 2 under section "Defining Additional Symbols" through section
+# "Reducing Symbol Scope", and Chapter 5 "Versioning".
+#
+# For specific OSNET rules for the modification (evolution) of these version
+# definitions see:
+#	Policy for Shared Library Version Names and Interface Definitions
+
+# NOTE	The file is deliberately constructed to be easy to diff.
+# NOTE	So, most of the comments refer to the 32-bit versions --
+# NOTE	for all intents and purposes, this should stay as SUNW_1.1
+# NOTE	until the project reaches a true external release i.e. beta.
+
+SUNW_1.1 {	# Solaris 64-bit ABI as of Solaris 2.7 beta
+	global:
+		isaexec;	# SUNW_1.18 (psarc/1997/220)
+
+		__sysconf_xpg5;	# SUNW_1.18 (psarc/1997/372 UNIX 98)
+
+		btowc;		# SUNW_1.18 (psarc/1997/357 MSE)
+		fwide;		# SUNW_1.18 (psarc/1997/357 MSE)
+		fwprintf;	# SUNW_1.18 (psarc/1997/357 MSE)
+		fwscanf;	# SUNW_1.18 (psarc/1997/357 MSE)
+		mbsinit;	# SUNW_1.18 (psarc/1997/357 MSE)
+		mbsrtowcs;	# SUNW_1.18 (psarc/1997/357 MSE)
+		mbrlen;		# SUNW_1.18 (psarc/1997/357 MSE)
+		mbrtowc;	# SUNW_1.18 (psarc/1997/357 MSE)
+		swprintf;	# SUNW_1.18 (psarc/1997/357 MSE)
+		swscanf;	# SUNW_1.18 (psarc/1997/357 MSE)
+		vfwprintf;	# SUNW_1.18 (psarc/1997/357 MSE)
+		vswprintf;	# SUNW_1.18 (psarc/1997/357 MSE)
+		vwprintf;	# SUNW_1.18 (psarc/1997/357 MSE)
+		wcrtomb;	# SUNW_1.18 (psarc/1997/357 MSE)
+		wcsrtombs;	# SUNW_1.18 (psarc/1997/357 MSE)
+		wcsstr;		# SUNW_1.18 (psarc/1997/357 MSE)
+		wctob;		# SUNW_1.18 (psarc/1997/357 MSE)
+		wmemchr;	# SUNW_1.18 (psarc/1997/357 MSE)
+		wmemcmp;	# SUNW_1.18 (psarc/1997/357 MSE)
+		wmemcpy;	# SUNW_1.18 (psarc/1997/357 MSE)
+		wmemmove;	# SUNW_1.18 (psarc/1997/357 MSE)
+		wmemset;	# SUNW_1.18 (psarc/1997/357 MSE)
+		wprintf;	# SUNW_1.18 (psarc/1997/357 MSE)
+		wscanf;		# SUNW_1.18 (psarc/1997/357 MSE)
+
+		getloadavg;	# SUNW_1.18 (psarc/1996/296)
+
+		pthread_attr_getguardsize;	# SUNW_1.18 (psarc/1997/224)
+		pthread_attr_setguardsize;	# SUNW_1.18 (psarc/1997/224)
+		pthread_getconcurrency;		# SUNW_1.18 (psarc/1997/224)
+		pthread_setconcurrency;		# SUNW_1.18 (psarc/1997/224)
+		pthread_mutexattr_settype;	# SUNW_1.18 (psarc/1997/224)
+		pthread_mutexattr_gettype;	# SUNW_1.18 (psarc/1997/224)
+		pthread_rwlock_init;		# SUNW_1.18 (psarc/1997/224)
+		pthread_rwlock_destroy;		# SUNW_1.18 (psarc/1997/224)
+		pthread_rwlock_rdlock;		# SUNW_1.18 (psarc/1997/224)
+		pthread_rwlock_tryrdlock;	# SUNW_1.18 (psarc/1997/224)
+		pthread_rwlock_wrlock;		# SUNW_1.18 (psarc/1997/224)
+		pthread_rwlock_trywrlock;	# SUNW_1.18 (psarc/1997/224)
+		pthread_rwlock_unlock;		# SUNW_1.18 (psarc/1997/224)
+		pthread_rwlockattr_init;	# SUNW_1.18 (psarc/1997/224)
+		pthread_rwlockattr_destroy;	# SUNW_1.18 (psarc/1997/224)
+		pthread_rwlockattr_getpshared;	# SUNW_1.18 (psarc/1997/224)
+		pthread_rwlockattr_setpshared;	# SUNW_1.18 (psarc/1997/224)
+
+		pcsample;	# SUNW_1.18 (psarc/1998/021)
+
+
+		__fbufsize;	# SUNW_1.18 (psarc/1997/405)
+		__freading;	# SUNW_1.18 (psarc/1997/405)
+		__fwriting;	# SUNW_1.18 (psarc/1997/405)
+		__freadable;	# SUNW_1.18 (psarc/1997/405)
+		__fwritable;	# SUNW_1.18 (psarc/1997/405)
+		__flbf;		# SUNW_1.18 (psarc/1997/405)
+		_flushlbf;	# SUNW_1.18 (psarc/1997/405)
+		__fpurge;	# SUNW_1.18 (psarc/1997/405)
+		__fpending;	# SUNW_1.18 (psarc/1997/405)
+
+		____loc1;	# SUNW_1.3 (psarc/1996/157 from libgen)
+		__loc1;		# SUNW_1.3 (psarc/1996/157 from libgen)
+		__posix_asctime_r;		# SUNW_1.1
+		__posix_ctime_r;		# SUNW_1.1
+		__posix_getgrgid_r;		# SUNW_1.1
+		__posix_getgrnam_r;		# SUNW_1.1
+		__posix_getlogin_r;		# SUNW_1.1
+		__posix_getpwnam_r;		# SUNW_1.1
+		__posix_getpwuid_r;		# SUNW_1.1
+#		__posix_readdir_r;		# SUNW_1.1
+		__posix_sigwait;		# SUNW_1.1
+		__posix_ttyname_r;		# SUNW_1.1
+		__pthread_cleanup_pop;		# SUNW_1.15 (pthreads)
+		__pthread_cleanup_push;		# SUNW_1.15 (pthreads)
+		__xpg4_putmsg;			# SUNW_1.12
+		__xpg4_putpmsg;			# SUNW_1.12
+#		_creat64;			# SUNW_1.7 (large files)
+		_exithandle;			# SUNW_1.1
+#		_fstat64;	# SUNW_1.7 (large files - Additional Services)
+#		_fstatvfs64;			# SUNW_1.7 (large files)
+#		_ftruncate64;			# SUNW_1.7 (large files)
+#		_ftw64;				# SUNW_1.7 (large files)
+#		_getdents64;			# SUNW_1.7 (large files)
+		_getexecname;			# SUNW_1.16
+#		_getrlimit64;			# SUNW_1.7 (large files)
+#		_lockf64;			# SUNW_1.7 (large files)
+		_longjmp;			# SUNW_1.8 (XPG4v2 interface)
+#		_lseek64;			# SUNW_1.7 (large files)
+#		_lstat64;			# SUNW_1.7 (large files)
+		_lwp_sema_trywait;		# SUNW_1.14
+		_lwp_suspend2;			# SUNW_1.17
+#		_mkstemp64;			# SUNW_1.7 (large files)
+#		_mmap64;			# SUNW_1.7 (large files)
+#		_nftw64;			# SUNW_1.7 (large files)
+		_ntp_adjtime;			# SUNW_1.13
+		_ntp_gettime;			# SUNW_1.13
+#		_open64;			# SUNW_1.7 (large files)
+#		_pread64;			# SUNW_1.7 (large files)
+#		_pwrite64;			# SUNW_1.7 (large files)
+#		_readdir64;			# SUNW_1.7 (large files)
+#		_readdir64_r;			# SUNW_1.7 (large files)
+		_resolvepath;			# SUNW_1.16
+		_rwlock_destroy;		# SUNW_1.9 (threads addition)
+#		_s_fcntl;			# SUNW_1.11 (BCP)
+		_sema_destroy;			# SUNW_1.9 (threads addition)
+#		_setrlimit64;			# SUNW_1.7 (large files)
+#		_stat64;			# SUNW_1.7 (large files)
+#		_statvfs64;			# SUNW_1.7 (large files)
+#		_tell64;			# SUNW_1.7 (large files)
+#		_truncate64;			# SUNW_1.7 (large files)
+#		_xftw64;			# SUNW_1.7 (large files)
+		basename;	# SUNW_1.3 (psarc/1996/157 from libgen)
+		bindtextdomain;	# SUNW_1.3 (psarc/1996/157 from libintl)
+		bsd_signal;			# SUNW_1.8 (XPG4v2 interface)
+#		creat64;			# SUNW_1.7 (large files)
+		dbm_clearerr;			# SUNW_1.8 (XPG4v2 interface)
+		dbm_error;			# SUNW_1.8 (XPG4v2 interface)
+		dcgettext;	# SUNW_1.3 (psarc/1996/157 from libintl)
+		dgettext;	# SUNW_1.3 (psarc/1996/157 from libintl)
+		directio;	# SUNW_1.5 psarc/1996/109 (direct i/o)
+		dirname;	# SUNW_1.3 (psarc/1996/157 from libgen)
+		endusershell;			# SUNW_1.1
+#		fgetpos64;			# SUNW_1.7 (large files)
+		fgetwc;		# SUNW_1.3 (psarc/1996/157 from libw)
+#		fopen64;			# SUNW_1.7 (large files)
+		fpgetround;			# SUNW_1.1
+		fpsetround;			# SUNW_1.1
+#		freopen64;			# SUNW_1.7 (large files)
+#		fseeko64;			# SUNW_1.7 (large files)
+		fseeko;				# SUNW_1.7 (large files)
+#		fsetpos64;			# SUNW_1.7 (large files)
+#		fstat64;	# SUNW_1.7 (large files, SysV ABI, Fig 6-4)
+#		fstatvfs64;			# SUNW_1.7 (large files)
+#		ftello64;			# SUNW_1.7 (large files)
+		ftello;				# SUNW_1.7 (large files)
+#		ftruncate64;			# SUNW_1.7 (large files)
+#		ftw64;				# SUNW_1.7 (large files)
+#		getdents64;			# SUNW_1.7 (large files)
+		getexecname;			# SUNW_1.16
+		getpassphrase;	# SUNW_1.4 (psarc/1995/316)
+#		getrlimit64;			# SUNW_1.7 (large files)
+		gettext;	# SUNW_1.3 (psarc/1996/157 from libintl)
+		getusershell;			# SUNW_1.1
+#		lockf64;			# SUNW_1.7 (large files)
+#		lseek64;			# SUNW_1.7 (large files)
+#		lstat64;			# SUNW_1.7 (large files)
+#		mkstemp64;			# SUNW_1.7 (large files)
+#		mmap64;				# SUNW_1.7 (large files)
+#		nftw64;				# SUNW_1.7 (large files)
+		ntp_adjtime;			# SUNW_1.13
+		ntp_gettime;			# SUNW_1.13
+#		open64;				# SUNW_1.7 (large files)
+#		pread64;			# SUNW_1.7 (large files)
+		pset_assign;	# SUNW_1.6 (psarc/1995/357 - processor sets)
+		pset_bind;	# SUNW_1.6 (psarc/1995/357 - processor sets)
+		pset_create;	# SUNW_1.6 (psarc/1995/357 - processor sets)
+		pset_destroy;	# SUNW_1.6 (psarc/1995/357 - processor sets)
+		pset_info;	# SUNW_1.6 (psarc/1995/357 - processor sets)
+		pthread_atfork;			# SUNW_1.15 (pthreads)
+		pthread_attr_destroy;		# SUNW_1.15 (pthreads)
+		pthread_attr_getdetachstate;	# SUNW_1.15 (pthreads)
+		pthread_attr_getinheritsched;	# SUNW_1.15 (pthreads)
+		pthread_attr_getschedparam;	# SUNW_1.15 (pthreads)
+		pthread_attr_getschedpolicy;	# SUNW_1.15 (pthreads)
+		pthread_attr_getscope;		# SUNW_1.15 (pthreads)
+		pthread_attr_getstackaddr;	# SUNW_1.15 (pthreads)
+		pthread_attr_getstacksize;	# SUNW_1.15 (pthreads)
+		pthread_attr_init;		# SUNW_1.15 (pthreads)
+		pthread_attr_setdetachstate;	# SUNW_1.15 (pthreads)
+		pthread_attr_setinheritsched;	# SUNW_1.15 (pthreads)
+		pthread_attr_setschedparam;	# SUNW_1.15 (pthreads)
+		pthread_attr_setschedpolicy;	# SUNW_1.15 (pthreads)
+		pthread_attr_setscope;		# SUNW_1.15 (pthreads)
+		pthread_attr_setstackaddr;	# SUNW_1.15 (pthreads)
+		pthread_attr_setstacksize;	# SUNW_1.15 (pthreads)
+		pthread_cancel;			# SUNW_1.15 (pthreads)
+		pthread_create;			# SUNW_1.15 (pthreads)
+		pthread_detach;			# SUNW_1.15 (pthreads)
+		pthread_equal;			# SUNW_1.15 (pthreads)
+		pthread_exit;			# SUNW_1.15 (pthreads)
+		pthread_getschedparam;		# SUNW_1.15 (pthreads)
+		pthread_getspecific;		# SUNW_1.15 (pthreads)
+		pthread_join;			# SUNW_1.15 (pthreads)
+		pthread_key_create;		# SUNW_1.15 (pthreads)
+		pthread_key_delete;		# SUNW_1.15 (pthreads)
+		pthread_kill;			# SUNW_1.15 (pthreads)
+		pthread_once;			# SUNW_1.15 (pthreads)
+		pthread_self;			# SUNW_1.15 (pthreads)
+		pthread_setcancelstate;		# SUNW_1.15 (pthreads)
+		pthread_setcanceltype;		# SUNW_1.15 (pthreads)
+		pthread_setschedparam;		# SUNW_1.15 (pthreads)
+		pthread_setspecific;		# SUNW_1.15 (pthreads)
+		pthread_sigmask;		# SUNW_1.15 (pthreads)
+		pthread_testcancel;		# SUNW_1.15 (pthreads)
+#		pwrite64;			# SUNW_1.7 (large files)
+#		readdir64;			# SUNW_1.7 (large files)
+#		readdir64_r;			# SUNW_1.7 (large files)
+		regcmp;		# SUNW_1.3 (psarc/1996/157 from libgen)
+		regex;		# SUNW_1.3 (psarc/1996/157 from libgen)
+		resolvepath;			# SUNW_1.16
+		rwlock_destroy;			# SUNW_1.9 (threads addition)
+#		s_fcntl;			# SUNW_1.11 (X.25 socket lib)
+#		s_ioctl;			# SUNW_1.11 (X.25 socket lib)
+		sema_destroy;			# SUNW_1.9 (threads addition)
+#		setrlimit64;			# SUNW_1.7 (large files)
+		setusershell;			# SUNW_1.1
+		siginterrupt;			# SUNW_1.8 (XPG4v2 interface)
+		sigstack;			# SUNW_1.8 (XPG4v2 interface)
+		snprintf;	# SUNW_1.2 (psarc/1995/401)
+#		stat64;				# SUNW_1.7 (large files)
+#		statvfs64;			# SUNW_1.7 (large files)
+		sync_instruction_memory;	# SUNW_1.1
+		textdomain;	# SUNW_1.3 (psarc/1996/157 from libintl)
+#		tell64;				# SUNW_1.7 (large files)
+#		tmpfile64;			# SUNW_1.7 (large files)
+		towctrans;			# SUNW_1.10
+#		truncate64;			# SUNW_1.7 (large files)
+		vsnprintf;	# SUNW_1.2 (psarc/1995/401)
+		wcscat;		# SUNW_1.3 (psarc/1996/157 from libw)
+		wctrans;			# SUNW_1.10
+	        _setjmp;			# SUNW_1.8 (XPG4v2 interface)
+                fgetws;		# SUNW_1.3 (psarc/1996/157 from libw)
+                fputwc;		# SUNW_1.3 (psarc/1996/157 from libw)
+                fputws;		# SUNW_1.3 (psarc/1996/157 from libw)
+                getwc;		# SUNW_1.3 (psarc/1996/157 from libw)
+                getwchar;	# SUNW_1.3 (psarc/1996/157 from libw)
+                getws;		# SUNW_1.3 (psarc/1996/157 from libw)
+                isenglish;	# SUNW_1.3 (psarc/1996/157 from libw)
+                isideogram;	# SUNW_1.3 (psarc/1996/157 from libw)
+                isnumber;	# SUNW_1.3 (psarc/1996/157 from libw)
+                isphonogram;	# SUNW_1.3 (psarc/1996/157 from libw)
+                isspecial;	# SUNW_1.3 (psarc/1996/157 from libw)
+                iswalnum;	# SUNW_1.3 (psarc/1996/157 from libw)
+                iswalpha;	# SUNW_1.3 (psarc/1996/157 from libw)
+                iswcntrl;	# SUNW_1.3 (psarc/1996/157 from libw)
+                iswctype;	# SUNW_1.3 (psarc/1996/157 from libw)
+                iswdigit;	# SUNW_1.3 (psarc/1996/157 from libw)
+                iswgraph;	# SUNW_1.3 (psarc/1996/157 from libw)
+                iswlower;	# SUNW_1.3 (psarc/1996/157 from libw)
+                iswprint;	# SUNW_1.3 (psarc/1996/157 from libw)
+                iswpunct;	# SUNW_1.3 (psarc/1996/157 from libw)
+                iswspace;	# SUNW_1.3 (psarc/1996/157 from libw)
+                iswupper;	# SUNW_1.3 (psarc/1996/157 from libw)
+                iswxdigit;	# SUNW_1.3 (psarc/1996/157 from libw)
+                putwc;		# SUNW_1.3 (psarc/1996/157 from libw)
+                putwchar;	# SUNW_1.3 (psarc/1996/157 from libw)
+                putws;		# SUNW_1.3 (psarc/1996/157 from libw)
+                strtows;	# SUNW_1.3 (psarc/1996/157 from libw)
+                towlower;	# SUNW_1.3 (psarc/1996/157 from libw)
+                towupper;	# SUNW_1.3 (psarc/1996/157 from libw)
+                ungetwc;	# SUNW_1.3 (psarc/1996/157 from libw)
+                watoll;		# SUNW_1.3 (psarc/1996/157 from libw)
+                wcschr;		# SUNW_1.3 (psarc/1996/157 from libw)
+                wcscmp;		# SUNW_1.3 (psarc/1996/157 from libw)
+                wcscoll;	# SUNW_1.3 (psarc/1996/157 from libw)
+                wcscpy;		# SUNW_1.3 (psarc/1996/157 from libw)
+                wcscspn;	# SUNW_1.3 (psarc/1996/157 from libw)
+                wcsftime;	# SUNW_1.3 (psarc/1996/157 from libw)
+                wcslen;		# SUNW_1.3 (psarc/1996/157 from libw)
+                wcsncat;	# SUNW_1.3 (psarc/1996/157 from libw)
+                wcsncmp;	# SUNW_1.3 (psarc/1996/157 from libw)
+                wcsncpy;	# SUNW_1.3 (psarc/1996/157 from libw)
+                wcspbrk;	# SUNW_1.3 (psarc/1996/157 from libw)
+                wcsrchr;	# SUNW_1.3 (psarc/1996/157 from libw)
+                wcsspn;		# SUNW_1.3 (psarc/1996/157 from libw)
+                wcstod;		# SUNW_1.3 (psarc/1996/157 from libw)
+                wcstok;		# SUNW_1.3 (psarc/1996/157 from libw)
+                wcstol;		# SUNW_1.3 (psarc/1996/157 from libw)
+                wcstoul;	# SUNW_1.3 (psarc/1996/157 from libw)
+                wcswcs;		# SUNW_1.3 (psarc/1996/157 from libw)
+                wcswidth;	# SUNW_1.3 (psarc/1996/157 from libw)
+                wcsxfrm;	# SUNW_1.3 (psarc/1996/157 from libw)
+                wctype;		# SUNW_1.3 (psarc/1996/157 from libw)
+                wcwidth;	# SUNW_1.3 (psarc/1996/157 from libw)
+                wscasecmp;	# SUNW_1.3 (psarc/1996/157 from libw)
+                wscat;		# SUNW_1.3 (psarc/1996/157 from libw)
+                wschr;		# SUNW_1.3 (psarc/1996/157 from libw)
+                wscmp;		# SUNW_1.3 (psarc/1996/157 from libw)
+                wscol;		# SUNW_1.3 (psarc/1996/157 from libw)
+                wscoll;		# SUNW_1.3 (psarc/1996/157 from libw)
+                wscpy;		# SUNW_1.3 (psarc/1996/157 from libw)
+                wscspn;		# SUNW_1.3 (psarc/1996/157 from libw)
+                wsdup;		# SUNW_1.3 (psarc/1996/157 from libw)
+                wslen;		# SUNW_1.3 (psarc/1996/157 from libw)
+                wsncasecmp;	# SUNW_1.3 (psarc/1996/157 from libw)
+                wsncat;		# SUNW_1.3 (psarc/1996/157 from libw)
+                wsncmp;		# SUNW_1.3 (psarc/1996/157 from libw)
+                wsncpy;		# SUNW_1.3 (psarc/1996/157 from libw)
+                wspbrk;		# SUNW_1.3 (psarc/1996/157 from libw)
+                wsprintf;	# SUNW_1.3 (psarc/1996/157 from libw)
+                wsrchr;		# SUNW_1.3 (psarc/1996/157 from libw)
+                wsscanf;	# SUNW_1.3 (psarc/1996/157 from libw)
+                wsspn;		# SUNW_1.3 (psarc/1996/157 from libw)
+                wstod;		# SUNW_1.3 (psarc/1996/157 from libw)
+                wstok;		# SUNW_1.3 (psarc/1996/157 from libw)
+                wstol;		# SUNW_1.3 (psarc/1996/157 from libw)
+                wstoll;		# SUNW_1.3 (psarc/1996/157 from libw)
+                wstostr;	# SUNW_1.3 (psarc/1996/157 from libw)
+                wsxfrm;		# SUNW_1.3 (psarc/1996/157 from libw)
+                ftrylockfile;
+
+# } SUNW_0.9;
+#
+# Note:
+# There is no SUNW_1.0 since there were no syms added between 2.5 and 2.5.1;
+# 
+# SUNW_0.9 {	# Solaris ABI as of Solaris 2.5
+#	global:
+		    acl;
+		    bcmp;
+		    bcopy;
+		    bzero;
+		    facl;
+		    ftime;
+		    getdtablesize;
+		    gethostid;
+		    gethostname;
+		    getpagesize;
+		    getpriority;
+		    getrusage;
+		    getwd;
+		    index;
+		    initstate;
+		    killpg;
+		   _nsc_trydoorcall;
+		    pthread_cond_broadcast;
+		    pthread_cond_destroy;
+		    pthread_cond_init;
+		    pthread_cond_signal;
+		    pthread_cond_timedwait;
+		    pthread_cond_wait;
+		    pthread_condattr_destroy;
+		    pthread_condattr_getpshared;
+		    pthread_condattr_init;
+		    pthread_condattr_setpshared;
+		    pthread_mutex_destroy;
+		    pthread_mutex_getprioceiling;
+		    pthread_mutex_init;
+		    pthread_mutex_lock;
+		    pthread_mutex_setprioceiling;
+		    pthread_mutex_trylock;
+		    pthread_mutex_unlock;
+		    pthread_mutexattr_destroy;
+		    pthread_mutexattr_getprioceiling;
+		    pthread_mutexattr_getprotocol;
+		    pthread_mutexattr_getpshared;
+		    pthread_mutexattr_init;
+		    pthread_mutexattr_setprioceiling;
+		    pthread_mutexattr_setprotocol;
+		    pthread_mutexattr_setpshared;
+		    random;
+		    re_comp;
+		    reboot;
+		    re_exec;
+		    rindex;
+		    setbuffer;
+		    sethostname;
+		    setlinebuf;
+		    setpriority;
+		    setregid;
+		    setreuid;
+		    setstate;
+		    srandom;
+		    thr_min_stack;
+		    thr_stksegment;
+		    ualarm;
+		    usleep;
+		    wait3;
+		    wait4;
+# } SUNW_0.8;
+#
+# SUNW_0.8 {	# Solaris ABI as of Solaris 2.4
+# 	global:
+		    addsev;
+		    cond_broadcast;
+		    cond_destroy;
+		    cond_init;
+		    cond_signal;
+		    cond_timedwait;
+		    cond_wait;
+		    confstr;
+		    fnmatch;
+		   _getdate_err_addr;
+		    glob;
+		    globfree;
+		    iconv;
+		    iconv_close;
+		    iconv_open;
+		    lfmt;
+		    mutex_destroy;
+		    mutex_init;
+		    mutex_lock;
+		    mutex_trylock;
+		    mutex_unlock;
+		    pfmt;
+		    regcomp;
+		    regerror;
+		    regexec;
+		    regfree;
+		    rwlock_init;
+		    rw_rdlock;
+		    rw_read_held;
+		    rw_tryrdlock;
+		    rw_trywrlock;
+		    rw_unlock;
+		    rw_write_held;
+		    rw_wrlock;
+		    sema_held;
+		    sema_init;
+		    sema_post;
+		    sema_trywait;
+		    sema_wait;
+		    setcat;
+		    sigfpe;
+		    strfmon;
+		    strptime;
+		    thr_continue;
+		    thr_create;
+		    thr_exit;
+		    thr_getconcurrency;
+		    thr_getprio;
+		    thr_getspecific;
+		    thr_join;
+		    thr_keycreate;
+		    thr_kill;
+		    thr_self;
+		    thr_setconcurrency;
+		    thr_setprio;
+		    thr_setspecific;
+		    thr_sigsetmask;
+		    thr_suspend;
+		    thr_yield;
+		    vlfmt;
+		    vpfmt;
+		    wordexp;
+		    wordfree;
+		  __xpg4;
+# } SUNW_0.7;
+#
+# SUNW_0.7 {	 # Solaris ABI as of Solaris 2.3
+#	global:
+#
+		    a64l;
+		    adjtime;
+		    altzone;		# Should this be part of 6-5? (cmd/date)
+		    ascftime;
+		   _assert;		# Does this conflict with __assert?
+		    atoll;
+		    brk;
+#		   _bufendtab;
+		  __builtin_alloca;
+		    cfree;
+		    cftime;
+		    closelog;
+		   _ctype;
+		    csetcol;
+		    csetlen;
+		    ctermid_r;
+		    dbm_close;
+		    dbm_delete;
+		    dbm_fetch;
+		    dbm_firstkey;
+		    dbm_nextkey;
+		    dbm_open;
+		    dbm_store;
+		    decimal_to_double;
+		    decimal_to_extended;
+		    decimal_to_quadruple;
+		    decimal_to_single;
+		    double_to_decimal;
+		    drand48;
+		    econvert;
+		    ecvt;
+		    endnetgrent;
+		    endspent;
+		    endutent;
+		    endutxent;
+		    erand48;
+		    euccol;
+		    euclen;
+		    eucscol;
+		    exportfs;
+		    extended_to_decimal;
+		    fchroot;
+		    fconvert;
+		    fcvt;
+		    ffs;
+		    fgetspent;
+		    fgetspent_r;
+		    file_to_decimal;
+		    finite;
+		   _filbuf;
+		   _flsbuf;
+		    fork1;
+		    fpclass;
+		    fpgetmask;
+		    fpgetsticky;
+		    fpsetmask;
+		    fpsetsticky;
+		    fstatfs;
+		    ftruncate;
+		    ftw;
+		    func_to_decimal;
+		    gconvert;
+		    gcvt;
+		    getdents;
+		    gethrtime;
+		    gethrvtime;
+		    getmntany;
+		    getmntent;
+		    getnetgrent;
+		    getnetgrent_r;
+		    getpw;
+		    getspent;
+		    getspent_r;
+		    getspnam;
+		    getspnam_r;
+		    getutent;
+		    getutid;
+		    getutline;
+		    getutmp;
+		    getutmpx;
+		    getutxent;
+		    getutxid;
+		    getutxline;
+		    getvfsany;
+		    getvfsent;
+		    getvfsfile;
+		    getvfsspec;
+		    getwidth;
+		    gsignal;
+		    hasmntopt;
+		    innetgr;
+		   _insque;
+		    insque;
+		    isnanf;
+		    jrand48;
+		    l64a;
+		    ladd;
+#		   _lastbuf;
+		    lckpwdf;
+		    lcong48;
+		    ldivide;
+		    lexp10;
+		    llabs;
+		    lldiv;
+		    llog10;
+		    llseek;
+		    lltostr;
+		    lmul;
+		    lone;
+		    lrand48;
+		    lshiftl;
+		    lsub;
+		    lten;
+		   _lwp_cond_broadcast;
+		   _lwp_cond_signal;
+		   _lwp_cond_timedwait;
+		   _lwp_cond_wait;
+		   _lwp_continue;
+		   _lwp_create;
+		   _lwp_exit;
+		   _lwp_getprivate;
+		   _lwp_info;
+		   _lwp_kill;
+		   _lwp_makecontext;
+		   _lwp_mutex_lock;
+		   _lwp_mutex_trylock;
+		   _lwp_mutex_unlock;
+		   _lwp_self;
+		   _lwp_sema_init;
+		   _lwp_sema_post;
+		   _lwp_sema_wait;
+		   _lwp_setprivate;
+		   _lwp_suspend;
+		   _lwp_wait;
+		    lzero;
+		    madvise;
+		  __major;
+		  __makedev;
+		    makeutx;
+		    memalign;
+		    mincore;
+		  __minor;
+		    mlockall;
+		    modctl;
+		    modff;
+		    modutx;
+		    mrand48;
+		    munlockall;
+		   _mutex_held;
+		   _mutex_lock;
+		    nfs_getfh;
+		    nrand48;
+		   _nss_XbyY_buf_alloc;
+		   _nss_XbyY_buf_free;
+		    nss_default_finders;
+		    nss_delete;
+		    nss_endent;
+		    nss_getent;
+		   _nss_netdb_aliases;
+		    nss_search;
+		    nss_setent;
+		  __nsw_extended_action;
+		  __nsw_freeconfig;
+		  __nsw_getconfig;
+		    openlog;
+		    plock;
+		    p_online;
+		    pread;
+		  __priocntl;
+		  __priocntlset;
+		    processor_bind;
+		    processor_info;
+		    psiginfo;
+		    psignal;
+		    putpwent;
+		    putspent;
+		    pututline;
+		    pututxline;
+		    pwrite;
+		    qeconvert;
+		    qecvt;
+		    qfconvert;
+		    qfcvt;
+		    qgconvert;
+		    qgcvt;
+		    quadruple_to_decimal;
+		    realpath;
+		   _remque;
+		    remque;
+		   _rw_read_held;
+		   _rw_write_held;
+		    seconvert;
+		    seed48;
+		    select;
+		   _sema_held;
+		    setegid;
+		    seteuid;
+		    setlogmask;
+		    setnetgrent;
+		    setspent;
+		    settimeofday;
+		    setutent;
+		    setutxent;
+		    sfconvert;
+		    sgconvert;
+		   _sibuf;
+		    sig2str;
+		    sigwait;
+		    single_to_decimal;
+		   _sobuf;
+		    srand48;
+		    ssignal;
+		    statfs;
+		    str2sig;
+		    strcasecmp;
+		    string_to_decimal;
+		    strncasecmp;
+		    strsignal;
+		    strtoll;
+		    strtoull;
+		    swapctl;
+		   _sys_buslist;
+		   _syscall;
+		    syscall;
+		   _sys_cldlist;
+		   _sys_fpelist;
+		    sysfs;
+#		    sys_errlist;	# Promoted (djb)
+		   _sys_illlist;
+#		    sys_nerr;		# Promoted (djb)
+		   _sys_siginfolistp;
+		   _syslog;
+		    syslog;
+#		   _sys_nsig;
+		   _sys_segvlist;
+		   _sys_siglist;
+		   _sys_siglistn;
+		   _sys_siglistp;
+		   _sys_traplist;
+		    tmpnam_r;
+		    truncate;
+		    ttyslot;
+		    uadmin;
+		    ulckpwdf;
+		    ulltostr;
+		    unordered;
+		    updwtmp;
+		    updwtmpx;
+		    ustat;
+		    utimes;
+		    utmpname;
+		    utmpxname;
+		    valloc;
+		    vfork;
+		    vhangup;
+		    vsyslog;
+		    yield;
+};
+# Note: 
+#	SUNW_0.7 inherits Standard ABI syms (SYSVABI etc.) but this is
+# done via the processor-specific mapfiles
+
+# XX64	This is a bit questionable, since the relevant document was
+#	never intended as a 64-bit ABI.  However, to the extent to
+#	to which this is a useful subset of libc, we might as well
+#	preserve it.
+
+# System V Application Binary Interface, Third Edition. (ISBN 0-13-100439-5).
+#
+# This interface is derived from the definition of both libc and libsys
+# interfaces.  Users who wish to distiguish the libsys interface should bind
+# to the filter libsys.so.1.
+
+SYSVABI_1.3 {
+		# C Library (libc.so.1) interface.
+
+	global:
+		    abort;		# Names without Synonyms
+		    abs;		# System V ABI, Figure 6-6
+		    asctime;
+		    atof;
+		    atoi;
+		    atol;
+		    bsearch;
+		    clearerr;
+		    clock;
+		    ctime;
+		    difftime;
+		    div;
+		    fclose;
+		    feof;
+		    ferror;
+		    fflush;
+		    fgetc;
+		    fgetpos;
+		    fgets;
+		    fopen;
+		    fprintf;
+		    fputc;
+		    fputs;
+		    fread;
+		    frexp;
+		    freopen;
+		    fscanf;
+		    fseek;
+		    fsetpos;
+		    ftell;
+		    fwrite;
+		    getc;
+		    getchar;
+		    getenv;
+		    gets;
+		    gmtime;
+		    isalnum;
+		    isalpha;
+		    iscntrl;
+		    isdigit;
+		    isgraph;
+		    islower;
+		    isprint;
+		    ispunct;
+		    isspace;
+		    isupper;
+		    isxdigit;
+		    labs;
+		    ldexp;
+		    ldiv;
+		    localtime;
+		    logb;
+		    longjmp;
+		    mblen;
+		    mbstowcs;
+		    mbtowc;
+		    memchr;
+		    memcmp;
+		    memcpy;
+		    memmove;
+		    memset;
+		    mktime;
+		    perror;
+		    printf;
+		    putc;
+		    putchar;
+		    puts;
+		    qsort;
+		    raise;
+		    rand;
+		    rewind;
+		    scanf;
+		    setbuf;
+		    setjmp;
+		    setvbuf;
+		    sprintf;
+		    srand;
+		    sscanf;
+		    strcat;
+		    strchr;
+		    strcmp;
+		    strcpy;
+		    strcspn;
+		    strlen;
+		    strncat;
+		    strncmp;
+		    strncpy;
+		    strpbrk;
+		    strrchr;
+		    strspn;
+		    strstr;
+		    strtod;
+		    strtok;
+		    strtol;
+		    strtoul;
+		    tmpfile;
+		    tmpnam;
+		    tolower;
+		    toupper;
+		    ungetc;
+		    vfprintf;
+		    vprintf;
+		    vsprintf;
+		    wcstombs;
+		    wctomb;
+
+		   _cfgetispeed;		# Names with Synonyms
+		    cfgetispeed;		# System V ABI, Figure 6-7
+		   _cfgetospeed;
+		    cfgetospeed;
+		   _cfsetispeed;
+		    cfsetispeed;
+		   _cfsetospeed;
+		    cfsetospeed;
+		   _ctermid;
+		    ctermid;
+		   _cuserid;
+		    cuserid;
+		   _dup2;
+		    dup2;
+		   _fdopen;
+		    fdopen;
+		   _fileno;
+		    fileno;
+		   _fmtmsg;
+		    fmtmsg;
+		   _getdate;
+		    getdate;
+		   _getopt;
+		    getopt;
+		   _getpass;
+		    getpass;
+		   _getsubopt;
+		    getsubopt;
+		   _getw;
+		    getw;
+		   _hcreate;
+		    hcreate;
+		   _hdestroy;
+		    hdestroy;
+		   _hsearch;
+		    hsearch;
+		   _isascii;
+		    isascii;
+		   _isatty;
+		    isatty;
+		   _isnan;
+		    isnan;
+		   _isnand;
+		    isnand;
+		   _lfind;
+		    lfind;
+		   _lockf;
+		    lockf;
+		   _lsearch;
+		    lsearch;
+		   _memccpy;
+		    memccpy;
+		   _mkfifo;
+		    mkfifo;
+		   _mktemp;
+		    mktemp;
+		   _modf;
+		    modf;
+		   _monitor;
+		    monitor;
+		   _nextafter;
+		    nextafter;
+		   _nftw;
+		    nftw;
+		   _nl_langinfo;
+		    nl_langinfo;
+		   _pclose;
+		    pclose;
+		   _popen;
+		    popen;
+		   _putenv;
+		    putenv;
+		   _putw;
+		    putw;
+		   _scalb;
+		    scalb;
+		   _sleep;
+		    sleep;
+		   _strdup;
+		    strdup;
+		   _swab;
+		    swab;
+		   _tcdrain;
+		    tcdrain;
+		   _tcflow;
+		    tcflow;
+		   _tcflush;
+		    tcflush;
+		   _tcgetattr;
+		    tcgetattr;
+		   _tcgetpgrp;
+		    tcgetpgrp;
+		   _tcgetsid;
+		    tcgetsid;
+		   _tcsendbreak;
+		    tcsendbreak;
+		   _tcsetattr;
+		    tcsetattr;
+		   _tcsetpgrp;
+		    tcsetpgrp;
+		   _tdelete;
+		    tdelete;
+		   _tell;
+		    tell;
+		   _tempnam;
+		    tempnam;
+		   _tfind;
+		    tfind;
+		   _toascii;
+		    toascii;
+		   _tsearch;
+		    tsearch;
+		   _twalk;
+		    twalk;
+		   _tzset;
+		    tzset;
+
+		  __assert;			# Names without Synonyms,
+		   _cleanup;			# non-ANSI. Figure 6-7.
+		  __filbuf;
+		  __flsbuf;
+#		   _setlabel;
+		    setlabel;
+		   _tolower;
+		   _toupper;
+		   _xftw;
+
+		   _getdate_err;		# Global External Data Symbols
+		    getdate_err;		# System V ABI, Figure 6-9
+		  __iob;
+		    optarg;
+		    opterr;
+		    optind;
+		    optopt;
+
+		# System Library (libsys.so.1) interface.
+
+		   _access;			# Names With Synonyms
+		    access;			# System V ABI, Figure 6-2
+		   _acct;
+		    acct;
+		   _alarm;
+		    alarm;
+		   _catclose;
+		    catclose;
+		   _catgets;
+		    catgets;
+		   _catopen;
+		    catopen;
+		   _chdir;
+		    chdir;
+		   _chmod;
+		    chmod;
+		   _chown;
+		    chown;
+		   _chroot;
+		    chroot;
+		   _close;
+		    close;
+		   _closedir;
+		    closedir;
+		   _creat;
+		    creat;
+		   _dup;
+		    dup;
+		   _execl;
+		    execl;
+		   _execle;
+		    execle;
+		   _execlp;
+		    execlp;
+		   _execv;
+		    execv;
+		   _execve;
+		    execve;
+		   _execvp;
+		    execvp;
+		   _fattach;
+		    fattach;
+		   _fchdir;
+		    fchdir;
+		   _fchmod;
+		    fchmod;
+		   _fchown;
+		    fchown;
+		   _fcntl;
+		    fcntl;
+		   _fdetach;
+		    fdetach;
+		   _fork;
+		    fork;
+		   _fpathconf;
+		    fpathconf;
+		   _fstatvfs;
+		    fstatvfs;
+		   _fsync;
+		    fsync;
+		   _ftok;
+		    ftok;
+		   _getcontext;
+		    getcontext;
+		   _getcwd;
+		    getcwd;
+		   _getegid;
+		    getegid;
+		   _geteuid;
+		    geteuid;
+		   _getgid;
+		    getgid;
+		   _getgrgid;
+		    getgrgid;
+		   _getgrnam;
+		    getgrnam;
+		   _getgroups;
+		    getgroups;
+		   _getlogin;
+		    getlogin;
+		   _getmsg;
+		    getmsg;
+		   _getpgid;
+		    getpgid;
+		   _getpgrp;
+		    getpgrp;
+		   _getpid;
+		    getpid;
+		   _getpmsg;
+		    getpmsg;
+		   _getppid;
+		    getppid;
+		   _getpwnam;
+		    getpwnam;
+		   _getpwuid;
+		    getpwuid;
+		   _getrlimit;
+		    getrlimit;
+		   _getsid;
+		    getsid;
+		   _gettxt;
+		    gettxt;
+		   _getuid;
+		    getuid;
+		   _grantpt;
+		    grantpt;
+		   _initgroups;
+		    initgroups;
+		   _ioctl;
+		    ioctl;
+		   _isastream;
+		    isastream;
+		   _kill;
+		    kill;
+		   _lchown;
+		    lchown;
+		   _link;
+		    link;
+		   _lseek;
+		    lseek;
+		   _makecontext;
+		    makecontext;
+		   _memcntl;
+		    memcntl;
+		   _mkdir;
+		    mkdir;
+		   _mknod;
+		    mknod;
+		   _mlock;
+		    mlock;
+		   _mmap;
+		    mmap;
+		   _mount;
+		    mount;
+		   _mprotect;
+		    mprotect;
+		   _msgctl;
+		    msgctl;
+		   _msgget;
+		    msgget;
+		   _msgrcv;
+		    msgrcv;
+		   _msgsnd;
+		    msgsnd;
+		   _msync;
+		    msync;
+		   _munlock;
+		    munlock;
+		   _munmap;
+		    munmap;
+		   _nice;
+		    nice;
+		   _open;
+		    open;
+		   _opendir;
+		    opendir;
+		   _pathconf;
+		    pathconf;
+		   _pause;
+		    pause;
+		   _pipe;
+		    pipe;
+		   _poll;
+		    poll;
+		   _profil;
+		    profil;
+		   _ptrace;
+		    ptrace;
+		   _ptsname;
+		    ptsname;
+		   _putmsg;
+		    putmsg;
+		   _putpmsg;
+		    putpmsg;
+		   _read;
+		    read;
+		   _readdir;
+		    readdir;
+		   _readlink;
+		    readlink;
+		   _readv;
+		    readv;
+		   _rename;
+		    rename;
+		   _rewinddir;
+		    rewinddir;
+		   _rmdir;
+		    rmdir;
+		   _seekdir;
+		    seekdir;
+		   _semctl;
+		    semctl;
+		   _semget;
+		    semget;
+		   _semop;
+		    semop;
+		   _setcontext;
+		    setcontext;
+		   _setgid;
+		    setgid;
+		   _setgroups;
+		    setgroups;
+		   _setpgid;
+		    setpgid;
+		   _setpgrp;
+		    setpgrp;
+		   _setrlimit;
+		    setrlimit;
+		   _setsid;
+		    setsid;
+		   _setuid;
+		    setuid;
+		   _shmat;
+		    shmat;
+		   _shmctl;
+		    shmctl;
+		   _shmdt;
+		    shmdt;
+		   _shmget;
+		    shmget;
+		   _sigaction;
+		    sigaction;
+		   _sigaddset;
+		    sigaddset;
+		   _sigaltstack;
+		    sigaltstack;
+		   _sigdelset;
+		    sigdelset;
+		   _sigemptyset;
+		    sigemptyset;
+		   _sigfillset;
+		    sigfillset;
+		   _sighold;
+		    sighold;
+		   _sigignore;
+		    sigignore;
+		   _sigismember;
+		    sigismember;
+		   _siglongjmp;
+		    siglongjmp;
+		   _sigpause;
+		    sigpause;
+		   _sigpending;
+		    sigpending;
+		   _sigprocmask;
+		    sigprocmask;
+		   _sigrelse;
+		    sigrelse;
+		   _sigsend;
+		    sigsend;
+		   _sigsendset;
+		    sigsendset;
+		   _sigset;
+		    sigset;
+		   _sigsetjmp;
+		    sigsetjmp;
+		   _sigsuspend;
+		    sigsuspend;
+		   _statvfs;
+		    statvfs;
+		   _stime;
+		    stime;
+		   _swapcontext;
+		    swapcontext;
+		   _symlink;
+		    symlink;
+		   _sync;
+		    sync;
+		   _sysconf;
+		    sysconf;
+		   _telldir;
+		    telldir;
+		   _time;
+		    time;
+		   _times;
+		    times;
+		   _ttyname;
+		    ttyname;
+		   _ulimit;
+		    ulimit;
+		   _umask;
+		    umask;
+		   _umount;
+		    umount;
+		   _unlink;
+		    unlink;
+		   _unlockpt;
+		    unlockpt;
+		   _utime;
+		    utime;
+		   _wait;
+		    wait;
+		   _waitid;
+		    waitid;
+		   _waitpid;
+		    waitpid;
+		   _write;
+		    write;
+		   _writev;
+		    writev;
+
+		    atexit;			# Names Without Synonyms
+		    calloc;			# System V ABI, Figure 6-3
+		   _exit;
+		    exit;
+		    free;
+		    localeconv;
+		    malloc;
+		    realloc;
+		    remove;
+		    setlocale;
+		    signal;
+		    strcoll;
+		    strerror;
+		    strftime;
+		    strxfrm;
+		    system;
+
+		   _fstat;			# Additional Services
+		    fstat;			# System V ABI, Figure 6-4
+		   _lstat;
+		    lstat;
+		   _stat;
+		    stat;
+		   _uname;
+		    uname;
+
+		   _altzone;			# Global External Data Symbols
+		  __ctype;			# System V ABI, Figure 6-5.
+		   _numeric;
+		   _daylight;
+		    daylight;
+		   _timezone;
+		    timezone;
+		   _tzname;
+		    tzname;
+
+		   _environ;			# Application Constraints
+		    environ;
+};
+#
+# SUNWprivate_1.2 {
+#	global:
+#		SUNWprivate_1.2;
+# } SUNWprivate_1.1;
+#
+SUNWprivate_1.1 {
+	global:
+		 ___Argv;			# /SUNWspro/SC4.0/lib/crt1.o
+		   _a64l;
+		   _acl;
+		   _adjtime;
+		   _ascftime;
+		   _asctime_r;
+		   _atoll;
+		   _brk;
+		   _bufsync;
+		   _cfree;
+		   _cftime;
+		   _closelog;
+		  __class_quadruple;
+		  __clock_getres;		# libposix4.so
+		  __clock_gettime;		# libposix4.so
+		  __clock_settime;		# libposix4.so
+		   _cond_broadcast;
+		   _cond_destroy;
+		   _cond_init;
+		   _cond_signal;
+		   _cond_timedwait;
+		   _cond_wait;
+		   _cswidth;
+		   _ctermid_r;
+		   _ctime_r;
+		    dbm_close_status;
+		    dbm_setdefwrite;
+		    dbm_do_nextkey;
+		   _decimal_to_double;
+		   _decimal_to_extended;
+		   _decimal_to_quadruple;
+		   _decimal_to_single;
+		   _dgettext;
+		   _doprnt;
+		   _door_bind;
+		  __door_bind;
+		   _door_call;
+		  __door_call;
+		   _door_create;
+		  __door_create;
+		  __door_create_pid;
+		   _door_cred;
+		  __door_cred;
+		   _door_info;
+		  __door_info;
+		   _door_return;
+		  __door_return;
+		   _door_revoke;
+		  __door_revoke;
+		  __door_server_func;
+		   _door_unbind;
+		  __door_unbind;
+		   _doscan;
+		   _double_to_decimal;
+		   _drand48;
+		   _econvert;
+		   _endgrent;
+		   _endpwent;
+		   _endspent;
+		   _endutent;
+		   _endutxent;
+		  __environ_lock;		# /SUNWspro/SC4.0/lib/crt1.o
+		   _ecvt;
+		   _erand48;
+		   _exportfs;
+		   _extended_to_decimal;
+		   _facl;
+		   _fchroot;
+		   _fconvert;
+		   _fcvt;
+		  __fdsync;			# libposic4.so
+		   _ffs;
+		   _fgetgrent;
+		   _fgetgrent_r;
+		   _fgetpwent_r;
+		   _fgetpwent;
+		   _fgetspent;
+		   _fgetspent_r;
+		   _file_to_decimal;
+		   _finite;
+		   _flockfile;
+		   _findbuf;
+		   _findiop;
+		   _fork1;
+		   _fpclass;
+		   _fpgetmask;
+		   _fpgetround;
+		   _fpgetsticky;
+		   _fprintf;
+		   _fpsetmask;
+		   _fpsetround;
+		   _fpsetsticky;
+		   _fstatfs;
+		   _ftruncate;
+		   _ftw;
+		   _func_to_decimal;
+		   _funlockfile;
+		   _gconvert;
+		   _gcvt;
+		   _getc_unlocked;
+		   _getchar_unlocked;
+		   _getarg;			# libucb.so.1
+		  __getcontext;
+		   _getdents;
+		   _getgrent;
+		   _getgrent_r;
+		   _getgrgid_r;
+		   _getgrnam_r;
+		   _getgroupsbymember;		# groups
+		   _getlogin_r;
+		   _getmntany;
+		   _getmntent;
+		   _getpw;
+		   _getpwent;
+		   _getpwent_r;
+		   _getpwnam_r;
+		   _getpwuid_r;
+		   _getsp;
+		   _getspent;
+		   _getspent_r;
+		   _getspnam;
+		   _getspnam_r;
+		   _getutid;
+		   _getutent;
+		   _getutline;
+		   _getutmp;
+		   _getutmpx;
+		   _getutxent;
+		   _getutxid;
+		   _getutxline;
+		   _getvfsany;
+		   _getvfsent;
+		   _getvfsfile;
+		   _getvfsspec;
+		   _gmtime_r;
+		   _gsignal;
+		   _gtty;
+		    gtty;
+		   _hasmntopt;
+		   _iconv;
+		   _iconv_close;
+		   _iconv_open;
+		  __inf_read;
+		  __inf_written;		# SunPro libm.a
+		   _isnanf;
+		   _jrand48;
+		    kaio;
+		   _kaio;			# libaio.so
+		   _l64a;
+		   _ladd;
+		   _lckpwdf;
+		   _lcong48;
+		   _ldivide;
+		   _lexp10;
+#		   _lflag;			# for BC (libw.a)
+		   _lib_version;		# special (-X) for ansi test
+		   _libc_sigtimedwait;		# libthread.so dlsym()
+		   _libc_threads_interface;	# libthread.so initialization
+		   _llabs;
+		   _lldiv;
+		   _llog10;
+		   _llseek;
+		   _lltostr;
+		   _lmul;
+		   _localtime_r;
+		   _logb;
+		   _lone;
+		   _lrand48;
+		   _lshiftl;
+		   _lsub;
+		   _lten;
+		   _lzero;
+		  __lwp_cond_broadcast;
+		  __lwp_cond_signal;
+		  __lwp_cond_timedwait;
+		  __lwp_cond_wait;
+		 ___lwp_cond_wait;
+		  __lwp_continue;
+		  __lwp_create;
+		  __lwp_exit;
+		  __lwp_getprivate;
+		  __lwp_info;
+		  __lwp_kill;
+		  __lwp_makecontext;
+		  __lwp_mutex_lock;
+		  __lwp_mutex_unlock;
+		  __lwp_sigredirect;		# libthread.so
+		   _lwp_sigredirect;		# libthread.so
+		  __lwp_mutex_trylock;
+		 ___lwp_mutex_wakeup;
+		 ___lwp_mutex_unlock;
+		 ___lwp_mutex_lock;
+		 ___lwp_mutex_trylock;
+		 ___lwp_mutex_init;
+		   _lwp_schedctl;
+		  __lwp_schedctl;
+		  __lwp_self;
+		  __lwp_sema_init;
+		  __lwp_sema_post;
+		  __lwp_sema_trywait;
+		  __lwp_sema_wait;
+		  __lwp_setprivate;
+		  __lwp_suspend;
+		  __lwp_suspend2;		# SUNWprivate_1.2
+		  __lwp_wait;
+#		   _loadtab;			# for BC (libw.a)
+#		   _locale_lock;		# for BC (libw.a)
+		   _lock_clear;
+		   _lock_try;
+		   _ltzset;
+		   _madvise;
+		   _makeut;
+		    makeut;
+		   _makeutx;
+		  __malloc_lock;		# for purify v4.0.1
+		   _memalign;
+		   _memcmp;			# libucb.so.1
+		   _memcpy;			# libucb.so.1
+		   _memmove;			# libucb.so.1
+		   _memset;			# libucb.so.1
+		   _mincore;
+		   _mkarglst;			# libucb.so.1
+		    mkstemp;
+		   _mkstemp;
+		   _mlockall;
+		    mntopt;
+		   _modff;
+		   _modutx;
+		   _mrand48;
+		  __multi_innetgr;
+		   _munlockall;
+		   _mutex_destroy;
+		    mutex_held;
+		   _mutex_init;
+		   _mutex_trylock;
+		   _mutex_unlock;
+		  __nan_read;
+		  __nan_written;		# SunPro libm.a
+		  __nanosleep;			# libposix4.so
+		   _nfs_getfh;
+		   _nfssvc;
+		    nfssvc;
+		   _nfssys;
+		   _nrand48;
+		   _nss_default_finders;
+		   _nss_delete;
+		   _nss_endent;
+		   _nss_getent;
+		   _nss_initf_netgroup;
+		   _nss_search;
+		   _nss_setent;
+		   _openlog;
+		   _plock;
+		   _pread;
+		   _psiginfo;
+		   _psignal;
+		   _pthread_cond_broadcast;
+		   _pthread_cond_destroy;
+		   _pthread_cond_init;
+		   _pthread_cond_signal;
+		   _pthread_cond_timedwait;
+		   _pthread_cond_wait;
+		   _pthread_condattr_destroy;
+		   _pthread_condattr_getpshared;
+		   _pthread_condattr_init;
+		   _pthread_condattr_setpshared;
+		   _pthread_mutex_destroy;
+		   _pthread_mutex_getprioceiling;
+		   _pthread_mutex_init;
+		   _pthread_mutex_lock;
+		   _pthread_mutex_setprioceiling;
+		   _pthread_mutex_trylock;
+		   _pthread_mutex_unlock;
+		   _pthread_mutexattr_destroy;
+		   _pthread_mutexattr_getprioceiling;
+		   _pthread_mutexattr_getprotocol;
+		   _pthread_mutexattr_getpshared;
+		   _pthread_mutexattr_init;
+		   _pthread_mutexattr_setprioceiling;
+		   _pthread_mutexattr_setprotocol;
+		   _pthread_mutexattr_setpshared;
+		   _pthread_self;
+		   _pthread_sigmask;
+		   _pthread_attr_destroy;
+		   _pthread_attr_getdetachstate;
+		   _pthread_attr_getinheritsched;
+		   _pthread_attr_getschedparam;
+		   _pthread_attr_getschedpolicy;
+		   _pthread_attr_getscope;
+		   _pthread_attr_getstackaddr;
+		   _pthread_attr_getstacksize;
+		   _pthread_attr_init;
+		   _pthread_attr_setdetachstate;
+		   _pthread_attr_setinheritsched;
+		   _pthread_attr_setschedparam;
+		   _pthread_attr_setschedpolicy;
+		   _pthread_attr_setscope;
+		   _pthread_attr_setstackaddr;
+		   _pthread_attr_setstacksize;
+		   _pthread_cancel;
+		   _pthread_create;
+		   _pthread_detach;
+		   _pthread_equal;
+		   _pthread_exit;
+		   _pthread_getschedparam;
+		   _pthread_getspecific;
+		   _pthread_join;
+		   _pthread_key_create;
+		   _pthread_key_delete;
+		   _pthread_kill;
+		   _pthread_once;
+		   _pthread_setcancelstate;
+		   _pthread_setcanceltype;
+		   _pthread_setschedparam;
+		   _pthread_setspecific;
+		   _pthread_testcancel;
+		   _pthread_atfork;
+		   _putc_unlocked;
+		   _putchar_unlocked;
+		   _putpwent;
+		   _putspent;
+		   _pututline;
+		   _pututxline;
+		   _pwrite;
+		   _qeconvert;
+		   _qecvt;
+		   _qfconvert;
+		   _qfcvt;
+		   _qgconvert;
+		   _qgcvt;
+		   _quadruple_to_decimal;
+		   _rand_r;
+		   _readdir_r;
+		   _realbufend;
+		   _realpath;
+		   _rw_rdlock;
+		   _rw_tryrdlock;
+		   _rw_trywrlock;
+		   _rw_unlock;
+		   _rw_wrlock;
+		   _rwlock_init;
+		   _seconvert;
+		   _seed48;
+		   _select;
+		   _sema_init;
+		   _sema_post;
+		   _sema_trywait;
+		   _sema_wait;
+		   _setbufend;
+		   _setegid;
+		   _seteuid;
+		   _setgrent;
+		   _setlogmask;
+		   _setpwent;
+		   _setregid;			# libc.so.1.9
+		   _setreuid;			# libc.so.1.9
+		   _setspent;
+		   _settimeofday;
+		   _setutent;
+		   _setutxent;
+		   _sfconvert;
+		   _sgconvert;
+		   _sig2str;
+		  __sigaction;
+		   _sigflag;
+		    sigflag;
+		   _sigfpe;
+		   _signal;			# Conflicts with 6-3 ? (cmd/csh)
+		  __signotify;			# libposix4.so
+		  __signotifywait;		# libthread.so
+		   _signotifywait;		# libthread.so
+		  __sigqueue;			# libposix4.so
+		  __sigtimedwait;		# libposix4.so and libthread
+		   _sigwait;
+		   _siguhandler;
+		   _single_to_decimal;
+		   _smbuf;
+		   _sp;
+		   _srand48;
+		   _ssignal;
+		   _statfs;
+		   _str2sig;
+		    str2spwd;
+		   _strerror;
+		   _string_to_decimal;
+		   _strsignal;
+		   _strtok_r;
+		   _strtoll;
+		   _strtoull;
+		   _stty;
+		    stty;
+		   _swapctl;
+#		   _sys_errlist;
+#		   _sys_errs;
+#		   _sys_index;			# /usr/dist
+#		   _sys_nerr;
+#		   _sys_num_err;
+		   _sysconfig;
+		   _sysfs;
+		   _thr_continue;
+		   _thr_create;
+		  __thr_door_server_func;
+		   _thr_errnop;
+		    thr_errnop;
+		   _thr_exit;
+		   _thr_get_inf_read;
+		   _thr_get_nan_read;
+		   _thr_getconcurrency;
+		   _thr_getprio;
+		   _thr_getspecific;
+		   _thr_join;
+		   _thr_keycreate;
+		   _thr_kill;
+		   _thr_libthread;		# libthread.so
+		   _thr_main;
+		    thr_main;
+		   _thr_min_stack;
+		   _thr_self;
+		   _thr_setconcurrency;
+		   _thr_setprio;
+		   _thr_setspecific;
+		   _thr_sigsetmask;
+		   _thr_stksegment;
+		   _thr_suspend;
+		   _thr_yield;
+		  __threaded;
+		  __timer_create;		# libposix4.so
+		  __timer_delete;		# libposix4.so
+		  __timer_getoverrun;		# libposix4.so
+		  __timer_gettime;		# libposix4.so
+		  __timer_settime;		# libposix4.so
+		   _tmpnam_r;
+		   _truncate;
+		   _ttyname_r;
+		   _ttyslot;
+		   _uadmin;
+		   _ulckpwdf;
+		   _ulltostr;
+		   _uncached_getgrgid_r;
+		   _uncached_getgrnam_r;
+		   _uncached_getpwuid_r;
+		   _uncached_getpwnam_r;
+		   _ungetc_unlocked;
+		   _unordered;
+		   _updwtmp;
+		   _updwtmpx;
+		   _ustat;
+		   _utimes;
+		   _utmpname;
+		   _utmpxname;
+		   _utssys;
+		    utssys;
+		   _valloc;
+		   _vfork;
+		   _vhangup;
+		   _vsyslog;
+#		   _wcptr;			# for BC (libw.a)
+#		   _wctomb;
+		   _wrtchk;			# /usr/dist
+		   _xflsbuf;
+		   _xgetwidth;
+		   _yield;
+
+		   # Adding libintl privates
+		   mcfiller;			# required by ex
+		   wdbindf;			# required by troff
+		   wdchkind;			# required by ex
+		   wddelim;			# required by troff
+
+		   # Adding libw privates
+		   _mbftowc;			# required by egrep
+		   _iswctype;			# required by oawk and uniq
+
+		   # Adding libgen privates
+		   __i_size;			#required by cmd/regcmp
+
+		   # libsocket, /sbin/soconfig
+		   _so_socket;
+		   _so_socketpair;
+		   _sockconfig;
+		   _so_accept;
+		   _so_bind;
+		   _so_connect;
+		   _so_getpeername;
+		   _so_getsockname;
+		   _so_getsockopt;
+		   _so_listen;
+		   _so_recv;
+		   _so_recvfrom;
+		   _so_recvmsg;
+		   _so_send;
+		   _so_sendmsg;
+		   _so_sendto;
+		   _so_setsockopt;
+		   _so_shutdown;
+
+		   # Adding csi private
+		   __charmap_init;
+		   __collate_init;
+		   __ctype_init;
+		   __ctype_mask;
+		   __eucpctowc_gen;
+		   __fgetwc_dense;
+		   __fgetwc_euc;
+		   __fgetwc_sb;
+		   __fnmatch_C;
+		   __fnmatch_sb;
+		   __fnmatch_std;
+		   __getdate_std;
+		   __iswctype_bc;
+		   __iswctype_sb;
+		   __iswctype_std;
+		   __lc_charmap;
+		   __lc_collate;
+		   __lc_ctype;
+		   __lc_locale;
+		   __lc_messages;
+		   __lc_monetary;
+		   __lc_numeric;
+		   __lc_time;
+		   __locale_init;
+		   __localeconv_std;
+		   __messages_init;
+		   __mbftowc_dense;
+		   __mbftowc_euc;
+		   __mbftowc_sb;
+		   __mblen_gen;
+		   __mblen_sb;
+		   __mbstowcs_dense;
+		   __mbstowcs_euc;
+		   __mbstowcs_sb;
+		   __mbtowc_dense;
+		   __mbtowc_euc;
+		   __mbtowc_sb;
+		   __monetary_init;
+		   __nl_langinfo_std;
+		   __numeric_init;
+		   __regcomp_C;
+		   __regcomp_std;
+		   __regerror_std;
+		   __regexec_C;
+		   __regexec_std;
+		   __regfree_std;
+		     scrwidth;
+		   __strcoll_C;
+		   __strcoll_sb;
+		   __strcoll_std;
+		   __strfmon_std;
+		   __strftime_std;
+		   __strptime_std;
+		   __strxfrm_C;
+		   __strxfrm_sb;
+		   __strxfrm_std;
+		   __time_init;
+		   __towctrans_bc;
+		   __towctrans_std;
+		   __towlower_bc;
+		   __towlower_std;
+		   __towupper_bc;
+		   __towupper_std;
+		   __trans_lower;
+		   __trans_upper;
+		   __trwctype_std;
+		   __wcscoll_C;
+		   __wcscoll_bc;
+		   __wcscoll_std;
+		   __wcsftime_std;
+		   __wcstombs_dense;
+		   __wcstombs_euc;
+		   __wcstombs_sb;
+		   __wcswidth_dense;
+		   __wcswidth_euc;
+		   __wcswidth_sb;
+		   __wcsxfrm_C;
+		   __wcsxfrm_bc;
+		   __wcsxfrm_std;
+		   __wctoeucpc_gen;
+		   __wctomb_dense;
+		   __wctomb_euc;
+		   __wctomb_sb;
+		   __wctrans_std;
+		   __wctype_std;
+		   __wcwidth_dense;
+		   __wcwidth_euc;
+		   __wcwidth_sb;
+		    _is_euc_fc;
+		    _is_euc_pc;
+		    _trwctype;
+		    # libthread privates
+		    _libc_prepare_atfork;
+		    _libc_child_atfork;
+		    _libc_parent_atfork;
+
+		   # Adding MSE private
+		   __btowc_sb;
+		   __btowc_euc;
+		   __btowc_dense;
+		   __wctob_sb;
+		   __wctob_euc;
+		   __wctob_dense;
+		   __mbsinit_gen;
+		   __mbrlen_sb;
+		   __mbrlen_gen;
+		   __mbrtowc_sb;
+		   __mbrtowc_euc;
+		   __mbrtowc_dense;
+		   __wcrtomb_sb;
+		   __wcrtomb_euc;
+		   __wcrtomb_dense;
+		   __mbsrtowcs_sb;
+		   __mbsrtowcs_euc;
+		   __mbsrtowcs_dense;
+		   __wcsrtombs_sb;
+		   __wcsrtombs_euc;
+		   __wcsrtombs_dense;
+
+		   __wcsftime_xpg5;
+		   __wcstok_xpg5;
+		   __fgetwc_xpg5;
+		   __getwc_xpg5;
+		   __getwchar_xpg5;
+		   __fputwc_xpg5;
+		   __putwc_xpg5;
+		   __putwchar_xpg5;
+		   __fgetws_xpg5;
+		   __fputws_xpg5;
+		   __ungetwc_xpg5;
+
+		   __mbst_get_nconsumed;
+		   __mbst_set_nconsumed;
+		   __mbst_get_consumed_array;
+		   __mbst_set_consumed_array;
+		   __mbst_get_locale;
+		   __mbst_set_locale;
+
+		   _ftrylockfile;
+
+		   _pthread_attr_getguardsize;
+		   _pthread_attr_setguardsize;
+		   _pthread_getconcurrency;
+		   _pthread_setconcurrency;
+		   _pthread_mutexattr_settype;
+		   _pthread_mutexattr_gettype;
+		   _pthread_rwlock_init;
+		   _pthread_rwlock_destroy;
+		   _pthread_rwlock_rdlock;
+		   _pthread_rwlock_tryrdlock;
+		   _pthread_rwlock_wrlock;
+		   _pthread_rwlock_trywrlock;
+		   _pthread_rwlock_unlock;
+		   _pthread_rwlockattr_init;
+		   _pthread_rwlockattr_destroy;
+		   _pthread_rwlockattr_getpshared;
+		   _pthread_rwlockattr_setpshared;
+
+	local:
+		    *;
+};

@@ -1,0 +1,85 @@
+#
+#ident	"@(#)mapfile-vers	1.1	97/07/11 SMI"
+
+#
+# Copyright (c) 1996 by Sun Microsystems, Inc.
+# All rights reserved.
+#
+# interface definition for usr/src/lib/libgen.
+
+SUNW_1.1 {
+	global:
+		advance;
+		bgets;
+		braelist;
+		___braelist;
+		braslist;
+		___braslist;
+		bufsplit;
+		compile;  
+		copylist;
+		copylist64;
+		eaccess;
+		gmatch;
+		isencrypt;
+		loc1;   
+		___loc1;   
+		loc2; 
+		___loc2; 
+		locs; 
+		___locs; 
+		mkdirp;
+		nbra;
+		___nbra;
+		p2close;
+		p2open;  
+		pathfind;
+		regerrno;
+		___regerrno;
+		reglength;
+		___reglength;
+		rmdirp; 
+		step; 
+		strcadd;
+		strccpy; 
+		strecpy;
+		streadd;
+		strfind;
+		strrspn;
+		strtrns;
+	local:	
+		*;
+};
+		
+SUNWprivate_1.1 {
+        global:
+		_bgets;
+		_bufsplit;
+		_braelist;
+		_braslist;
+		_compile;  
+		_copylist;
+		_copylist64;
+		_eaccess;
+		_gmatch;
+		_isencrypt;
+		_loc1;   
+		_loc2; 
+		_locs; 
+		_mkdirp;
+		_nbra;
+		_p2close;
+		_p2open;  
+		_pathfind;
+		_regerrno;
+		_reglength;
+		_rmdirp; 
+		_step; 
+		_strcadd;
+		_strccpy; 
+		_strecpy;
+		_streadd;
+		_strfind;
+		_strrspn;
+		_strtrns;
+};

@@ -1,0 +1,24 @@
+#
+# Copyright (c) 1997 by Sun Microsystems, Inc.
+# All rights reserved.
+#
+#ident	"@(#)pkginfo.tmpl	1.7	97/12/08 SMI"
+#
+# pkginfo: SA files that go into the root filesystem
+#
+ARCH="ISA"
+BASEDIR=/
+CATEGORY="system"
+CLASSES="none initd"
+DESC="Solstice Enterprise Agent files for root file system"
+MAXINST="1000"
+NAME="Solstice Enterprise Agent files for root file system"
+PKG="SUNWsacom"
+PRODNAME="SunOS"
+PRODVERS="RELEASE/VERSION"
+VENDOR="Sun Microsystems, Inc."
+VERSION="1.1,REV=0.0.0"
+PSTAMP="Solstice Enterprise Agent 1.0 - 03/14/98"
+SUNW_PKGTYPE="root"
+EMAIL=""
+HOTLINE="Please contact your local service provider"

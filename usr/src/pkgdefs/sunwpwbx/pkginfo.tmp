@@ -1,0 +1,25 @@
+#
+# Copyright (c) 1995 - 1998, by Sun Microsystems, Inc.
+# All rights reserved.
+#
+#ident	"@(#)pkginfo.tmpl	1.1	98/01/09 SMI"
+#
+# This required package information file describes characteristics of the
+# package, such as package abbreviation, full package name, package version,
+# and package architecture.
+#
+PKG="SUNWpwbx"
+NAME="Power Button Driver (64-bit)"
+ARCH="sparc.sun4u"
+VERSION="11.6.0,REV=0.0.0"
+CATEGORY="system"
+PRODNAME="SunOS"
+PRODVERS="RELEASE/VERSION"
+DESC="Driver for the power button"
+BASEDIR=/
+SUNW_PKGTYPE="root"
+VENDOR="Sun Microsystems, Inc."
+HOTLINE="Please contact your local service provider"
+EMAIL=""
+MAXINST="1000"
+CLASSES="none"

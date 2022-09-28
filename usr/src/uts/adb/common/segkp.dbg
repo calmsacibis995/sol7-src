@@ -1,0 +1,21 @@
+\
+\ Copyright (c) 1997, by Sun Microsystems, Inc.
+\ All rights reserved.
+\
+\"@(#)segkp.dbg	1.2	98/01/14 SMI"
+
+\ arg             : address of a struct segkp_segdata
+\ uses            :
+\ registers       :
+\ description     : prints the contents of segkp_segdata structure
+
+#include <sys/types.h>
+#include <vm/seg_kp.h>
+#include "dummy.h"
+
+\
+\
+segkp_segdata           kpsd_           segkp
+        anon                    hex
+        kpmap                   hex
+        hash                    hex

@@ -1,0 +1,137 @@
+
+   X5DSA-MIB DEFINITIONS ::= BEGIN
+
+   IMPORTS
+       OBJECT-TYPE, Counter32, Gauge32
+         FROM SNMPv2-SMI
+       DisplayString
+         FROM SNMPv2-TC
+--       DistinguishedName
+--         FROM APPLICATION-MIB;
+       ;
+
+--   x5dsa MODULE-IDENTITY
+--       LAST-UPDATED "9508170000Z"
+--       ORGANIZATION "SunSoft"
+--       CONTACT-INFO
+--         "        Olivier Reisacher
+--
+--          Postal: ICNC SunSoft, Inc.
+--                  32 chemin du vieux chene
+--                  38240 MEYLAN
+--                  France
+--
+--          Tel: (33) 76 41 42 46
+--          Fax: (33) 76 41 42 41
+--
+--          E-Mail: oreisach@france.sun.com"
+--       DESCRIPTION
+--         "This MIB module is used to monitor the Solstice X.500 DSA."
+--       ::= { private-mibs 4 }
+
+internet      OBJECT IDENTIFIER ::= { iso org(3) dod(6) 1 }
+directory     OBJECT IDENTIFIER ::= { internet 1 }
+mgmt          OBJECT IDENTIFIER ::= { internet 2 }
+experimental  OBJECT IDENTIFIER ::= { internet 3 }
+private       OBJECT IDENTIFIER ::= { internet 4 }
+enterprises   OBJECT IDENTIFIER ::= { private 1 }
+mib-2         OBJECT IDENTIFIER ::= { mgmt 1 }
+sun           OBJECT IDENTIFIER ::= { enterprises 42 }
+messaging     OBJECT IDENTIFIER ::= { sun 2 8 }
+private-mibs  OBJECT IDENTIFIER ::= { messaging 2 }
+x5dsa         OBJECT IDENTIFIER ::= { private-mibs 4 }
+
+
+--
+--	x5dsaReferenceTable
+--
+
+   x5dsaReferenceTable OBJECT-TYPE
+       SYNTAX SEQUENCE OF X5dsaReferenceEntry
+       MAX-ACCESS not-accessible
+       STATUS current
+       DESCRIPTION
+         "The table of references of the Solstice X.500 DSA."
+       ::= {x5dsa 1}
+
+   x5dsaReferenceEntry OBJECT-TYPE
+       SYNTAX X5dsaReferenceEntry
+       MAX-ACCESS not-accessible
+       STATUS current
+       DESCRIPTION
+         "A reference."
+       INDEX {x5dsaReferenceIndex}
+       ::= {x5dsaReferenceTable 1}
+
+   X5dsaReferenceEntry ::= SEQUENCE {
+       x5dsaReferenceIndex
+         INTEGER,
+       x5dsaReferenceType
+         INTEGER,
+       x5dsaReferenceNamingContext
+--         DistinguishedName,
+         DisplayString,
+       x5dsaReferenceSubordinate
+--         DistinguishedName,
+         DisplayString,
+       x5dsaReferenceName
+         DisplayString
+   }
+
+   x5dsaReferenceIndex OBJECT-TYPE
+       SYNTAX INTEGER
+       MAX-ACCESS not-accessible
+       STATUS current
+       DESCRIPTION
+         "A integer that uniquely identifies a reference."
+       ::= {x5dsaReferenceEntry 1}
+
+   x5dsaReferenceType OBJECT-TYPE
+       SYNTAX INTEGER {
+         superior(1),
+         cross(2),
+         subordinate(3),
+         non-specific-subordinate(4)
+       }
+       MAX-ACCESS read-only
+       STATUS current
+       DESCRIPTION
+         "The type of the reference."
+       ::= {x5dsaReferenceEntry 2}
+
+   x5dsaReferenceNamingContext OBJECT-TYPE
+--       SYNTAX DistinguishedName
+       SYNTAX DisplayString
+       MAX-ACCESS read-only
+       STATUS current
+       DESCRIPTION
+         "The naming context of the reference.
+          This field is valid for the following reference types:
+          - cross(2),
+          - subordinate(3),
+          - non-specific-subordinate(4)"
+       ::= {x5dsaReferenceEntry 3}
+
+   x5dsaReferenceSubordinate OBJECT-TYPE
+--       SYNTAX DistinguishedName
+       SYNTAX DisplayString
+       MAX-ACCESS read-only
+       STATUS current
+       DESCRIPTION
+         "The subordinate of the reference.
+          This field is valid for the following reference types:
+          - subordinate(3)"
+       ::= {x5dsaReferenceEntry 4}
+
+   x5dsaReferenceName OBJECT-TYPE
+       SYNTAX DisplayString
+       MAX-ACCESS read-only
+       STATUS current
+       DESCRIPTION
+         "The name of the MTA:
+         example: DSA $DSANAME on IP = $HOSTNAME"
+       ::= {x5dsaReferenceEntry 5}
+
+
+   END
+

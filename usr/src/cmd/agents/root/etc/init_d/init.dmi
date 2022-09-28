@@ -1,0 +1,41 @@
+#!/sbin/sh
+#
+# Copyright (c) 1996-1997 by Sun Microsystems, Inc.
+# All rights reserved.
+#
+#ident	"@(#)init.dmi	1.15	97/12/08 SMI"
+
+case "$1" in
+'start')
+	if [ -f /etc/dmi/conf/dmispd.conf -a -x /usr/lib/dmi/dmispd ]; then
+		/usr/lib/dmi/dmispd
+	fi
+
+	if [ -f /etc/dmi/conf/snmpXdmid.conf -a \
+	    -x /usr/lib/dmi/snmpXdmid ]; then
+
+                if /usr/bin/pgrep -x -u 0 snmpdx >/dev/null 2>&1; then
+			[ -z "$_INIT_UTS_NODENAME" ] && \
+			    _INIT_UTS_NODENAME=`/usr/bin/uname -n`
+			`/usr/lib/dmi/snmpXdmid -s $_INIT_UTS_NODENAME`
+                fi
+	fi
+
+	if [ -x /etc/dmi/ciagent/ciinvoke ]; then
+		dirents=`echo /etc/dmi/ciagent/*`
+		if [ "$dirents" != /etc/dmi/ciagent/ciinvoke ]; then
+			/etc/dmi/ciagent/ciinvoke
+		fi
+	fi
+	;;
+
+'stop')
+	/usr/bin/pkill -9 -x -u 0 '(snmpXdmid|dmispd)'
+	;;
+
+*)
+	echo "Usage: $0 { start | stop }"
+	exit 1
+	;;
+esac
+exit 0

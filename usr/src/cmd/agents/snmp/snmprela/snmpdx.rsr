@@ -1,0 +1,21 @@
+#ident "@(#)snmpd.snmprelay	1.3 25 Jan 1996 SMI"
+#
+#
+# Copyright 25 Jan 1996 Sun Microsystems, Inc. All Rights Reserved
+#
+
+#
+#  Configuration file of the SNMP Relay
+#  for the SNMP agent bundled with SNM
+#
+
+
+##########
+# agents #
+##########
+
+environment =
+{
+	max-agent-timeout = 999999999
+	poll-interval = 240
+}

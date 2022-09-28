@@ -1,0 +1,77 @@
+#
+#ident  "@(#)postinstall 1.6     97/12/05 SMI"
+#
+# Copyright (c) 1996-7 by Sun Microsystems, Inc.
+# All rights reserved.
+#
+
+# The following /devices entries are no longer in the SUNWcsd package:
+# 	qe, be, hme
+#	rts, smc
+#
+# They are created in the postinstall script of the SUWNcsr package.
+#
+#  The devices/pseudo entries for any new clone drivers that are needed
+#  for initial boot of Solaris are now created in this postinstall
+#  script rather than in the SUNWcsd package.  To create the 
+#  devices/pseudo entry for a new clone device, add it to the DRIVERS variable.
+#  This method is primarily intended for drivers transitioning from
+#  unbundled to bundled with Solaris.
+#
+
+case "${ARCH}" in
+    sparc)
+	DRIVERS="be qe hme rts"
+	TLDRIVERS="tl"
+	TLCLONEDRIVERS="ticots ticotsord ticlts"
+	;;
+    i386)
+	DRIVERS="smc rts"
+	TLDRIVERS="tl"
+	TLCLONEDRIVERS="ticots ticotsord ticlts"
+	;;
+esac
+
+	for i in $DRIVERS
+	do
+	    major_name=`eval "sed -n 's/^"$i" \(.*\)/\1/p' \
+		$BASEDIR/etc/name_to_major"`
+	    if [ "X$major_name" = "X" ] ; then
+# didn't find a number associated with the driver, so skip the rest.
+		continue
+	    fi
+	    DPATH="$BASEDIR/devices/pseudo/clone@0:$i"
+	    installf -c none $PKGINST $DPATH c 11 $major_name 0600 root sys \
+		 || exit 2
+	    removef $PKGINST $DPATH
+	    rm -f $DPATH
+	    mknod $DPATH c 11 $major_name || exit 2
+	    chown root $DPATH
+	    chgrp sys $DPATH
+	    chmod 0600 $DPATH
+	done
+	installf  -f $PKGINST || exit 2
+		
+        for i in $TLDRIVERS
+        do
+            major_name=`eval "sed -n 's/^"$i" \(.*\)/\1/p' \
+                $BASEDIR/etc/name_to_major"`
+            if [ "X$major_name" = "X" ] ; then
+# didn't find a number associated with the driver, so skip the rest.
+                continue
+            fi
+            counter=0
+            for j in $TLCLONEDRIVERS
+            do
+                DPATH="$BASEDIR/devices/pseudo/$i@0:$j"
+		removef $PKGINST $DPATH
+                rm -f $DPATH
+                mknod $DPATH c $major_name $counter || exit 2
+                chown root $DPATH
+                chgrp sys $DPATH
+                chmod 0666 $DPATH
+                counter=`expr $counter + 1`
+            done
+        done
+        removef -f $PKGINST || exit 2
+exit 0

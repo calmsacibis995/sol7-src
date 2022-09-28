@@ -1,0 +1,372 @@
+# Copyright 1988 - 12/06/96 Sun Microsystems, Inc. All Rights Reserved.
+#pragma ident  "@(#)Makefile.agents	2.54 96/12/06 Sun Microsystems"
+
+# Sun considers its source code as an unpublished, proprietary trade 
+# secret, and it is available only under strict license provisions.  
+# This copyright notice is placed here only to protect Sun in the event
+# the source is deemed a published work.  Disassembly, decompilation, 
+# or other means of reducing the object code to human readable form is 
+# prohibited by the license agreement under which this code is provided
+# to the user or company in possession of this copy.
+#
+# RESTRICTED RIGHTS LEGEND: Use, duplication, or disclosure by the 
+# Government is subject to restrictions as set forth in subparagraph 
+# (c)(1)(ii) of the Rights in Technical Data and Computer Software 
+# clause at DFARS 52.227-7013 and in similar clauses in the FAR and 
+# NASA FAR Supplement.
+
+# SunNet Manager -- Master makefile for agents
+
+#################################################################
+# This is 'stock' .. you should not have to touch it.
+# Please see the project's Makefile guru to make changes.
+#################################################################
+
+.KEEP_STATE:
+
+TARGET-ARCH=$(TARGET_ARCH:-%=%)
+ 
+TARGET-ARCH=$(TARGET_ARCH:-%=%)
+# Use $TARG_SYS for OS dependent variables
+#
+TARG_SYS:sh = \
+ (                                      \
+   UNAME=` uname -r 2>/dev/null` ||.;   \
+   case $UNAME in                       \
+   '') echo SUNOS;;                     \
+   4.*) echo SUNOS;;                    \
+   5.*) echo SVR4;;                     \
+   *)  echo SVR4;;                      \
+   esac                                 \
+ )
+ 
+ARCH_DEF:sh = \
+  (					\
+   UNAME=` uname -p 2>/dev/null` ||.;   \
+   case $UNAME in			\
+   '')echo ;;				\
+   i386)echo -Di386;;	                \
+   sparc) echo;;			\
+   *) echo ;; 				\
+   esac 				\
+  )
+
+OS_VER:sh = \
+ (                                      \
+   UNAME=` uname -r 2>/dev/null` ||.;   \
+   case $UNAME in                       \
+   '') echo ;;                          \
+   4.*) echo ;;                         \
+   5.0) echo ;;                         \
+   5.1) echo ;;                         \
+   5.2) echo ;;                         \
+   5.3) echo ;;                         \
+   5.4) echo -DSOL24HIGHER;;            \
+   5.5) echo -DSOL24HIGHER;;            \
+   5.6) echo -DSOL24HIGHER;;            \
+   *)   echo ;;                         \
+   esac                                 \
+ )
+ 
+SVR4_DEFINES    = -DSVR4 -DBOGEY $(ARCH_DEF) $(OS_VER)
+SUNOS_DEFINES   = -DSUNOS_4_X -DBOGEY
+_DEFINES        = $(SUNOS_DEFINES)
+DEFINES        += $($(TARG_SYS)_DEFINES) $($(TARG_SYS)_AGENT_DEFINES)
+
+_CFILES         = 
+CFILES         += $($(TARG_SYS)_CFILES)
+
+_CCFILES         = 
+CCFILES         += $($(TARG_SYS)_CCFILES)
+
+_HFILES         = 
+HFILES         += $($(TARG_SYS)_HFILES)
+ 
+ 
+SVR4_RANLIB     = true
+SUNOS_RANLIB    = ranlib
+_RANLIB         = $(SUNOS_RANLIB)
+RANLIB         += $($(TARG_SYS)_RANLIB)
+
+ 
+# libnetmgt version
+SVR4_LIBVERS     = 3
+SUNOS_LIBVERS    = 3.0
+_LIBVERS         = $(SUNOS_LIBVERS)
+LIBVERS          = $($(TARG_SYS)_LIBVERS)
+
+SVR4_MALLOC     = 
+SUNOS_MALLOC    = /usr/lib/debug/malloc.o
+_MALLOC         = $(SUNOS_MALLOC)
+
+SVR4_LIBS     +=
+SUNOS_LIBS    += 
+_LIBS           =
+LIBS            = $($(TARG_SYS)_LIBS)
+
+# use acc for SUNOS 4.X since cc is no longer in SparcCompilers
+# Solaris 2.6 integration doesn't want CC redefined.
+# SVR4_CC         = cc
+SUNOS_CC        = acc
+_CC             = $(SUNOS_CC)
+# Solaris 2.6 integration doesn't want CC redefined
+# CC              = $($(TARG_SYS)_CC)
+
+# currently unused
+XSTR= xstr
+
+# default include directries
+INCDIRS = -I. -I../../include
+
+# where libraries are stored
+LIBTOP = ../../lib
+
+# where comm services library lives
+NETLIBSRC = $(LIBTOP)/libnetmgt
+
+# Name of comm services library
+NETLIB = netmgt
+
+# gets defined later if we're debugging
+DDEBUG=
+
+# headers + yacc, lex, C & CC files make source code
+SCODE = $(HFILES) $(YFILES) $(LFILES) $(CFILES) $(CCFILES)
+
+# convert source file list into object file list
+OBJS = $(CFILES:.c=.o) $(CCFILES:.cc=.o)
+
+SHARED	= $(NAME:%=shared-$(TARGET-ARCH)/%)
+DEBUG	= $(NAME:%=debug-$(TARGET-ARCH)/%)
+PURIFY	= $(NAME:%=purify-$(TARGET-ARCH)/%)
+PROFILE	= $(NAME:%=profile-$(TARGET-ARCH)/%)
+SHARED-DEMO    = $(NAME:%=sharedemo-$(TARGET-ARCH)/%)
+
+# Modifications for demo
+$(SHARED-DEMO) := DEFINES += -DDEMO
+
+# modifications for shared
+$(SHARED) $(SHARED-DEMO) := CFLAGS += -O
+$(SHARED) 		 := DIR.v = shared-$(TARGET-ARCH)
+$(SHARED-DEMO) 		 := DIR.v = sharedemo-$(TARGET-ARCH)
+$(SHARED)  		 := SDIR.v = static-$(TARGET-ARCH)
+$(SHARED-DEMO)  		 := SDIR.v = staticdemo-$(TARGET-ARCH)
+$(SHARED) $(SHARED-DEMO) := LIBNAM.v =  \
+			    $(NETLIBSRC)/$(DIR.v)/lib$(NETLIB).so.$(LIBVERS)
+
+# modifications for debugging
+$(DEBUG) := CFLAGS += -g 
+$(DEBUG) := DDEBUG = -DDEBUG
+$(DEBUG)   		:= MALLOC = $($(TARG_SYS)_MALLOC)
+$(DEBUG)   		:= DIR.v = debug-$(TARGET-ARCH)
+$(DEBUG)   		:= SDIR.v = debug-$(TARGET-ARCH)
+$(DEBUG)   		:= LIBNAM.v = $(NETLIBSRC)/$(DIR.v)/lib$(NETLIB).a
+
+# modifications for make purify
+$(PURIFY) := CFLAGS += -g 
+$(PURIFY) := DDEBUG = -DDEBUG
+$(PURIFY)   		:= MALLOC = $($(TARG_SYS)_MALLOC)
+$(PURIFY)   		:= DIR.v = purify-$(TARGET-ARCH)
+$(PURIFY)   		:= SDIR.v = purify-$(TARGET-ARCH)
+$(PURIFY)   		:= LIBNAM.v = $(NETLIBSRC)/$(DIR.v)/lib$(NETLIB).a
+$(PURIFY)   		:= PURIFYTOOL = purify
+
+# modifications for "make profile"
+$(PROFILE) := CPPFLAGS += -DGPROF
+$(PROFILE) := CFLAGS += -pg -O
+$(PROFILE) 		   := DIR.v = profile-$(TARGET-ARCH)
+$(PROFILE) 		   := SDIR.v = profile-$(TARGET-ARCH)
+$(PROFILE) 		   := LIBNAM.v = $(NETLIBSRC)/$(DIR.v)/lib$(NETLIB)_p.a
+
+# Flags to pass to the C compiler
+CFLAGS += $(DEFINES) $(DDEBUG) $(INCDIRS)
+# hack because CC looks at CCFLAGS, not CFLAGS
+CCFLAGS += $(CFLAGS) 
+
+#
+# These are the locations of some support libraries, in case they are needed
+#
+SUNOS_LDFLAGS =  -L$(NETLIBSRC)/$(DIR.v) \
+	-L$(LIBTOP)/libpdbms/$(SDIR.v) \
+	-L$(LIBTOP)/librpc/$(SDIR.v) \
+	-L../../foreign/isam/$(TARGET-ARCH:-%=%) \
+	-L$(LIBTOP)/libncmodel/$(SDIR.v)
+
+SVR4_LDFLAGS =  -L$(NETLIBSRC)/$(DIR.v) \
+	-L$(LIBTOP)/libpdbms/$(SDIR.v) \
+	-L$(LIBTOP)/librpc/$(SDIR.v) \
+	-L../../foreign/isam/$(TARGET-ARCH:-%=%) \
+	-L$(LIBTOP)/libncmodel/$(SDIR.v) \
+	-R /opt/SUNWconn/snm/lib
+
+_LDFLAGS = $(SUNOS_LDFLAGS)
+
+LDFLAGS += $($(TARG_SYS)_LDFLAGS)
+
+SUNOS_LDLIBS.c = -nolib -l$(NETLIB) $(LIBS) -lm -lansi -Bstatic -lC -Bdynamic -lc
+#SUNOS_LDLIBS.c = -l$(NETLIB) $(LIBS) 
+SVR4_LDLIBS.c = -l$(NETLIB) $(LIBS) -lC -lC_mtstubs
+SUNOS_LDLIBS.cc = -nolib -l$(NETLIB) $(LIBS) -lm -lansi -Bstatic -lC -Bdynamic -lc
+SVR4_LDLIBS.cc =  -nolib -l$(NETLIB) $(LIBS) -lm -Bstatic -lC -Bdynamic -lc -lC_mtstubs
+_LDIBS.cc = $(SUNOS_LDLIBS.cc)
+LDLIBS.c = $(LDLIBS) $($(TARG_SYS)_LDLIBS.c)
+LDLIBS.cc = $(LDLIBS) $($(TARG_SYS)_LDLIBS.cc)
+
+# how to link C++ files -- we don't use CC since it's not flexible enough
+LINK.cc=$(PURIFYTOOL) $(CCC) $(CFLAGS) $(CPPFLAGS) $(LDFLAGS)
+
+# the usual targets -- default is first
+shared:  shared-$(TARGET-ARCH)  $(HFILES) $(SHARED)
+debug:   debug-$(TARGET-ARCH)   $(HFILES) $(DEBUG)
+purify:   purify-$(TARGET-ARCH)   $(HFILES) $(PURIFY)
+profile: profile-$(TARGET-ARCH) $(HFILES) $(PROFILE)
+share dynamic: shared
+profiled: profile
+all: shared
+bin: all
+demo: sharedemo-$(TARGET-ARCH) $(HFILES) $(SHARED-DEMO)
+
+# create the target directory
+shared-$(TARGET-ARCH) debug-$(TARGET-ARCH) purify-$(TARGET-ARCH) profile-$(TARGET-ARCH) :
+	@install -d $@
+
+# names of the target .o files (with target directory)
+VARIANTS.o = $(OBJS:%=$(DIR.v)/%)
+
+# how to link the files into an executable
+$(SHARED-DEMO) $(SHARED) $(DEBUG) $(PURIFY) $(PROFILE): $$(VARIANTS.o) $$(LIBNAM.v)
+	$(LINK.$(EXT)) $(VARIANTS.o) $(MALLOC) $(LDLIBS.$(EXT)) -o $@
+
+# SNM-custom compilation rules
+COMPILE.c=$(PURIFYTOOL) $(CC) $(CPPFLAGS) $(CFLAGS) -c
+COMPILE.cc=$(PURIFYTOOL) $(CCC) $(CPPFLAGS) $(CCFLAGS) -c
+
+# how to convert .c files into .o files
+$$(DIR.v)/%.o: %.cc
+	$(COMPILE.cc) -o $@ $<
+
+$$(DIR.v)/%.o: %.c
+	$(COMPILE.c) -o $@ $<
+
+debug-$(TARGET-ARCH)/%.o static-$(TARGET-ARCH)/%.o\
+ shared-$(TARGET-ARCH)/%.o profile-$(TARGET-ARCH)/%.o \
+ dmeo-$(TARGET-ARCH)/%.o purify-$(TARGET-ARCH)/%.o : %.$(EXT)
+	$(COMPILE.$(EXT)) -o $@ $<
+
+## other targets
+
+# install shared (dynamic) versions
+# for alpha, install debugging versions
+
+AGENTDIR = $(DESTDIR)/agents
+
+install-svr4: shared
+#	@strip shared-$(TARGET-ARCH)/$(NAME)
+	cp  shared-$(TARGET-ARCH)/$(NAME)  $(AGENTDIR)
+	$(IHOOK-$(TARGET-ARCH))
+
+install-debug-svr4: shared
+	cp  debug-$(TARGET-ARCH)/$(NAME)  $(AGENTDIR)
+	$(IHOOK-$(TARGET-ARCH))
+
+install-purify-svr4: shared
+	cp  purify-$(TARGET-ARCH)/$(NAME)  $(AGENTDIR)
+	$(IHOOK-$(TARGET-ARCH))
+
+install-sunos: shared
+	@install -d $(DESTDIR)/agents
+	install shared-$(TARGET-ARCH)/$(NAME) $(DESTDIR)/agents
+	$(IHOOK-$(TARGET-ARCH))
+
+install-debug-sunos: debug-$(TARGET-ARCH)/$(NAME)
+	@install -d $(DESTDIR)/agents
+	install $? $(DESTDIR)/agents
+	$(IHOOK-$(TARGET-ARCH))
+
+##
+## The rest of this is stock and should come from a project master makefile
+##
+
+clean:
+	$(RM) a.out core *.s *.o *.ln errs *.bak *.BAK *.d *.tcov *mon.out tags TAGS
+	$(RM) -r debug-$(TARGET-ARCH) shared-$(TARGET-ARCH) \
+	profile-$(TARGET-ARCH) purify-$(TARGET-ARCH) $(LINTDIR)
+	$(RM) -r sharedemo-$(TARGET-ARCH) 
+
+check:
+	-@sccs check
+
+# where linted files live
+LINTDIR = lint-$(TARGET-ARCH)
+$(LINTDIR):
+	@install -d $@
+
+$(LINTDIR)/%.ln: %.c
+	$(LINT.c) -u -i -o $@ $< | tee -a $(LINTOUT)
+
+# name of lint output file
+LINTOUT = $(LINTDIR)/lint.out
+$(LINTOUT):
+	touch $@
+
+# convert .c files into lint files
+LINTFILES = $(CFILES:%.c=$(LINTDIR)/%.ln) $(CCFILES:%.cc=$(LINTDIR)/%.ln)
+
+# option flags passed to lint
+LINTFLAGS += -bhz $(DEFINES) $(INCDIRS)
+#LINTLIBS += $(LIBTOP)/libnetmgt/$(LINTDIR)/llib-lnetmgt.ln
+LINTLIBS +=
+
+LIBSLINT = $(LINTLIBS) -lkvm -lm
+
+lint:	$(LINTDIR) $(LINTOUT) $(SCODE) $(LINTLIBS) $(LINTFILES)
+	$(LINT.c) $(LINTFILES) $(LIBSLINT) | tee -a $(LINTOUT)
+	echo "**** end of lint run on `date` ****" >> $(LINTOUT)
+
+tags:	$(SCODE)
+	$(RM) tags; touch tags
+	ctags -t -w $(SCODE)
+
+etags:	$(SCODE)
+	$(RM) TAGS; touch TAGS
+	etags -t $(SCODE)
+
+size:
+	@size $(DEBUG) $(SHARED) $(PURIFY) $(PROFILE) | grep -v "not found"
+
+# char/word/line counts
+wc: $(SCODE)
+	@wc $(SCODE)
+
+# source counts (any line with a semicolon in it)
+sc: $(SCODE)
+	@grep -c \; $(SCODE)
+
+# generate hardcopy
+PR = enscript -2r
+print:	$(SCODE)
+	@ls -ls | $(PR)
+	@$(PR) [Mm]akefile $(SUPP) $(SCODE)
+
+# cross reference
+# seems to choke on "void"
+CXREF= cxref
+xref:
+	$(CXREF) -c $(CPPFLAGS) $(CFLAGS) $(SCODE)
+
+# prettyprint
+# this is the closest to the Sun guidelines ("Joy Normal Form") as possible
+INDENTOPTS = -bap -bad -nbc -di0 -i4 -nfc1 -l80 -lc79 -nlp -sc
+indent:
+	for i in $(CFILES); do \
+		indent $(INDENTOPTS) $$i; done
+
+pretty: indent
+
+crunch:
+	#load -Dlint $(CFLAGS) $(CFILES)
+
+wcrunch:
+	#load -w -Dlint $(CFLAGS) $(CFILES)
+
+FORCE:

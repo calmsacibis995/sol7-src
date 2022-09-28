@@ -1,0 +1,74 @@
+#
+#pragma ident	"@(#)mapfile-vers 1.3	97/10/29 SMI"
+#
+# Copyright (c) 1996 by Sun Microsystems, Inc.
+# All rights reserved.
+#
+#
+# Generic interface definition for usr/src/lib/libplot/t300s.
+#
+# For information regarding the establishment of versioned definitions see:
+#	The Linker and Libraries Manual (version 2.5 or greater)
+# This is part of the Developers Guide in the Answerbook.  Specifically refer
+# to Chapter 2 under section "Defining Additional Symbols" through section
+# "Reducing Symbol Scope", and Chapter 5 "Versioning".
+#
+# For specific OSNET rules for the modification (evolution) of these version
+# definitions see:
+#	Policy for Shared Library Version Names and Interface Definitions
+
+
+SUNW_1.1 { # Solaris ABI as of Solaris 2.6
+	global:
+		arc;
+		box;
+		circle;
+		closepl;
+		closevt;
+		cont;
+		dot;
+		erase;
+		label;
+		line;
+		linemod;
+		move;
+		openpl;
+		openvt;
+		point;
+		space;
+};
+
+SUNWprivate_1.1 {
+	global:
+		inplot;
+		yconv;
+		xconv;
+		tobotleft;
+		reset;
+		xsc;
+		dist2;
+		obotx;
+		oboty;
+		deltx;
+		delty;
+		ysc;
+		swap;
+		scalex;
+		scaley;
+		outplot;
+		botx;
+		boty;
+		movep;
+		xnow;
+		ynow;
+		spew;
+		ITTY;
+		PTTY;
+		OUTF;
+		xoffset;
+		xscale;
+		yscale;
+		_init;
+		_fini;
+		_lib_version;
+};

@@ -1,0 +1,207 @@
+/* Copyright 10/21/96 Sun Microsystems, Inc. All Rights Reserved.
+*/
+
+#pragma ident  "@(#)Readme	1.3 96/10/21 Sun Microsystems"
+
+
+3.5  Writing a DMI Agent
+
+      The steps involved in developing an agent for DMI are as follows:
+
+	1.  Define which aspects of the product are to be managed.
+
+	2.  Write an MIF file describing the manageable features.
+
+	3.  Write a component instrumentation code (CiAgent) providing the
+	    service layer with information about the component.
+
+	4.  Determine what errors, exceptions, or problems are to 
+	    be forwarded to the service layer as indicators.
+
+	5.  Install the MIF into the MIF database and register the 
+	    component with the Service Provider. If the user wants
+	    to integrate the DMI with SNMP, defer this step and
+	     refer to section 3.5.2,  "Integrating with SNMP."
+
+
+	3.5.1  Components of DMI SDK
+
+	The Solstice Enterprise Agent toolkit includes the following 
+	components:
+
+	*  Miftomib compiler - this utility translates DMI MIF files 
+	   to SNMP format and generates a "map" configuration file. 
+	   The MIB is used by the Network Management application (Sun 
+	   Net Manager, Enterprise Manager, etc.) to manage the 
+	   DMI-based component MIF. The map file is used to map SNMP 
+	   based MIB variables to DMI-based MIF attributes.
+
+	*  libdmi - a core library of DMI service providers. It must 
+	   be linked to the user's DMI management and component codes.
+
+	*  libci - a library that provides Component Interface API 
+	   functions.
+
+	*  libmi - a library that provides Management Interface API 
+	   functions.
+
+	*  standard MIF file - a file that contains a description of 
+	   the service provider.
+
+	*  stub code - contains function declaration templates. These 
+	   templates are used as a starting point for users to add 
+	   their own functions. 
+
+	*  MIF file, ci code, mi code, and makefile samples. 
+
+
+	3.5.2 Integrating with SNMP
+	
+	The steps involved in integrating with SNMP are as follows:
+ 
+	1. Use miftomib to create an MIB file and MAP file.
+ 
+	2. Integrate the MIB file with the Network Manager (if the 
+	   network management platform requires it).
+ 
+	3. Install the MIF into the MIF database and register the 
+           component with the Service Provider.
+
+
+
+                   How to write a Ci Agent
+                   =======================
+
+There are several ways to write a component instrumentation code. 
+
+1, Install the component 
+======================== 
+
+To install a component, the user must connect to the server provider
+first by defining the server type as MISERVER in the rpc connect
+parameter. And then, DmiAddComponent is called to install a particular
+component described in a mif file.  Upon return, the component is
+assigned a unique ID by the Service Provider. Different components can
+use the same mif file.
+
+	// define RPC binding parameters
+	ConnectIN connectin;
+	DmiRpcHandle dmi_rpc_handle;
+
+	connectin.rpctype = ONC;
+	connectin.nettype = "netpath";
+	if(hostname != NULL)
+		connectin.host = hostname;
+	else
+		connectin.host = "localhost";		
+	connectin.servertype = MISERVER;
+
+
+	// Connect to Management Interface Server,
+	// install the component
+
+	if (ConnectToServer(&connectin, &dmi_rpc_handle) == FALSE)
+		exit(-1);
+
+	// install namedir.mif
+	DmiAddComponentIN addcompIn;
+	DmiAddComponentOUT addcompOut;
+	DmiFileDataList_t filedatalist;
+	filedatalist.list.list_len = 1;
+	filedatalist.list.list_val = (DmiFileDataInfo_t *)
+		malloc(sizeof(DmiFileDataInfo_t)*
+			   filedatalist.list.list_len);
+	filedatalist.list.list_val[0].fileType = DMI_MIF_FILE_NAME;
+	filedatalist.list.list_val[0].fileData =
+		newDmiOctetStringFromString("namedir.mif"); 
+	addcompIn.handle = 0;
+	addcompIn.fileData = &filedatalist;
+	
+	DmiAddComponent(addcompIn,&addcompOut,&dmi_rpc_handle); 
+	if (addcompOut.error_status != DMIERR_NO_ERROR) {
+		trace("\n\n"); 
+		dmi_error(addcompOut.error_status);
+		error("install namedir.mif failed\n");
+		exit(1); 
+	}
+	trace("installed namedir.mif as comp %d\n", addcompOut.compId);
+	DisconnectToServer(&dmi_rpc_handle);
+	
+
+2, Register the component
+=========================
+After a component is installed in the Service Provider, the component
+code performs ciregister and ciunregister. It is recommended, but optional, 
+that registration be performed right after installation in the same 
+program. 
+
+To register or unregister a component, it must first be connected to
+service provider by defining the server type to CISERVER in the rpc
+connect parameters. Then, DmiRegisterCi or DmiUnRegisterCi is called.
+
+	// Connect to Component Interface Server,
+	// register the component just installed
+	connectin.servertype = CISERVER;
+	if (ConnectToServer(&connectin, &dmi_rpc_handle) == FALSE)
+		exit(-1);
+
+	DmiRegisterCiIN regciIn;
+	DmiRegisterCiOUT regciOut;
+	DmiRegisterInfo reginfo; 
+	regciIn.regInfo = &reginfo;
+
+	// we register the same component just installed
+	reginfo.compId = addcompOut.compId;
+
+	// we have to define which attribute and group
+	// the component code is going to manage.
+	// Here, the ci code manages all the attributes in group 2
+	DmiAccessDataList_t accessdata;
+	accessdata.list.list_len = 4;
+	accessdata.list.list_val = (DmiAccessData_t *)
+		malloc(sizeof(DmiAccessData_t)*accessdata.list.list_len);
+	for (int i= 0;  i< accessdata.list.list_len; i++) {
+		accessdata.list.list_val[i].groupId = 2;
+		accessdata.list.list_val[i].attributeId = (i+1)*10;
+	}
+	
+	// we have to get the callback function entry point,
+	// otherwise, SP is not able to call ci callback functions. 
+	reginfo.prognum = reg_ci_callback();
+	reginfo.accessData = &accessdata; 
+	DmiRegisterCi(regciIn, &regciOut, &dmi_rpc_handle);
+	if (regciOut.error_status == DMIERR_NO_ERROR) {
+		trace("register comp %d at SP\n", reginfo.compId);
+		// wait for the ci callbacks
+		svc_run(); 
+	}
+	else {
+		dmi_error(regciOut.error_status);
+		error("register comp %d fail\n", reginfo.compId); 
+		exit(1);
+	}
+
+3, Callback functions
+=====================
+
+Please note, function reg_ci_callback is called before DmiRegisterCi.
+The function reg_ci_callback returns a program number indicating the
+entry point of ci callback functions. Ci callback functions are
+supplied by the component instrumentation code developer. The
+developer's toolkit provides templates of these callback
+functions. There are seven ci callback functions:
+
+CiGetAttribute
+
+CiGetNextAttribute
+
+CiSetAttribute
+
+CiReserveAttribute
+
+CiReleaseAttribute
+
+CiAddRow
+
+CiDeleteRow
+

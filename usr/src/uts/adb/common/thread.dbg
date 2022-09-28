@@ -1,0 +1,107 @@
+\
+\ Copyright (c) 1997, by Sun Microsystems, Inc.
+\ All rights reserved.
+\
+\"@(#)thread.dbg	1.34	98/01/19 SMI"
+
+#include <sys/thread.h>
+#include "dummy.h"
+
+\
+\
+_kthread		t_		thread
+{adb_inline_begin}
+.>D;<_>U;1>_
+<D+{OFFSET, t_link}=""
+{adb_inline_end}
+	link			hex
+	stk			hex
+	startpc			hex
+	bound_cpu		hex
+	affinitycnt		sdecimal
+	bind_cpu		sdecimal
+	flag			hex
+	proc_flag		hex
+	schedflag		hex
+	preempt			hex
+	preempt_lk		hex
+	state			hex
+	pri			sdecimal
+	epri			sdecimal
+{adb_inline_begin}
+<D+{OFFSET, t_pcb.val[0]}/n"pc"16t"sp"16tn{HEX}{HEX}
+<D+{OFFSET, t_wchan0}=""
+{adb_inline_end}
+	wchan0			hex
+	wchan			hex
+	sobj_ops		hex
+	cid			hex
+	clfuncs			hex
+	cldata			hex
+	ctx			hex
+	lofault			hex
+	onfault			hex
+	nofault			hex
+	swap			hex
+	lock			hex
+	delay_cv		hex
+	cpu			hex
+	intr			hex
+	did			sdecimal
+	tnf_tpdp		hex
+	tid			sdecimal
+	alarmid			hex
+	realitimer		.itimerval
+{adb_inline_begin}
+<D+{OFFSET, t_itimerid}=""
+{adb_inline_end}
+	itimerid		hex
+	sigqueue		hex
+	sig			hex
+	hold			hex
+	forw			hex
+	back			hex
+	lwp			hex
+	procp			hex
+	next			hex
+	prev			hex
+	trace			hex
+	whystop			sdecimal
+	whatstop		sdecimal
+	dslot			sdecimal
+	pollstate		hex
+	cred			hex
+	lbolt			hex
+	sysnum			sdecimal
+	pctcpu			hex
+	lockp			hex
+	oldspl			hex
+	pre_sys			hex
+	disp_queue		hex
+	disp_time		sdecimal
+	kpri_req		sdecimal
+	_tu._ts._t_astflag	hex		astflag
+	_tu._ts._t_sig_check	hex		sig_check
+	_tu._ts._t_post_sys	hex		post_sys
+	_tu._ts._t_trapret	hex		trapret
+	waitrq			hex
+	mstate			sdecimal
+	rprof			hex
+	prioinv			hex
+	ts			hex
+	mmuctx			hex
+	tsd			hex
+	stime			hex
+	door			hex
+	plockp			hex
+	handoff			hex
+	schedctl		hex
+	cpupart			hex
+	bind_pset		sdecimal
+	copyops			symbolic
+	stkbase			hex
+	red_pp			hex
+{adb_inline_begin}
+<U>_
+<D+{SIZEOF}=""
+{adb_inline_end}

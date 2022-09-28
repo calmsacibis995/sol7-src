@@ -1,0 +1,148 @@
+#
+#
+#pragma ident   "@(#)mapfile-vers 1.18     97/12/18 SMI"
+#
+# Copyright (c) 1996 by Sun Microsystems, Inc.
+# All rights reserved.
+#
+#
+# Generic interface definition for usr/src/lib/libresolv2 (BIND 4.9.3).
+#
+# For information regarding the establishment of versioned definitions see:
+#	The Linker and Libraries Manual (version 2.5 or greater)
+# This is part of the Developers Guide in the Answerbook.  Specifically refer
+# to Chapter 2 under section "Defining Additional Symbols" through section
+# "Reducing Symbol Scope", and Chapter 5 "Versioning".
+#
+# For specific OSNET rules for the modification (evolution) of these version
+# definitions see:
+#	Policy for Shared Library Version Names and Interface Definitions
+
+
+SUNW_2.1 {
+	global:
+		_getlong;
+		_getshort;
+		_res;
+		__dn_skipname;
+		__fp_query;
+		__hostalias;
+		__p_cdname;
+		__p_class;
+		__p_query;
+#		__p_rr;
+		__p_time;
+		__p_type;
+		__putlong;
+		dn_comp;
+ 		dn_expand;
+ 		h_errno;
+ 		res_init;
+  		res_mkquery;
+ 		res_send;
+ 		res_search;
+ 		res_query;
+ 		res_querydomain;
+		res_update;		# nsupdate
+	local:
+		*;
+};
+
+SUNWprivate_2.1 {
+	global:
+		__evSelectFD;		# in.named
+		__evClearTimer;		# in.named
+		inet_aton;		# in.named
+		__log_category_is_active;	# in.named
+		__evGetNext;		# in.named
+		evPollfdAdd;		# in.named
+		evPollfdDel;		# in.named
+		__sym_ston;		# in.named
+		__p_secstodate;		# in.named
+		__log_new_file_channel;	# in.named
+		inet_pton;		# in.named
+		daemon;			# in.named
+		__evAddTime;		# in.named
+		__ns_name_pton;		# in.named
+		res_mkupdrec;		# in.named
+		__log_free_context;	# in.named
+		tree_init;		# in.named
+		__evDeselectFD;		# in.named
+		__p_class_syms;		# in.named
+		inet_nsap_addr;	# in.named
+		__b64_ntop;		# in.named
+		__evCancelRW;		# in.named
+		__evCancelConn;		# in.named
+		__evConnect;		# in.named
+		__ns_name_ntop;		# in.named
+# 		inet_ntoa;		# in.named
+		__log_get_stream;	# in.named
+		inet_ntop;		# in.named
+		__log_option;		# in.named
+		__p_type_syms;		# in.named
+		__log_add_channel;	# in.named
+		__log_new_context;	# in.named
+		__evNowTime;		# in.named
+		__evListen;		# in.named
+		__evCreate;		# in.named
+		__log_vwrite;		# in.named
+		inet_nsap_ntoa;	# in.named
+		__ns_get16;		# in.named
+		__log_close_stream;	# in.named
+		__b64_pton;		# in.named
+		__log_new_syslog_channel;	# in.named
+		__p_section;		# in.named
+		__evConsTime;		# in.named
+		__dn_count_labels;	# in.named
+		__evDo;			# in.named
+		__evConsIovec;		# in.named
+		__log_write;		# in.named
+		tree_add;		# in.named
+		__evRead;		# in.named
+		__evSetDebug;		# in.named
+		__log_new_null_channel;	# in.named
+		__evWaitFor;		# in.named
+		__evDispatch;		# in.named
+		tree_trav;		# in.named
+		__log_inc_references;	# in.named
+		__ns_parse_ttl;		# in.named
+		__evResetTimer;		# in.named
+		tree_srch;		# in.named
+		__evSetTimer;		# in.named
+		__log_open_stream; 	# in.named
+		__ns_get32;		# named-xfer
+		__ns_sprintrrf;          # nslookup
+		__ns_put16;            # nslookup
+		__ns_parserr;          # nslookup
+		__ns_initparse;        # nslookup
+		_ns_flagdata;          # nslookup
+		__ns_sprintrr;         # nslookup
+		__sym_ntop;            # nslookup             
+		__sym_ntos;            # nslookup
+		__fp_nquery;		# in.named, named-xfer
+		__fp_resstat;		# dig
+		__loc_aton;		# in.named
+		__loc_ntoa;		# in.named
+		__putshort;		# in.named, named-xfer, BIND4.9.3 tools
+		__res_dnok;		# in.named
+		__res_hnok;		# in.named
+		__res_mailok;		# in.named
+		__res_nameinquery;	# in.named
+		__res_ownok;		# in.named
+		__res_randomid;		# in.named
+#		__res_set_no_hosts_fallback;	# nss_dns.so.1
+		_res_resultcodes;	# nslookup, dig
+		_res_opcodes;		# nslookup
+		h_errlist;		# dnsquery
+		herror;			# nslookup
+#		inet_aton;		# in.named, named-xfer, BIND4.9.3 tools
+#		inet_ntop;		# in.named
+#		inet_pton;		# in.named
+#		inet_nsap_addr;		# in.named
+#		inet_nsap_ntoa;		# in.named, named-xfer, nslookup, dig
+		res_gethostbyaddr;	# host, nss_dns.so.1
+		res_gethostbyname;	# hotjava, named-xfer, BIND4.9.3 tools
+		res_gethostent;		# nss_dns.so.1
+		res_sethostent;		# nss_dns.so.1
+		res_endhostent;		# nss_dns.so.1
+};

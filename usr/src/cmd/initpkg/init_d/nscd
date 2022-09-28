@@ -1,0 +1,30 @@
+#!/sbin/sh
+#
+# Copyright (c) 1994, 1997 by Sun Microsystems, Inc.
+# All rights reserved.
+#
+#ident	"@(#)nscd	1.7	97/12/08 SMI"
+
+case "$1" in
+start)
+	[ -f /etc/nscd.conf -a -f /usr/sbin/nscd ] || exit 0
+	secure=""
+
+	for table in `/usr/bin/egrep '^(passwd|group|hosts):.*nisplus' \
+	    /etc/nsswitch.conf 2>/dev/null | /usr/bin/cut -d: -f1`; do
+		/usr/lib/nscd_nischeck $table || secure="$secure -S $table,yes"
+	done
+
+	/usr/sbin/nscd$secure &
+	;;
+
+stop)
+	[ -f /usr/sbin/nscd ] && /usr/sbin/nscd -K
+	;;
+
+*)
+	echo "Usage: $0 { start | stop }"
+	exit 1
+	;;
+esac
+exit 0

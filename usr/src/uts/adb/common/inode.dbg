@@ -1,0 +1,59 @@
+\
+\ Copyright (c) 1997, by Sun Microsystems, Inc.
+\ All rights reserved.
+\
+\"@(#)inode.dbg	1.13	98/02/01 SMI"
+
+#include <sys/types.h>
+#include <sys/t_lock.h>
+#include <sys/time.h>
+#include <sys/vnode.h>
+#include <vm/seg.h>
+#include <sys/fs/ufs_inode.h>
+#include "dummy.h"
+
+\
+\
+inode                   i_
+{adb_inline_begin}
+.>z
+<z+{OFFSET, i_chain}=""
+{adb_inline_end}
+        chain                   hex
+        ic                      .dino
+{adb_inline_begin}
+<z+{OFFSET, i_vnode}=""
+{adb_inline_end}
+        vnode                   .vnode
+{adb_inline_begin}
+<z+{OFFSET, i_devvp}=""
+{adb_inline_end}
+        devvp                   hex
+        flag                    hex
+        dev                     hex
+        number                  sdecimal
+        diroff                  hex
+        ufsvfs                  hex
+        dquot                   hex
+        rwlock                  .rwlock
+{adb_inline_begin}
+<z+{OFFSET, i_contents}=""
+{adb_inline_end}
+        contents                .rwlock
+{adb_inline_begin}
+<z+{OFFSET, i_nextr}=""
+{adb_inline_end}
+        nextr                   hex
+        freef                   hex
+        freeb                   hex
+        vcode                   sdecimal
+        mapcnt                  sdecimal
+        map                     hex
+        rdev                    hex
+        delaylen                sdecimal
+        delayoff                hex
+        nextrio                 hex
+        writes                  sdecimal
+        wrcv                    hex
+        doff                    hex
+        ufs_acl                 hex

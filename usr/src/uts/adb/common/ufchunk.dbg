@@ -1,0 +1,16 @@
+\
+\ Copyright (c) 1997, by Sun Microsystems, Inc.
+\ All rights reserved.
+\
+\"@(#)ufchunk.dbg	1.6	98/01/19 SMI"
+
+#include <sys/user.h>
+#include "dummy.h"
+
+\
+\
+uf_entry        ""      ufchunk
+{adb_inline_begin}
+.>s
+<s,<9$<ufchunk.nxt
+{adb_inline_end}

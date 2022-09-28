@@ -1,0 +1,41 @@
+#
+# Copyright (c) 1996, Sun Microsystems, Inc.
+# All rights reserved.
+#
+#ident	"@(#)power.conf	1.10	98/01/23 SMI"
+#
+# Power Management Configuration File
+#
+# Putting an entry in this file will only be effective if the driver
+# for the device supports device power management. After the file is
+# modified, pmconfig(1M) command must be executed to activate the new
+# change.
+#
+# Fields must be separated by white space or semicolons
+# Note that physical dependents are automatically considered
+# by the power management framework.
+
+# Name			Threshold(s)	Logical Dependent(s)
+/dev/kbd		1800
+/dev/mouse		1800	
+
+# NOTE: The entries below are only used when no windowing environment
+# is running.  When running windowing environment, monitor power
+# management is controlled by the Screen Saver functions.
+
+/dev/fb			0 0		/dev/kbd /dev/mouse
+
+# Auto-Shutdown		Idle(min)	Start/Finish(hh:mm)	Behavior
+autoshutdown		30		9:00 9:00		unconfigured
+
+# Auto-Shutdown Command
+autoshutdown-cmd	/usr/openwin/bin/sys-suspend -n -d :0
+
+# In some systems, pressing the front-panel power button executes the
+# following command.
+power-button-cmd	/usr/openwin/bin/sys-suspend -h -d :0
+
+# SparcStation Voyager, powered by battery, executes the following command
+# when the battery is low.
+low-battery-cmd		/usr/openwin/bin/sys-suspend -f -d :0
+

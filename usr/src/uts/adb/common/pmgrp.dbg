@@ -1,0 +1,32 @@
+\
+\ Copyright (c) 1997, by Sun Microsystems, Inc.
+\ All rights reserved.
+\
+\"@(#)pmgrp.dbg	1.9	98/01/19 SMI"
+
+#include <sys/param.h>
+#include <sys/types.h>
+#if defined(sun4) || defined(sun4c) || defined(sun4e)
+#include <vm/hat_sunm.h>
+#endif
+#include "dummy.h"
+
+\
+\
+pmgrp
+{adb_inline_begin}
+.>z
+<z/n"num"8tnx
+<z+{OFFSET, pmg_keepcnt}=""
+{adb_inline_end}
+        pmg_keepcnt             decimal
+        pmg_as                  hex
+        pmg_base                hex
+        pmg_next                hex
+        pmg_prev                hex
+{adb_inline_begin}
+<z+{OFFSET, pmg_hme[0].hme_page}/n"hme0"16tn4X
+<z+{OFFSET, pmg_pte[0]}/n"pte0"16tnX
+<z+{OFFSET, pmg_sme}/n"sme"16tnX
+<z+{SIZEOF}=""
+{adb_inline_end}

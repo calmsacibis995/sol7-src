@@ -1,0 +1,86 @@
+# Copyright 12/11/96 Sun Microsystems, Inc. All Rights Reserved.
+#pragma ident  "@(#)snmpdx.acl	1.5 96/12/11 Sun Microsystems"
+
+#
+#  Configuration file of an SNMP agent
+#
+
+
+##################
+# access control # 
+##################
+
+# The list of community names needed for read/write access
+# to the entire MIB.
+# If the list is empty, the only valid community name is "public"
+# and its access type is read-only
+
+acl = {
+        {
+                communities = public, private
+                access = read-write
+                managers = *
+        }
+
+}
+
+
+#communities = {
+#public		read-write
+#	private		read-write
+#}
+
+# The list of hosts that can send SNMP queries.
+# If this list is empty, all the hosts are allowed to
+# send SNMP queries.
+
+#managers = {
+#}
+
+
+###################
+# trap parameters #
+###################
+
+trap = {
+#  {
+#	trap-community = SNMP-trap
+#	hosts = hubble, snowbell
+#	{
+#	  enterprise = "sun"
+#	  trap-num = 0, 1, 2-5, 6-16
+# 	}
+#	{
+#	  enterprise = "3Com"
+#	  trap-num = 4
+# 	}
+#	{
+#	  enterprise = "snmp"
+#	  trap-num = 0, 2, 5
+# 	}
+#  }
+#  {
+#	trap-community = jerry-trap
+#	hosts = jerry, nanak, hubble
+#	{
+#	  enterprise = "sun"
+#	  trap-num = 1, 3
+# 	}
+#	{
+#	  enterprise = "snmp"
+#	  trap-num = 1-3
+# 	}
+#  }
+}
+
+# The community name to be used in traps.
+
+#trap-community = SNMP-trap
+
+# The list of hosts where traps should be sent.
+
+#trap-recipients =
+#{
+#hubble
+#}
+

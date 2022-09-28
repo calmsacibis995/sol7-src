@@ -1,0 +1,27 @@
+\
+\ Copyright (c) 1997, by Sun Microsystems, Inc.
+\ All rights reserved.
+\
+\"@(#)msgbuf.wrap.dbg	1.5	98/01/28 SMI"
+
+#include "dummy.h"
+
+\ all msgbuf accesses are fixed-width (32-bit) accesses.
+\
+__dummy         ""      msgbuf.wrap
+{adb_inline_begin}
+#if defined(sparcv9)
+*(msgbuf+0t12)>/i/M
+*(msgbuf+0t4)>/i/N
+#else
+*(msgbuf+0t12)>M
+*(msgbuf+0t4)>N
+#endif
+.+<M,(<N-<M)/c
+#if defined(sparcv9)
+*(msgbuf+0t8)>/i/P
+#else
+*(msgbuf+0t8)>P
+#endif
+msgbuf+0t16,<P/c
+{adb_inline_end}

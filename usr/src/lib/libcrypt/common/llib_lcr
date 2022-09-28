@@ -1,0 +1,62 @@
+/* LINTLIBRARY */
+/* PROTOLIB1 */
+
+/*
+ * Copyright (c) 1997 by Sun Microsystems, Inc. 
+ * All rights reserved. 
+ */ 
+#pragma ident	"@(#)llib-lcrypt	1.1	97/03/12 SMI"
+
+#include <stdio.h>
+#include <sys/types.h>
+#include <des/softdes.h>
+#include <des/desdata.h>
+#include <sys/des.h>
+
+/*
+ * usr/src/lib/libcrypt
+ */
+
+/* crypt.c */
+void setkey(char *key);
+void encrypt(char *block, int edflag);
+char *crypt(char *pw, char *salt);
+
+/* cryptio.c */
+int _run_setkey(int p[2], char *keyparam);
+int run_setkey(int p[2], char *keyparam);
+int _run_crypt(long offset, char *buffer, unsigned int count, int p[2]);
+int run_crypt(long offset, char *buffer, unsigned int count, int p[2]);
+int _makekey(int b[2]);
+int makekey(int b[2]);
+int crypt_close_nolock(int p[2]);
+int _crypt_close(int p[2]);
+int crypt_close(int p[2]);
+
+/* des.c */
+int cbc_crypt(char *key, char *buf, unsigned len, unsigned mode, char *ivec);
+int ecb_crypt(char *key, char *buf, unsigned len, unsigned mode);
+
+/* des_crypt.c */
+void _des_setkey(char *key);
+void des_setkey(char *key);
+void _des_encrypt(char *block, int edflag);
+void des_encrypt(char *block, int edflag);
+char *des_crypt(char *pw, char *salt);
+
+/* des_decrypt.c */
+void _des_decrypt1(char *block, char *L, char *IP, char *R, char *preS,
+			char *E, char KS[][48], char S[][64], char *f,
+			char *tempL, char *P, char *FP);
+
+/* des_encrypt.c */
+void des_encrypt1(char *block, char *L, char *IP, char *R, char *preS,
+			char *E, char KS[][48], char S[][64], char *f,
+			char *tempL, char *P, char *FP);
+void _des_encrypt1(char *block, char *L, char *IP, char *R, char *preS,
+			char *E, char KS[][48], char S[][64], char *f,
+			char *tempL, char *P, char *FP);
+
+/* des_soft.c */
+void des_setparity(char *p);
+int __des_crypt(char *buf, unsigned len, struct desparams *desp);

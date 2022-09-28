@@ -1,0 +1,37 @@
+SUNW_1.1 {
+	global:
+		SSAMain; 
+		SSARegSubagent; 
+		SSAGetTrapPort; 
+		SSASubagentOpen; 
+		_SSASendTrap; 
+		SSAAgentIsAlive;
+		SSARegSubtree; 
+		numTrapElem;
+		callItem;
+		trapTableMap;
+		trapBucket;
+		numCallItem;
+	local:
+		*;
+};
+
+SUNWprivate_1.1 {
+	global: 
+		load_enterprise_oid; 
+		delete_manager_list; 
+		access_policy_list_free; 
+		delete_community_list; 
+		trace_managers; 
+		mem_filter_join; 
+		trap_filter_action; 
+		access_server_add_tail; 
+		sub_member_free; 
+		agent_process; 
+		efilter_add; 
+		manager_add; 
+		community_attach; 
+		trace_filter; 
+	local: 
+		*; 
+}; 

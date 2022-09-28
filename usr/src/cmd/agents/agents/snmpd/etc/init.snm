@@ -1,0 +1,40 @@
+#!/sbin/sh
+# Copyright 1988 - 08/29/96 Sun Microsystems, Inc. All Rights Reserved.
+#pragma ident  "@(#)init.snmpd	1.21 96/08/29 Sun Microsystems"
+
+#
+# Return pid of named process in variable "pid"
+#
+pidproc() {
+	pid=`/usr/bin/ps -e |
+		/usr/bin/grep $1 |
+		/usr/bin/sed -e 's/^  *//' -e 's/ .*//'`
+}
+
+#
+# Kill named process(es)
+#
+killproc() {
+	pidproc $1
+	[ "$pid" != "" ] && kill -9 $pid
+}
+
+case "$1" in
+
+'start')
+	if [ -f /etc/opt/SUNWconn/SSA/snmp/agents/snmpd.conf -a -x /opt/SUNWconn/SSA/snmp/bin/snmpd ]; then
+			echo "Starting snmpd  ...\n"
+			/opt/SUNWconn/SSA/snmp/bin/snmpd 
+		fi
+
+	;;
+'stop')
+
+	killproc snmpd 
+	;;
+
+*)
+	echo "Usage: /etc/init.d/init.snmpd { start | stop }"
+	;;
+esac
+exit 0

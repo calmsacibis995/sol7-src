@@ -1,0 +1,218 @@
+// Copyright 08/14/96 Sun Microsystems, Inc. All Rights Reserved.
+//pragma ident  "@(#)sp.mif 1.2 96/08/14 Sun Microsystems"
+//
+
+Language  = "English"
+Start Component
+    Name = "DMTF Developers -  Direct Interface Version"
+    Description = "This is a list of the people who actually wrote the code."
+
+    start group
+        name    = "ComponentID"
+        id      = 1
+        class   = "DMTF|ComponentID|1.0"
+        description = "This group defines attributes common to all components."
+                      "This group is required."
+
+        start attribute
+            name    = "Manufacturer"
+            id      = 1
+            description = "The name of the manufacturer that produces this component."
+            access  = READ-ONLY
+            storage = COMMON
+            type    = STRING(64)
+            value   = "SunSoft"
+        end attribute
+
+        start attribute
+            name    = "Product"
+            id      = 2
+            description = "The name of the component."
+            access  = READ-ONLY
+            storage = COMMON
+            type    = STRING(64)
+            value   = "DMTF Demonstration"
+        end attribute
+
+        start attribute
+            name    = "Version"
+            id      = 3
+            description = "The version for the component."
+            access  = READ-ONLY
+            storage = COMMON
+            type    = STRING(64)
+            value   = "Version 1.0"
+        end attribute
+
+        start attribute
+            name    = "Serial Number"
+            id      = 4
+            description = "The serial number for this instance of this component."
+            access  = READ-ONLY
+            storage = SPECIFIC
+            type    = STRING(64)
+            value   = "1.00000"
+        end attribute
+
+        start attribute
+            name    = "Installation"
+            id      = 5
+            description = "The time and date of the last install of this component."
+            access  = READ-ONLY
+            storage = SPECIFIC
+            type    = DATE
+            value   = "19940603090000.000000+003"
+        end attribute
+
+        start attribute
+            name    = "Verify"
+            id      = 6
+            description = "Verification."
+            access  = READ-ONLY
+            storage = SPECIFIC
+            type    = INTEGER
+            value   = 0 
+        end attribute
+
+        start attribute
+            name    = "ComponentId"
+            id      = 7
+            description = "The trap info. of the new installed component."
+            access  = READ-ONLY
+            storage = SPECIFIC
+            type    = INTEGER
+            value   = 0 
+        end attribute
+
+
+        start attribute
+            name    = "ComponentName"
+            id      = 8
+            description = "The trap info for Component name."
+            access  = READ-ONLY
+            storage = SPECIFIC
+            type    = STRING(256)
+            value   = ""
+        end attribute
+
+        start attribute
+            name    = "ComponentDesc"
+            id      = 9
+            description = "The trap info for Component Desc."
+            access  = READ-ONLY
+            storage = SPECIFIC
+            type    = STRING(256)
+            value   = ""
+        end attribute
+
+        start attribute
+            name    = "GroupId"
+            id      = 10
+            description = "The trap info for Group Id."
+            access  = READ-ONLY
+            storage = SPECIFIC
+            type    = INTEGER
+            value   = 0 
+        end attribute
+
+        start attribute
+            name    = "GroupName"
+            id      = 11
+            description = "The trap info for Group Name."
+            access  = READ-ONLY
+            storage = SPECIFIC
+            type    = STRING(256)
+            value   = ""
+        end attribute
+
+        start attribute
+            name    = "LanguageName"
+            id      = 12
+            description = "The trap info for Language Name."
+            access  = READ-ONLY
+            storage = SPECIFIC
+            type    = STRING(256)
+            value   = ""
+        end attribute
+    end group
+
+    Start Group
+        Name = "Names"
+        ID   = 2
+        Class = "DMTF|DevNames|1.0"
+        Description = "DMTF Developers names. Direct Interface Version"
+		Key = 10
+
+        Start Attribute
+            Name   = "Index"
+            ID     = 10
+            Description = "Index into names table."
+            Access = READ-ONLY
+            Type   = INTEGER
+            Value  = 1
+        End Attribute
+
+        Start Attribute
+            Name   = "Name"
+            ID     = 20
+            Description = "Name of the developer."
+            Access = READ-WRITE
+            Type   = DISPLAYSTRING(32)
+            Value  = "Name of dev."
+        End Attribute
+
+        Start Attribute
+            Name   = "Company"
+            ID     = 30
+            Description = "Corporation that this developer works for."
+            Access = READ-WRITE
+            Type   = DISPLAYSTRING(32)
+            Value  = "SunSoft"
+		End Attribute
+
+        Start Attribute
+            Name   = "Operating System / Env."
+            ID     = 40
+            Description = "The Operating system or Environment that this developer built code for."
+            Access = READ-WRITE
+            Type   = DISPLAYSTRING(32)
+            Value  = "Solaris 2.5"
+       End Attribute
+    End Group
+
+	Start Group
+		Name  = "Software Template"
+		Class = "DMTF|Software Example|001"
+		Key   = 1		// key on Product Name
+		Pragma      = "SNMP:1.2.3.4.5.6"
+	
+		Start Attribute
+			ID          = 1
+			Name        = "Product Name"
+			Description = "The name of the product"
+			Storage     = Common
+			Type        = String(64)
+		End Attribute
+		
+		Start Attribute
+			ID          = 2
+			Name        = "Product Version"
+			Description = "The product's version number"
+			Type        = String(32)
+			Value       = ""
+		End Attribute
+	End Group
+
+	Start Table
+		Name	= "Software Table"
+		Class	= "DMTF|Software Example|001"
+		Id	= 42
+		{"Circus", "4.0a"}
+		{"Disk Blaster", "2.0c"}
+		{"Oleo", "3.0"}
+		{"Presenter", "1.2"}
+	End Table
+
+End Component
+
+

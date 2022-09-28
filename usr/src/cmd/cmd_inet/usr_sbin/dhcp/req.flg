@@ -1,0 +1,12 @@
+#!/bin/sh
+#
+#pragma ident	"@(#)req.flg	1.1	97/02/12 SMI"
+#
+echo_file usr/src/uts/common/netinet/dhcp.h
+for i in usr/src/lib/libdhcp usr/src/cmd/cmd-inet/usr.lib/in.dhcpd usr/src/cmd/cmd-inet/etc/init.d usr/src/cmd/cmd-inet/usr.sbin/snoop usr/src/pkgdefs/SUNWdhcsr usr/src/pkgdefs/SUNWdhcsu
+do
+	if [ -d ${CODEMGR_WS_ROOT}/${i} ]
+	then
+		find ${CODEMGR_WS_ROOT}/${i} -type d -print | sed -e '/SCCS/d'
+	fi
+done

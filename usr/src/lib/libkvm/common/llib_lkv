@@ -1,0 +1,45 @@
+/* LINTLIBRARY */
+/* PROTOLIB1 */
+
+/*
+ * Copyright (c) 1997 by Sun Microsystems, Inc. 
+ * All rights reserved. 
+ */ 
+#pragma ident	"@(#)llib-lkvm	1.1	97/07/04 SMI"
+
+#include <stdlib.h>
+#include <stdio.h>
+#include <fcntl.h>
+#include <kvm.h>
+
+/*
+ * usr/src/lib/libkvm/port
+ */
+
+/* kvmgetcmd.c */
+int kvm_getcmd(kvm_t *, struct proc *, struct user *, char ***, char ***);
+u_longlong_t kvm_physaddr(kvm_t *, struct as *, uintptr_t);
+
+/* kvmgetu.c */
+struct user *kvm_getu(kvm_t *, struct proc *);
+
+/* kvmnextproc.c */
+struct proc *kvm_nextproc(kvm_t *);
+struct proc *kvm_getproc(kvm_t *, pid_t);
+
+/* kvmnlist.c */
+int kvm_nlist(kvm_t *, struct nlist nl[]);
+
+/* kvmopen.c */
+kvm_t *kvm_open(char *, char *, char *, int, char *);
+int kvm_close(kvm_t *);
+int kvm_setproc(kvm_t *);
+
+/* kvmrdwr.c */
+ssize_t kvm_read(kvm_t *, uintptr_t, void *, size_t);
+ssize_t kvm_write(kvm_t *, uintptr_t, void *, size_t);
+ssize_t kvm_uread(kvm_t *, uintptr_t, void *, size_t);
+ssize_t kvm_uwrite(kvm_t *, uintptr_t, void *, size_t);
+ssize_t kvm_kread(kvm_t *, uintptr_t, void *, size_t);
+ssize_t kvm_kwrite(kvm_t *, uintptr_t, void *, size_t);
+ssize_t kvm_as_read(kvm_t *, struct as *, uintptr_t, void *, size_t);

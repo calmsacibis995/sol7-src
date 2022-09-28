@@ -1,0 +1,6 @@
+STRINGTABLE
+BEGIN
+  0, "cannot open output file %1 (%2)"
+  1, "error closing output file %1 (%2)"
+  2, "unknown output option %1"
+END

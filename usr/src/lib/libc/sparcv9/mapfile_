@@ -1,0 +1,136 @@
+#
+#ident	"@(#)mapfile-vers	1.9	97/12/22 SMI"
+#
+# Copyright (c) 1996 by Sun Microsystems, Inc.
+# All rights reserved.
+#
+# SPARC specific interface definition for usr/src/lib/libc.
+
+SUNW_1.1 {
+	global:
+		  __flt_rounds;
+} SISCD_2.3;
+
+# SPARC International SPARC compliance definition 2.3.
+
+SISCD_2.3 {
+	global:
+		   _addseverity;
+		    addseverity;
+		    asctime_r;
+		   _crypt;
+		    crypt;
+		    ctime_r;
+		    endgrent;
+		    endpwent;
+		   _encrypt;
+		    encrypt;
+		 ___errno;
+		    errno;
+		    fgetgrent;
+		    fgetgrent_r;
+		    fgetpwent;
+		    fgetpwent_r;
+		    flockfile;
+		    funlockfile;
+		    getc_unlocked;
+		    getchar_unlocked;
+		    getgrent;
+		    getgrent_r;
+		    getgrgid_r;
+		    getgrnam_r;
+		   _getitimer;
+		    getitimer;
+		   _gettimeofday;
+		    gettimeofday;
+		    getlogin_r;
+		    getpwent;
+		    getpwent_r;
+		    getpwnam_r;
+		    getpwuid_r;
+		    gmtime_r;
+		   _iob;
+		    localtime_r;
+		    putc_unlocked;
+		    putchar_unlocked;
+		    rand_r;
+		    readdir_r;
+		   _sbrk;
+		    sbrk;
+		    setgrent;
+		   _setitimer;
+		    setitimer;
+		   _setkey;
+		    setkey;
+		    setpwent;
+		    strtok_r;
+		   _sysinfo;
+		    sysinfo;
+		    ttyname_r;
+		   _Qp_add;
+		   _Qp_cmp;
+		   _Qp_cmpe;
+		   _Qp_div;
+		   _Qp_dtoq;
+		   _Qp_feq;
+		   _Qp_fge;
+		   _Qp_fgt;
+		   _Qp_fle;
+		   _Qp_flt;
+		   _Qp_fne;
+		   _Qp_itoq;
+		   _Qp_mul;
+		   _Qp_neg;
+		   _Qp_qtod;
+		   _Qp_qtoi;
+		   _Qp_qtos;
+		   _Qp_qtoui;
+		   _Qp_qtoux;
+		   _Qp_qtox;
+		   _Qp_sqrt;
+		   _Qp_stoq;
+		   _Qp_sub;
+		   _Qp_uitoq;
+		   _Qp_uxtoq;
+		   _Qp_xtoq;
+		  __dtou;
+		  __dtoul;
+		  __ftou;
+		  __ftoul;
+} SYSVABI_1.3;
+
+SYSVABI_1.3 {
+	global:
+		# System Library (libsys.so.1) interface.
+
+		  __huge_val;		# Global External Data Symbols
+					# System V ABI (SPARC), Figure 6-2.
+		  __align_cpy_1;	# V9 ABI 1.35x
+		  __align_cpy_2;	# V9 ABI 1.35x
+		  __align_cpy_4;	# V9 ABI 1.35x
+		  __align_cpy_8;	# V9 ABI 1.35x
+		  __align_cpy_16;	# V9 ABI 1.35x
+		  __sparc_utrap_install; # V9 ABI 1.38
+};
+
+SUNWprivate_1.1 {
+	global:
+		   _QgetRD;
+		   _QgetRP;
+		   _QswapRD;
+		   _QswapRP;
+		   _cerror;
+		   _halt;
+		   _install_utrap;	# wabi
+		    install_utrap;
+		   _libc_nanosleep;	# bugid 1213650
+		  __lyday_to_month;
+		  __mon_lengths;
+		  __mt_sigpending;	# bugid 1156192
+		    nop;
+		   _sbrk_unlocked;	# referenced by java
+		   _syssun;
+		   _xregs_clrptr;	# libthread.so calls
+		  __yday_to_month;
+		  __getloadavg;
+};

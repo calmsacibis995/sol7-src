@@ -1,0 +1,79 @@
+\
+\ Copyright (c) 1997, by Sun Microsystems, Inc.
+\ All rights reserved.
+\
+\"@(#)rnode.dbg	1.20	98/01/19 SMI"
+
+#include <rpc/types.h>
+#include <sys/time.h>
+#include <sys/t_lock.h>
+#include <sys/vfs.h>
+#include <rpc/types.h>
+#include <rpc/xdr.h>
+#include <rpc/auth.h>
+#include <rpc/clnt.h>
+#include <sys/tiuser.h>
+#include <nfs/nfs.h>
+#include <nfs/nfs_clnt.h>
+#include <sys/vnode.h>
+#include <nfs/rnode.h>
+#include "dummy.h"
+
+
+\
+\
+rnode		r_
+{adb_inline_begin}
+.>z
+<z+{OFFSET, r_freef}=""
+{adb_inline_end}
+	freef			hex
+	freeb			hex
+	hash			hex
+	vnode			.vnode
+{adb_inline_begin}
+<z+{OFFSET, r_rwlock}=""
+{adb_inline_end}
+	rwlock			.rwlock
+{adb_inline_begin}
+<z+{OFFSET, r_statelock}=""
+{adb_inline_end}
+	statelock		.mutex
+{adb_inline_begin}
+<z+{OFFSET, r_fh}/n"fh_len"16t"fh_buf"16tX16X
+<z+{OFFSET, r_server}=""
+{adb_inline_end}
+	server			hex
+	path			hex
+	nextr			hex
+	flags			hex
+	error			sdecimal
+	cred			hex
+	unlcred			hex
+	unlname			hex
+	unldvp			hex
+	size			hex
+	attr			.vattr	
+{adb_inline_begin}
+<z+{OFFSET, r_attrtime}=""
+{adb_inline_end}
+	attrtime		sdecimal
+	mtime			sdecimal
+	mapcnt			sdecimal
+	count			sdecimal
+	seq			sdecimal
+	putapage		hex
+	dir			hex
+	direof			hex
+	symlink.contents	hex
+	symlink.len		hex
+	symlink.size		hex
+	verf			hex
+	modaddr			hex
+	commit.c_pages		hex
+	commit.c_commbase	sdecimal
+	commit.c_commlen	sdecimal
+	truncaddr		hex
+	secattr			hex
+	cookieverf		hex
+	lmpl			hex

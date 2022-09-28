@@ -1,0 +1,20 @@
+# Copyright 06/09/97 Sun Microsystems, Inc. All Rights Reserved.
+#pragma ident  "@(#)pkginfo.tmpl	1.8 97/06/09 Sun Microsystems"
+#
+# pkginfo: SA DMI
+#
+ARCH="ISA"
+BASEDIR=/
+CATEGORY="system"
+CLASSES="none"
+DESC="Solstice Enterprise Agent Desktop Management Interface"
+MAXINST="1000"
+NAME="Solstice Enterprise Agent Desktop Management Interface"
+PKG="SUNWsadmi"
+PRODNAME="SunOS"
+PRODVERS="RELEASE/VERSION"
+VENDOR="Sun Microsystems, Inc."
+VERSION="1.1,REV=0.0.0"
+SUNW_PKGTYPE="usr"
+EMAIL=""
+HOTLINE="Please contact your local service provider"

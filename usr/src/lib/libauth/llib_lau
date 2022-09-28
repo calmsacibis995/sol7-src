@@ -1,0 +1,53 @@
+/* LINTLIBRARY */
+/* PROTOLIB1 */
+
+/*
+ * Copyright (c) 1997 by Sun Microsystems, Inc. 
+ * All rights reserved. 
+ */ 
+#pragma ident	"@(#)llib-lauth	1.1	97/03/12 SMI"
+
+#include <sys/types.h>
+#include <security/ia_appl.h>
+#include <security/ia_schemes.h>
+#include <security/ia_switch.h>
+
+/*
+ * usr/src/lib/libauth
+ */
+
+/* ia_framework.c */
+int ia_set_authtokattr(void *iah, char **sa_setattr,
+		struct ia_status *ia_statusp, int rep, char *domain);
+int ia_get_authtokattr(void *iah, char ***ga_getattr,
+		struct ia_status *ia_statusp, int rep, char *domain);
+int ia_chauthtok(void *iah, struct ia_status *ia_statusp,
+		int rep, char *domain);
+int ia_auth_netuser(void *iah, char *ruser, struct ia_status *ia_statusp);
+int ia_auth_user(void *iah, int flags, struct passwd **pwd,
+		struct ia_status *ia_statusp);
+int ia_auth_port(void *iah, int flags, struct ia_status *ia_statusp);
+int ia_auth_acctmg(void *iah, int flags, struct passwd **pwd,
+		struct ia_status *ia_statusp);
+int ia_open_session(void *iah, int flags, int type, char id[],
+		struct ia_status *ia_statusp);
+int ia_close_session(void *iah, int flags, pid_t pid, int status, char id[],
+		struct ia_status *ia_statusp);
+int ia_setcred(void *iah, int flags, uid_t uid, gid_t gid, int ngroups,
+		gid_t *grouplist, struct ia_status *ia_statusp);
+int ia_start(char *program, char *user, char *ttyn, char *rhost,
+		struct ia_conv *ia_conv, void **iah);
+int sa_getall(void *iah, char **program, char **user, char **ttyn,
+		char **rhost, struct ia_conv **ia_conv);
+int ia_get_item(void *iahp, int item_type, void **item);
+int ia_set_item(void *iahp, int item_type, void *item);
+int ia_end(void *iahp);
+void free_resp(int num_msg, struct ia_response *resp);
+
+/*
+ * usr/src/lib/libcmd
+ */
+
+/* deflt.c */
+int defopen(char *fn);
+char *defread(char *cp);

@@ -1,0 +1,188 @@
+#
+# Copyright (c) 1990-1998 by Sun Microsystems, Inc.
+# All rights reserved.
+#
+#ident	"@(#)prototype_com	1.12	98/02/17 SMI"
+#
+# This required package information file contains a list of package contents.
+# The 'pkgmk' command uses this file to identify the contents of a package
+# and their location on the development machine when building the package.
+# Can be created via a text editor or through use of the 'pkgproto' command.
+
+#!search <pathname pathname ...>	# where to find pkg objects
+#!include <filename>			# include another 'prototype' file
+#!default <mode> <owner> <group>	# default used if not specified on entry
+#!<param>=<value>			# puts parameter in pkg environment
+
+# packaging files
+i pkginfo
+i copyright
+i postinstall
+i preremove
+i i.preserve
+#
+# source locations relative to the prototype file
+#
+# SUNWcsl
+#
+d none usr 775 root sys
+d none usr/bin 775 root bin
+d none usr/lib 775 root bin
+s none usr/lib/32=.
+f none usr/lib/0@0.so.1 755 bin bin
+f none usr/lib/libauth.so.1 755 bin bin
+s none usr/lib/libauth.so=./libauth.so.1
+f none usr/lib/libpam.so.1 755 bin bin
+s none usr/lib/libpam.so=./libpam.so.1
+f none usr/lib/lib.b 444 bin bin
+s none usr/lib/libadm.so=./libadm.so.1
+f none usr/lib/libadm.so.1 755 bin bin
+s none usr/lib/libaio.so=./libaio.so.1
+f none usr/lib/libaio.so.1 755 bin bin
+s none usr/lib/libbsdmalloc.so=./libbsdmalloc.so.1
+f none usr/lib/libbsdmalloc.so.1 755 bin bin
+s none usr/lib/libbsm.so=./libbsm.so.1
+f none usr/lib/libbsm.so.1 755 bin bin
+s none usr/lib/libc.so=./libc.so.1
+f none usr/lib/libc.so.1 755 bin bin
+s none usr/lib/libc2.so=./libc2stubs.so.1
+s none usr/lib/libc2.so.1=./libc2stubs.so.1
+s none usr/lib/libc2stubs.so=./libc2stubs.so.1
+f none usr/lib/libc2stubs.so.1 755 bin bin
+s none usr/lib/libcfgadm.so=./libcfgadm.so.1
+f none usr/lib/libcfgadm.so.1 755 bin bin
+s none usr/lib/libcmd.so=./libcmd.so.1
+f none usr/lib/libcmd.so.1 755 bin bin
+s none usr/lib/libcrypt_i.so=./libcrypt_i.so.1
+f none usr/lib/libcrypt_i.so.1 755 bin bin
+f none usr/lib/libcurses.so.1 755 bin bin
+s none usr/lib/libcurses.so=./libcurses.so.1
+s none usr/lib/libdevice.so=./libdevice.so.1
+f none usr/lib/libdevice.so.1 755 bin bin
+s none usr/lib/libdevid.so=./libdevid.so.1
+f none usr/lib/libdevid.so.1 755 bin bin
+s none usr/lib/libdevinfo.so=./libdevinfo.so.1
+f none usr/lib/libdevinfo.so.1 755 bin bin
+f none usr/lib/libdhcp.so.2 755 bin bin
+s none usr/lib/libdhcp.so=./libdhcp.so.2
+s none usr/lib/libdl.so=./libdl.so.1
+f none usr/lib/libdl.so.1 755 bin bin
+s none usr/lib/libdoor.so=./libdoor.so.1
+f none usr/lib/libdoor.so.1 755 bin bin
+s none usr/lib/libelf.so=./libelf.so.1
+f none usr/lib/libelf.so.1 755 bin bin
+f none usr/lib/libform.so.1 755 bin bin
+s none usr/lib/libform.so=./libform.so.1
+f none usr/lib/libgen.so.1 755 bin bin
+s none usr/lib/libgen.so=libgen.so.1
+s none usr/lib/libintl.so=./libintl.so.1
+f none usr/lib/libintl.so.1 755 bin bin
+s none usr/lib/libkrb.so=./libkrb.so.1
+f none usr/lib/libkrb.so.1 755 bin bin
+s none usr/lib/libkstat.so=./libkstat.so.1
+f none usr/lib/libkstat.so.1 755 bin bin
+s none usr/lib/libkvm.so=./libkvm.so.1
+f none usr/lib/libkvm.so.1 755 bin bin
+s none usr/lib/libl.so=./libl.so.1
+f none usr/lib/libl.so.1 0755 bin bin
+f none usr/lib/liblddbg.so.4 755 bin bin
+s none usr/lib/liblm.so=./liblm.so.1
+f none usr/lib/liblm.so.1 755 bin bin
+s none usr/lib/libmalloc.so=./libmalloc.so.1
+f none usr/lib/libmalloc.so.1 755 bin bin
+s none usr/lib/libmapmalloc.so=./libmapmalloc.so.1
+f none usr/lib/libmapmalloc.so.1 755 bin bin
+f none usr/lib/libmenu.so.1 755 bin bin
+s none usr/lib/libmenu.so=./libmenu.so.1
+s none usr/lib/libmp.so=./libmp.so.2
+f none usr/lib/libmp.so.2 755 bin bin
+f none usr/lib/libmp.so.1 755 bin bin
+s none usr/lib/libnls.so=./libnls.so.1
+f none usr/lib/libnls.so.1 755 bin bin
+s none usr/lib/libnsl.so=./libnsl.so.1
+f none usr/lib/libnsl.so.1 755 bin bin
+f none usr/lib/libpanel.so.1 755 bin bin
+s none usr/lib/libpanel.so=./libpanel.so.1
+f none usr/lib/libplot.so.1 755 bin bin
+s none usr/lib/libplot.so=./libplot.so.1
+f none usr/lib/lib300.so.1 755 bin bin
+s none usr/lib/lib300.so=./lib300.so.1
+f none usr/lib/lib300s.so.1 755 bin bin
+s none usr/lib/lib300s.so=./lib300s.so.1
+f none usr/lib/lib4014.so.1 755 bin bin
+s none usr/lib/lib4014.so=./lib4014.so.1
+f none usr/lib/lib450.so.1 755 bin bin 
+s none usr/lib/lib450.so=./lib450.so.1
+f none usr/lib/libposix4.so.1 755 bin bin
+s none usr/lib/libposix4.so=./libposix4.so.1
+f none usr/lib/libproc.so.1 755 bin bin
+s none usr/lib/libproc.so=libproc.so.1
+s none usr/lib/libpthread.so=./libpthread.so.1
+f none usr/lib/libpthread.so.1 755 bin bin
+s none usr/lib/librac.so=./librac.so.1
+f none usr/lib/librac.so.1 755 bin bin
+s none usr/lib/libresolv.so=./libresolv.so.2
+f none usr/lib/libresolv.so.1 755 bin bin
+f none usr/lib/libresolv.so.2 755 bin bin
+s none usr/lib/librpcsvc.so=./librpcsvc.so.1
+f none usr/lib/librpcsvc.so.1 755 bin bin
+f none usr/lib/librtld.so.1 755 bin bin
+s none usr/lib/libsched.so=./libsched.so.1
+f none usr/lib/libsched.so.1 755 bin bin
+s none usr/lib/libsec.so=./libsec.so.1
+f none usr/lib/libsec.so.1 755 bin bin
+s none usr/lib/libsocket.so=./libsocket.so.1
+f none usr/lib/libsocket.so.1 755 bin bin
+s none usr/lib/libsys.so=./libsys.so.1
+f none usr/lib/libsys.so.1 755 bin bin
+s none usr/lib/libtermcap.so=libtermcap.so.1
+s none usr/lib/libtermcap.so.1=libcurses.so.1
+s none usr/lib/libtermlib.so=libtermlib.so.1
+s none usr/lib/libtermlib.so.1=libcurses.so.1
+s none usr/lib/libthread.so=./libthread.so.1
+f none usr/lib/libthread.so.1 755 bin bin
+s none usr/lib/libthread_db.so=./libthread_db.so.0
+f none usr/lib/libthread_db.so.0 755 bin bin
+f none usr/lib/libthread_db.so.1 755 bin bin
+s none usr/lib/libvolmgt.so=./libvolmgt.so.1
+f none usr/lib/libvolmgt.so.1 755 bin bin
+f none usr/lib/libvt0.so.1 755 bin bin
+s none usr/lib/libvt0.so=./libvt0.so.1
+s none usr/lib/libw.so=./libw.so.1
+f none usr/lib/libw.so.1 755 bin bin
+s none usr/lib/libxnet.so=./libxnet.so.1
+f none usr/lib/libxnet.so.1 755 bin bin
+f none usr/lib/null.a 644 bin bin
+f none usr/lib/nss_compat.so.1 755 bin bin
+f none usr/lib/nss_dns.so.1 755 bin bin
+f none usr/lib/nss_files.so.1 755 bin bin
+f none usr/lib/nss_nis.so.1 755 bin bin
+f none usr/lib/nss_nisplus.so.1 755 bin bin
+s none usr/lib/straddr.so=./straddr.so.2
+f none usr/lib/straddr.so.2 755 bin bin
+d none usr/lib/security 755 root sys
+f none usr/lib/security/pam_authen.so.1 755 root sys
+s none usr/lib/security/pam_authen.so=./pam_authen.so.1
+f none usr/lib/security/pam_entry.so.1 755 root sys
+s none usr/lib/security/pam_entry.so=./pam_entry.so.1
+f none usr/lib/security/pam_extern.so.1 755 root sys
+s none usr/lib/security/pam_extern.so=./pam_extern.so.1
+f none usr/lib/security/pam_pwmgt.so.1 755 root sys
+s none usr/lib/security/pam_pwmgt.so=./pam_pwmgt.so.1
+f none usr/lib/security/pam_session.so.1 755 root sys
+s none usr/lib/security/pam_session.so=./pam_session.so.1
+f none usr/lib/security/pam_unix.so.1 755 root sys
+s none usr/lib/security/pam_unix.so=./pam_unix.so.1
+f none usr/lib/security/pam_rhosts_auth.so.1 755 root sys
+s none usr/lib/security/pam_rhosts_auth.so=./pam_rhosts_auth.so.1
+f none usr/lib/security/pam_dial_auth.so.1 755 root sys
+s none usr/lib/security/pam_dial_auth.so=./pam_dial_auth.so.1
+f none usr/lib/security/pam_sample.so.1 755 root sys
+s none usr/lib/security/pam_sample.so=./pam_sample.so.1
+f none usr/lib/watchmalloc.so.1 755 bin bin
+s none usr/lib/liby.so=./liby.so.1
+f none usr/lib/liby.so.1 0755 bin bin
+d none usr/xpg4 755 root bin
+d none usr/xpg4/lib 755 root bin
+s none usr/xpg4/lib/libcurses.so=./libcurses.so.1
+f none usr/xpg4/lib/libcurses.so.1 755 bin bin

@@ -1,0 +1,19 @@
+#
+#ident	"@(#)Makefile	1.3	97/09/11 SMI"
+#
+# Copyright (c) 1997 by Sun Microsystems, Inc.
+#
+# lib/libeti/panel/sparc/Makefile
+#
+
+include ../Makefile.com
+
+.KEEP_STATE:
+
+# The static library libpanel.a only gets installed for 32-bit, and is
+# installed in /usr/ccs/lib rather than /usr/lib, hence the separate
+# rule. In addition, we need to link /usr/ccs/lib/libpanel.so with
+# /usr/lib/libpanel.so.1 to accomodate the order search of the linker.
+#
+install: all $(STATICLIB) $(ROOTLIBS) $(ROOTLINKS) $(DYNLINKLIB) $(ROOTLINT)
+

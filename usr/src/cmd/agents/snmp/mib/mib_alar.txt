@@ -1,0 +1,52 @@
+-- "@(#)mib_ALARM.txt	1.7 25 Jan 1996 SMI"
+--
+--
+-- Copyright 25 Jan 1996 Sun Microsystems, Inc. All Rights Reserved
+--
+
+   ALARM-MIB DEFINITIONS ::= BEGIN
+
+   IMPORTS
+       ;
+
+   alarm MODULE-IDENTITY
+       LAST-UPDATED "9508170000Z"
+       ORGANIZATION "SunSoft"
+       CONTACT-INFO
+         ""
+       DESCRIPTION
+         "The MIB module describing variables used in SNMP traps"
+       ::= { private-mibs 3 }
+
+
+   alarmId OBJECT-TYPE
+       SYNTAX INTEGER
+       MAX-ACCESS not-accessible
+       STATUS current
+       DESCRIPTION
+         "The integer that identifies an alarm."
+       ::= {alarm 1}
+
+   alarmSeverity OBJECT-TYPE
+       SYNTAX INTEGER {
+         low(1),
+         medium(2),
+         high(3)
+       }
+       MAX-ACCESS not-accessible
+       STATUS current
+       DESCRIPTION
+         "The severity of an alarm."
+       ::= {alarm 2}
+
+   alarmDescr OBJECT-TYPE
+       SYNTAX DisplayString
+       MAX-ACCESS not-accessible
+       STATUS current
+       DESCRIPTION
+         "A description of the alarm."
+       ::= {alarm 3}
+
+
+   END
+

@@ -1,0 +1,32 @@
+#
+#ident	"@(#)Makefile.targ	1.5	97/04/25 SMI"
+#
+# Copyright (c) 1995 by Sun Microsystems, Inc.
+#
+
+lint:		$(LINTLIB)
+
+pics/%.o:	../common/%.c
+		$(COMPILE.c) -o $@ $<
+		$(POST_PROCESS_O)
+
+%.o:		../common/%.c
+		$(COMPILE.c) -o $@ $<
+		$(POST_PROCESS_O)
+
+delete:
+		-$(RM) $(DYNLIB)
+
+$(DYNLIB):	$(MAPFILE)
+
+include		../../../../lib/Makefile.targ
+
+# Derived source and header files (messaging)
+
+catalog:	$(BLTMESG)
+
+$(BLTDEFS) + \
+$(BLTDATA) + \
+$(BLTMESG) :	../common/ldprof.msg
+	$(SGSTOOLS)/sgsmsg $(SGSMSGFLAGS) ../common/ldprof.msg
+	@ csh $(SGSTOOLS)/../chkmsg.csh ../common/ldprof.msg $(SRCS)

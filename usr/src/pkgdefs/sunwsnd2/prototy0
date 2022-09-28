@@ -1,0 +1,90 @@
+#
+# Copyright (c) 1990-1998 by Sun Microsystems, Inc.
+# All rights reserved.
+#
+#ident	"@(#)prototype_com	1.2	98/01/21 SMI"
+#
+# This required package information file contains a list of package contents.
+# The 'pkgmk' command uses this file to identify the contents of a package
+# and their location on the development machine when building the package.
+# Can be created via a text editor or through use of the 'pkgproto' command.
+
+#!search <pathname pathname ...>	# where to find pkg objects
+#!include <filename>			# include another 'prototype' file
+#!default <mode> <owner> <group>	# default used if not specified on entry
+#!<param>=<value>			# puts parameter in pkg environment
+
+# packaging files
+i pkginfo
+i copyright
+i depend
+#
+# source locations relative to the prototype file
+#
+# SUNWsndmu
+#
+d none usr 775 root sys
+d none usr/bin 775 root bin
+f none usr/bin/mailcompat 555 bin bin
+s none usr/bin/mailq=../lib/sendmail
+f none usr/bin/mailstats 555 bin bin
+f none usr/bin/mconnect 555 bin bin
+f none usr/bin/vacation 555 bin bin
+d none usr/lib 775 root bin
+d none usr/lib/mail 755 root mail
+f none usr/lib/mail/README 444 root mail
+d none usr/lib/mail/cf 775 root mail
+f none usr/lib/mail/cf/main-v7sun.cf 444 root mail
+f none usr/lib/mail/cf/main-v7sun.mc 444 root mail
+f none usr/lib/mail/cf/subsidiary-v7sun.cf 444 root mail
+f none usr/lib/mail/cf/subsidiary-v7sun.mc 444 root mail
+d none usr/lib/mail/domain 775 root mail
+f none usr/lib/mail/domain/generic.m4 444 root mail
+f none usr/lib/mail/domain/solaris-generic.m4 444 root mail
+d none usr/lib/mail/feature 755 root mail
+f none usr/lib/mail/feature/allmasquerade.m4 444 root mail
+f none usr/lib/mail/feature/always_add_domain.m4 444 root mail
+f none usr/lib/mail/feature/bestmx_is_local.m4 444 root mail
+f none usr/lib/mail/feature/bitdomain.m4 444 root mail
+f none usr/lib/mail/feature/domaintable.m4 444 root mail
+f none usr/lib/mail/feature/generics_entire_domain.m4 444 root mail
+f none usr/lib/mail/feature/genericstable.m4 444 root mail
+f none usr/lib/mail/feature/limited_masquerade.m4 444 root mail
+f none usr/lib/mail/feature/mailertable.m4 444 root mail
+f none usr/lib/mail/feature/masquerade_entire_domain.m4 444 root mail
+f none usr/lib/mail/feature/masquerade_envelope.m4 444 root mail
+f none usr/lib/mail/feature/nocanonify.m4 444 root mail
+f none usr/lib/mail/feature/nodns.m4 444 root mail
+f none usr/lib/mail/feature/notsticky.m4 444 root mail
+f none usr/lib/mail/feature/nouucp.m4 444 root mail
+f none usr/lib/mail/feature/nullclient.m4 444 root mail
+f none usr/lib/mail/feature/redirect.m4 444 root mail
+f none usr/lib/mail/feature/remote_mode.m4 444 root mail
+f none usr/lib/mail/feature/smrsh.m4 444 root mail
+f none usr/lib/mail/feature/stickyhost.m4 444 root mail
+f none usr/lib/mail/feature/sun_reverse_alias_files.m4 444 root mail
+f none usr/lib/mail/feature/sun_reverse_alias_nis.m4 444 root mail
+f none usr/lib/mail/feature/sun_reverse_alias_nisplus.m4 444 root mail
+f none usr/lib/mail/feature/use_ct_file.m4 444 root mail
+f none usr/lib/mail/feature/use_cw_file.m4 444 root mail
+f none usr/lib/mail/feature/uucpdomain.m4 444 root mail
+f none usr/lib/mail/feature/virtusertable.m4 444 root mail
+d none usr/lib/mail/m4 755 root mail
+f none usr/lib/mail/m4/cf.m4 444 root mail
+f none usr/lib/mail/m4/cfhead.m4 444 root mail
+f none usr/lib/mail/m4/nullrelay.m4 444 root mail
+f none usr/lib/mail/m4/proto.m4 444 root mail
+f none usr/lib/mail/m4/version.m4 444 root mail
+d none usr/lib/mail/mailer 755 root mail
+f none usr/lib/mail/mailer/local.m4 444 root mail
+f none usr/lib/mail/mailer/smtp.m4 444 root mail
+f none usr/lib/mail/mailer/uucp.m4 444 root mail
+d none usr/lib/mail/ostype 755 root mail
+f none usr/lib/mail/ostype/solaris2.m4 444 root mail
+f none usr/lib/mail/ostype/solaris2.ml.m4 444 root mail
+d none usr/lib/mail/sh 755 root mail
+f none usr/lib/mail/sh/makeinfo.sh 444 root mail
+f none usr/lib/mail.local 555 bin bin
+f none usr/lib/sendmail 4551 root bin
+d none usr/sbin 775 root bin
+f none usr/sbin/makemap 555 bin bin

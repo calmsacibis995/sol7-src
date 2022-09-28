@@ -1,0 +1,48 @@
+#ident "@(#)agent.conf	1.6 24 Jan 1996 SMI"
+#
+#
+# Copyright 24 Jan 1996 Sun Microsystems, Inc. All Rights Reserved
+#
+
+#
+#  Configuration file of an SNMP agent
+#
+
+##################
+# access control # 
+##################
+
+# The list of community names needed for read/write access
+# to the entire MIB.
+# If the list is empty, the only valid community name is "public"
+# and its access type is read-only
+
+communities = {
+	public		read-only
+	private		read-write
+}
+
+# The list of hosts that can send SNMP queries.
+# If this list is empty, all the hosts are allowed to
+# send SNMP queries.
+
+managers = {
+}
+
+
+###################
+# trap parameters #
+###################
+
+# The community name to be used in traps.
+
+trap-community = SNMP-trap
+
+# The list of hosts where traps should be sent to.
+
+trap-recipients =
+{
+	splat
+	panda
+}
+

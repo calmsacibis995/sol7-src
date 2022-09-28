@@ -1,0 +1,25 @@
+#	Copyright (c) 1997 Sun Microsystems, Inc.
+#		All Rights Reserved
+#	@(#)pkginfo.tmpl	1.5	97/06/09 (c) Sun Microsystems, Inc.
+#
+#
+# This required package information file describes characteristics of the
+# package, such as package abbreviation, full package name, package version,
+# and package architecture.
+#
+ 
+PKG="SUNWluxop"
+NAME="Sun Enterprise Network Array firmware and utilities"
+ARCH="sparc"
+CATEGORY="system"
+BASEDIR=/
+SUNW_PKGTYPE="usr"
+CLASSES="none"
+DESC="Sun Enterprise Network Array firmware and utilities"
+PRODNAME="SunOS"
+PRODVERS="RELEASE/VERSION"
+VERSION="1.2,REV=0.0.0"
+VENDOR="Sun Microsystems, Inc."
+HOTLINE="Please contact your local service provider"
+EMAIL=""
+MAXINST="1000"

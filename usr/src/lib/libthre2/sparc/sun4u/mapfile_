@@ -1,0 +1,15 @@
+#
+#ident	"@(#)mapfile-vers	1.1	97/12/22 SMI"
+#
+# Copyright (c) 1997 by Sun Microsystems, Inc.
+# All rights reserved.
+
+SUNWprivate_1.1 {
+	global:
+		_mutex_unlock_asm;
+		_lock_try_adaptive;
+		_lock_clear_adaptive;
+		_lock_owner;
+	local:
+		*;
+};

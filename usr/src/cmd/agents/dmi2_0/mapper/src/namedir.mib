@@ -1,0 +1,222 @@
+
+DMTFDEVELOPERS-DIRECTINTERFACEVERSION-MIB DEFINITIONS ::= BEGIN
+
+
+ -- This is a list of the people who actually wrote the code.
+
+IMPORTS
+    OBJECT-TYPE
+    FROM RFC-1212
+    enterprises
+    FROM RFC1155-SMI
+    DisplayString
+    FROM RFC1213-MIB;
+
+DmiInteger			::= INTEGER
+DmiDisplaystring	::= DisplayString
+DmiDate				::= OCTET STRING (SIZE (28))
+DmiComponentIndex	::= INTEGER
+
+namedir             	OBJECT IDENTIFIER ::= {1 3 6 1 4 1 42 2000 2 1}
+dmtfGroups          	OBJECT IDENTIFIER ::= {namedir 1}
+
+SComponentid ::= SEQUENCE {
+	a1Manufacturer                          	DmiDisplaystring,
+	a1Product                               	DmiDisplaystring,
+	a1Version                               	DmiDisplaystring,
+	a1SerialNumber                          	DmiDisplaystring,
+	a1Installation                          	DmiDate,
+	a1Verify                                	DmiInteger,
+	a1Componentid1                          	DmiInteger,
+	a1Componentname                         	DmiDisplaystring,
+	a1Componentdesc                         	DmiDisplaystring,
+	a1Groupid                               	DmiInteger,
+	a1Groupname                             	DmiDisplaystring,
+	a1Languagename                          	DmiDisplaystring
+}
+
+tComponentid OBJECT-TYPE
+	SYNTAX		SEQUENCE OF SComponentid
+	ACCESS		not-accessible
+	STATUS		mandatory
+	DESCRIPTION	"This group defines attributes common to all components.Th"
+	::= {dmtfGroups 1}
+
+eComponentid OBJECT-TYPE
+	SYNTAX		SComponentid
+	ACCESS		not-accessible
+	STATUS		mandatory
+	DESCRIPTION	""
+	INDEX		{INTEGER}
+	::= {tComponentid 1}
+
+a1Manufacturer OBJECT-TYPE
+	SYNTAX		DmiDisplaystring
+	ACCESS		read-only
+	STATUS		mandatory
+	DESCRIPTION	"The name of the manufacturer that produces this component."
+	::= {eComponentid 1}
+
+a1Product OBJECT-TYPE
+	SYNTAX		DmiDisplaystring
+	ACCESS		read-only
+	STATUS		mandatory
+	DESCRIPTION	"The name of the component."
+	::= {eComponentid 2}
+
+a1Version OBJECT-TYPE
+	SYNTAX		DmiDisplaystring
+	ACCESS		read-only
+	STATUS		mandatory
+	DESCRIPTION	"The version for the component."
+	::= {eComponentid 3}
+
+a1SerialNumber OBJECT-TYPE
+	SYNTAX		DmiDisplaystring
+	ACCESS		read-only
+	STATUS		mandatory
+	DESCRIPTION	"The serial number for this instance of this component."
+	::= {eComponentid 4}
+
+a1Installation OBJECT-TYPE
+	SYNTAX		DmiDate
+	ACCESS		read-only
+	STATUS		mandatory
+	DESCRIPTION	"The time and date of the last install of this component."
+	::= {eComponentid 5}
+
+a1Verify OBJECT-TYPE
+	SYNTAX		DmiInteger
+	ACCESS		read-only
+	STATUS		mandatory
+	DESCRIPTION	"Verification."
+	::= {eComponentid 6}
+
+a1Componentid OBJECT-TYPE
+	SYNTAX		DmiInteger
+	ACCESS		read-only
+	STATUS		mandatory
+	DESCRIPTION	"The trap info. of the new installed component."
+	::= {eComponentid 7}
+
+a1Componentname OBJECT-TYPE
+	SYNTAX		DmiDisplaystring
+	ACCESS		read-only
+	STATUS		mandatory
+	DESCRIPTION	"The trap info for Component name."
+	::= {eComponentid 8}
+
+a1Componentdesc OBJECT-TYPE
+	SYNTAX		DmiDisplaystring
+	ACCESS		read-only
+	STATUS		mandatory
+	DESCRIPTION	"The trap info for Component Desc."
+	::= {eComponentid 9}
+
+a1Groupid OBJECT-TYPE
+	SYNTAX		DmiInteger
+	ACCESS		read-only
+	STATUS		mandatory
+	DESCRIPTION	"The trap info for Group Id."
+	::= {eComponentid 10}
+
+a1Groupname OBJECT-TYPE
+	SYNTAX		DmiDisplaystring
+	ACCESS		read-only
+	STATUS		mandatory
+	DESCRIPTION	"The trap info for Group Name."
+	::= {eComponentid 11}
+
+a1Languagename OBJECT-TYPE
+	SYNTAX		DmiDisplaystring
+	ACCESS		read-only
+	STATUS		mandatory
+	DESCRIPTION	"The trap info for Language Name."
+	::= {eComponentid 12}
+
+SNames ::= SEQUENCE {
+	a2Index                                 	DmiInteger,
+	a2Name                                  	DmiDisplaystring,
+	a2Company                               	DmiDisplaystring,
+	a2OperatingSystemEnv                    	DmiDisplaystring
+}
+
+tNames OBJECT-TYPE
+	SYNTAX		SEQUENCE OF SNames
+	ACCESS		not-accessible
+	STATUS		mandatory
+	DESCRIPTION	"DMTF Developers names. Direct Interface Version"
+	::= {dmtfGroups 2}
+
+eNames OBJECT-TYPE
+	SYNTAX		SNames
+	ACCESS		not-accessible
+	STATUS		mandatory
+	DESCRIPTION	""
+	INDEX		{INTEGER , a2Index}
+	::= {tNames 1}
+
+a2Index OBJECT-TYPE
+	SYNTAX		DmiInteger
+	ACCESS		read-only
+	STATUS		mandatory
+	DESCRIPTION	"Index into names table."
+	::= {eNames 10}
+
+a2Name OBJECT-TYPE
+	SYNTAX		DmiDisplaystring
+	ACCESS		read-write
+	STATUS		mandatory
+	DESCRIPTION	"Name of the developer."
+	::= {eNames 20}
+
+a2Company OBJECT-TYPE
+	SYNTAX		DmiDisplaystring
+	ACCESS		read-write
+	STATUS		mandatory
+	DESCRIPTION	"Corporation that this developer works for."
+	::= {eNames 30}
+
+a2OperatingSystemEnv OBJECT-TYPE
+	SYNTAX		DmiDisplaystring
+	ACCESS		read-write
+	STATUS		mandatory
+	DESCRIPTION	"The Operating system or Environment that this developer built
+code for."
+	::= {eNames 40}
+
+SSoftwareTable ::= SEQUENCE {
+	a42ProductName                          	DmiDisplaystring,
+	a42ProductVersion                       	DmiDisplaystring
+}
+
+tSoftwareTable OBJECT-TYPE
+	SYNTAX		SEQUENCE OF SSoftwareTable
+	ACCESS		not-accessible
+	STATUS		mandatory
+	DESCRIPTION	""
+	::= {dmtfGroups 42}
+
+eSoftwareTable OBJECT-TYPE
+	SYNTAX		SSoftwareTable
+	ACCESS		not-accessible
+	STATUS		mandatory
+	DESCRIPTION	""
+	INDEX		{INTEGER , a42ProductName}
+	::= {tSoftwareTable 1}
+
+a42ProductName OBJECT-TYPE
+	SYNTAX		DmiDisplaystring
+	ACCESS		read-only
+	STATUS		mandatory
+	DESCRIPTION	"The name of the product"
+	::= {eSoftwareTable 1}
+
+a42ProductVersion OBJECT-TYPE
+	SYNTAX		DmiDisplaystring
+	ACCESS		read-only
+	STATUS		mandatory
+	DESCRIPTION	"The product's version number"
+	::= {eSoftwareTable 2}
+
+END

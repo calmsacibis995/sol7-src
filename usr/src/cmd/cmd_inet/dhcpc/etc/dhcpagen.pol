@@ -1,0 +1,178 @@
+# agent.pcy: client side policies and parameters
+#
+# $Id: agent.pcy,v 1.19 1995/09/07 01:57:38 robs Exp $
+#
+# DESCRIPTION
+# This is a template agent.pcy file. A particular site may need to make
+# modifications to this, especially to the timeout and retransmission
+# parameters
+#
+
+# Timeout for ARP request
+arp_timeout 2
+
+# Exponential backoff for retransmission. Each time the client sends a DHCP
+# protocol packet it waits for a response until a timeout occurs after an
+# given by a member of this array (in seconds). If a timeout has occurred
+# the packet is re-transmitted with the same XID (see RFC 1541) and
+# the timeout is set to the next positive number in the comma separated
+# list. The last element in the list is negative or zero.
+# At this the next action depends on options to the dhcpconf program.
+# One option is to fail. Another is to retry forever. If the last value is
+# negative DHCP suspends configuration of the interface for an amount of
+# time given by the negative number terminating the array. During this
+# time the interface is considered "idle" -- the client is not expecting
+# repsonses destined for the interface and will ignore any that arrive.
+# When the idle time is over the client begins re-transmitting with
+# a timeout given by the first element in the array and a new XID.
+# If the last value is zero the client continues to use the same XID
+# and timeout of the last positive value in the array.
+
+timeouts 4,8,16,-120
+
+# The max_bad_offers flag limits the number of DHCPDISCOVER - DHCPOFFER
+# DHCP_REQUEST - DHCPNAK sequences the client will try. It has nothing
+# to do with timeouts. An offer received and then NAK'd is an unusual
+# event and if it occurs more than once is indicative of some server
+# problem. Set this value zero or negative if you don't want to limit
+# the number of "bad offers" that the client is willing to accept.
+
+max_bad_offers 2
+
+# Maximum time to wait after invocation before broadcast
+
+start_delay 16
+
+# Duration of lease wanted in seconds (-1 for an infinite lease).
+
+lease_desired 604800    # 1 week
+
+# If there is no reply to DHCP, and "use_saved_config" is
+# set, then use the configuration stored in <interface>.cf
+# providing the lease is still valid.
+
+use_saved_config
+
+# Set "class_id" to an identifier for the type of client.
+# The following symbolic parameters are recognised and
+# translated appropriately:
+# $CPU         :  
+# $ARCH        :
+# $OSNAME      :
+# $OSREL       :
+# $PLATFORM    :
+
+class_id SUNW.$CPU.$ARCH.$OSNAME
+
+# Uncomment "client_id" to use a client identifier other than the MAC
+# address.
+# The MAC addr is in internal form, not the human
+# readable colon separated string. The following
+# symbolic parameters are recognised:
+# $IFNAME    : the interface name
+# $IFORD     : an enumerator for logical addresses carried by the interface
+# $IFHADDR   : the interface hardware address
+# $IFHTYPE   : the interface media type (same as htype field in BOOTP)
+# It is necessary to use a client ID because different interfaces
+# of the same physical medium get # their MAC address from the
+# motherboard and not the SCSI interface. Thus they are all identical.
+# This would prevent proper operation of the protocol since
+# there would be no way to distinguish the physical interfaces.
+
+client_id $IFHTYPE$IFHADDR
+
+# Uncomment to allow the client to use the older BOOTP protocol.
+# The client will always emit DHCP packets but will accept BOOTP
+# responses if no good DHCP acknowledgment occurs.
+# This is not currently supported.
+
+#accept_bootp
+
+# Configuration parameters:
+# By default the SUN client requests the following:
+#    broadcast_address
+#    dns_domain
+#    dns_servers
+#    host_name
+#    nis_domain_name
+#    nis_servers
+#    nisplus_domain
+#    nisplus_servers
+#    routers
+#    static_routes
+#    subnet_mask
+#    time_offset
+# You can turn off any one of these by preceding the keyword "request"
+# by an exclamation !
+
+
+#request  host_name
+
+#request  all_subnets_are_local
+#request  arp_cache_timeout
+#request  boot_file
+#request  boot_file_server
+#request  boot_server_name
+#request  boot_size
+#request  broadcast_address
+#request  cookie_server
+#request  default_ip_time-to-live
+#request  dns_domain_name
+#request  dns_servers
+#request  ethernet_encapsulation
+#request  extensions_path
+#request  finger_servers
+#request  host_name
+#request  impress_server
+#request  interface_mtu
+#request  ip_forwarding
+#request  irc_servers
+#request  keepalive_garbage
+#request  lease_time        # you always get this in DHCP
+#request  log_server
+#request  lpr_server
+#request  mask_supplier
+#request  maximum_datagram_reassembly_size
+#request  merit_dump_file
+#request  mobileip_home_agent
+#request  name_server
+#request  name_service_switch
+#request  netbios_datagram_distribution_server
+#request  netbios_name_server
+#request  netbios_node_type
+#request  netbios_scope
+#request  netware_domain
+#request  netware_options
+#request  nis_domain_name
+#request  nis_server
+#request  nis+_domain_name
+#request  nis+_server
+#request  nntp_servers
+#request  non-local_source_routing
+#request  ntp_server
+#request  path_mtu_aging_timeout
+#request  path_mtu_plateau_table
+#request  perform_mask_discovery
+#request  perform_router_discovery
+#request  policy_filter
+#request  pop3_servers
+#request  rebinding_time_value
+#request  renewal_time_value
+#request  resource_location_server
+#request  root_path
+#request  router_solicitation_address
+#request  routers
+#request  smtp_servers
+#request  static_routes
+#request  streettalk_servers
+#request  streettalk_directory_assistance_servers
+#request  subnet_mask
+#request  swap_server
+#request  tcp_default_time_to_live
+#request  tcp_keepalive_interval
+#request  time_offset
+#request  time_server_(rfc_868)
+#request  trailer_encapsulation
+#request  www_servers
+#request  x_window_display_manager
+#request  x_windows_font_server

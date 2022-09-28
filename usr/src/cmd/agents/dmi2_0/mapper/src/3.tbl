@@ -1,0 +1,10 @@
+start table
+	Name = "Software Table"
+	class = "DMTF|Software Example|001"
+	id = 42
+
+	{"Circus","4.0a"}
+	{"Disk Blaster","2.0c"}
+	{"Oleo","3.0"}
+	{"Presenter","1.2"}
+end table

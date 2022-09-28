@@ -1,0 +1,80 @@
+#!/bin/sh
+#
+#pragma ident	"@(#)i.etcservices	1.1	97/03/12 SMI"
+#
+# Copyright (c) 1996-1997 by Sun Microsystems, Inc.
+# All rights reserved.
+#
+
+PATH="/usr/bin:/usr/sbin:${PATH}" export PATH
+
+while read src dest
+do
+	if [ ! -f $dest ] ; then
+		cp $src $dest
+	else
+		#
+		wk1=/tmp/serv.$$
+
+		grep '^#ident[ 	]*\"@(#)services' $src \
+			> $wk1 2>/dev/null
+		grep -v '^#ident[ 	]*\"@(#)services' $dest \
+			>> $wk1 2>/dev/null
+
+		oldline=`grep "^bootps" $wk1 2> /dev/null`
+		if [ $? = 1 ]; then
+			( echo "/^domain"
+				echo "/^domain"
+				echo "a"
+				echo "bootps		67/udp				# BOOTP/DHCP server"
+				echo "bootpc		68/udp				# BOOTP/DHCP client"
+				echo "." ; echo "w" ; echo "q"
+			) | ed -s $wk1 > /dev/null	
+		fi
+
+		oldline=`grep "^ufsd" $wk1 2> /dev/null`
+		if [ $? = 1 ]; then
+			( echo "/^kerberos"
+				echo "/^kerberos"
+				echo "a"
+				echo "ufsd		1008/tcp	ufsd		# UFS-aware server"
+				echo "ufsd		1008/udp	ufsd"
+				echo "." ; echo "w" ; echo "q"
+			) | ed -s $wk1 > /dev/null	
+		fi
+
+		oldline=`grep "NFS server daemon (clts)" $wk1 2> /dev/null`
+		if [ $? = 1 ]; then
+			( echo "/^nfsd"
+				echo "s/$/ (clts)/"
+				echo "a"
+				echo "nfsd		2049/tcp	nfs		# NFS server daemon (cots)"
+				echo "." ; echo "w" ; echo "q"
+			) | ed -s $wk1 > /dev/null	
+		fi
+
+		oldline=`grep "^dtspc" $wk1 2> /dev/null`
+		if [ $? = 1 ]; then
+			( echo "/^lockd"
+				echo "/^lockd"
+				echo "a"
+				echo "dtspc		6112/tcp			# CDE subprocess control"
+				echo "." ; echo "w" ; echo "q"
+			) | ed -s $wk1 > /dev/null	
+		fi
+
+		oldline=`grep "^fs" $wk1 2> /dev/null`
+		if [ $? = 1 ]; then
+			( echo "/^dtspc"
+				echo "a"
+				echo "fs		7100/tcp			# Font server"
+				echo "." ; echo "w" ; echo "q"
+			) | ed -s $wk1 > /dev/null	
+		fi
+
+		cp $wk1 $dest
+		rm -f $wk1
+	fi
+done
+
+exit 0

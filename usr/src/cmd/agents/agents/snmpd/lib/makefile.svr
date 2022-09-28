@@ -1,0 +1,65 @@
+# Copyright 1988 - 07/23/96 Sun Microsystems, Inc. All Rights Reserved.
+#pragma ident  "@(#)Makefile.svr4	2.15 96/07/23 Sun Microsystems"
+
+# Sun considers its source code as an unpublished, proprietary trade 
+# secret, and it is available only under strict license provisions.  
+# This copyright notice is placed here only to protect Sun in the event
+# the source is deemed a published work.  Disassembly, decompilation, 
+# or other means of reducing the object code to human readable form is 
+# prohibited by the license agreement under which this code is provided
+# to the user or company in possession of this copy.
+# 
+# RESTRICTED RIGHTS LEGEND: Use, duplication, or disclosure by the 
+# Government is subject to restrictions as set forth in subparagraph 
+# (c)(1)(ii) of the Rights in Technical Data and Computer Software 
+# clause at DFARS 52.227-7013 and in similar clauses in the FAR and 
+# NASA FAR Supplement.
+#
+# This makefile is for use on Sun Microsystems OS 5 (SVR4)
+
+# Still need BSDREL even on SVR4
+# On Sun OS 3.4/3.5, set BSDREL = 42
+# On Sun OS 4.0 set BSDREL = 43
+BSDREL = 43
+
+OBJS =	bindint.o bindip.o bindnull.o bindoid.o	\
+	bindstr.o binduint.o buffer.o buildpkt.o		\
+	creatreq.o creatrap.o decode.o encode.o			\
+	getpdu.o localio.o	\
+	mibutils.o objectid.o rcv_pkt.o setpdu.o		\
+	setutils.o snmp_d.o snmp_e.o print.o
+
+CEES =	bindint.c bindip.c bindnull.c bindoid.c	\
+	bindstr.c binduint.c buffer.c buildpkt.c		\
+	creatreq.c creatrap.c decode.c encode.c			\
+	getpdu.c localio.c	\
+	mibutils.c objectid.c rcv_pkt.c setpdu.c		\
+	setutils.c snmp_d.c snmp_e.c print.c
+
+INC = ../h
+
+CC = cc
+
+# The NO_PP definition disables ANSI C procedure prototypes.
+# The NO_STDLIB disables inclusion of <stdlib.h>
+CFLAGS = -O -DBSD_RELEASE=${BSDREL} -DOIDC_32 -DSGRP
+LINTFLAGS = -DBSD_RELEASE=${BSDREL} -DOIDC_32 -DSGRP
+
+.c.o:
+	${CC} -c -I${INC} $(CFLAGS) $<
+
+libsnmp.a:	${OBJS}
+		rm -f libsnmp.a
+		ar r libsnmp.a ${OBJS}
+
+lint:		llib-lsnmp.ln
+
+llib-lsnmp.ln:	${CEES}
+		lint -hn -Csnmp -I${INC} ${LINTFLAGS} ${CEES}
+
+cleanobj:
+		-rm ${OBJS}
+
+clean:
+		-rm -f ${OBJS}
+		-rm -f libsnmp.a

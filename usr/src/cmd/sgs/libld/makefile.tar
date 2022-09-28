@@ -1,0 +1,64 @@
+#
+#ident	"@(#)Makefile.targ	1.17	98/01/05 SMI"
+#
+# Copyright (c) 1996 by Sun Microsystems, Inc.
+# All rights reserved.
+
+pics64/%.o:	../common/%.c
+		$(COMPILE.c) -o $@ -D_ELF64 $<
+		$(POST_PROCESS_O)
+
+pics64/%.o:	$(SRCBASE)/uts/$(ARCH)/krtld/%.c
+		$(COMPILE.c) -o $@ -D_ELF64 $<
+		$(POST_PROCESS_O)
+
+pics64/%.o:	./%.c
+		$(COMPILE.c) -o $@ -D_ELF64 $<
+		$(POST_PROCESS_O)
+
+pics/%.o:	../common/%.c
+		$(COMPILE.c) -o $@ $<
+		$(POST_PROCESS_O)
+
+pics/%.o:	$(SRCBASE)/uts/$(ARCH)/krtld/%.c
+		$(COMPILE.c) -o $@ $<
+		$(POST_PROCESS_O)
+
+$(DYNLIB):	$(MAPFILE)
+ 
+$(LIBLINKS):
+		-$(RM) $@; $(SYMLINK) $(DYNLIB) $@
+
+delete:
+		$(RM) $(DYNLIB)
+
+# Special target for native builds (ie. when we need to build a version of ld
+# to build a version of ld :-).
+
+native:		$(SGSPROTO)/$(DYNLIB)
+
+$(SGSPROTO)/$(DYNLIB): \
+		pics .WAIT $$(PICS) $(MAPFILE)
+		$(CC) -o $@ -dy -G $(DYNFLAGS) $(PICS) $(LDLIBS) -R$(SGSRPATH)
+		$(POST_PROCESS_SO)
+		-@$(RM) $(SGSPROTO)/$(LIBLINKS);
+		$(SYMLINK) $(DYNLIB) $(SGSPROTO)/$(LIBLINKS)
+
+include		$(SRC)/lib/Makefile.targ
+
+# Derived source and header files (messaging).
+ 
+catalog:	$(BLTMESG)
+
+$(BLTDEFS) + \
+$(BLTDATA) + \
+$(BLTMESG) :	../common/libld.msg
+		$(SGSTOOLS)/sgsmsg $(SGSMSGFLAGS) ../common/libld.msg
+		@ csh $(SGSTOOLS)/../chkmsg.csh ../common/libld.msg $(LIBSRCS)
+
+lint:		$(LINTLIB)
+
+$(LINTLIB):	$(XLINTOUT)
+
+$(XLINTOUT):	$(LIBSRCS)
+		$(LINT.c) $(LIBSRCS) $(LDLIBS) > $(XLINTOUT) 2>&1

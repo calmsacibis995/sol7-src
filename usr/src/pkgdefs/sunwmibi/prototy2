@@ -1,0 +1,7 @@
+# Copyright 1988 - 09/30/96 Sun Microsystems, Inc. All Rights Reserved.
+#pragma ident  "@(#)prototype_sparc	1.24 96/09/30 Sun Microsystems"
+
+#
+# pkgdefs/SUNWmibii/prototype_sparc
+#
+!include prototype_com

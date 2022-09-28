@@ -1,0 +1,90 @@
+/*
+ * Copyright (c) 1990-1997, by Sun Microsystems, Inc.
+ * All rights reserved.
+ */
+
+#pragma ident	"@(#)lookup.c	1.5	97/07/28 SMI"
+
+#include "gprof.h"
+
+/*
+ * look up an address in a sorted-by-address namelist
+ * this deals with misses by mapping them to the next lower
+ * entry point.
+ */
+static   int	searchmsg = 0; /* Emit the diagnostic only once */
+
+nltype *
+nllookup(pctype address)
+{
+	size_t	low;
+	size_t	middle;
+	size_t	high;
+
+#ifdef DEBUG
+	size_t	probes = 0;
+#endif DEBUG
+
+	for (low = 0, high = nname - 1; low != high; ) {
+#ifdef DEBUG
+		probes++;
+#endif DEBUG
+		middle = (high + low) >> 1;
+
+		if (nl[middle].value <= address &&
+		    nl[middle + 1].value > address) {
+#ifdef DEBUG
+			if (debug & LOOKUPDEBUG) {
+				printf("[nllookup] %ld (%ld) probes\n",
+				    probes, nname - 1);
+			}
+#endif DEBUG
+			return (&nl[middle]);
+		}
+
+		if (nl[middle].value > address) {
+			high = middle;
+		} else {
+			low = middle + 1;
+		}
+	}
+
+#ifdef DEBUG
+	printf("[nllookup] binary search fails at addr: 0x%llx\n", address);
+#endif
+
+	if (searchmsg++ == 0)
+		fprintf(stderr, "[nllookup] binary search fails???\n");
+	return (0);
+}
+
+arctype *
+arclookup(nltype *parentp, nltype *childp)
+{
+	arctype	*arcp;
+
+	if (parentp == 0 || childp == 0) {
+		fprintf(stderr, "[arclookup] parentp == 0 || childp == 0\n");
+		return (0);
+	}
+#ifdef DEBUG
+	if (debug & LOOKUPDEBUG) {
+		printf("[arclookup] parent %s child %s\n",
+		    parentp->name, childp->name);
+	}
+#endif DEBUG
+
+	for (arcp = parentp->children; arcp; arcp = arcp->arc_childlist) {
+#ifdef DEBUG
+		if (debug & LOOKUPDEBUG) {
+			printf("[arclookup]\t arc_parent %s arc_child %s\n",
+			    arcp->arc_parentp->name,
+			    arcp->arc_childp->name);
+		}
+#endif DEBUG
+		if (arcp->arc_childp == childp) {
+			return (arcp);
+		}
+	}
+	return (0);
+}

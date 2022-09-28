@@ -1,0 +1,8 @@
+#!/bin/sh
+#
+#pragma ident	"@(#)req.flg	1.1	97/12/22 SMI"
+
+echo_file usr/src/Makefile.psm.targ
+echo_file usr/src/Makefile.psm
+find_files "s.*" usr/src/lib/libthread
+find_files "s.*" usr/src/lib/common

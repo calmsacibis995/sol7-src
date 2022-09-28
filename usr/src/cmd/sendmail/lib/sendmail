@@ -1,0 +1,39 @@
+#!/sbin/sh
+#
+# Copyright (c) 1997 by Sun Microsystems, Inc.
+# All rights reserved.
+#
+#ident	"@(#)sendmail	1.14	97/12/08 SMI"
+
+ERRMSG1='WARNING: /var/mail is NFS-mounted without setting actimeo=0,'
+ERRMSG2='this can cause mailbox locking and access problems.'
+
+case "$1" in 
+'start')
+	if [ -f /usr/lib/sendmail -a -f /etc/mail/sendmail.cf ]; then
+		if [ ! -d /var/spool/mqueue ]; then
+			/usr/bin/mkdir -m 0750 /var/spool/mqueue
+			/usr/bin/chown root:bin /var/spool/mqueue
+		fi
+		/usr/lib/sendmail -bd -q15m &
+	fi	
+
+	if /usr/bin/nawk 'BEGIN{s = 1}
+	    $2 == "/var/mail" && $3 == "nfs" && $4 !~ /actimeo=0/ &&
+	    $4 !~ /noac/{s = 0} END{exit s}' /etc/mnttab; then
+
+		/usr/bin/logger -p mail.crit "$ERRMSG1"
+		/usr/bin/logger -p mail.crit "$ERRMSG2"
+	fi
+	;;
+
+'stop')
+	/usr/bin/pkill -x -u 0 sendmail
+	;;
+
+*)
+	echo "Usage: $0 { start | stop }"
+	exit 1
+	;;
+esac
+exit 0

@@ -1,0 +1,78 @@
+#!/sbin/sh
+#
+# Copyright (c) 1997 by Sun Microsystems, Inc.
+# All rights reserved.
+#
+#ident	"@(#)nfs.server	1.18	97/12/08 SMI"
+
+[ ! -d /usr/bin ] && exit
+
+# Start/stop processes required for server NFS
+
+case "$1" in
+'start')
+	# Clean up old /etc/dfs/sharetab - remove all nfs entries
+
+	if [ -f /etc/dfs/sharetab ] ; then
+		/usr/bin/awk '$3 != "nfs"' /etc/dfs/sharetab | \
+		    /usr/bin/sed -e 's/ /	/' >/tmp/sharetab.$$
+
+		# Retain the last modification time so that it can be truncated
+		# by the share command when it is called first time after boot.
+
+		/usr/bin/rm -f /tmp/sharetab.$$
+		/usr/bin/touch -r /etc/dfs/sharetab /tmp/sharetab.$$
+		/usr/bin/mv /tmp/sharetab.$$ /etc/dfs/sharetab
+	fi
+
+	# If /etc/dfs/dfstab exists and has non-blank or non-commented-out
+	# lines, then run shareall to export them, and then start up mountd
+	# and nfsd if anything was successfully exported.
+
+	if [ -f /etc/dfs/dfstab ] && /usr/bin/egrep -v '^[	 ]*(#|$)' \
+ 	    /etc/dfs/dfstab >/dev/null 2>&1; then
+
+		/usr/sbin/shareall -F nfs
+	
+		if /usr/bin/grep -s nfs /etc/dfs/sharetab >/dev/null; then
+			/usr/lib/nfs/mountd
+			/usr/lib/nfs/nfsd -a 16
+		fi
+	fi
+
+	# When the system comes up umask is not set; so set the mode now
+
+	[ -f /etc/dfs/sharetab ] && /usr/bin/chmod 644 /etc/dfs/sharetab
+
+	# If /tftpboot exists become a boot server
+
+	if [ -d /tftpboot ]; then
+		/usr/sbin/in.rarpd -a
+		/usr/sbin/rpc.bootparamd
+	fi
+
+	# If /rplboot exists become a boot server for x86 clients
+
+	if [ -d /rplboot ]; then
+		/usr/sbin/rpld -a
+		if [ ! -d /tftpboot ]; then
+			/usr/sbin/in.rarpd -a
+			/usr/sbin/rpc.bootparamd
+		fi
+	fi
+	;;
+
+'stop')
+	/usr/bin/pkill -x -u 0 \
+	    '(nfsd|mountd|rpc\.bootparamd|in\.rarpd|rpld)'
+
+	if /usr/bin/grep -s nfs /etc/dfs/sharetab >/dev/null; then
+		/usr/sbin/unshareall -F nfs
+	fi
+	;;
+*)
+	echo "Usage: $0 { start | stop }"
+	exit 1
+	;;
+esac
+exit 0

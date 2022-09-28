@@ -1,0 +1,158 @@
+#
+# Copyright (c) 1993-1998 by Sun Microsystems, Inc.
+# All rights reserved.
+#
+#ident	"@(#)prototype_sparc	1.17	98/02/08 SMI"
+#
+# This required package information file contains a list of package contents.
+# The 'pkgmk' command uses this file to identify the contents of a package
+# and their location on the development machine when building the package.
+# Can be created via a text editor or through use of the 'pkgproto' command.
+
+#!search <pathname pathname ...>	# where to find pkg objects
+#!include <filename>			# include another 'prototype' file
+#!default <mode> <owner> <group>	# default used if not specified on entry
+#!<param>=<value>			# puts parameter in pkg environment
+
+#
+# Include ISA independent files (prototype_com)
+#
+!include prototype_com
+#
+#
+#
+# List files which are SPARC specific here
+#
+# source locations relative to the prototype file
+
+d none usr/lib/sparcv9 755 root bin
+s none usr/lib/64=sparcv9
+f none usr/lib/sparcv9/libbsdmalloc.so.1 755 bin bin
+s none usr/lib/sparcv9/libbsdmalloc.so=libbsdmalloc.so.1
+f none usr/lib/sparcv9/libbsm.so.1 755 bin bin
+s none usr/lib/sparcv9/libbsm.so=libbsm.so.1
+f none usr/lib/sparcv9/libcfgadm.so.1 755 bin bin
+s none usr/lib/sparcv9/libcfgadm.so=libcfgadm.so.1
+f none usr/lib/sparcv9/libcmd.so.1 755 bin bin
+s none usr/lib/sparcv9/libcmd.so=libcmd.so.1
+f none usr/lib/sparcv9/libcrypt_i.so.1 755 bin bin
+s none usr/lib/sparcv9/libcrypt_i.so=libcrypt_i.so.1
+f none usr/lib/sparcv9/libcurses.so.1 755 bin bin
+s none usr/lib/sparcv9/libcurses.so=libcurses.so.1
+f none usr/lib/sparcv9/libform.so.1 755 bin bin
+s none usr/lib/sparcv9/libform.so=libform.so.1
+f none usr/lib/sparcv9/libgen.so.1 755 bin bin
+s none usr/lib/sparcv9/libgen.so=libgen.so.1
+f none usr/lib/sparcv9/liblddbg.so.4 755 bin bin
+f none usr/lib/sparcv9/libmalloc.so.1 755 bin bin
+s none usr/lib/sparcv9/libmalloc.so=libmalloc.so.1
+f none usr/lib/sparcv9/libmenu.so.1 755 bin bin
+s none usr/lib/sparcv9/libmenu.so=libmenu.so.1
+f none usr/lib/sparcv9/libnls.so.1 755 bin bin
+s none usr/lib/sparcv9/libnls.so=libnls.so.1
+f none usr/lib/sparcv9/libnss_compat.so.1 755 bin bin
+s none usr/lib/sparcv9/libnss_compat.so=libnss_compat.so.1
+f none usr/lib/sparcv9/libnss_dns.so.1 755 bin bin
+s none usr/lib/sparcv9/libnss_dns.so=libnss_dns.so.1
+f none usr/lib/sparcv9/libnss_files.so.1 755 bin bin
+s none usr/lib/sparcv9/libnss_files.so=libnss_files.so.1
+f none usr/lib/sparcv9/libnss_nis.so.1 755 bin bin
+s none usr/lib/sparcv9/libnss_nis.so=libnss_nis.so.1
+f none usr/lib/sparcv9/libnss_nisplus.so.1 755 bin bin
+s none usr/lib/sparcv9/libnss_nisplus.so=libnss_nisplus.so.1
+f none usr/lib/sparcv9/libpanel.so.1 755 bin bin
+s none usr/lib/sparcv9/libpanel.so=libpanel.so.1
+f none usr/lib/sparcv9/libplot.so.1 755 bin bin
+s none usr/lib/sparcv9/libplot.so=./libplot.so.1
+f none usr/lib/sparcv9/lib300.so.1 755 bin bin
+s none usr/lib/sparcv9/lib300.so=./lib300.so.1
+f none usr/lib/sparcv9/lib300s.so.1 755 bin bin
+s none usr/lib/sparcv9/lib300s.so=./lib300s.so.1
+f none usr/lib/sparcv9/lib4014.so.1 755 bin bin
+s none usr/lib/sparcv9/lib4014.so=./lib4014.so.1
+f none usr/lib/sparcv9/lib450.so.1 755 bin bin
+s none usr/lib/sparcv9/lib450.so=./lib450.so.1
+f none usr/lib/sparcv9/libthread_db.so.1 755 bin bin
+s none usr/lib/sparcv9/libthread_db.so=libthread_db.so.1
+f none usr/lib/sparcv9/libvt0.so.1 755 bin bin
+s none usr/lib/sparcv9/libvt0.so=./libvt0.so.1
+f none usr/lib/sparcv9/0@0.so.1 755 bin bin
+f none usr/lib/sparcv9/libadm.so.1 755 bin bin
+s none usr/lib/sparcv9/libadm.so=libadm.so.1
+f none usr/lib/sparcv9/libaio.so.1 755 bin bin
+s none usr/lib/sparcv9/libaio.so=libaio.so.1
+f none usr/lib/sparcv9/libc.so.1 755 bin bin
+s none usr/lib/sparcv9/libc.so=libc.so.1
+f none usr/lib/sparcv9/libdevice.so.1 755 bin bin
+s none usr/lib/sparcv9/libdevice.so=libdevice.so.1
+f none usr/lib/sparcv9/libdevid.so.1 755 bin bin
+s none usr/lib/sparcv9/libdevid.so=libdevid.so.1
+f none usr/lib/sparcv9/libdevinfo.so.1 755 bin bin
+s none usr/lib/sparcv9/libdevinfo.so=libdevinfo.so.1
+f none usr/lib/sparcv9/libdl.so.1 755 bin bin
+s none usr/lib/sparcv9/libdl.so=libdl.so.1
+f none usr/lib/sparcv9/libdoor.so.1 755 bin bin
+s none usr/lib/sparcv9/libdoor.so=libdoor.so.1
+f none usr/lib/sparcv9/libelf.so.1 755 bin bin
+s none usr/lib/sparcv9/libelf.so=libelf.so.1
+f none usr/lib/sparcv9/libintl.so.1 755 bin bin
+s none usr/lib/sparcv9/libintl.so=./libintl.so.1
+f none usr/lib/sparcv9/libkrb.so.1 755 bin bin
+s none usr/lib/sparcv9/libkrb.so=libkrb.so.1
+f none usr/lib/sparcv9/libkstat.so.1 755 bin bin
+s none usr/lib/sparcv9/libkstat.so=libkstat.so.1
+f none usr/lib/sparcv9/libkvm.so.1 755 bin bin
+s none usr/lib/sparcv9/libkvm.so=libkvm.so.1
+f none usr/lib/sparcv9/libl.so.1 0755 bin bin
+s none usr/lib/sparcv9/libl.so=libl.so.1
+f none usr/lib/sparcv9/liblm.so.1 755 bin bin
+s none usr/lib/sparcv9/liblm.so=liblm.so.1
+f none usr/lib/sparcv9/libmapmalloc.so.1 755 bin bin
+s none usr/lib/sparcv9/libmapmalloc.so=libmapmalloc.so.1
+s none usr/lib/sparcv9/libmp.so=./libmp.so.2
+f none usr/lib/sparcv9/libmp.so.2 755 bin bin
+f none usr/lib/sparcv9/libnsl.so.1 755 bin bin
+s none usr/lib/sparcv9/libnsl.so=libnsl.so.1
+f none usr/lib/sparcv9/libposix4.so.1 755 bin bin
+s none usr/lib/sparcv9/libposix4.so=libposix4.so.1
+f none usr/lib/sparcv9/libproc.so.1 755 bin bin
+s none usr/lib/sparcv9/libproc.so=libproc.so.1
+f none usr/lib/sparcv9/libpthread.so.1 755 bin bin
+s none usr/lib/sparcv9/libpthread.so=libpthread.so.1
+f none usr/lib/sparcv9/librac.so.1 755 bin bin
+s none usr/lib/sparcv9/librac.so=librac.so.1
+f none usr/lib/sparcv9/libresolv.so.2 755 bin bin
+s none usr/lib/sparcv9/libresolv.so=libresolv.so.2
+f none usr/lib/sparcv9/librpcsvc.so.1 755 bin bin
+s none usr/lib/sparcv9/librpcsvc.so=librpcsvc.so.1
+f none usr/lib/sparcv9/librtld.so.1 755 bin bin
+f none usr/lib/sparcv9/libsched.so.1 755 bin bin
+s none usr/lib/sparcv9/libsched.so=libsched.so.1
+f none usr/lib/sparcv9/libsec.so.1 755 bin bin
+s none usr/lib/sparcv9/libsec.so=libsec.so.1
+f none usr/lib/sparcv9/libsocket.so.1 755 bin bin
+s none usr/lib/sparcv9/libsocket.so=libsocket.so.1
+s none usr/lib/sparcv9/libtermcap.so=libtermcap.so.1
+s none usr/lib/sparcv9/libtermcap.so.1=libcurses.so.1
+s none usr/lib/sparcv9/libtermlib.so=libtermlib.so.1
+s none usr/lib/sparcv9/libtermlib.so.1=libcurses.so.1
+f none usr/lib/sparcv9/libthread.so.1 755 bin bin
+s none usr/lib/sparcv9/libthread.so=libthread.so.1
+f none usr/lib/sparcv9/libvolmgt.so.1 755 bin bin
+s none usr/lib/sparcv9/libvolmgt.so=libvolmgt.so.1
+f none usr/lib/sparcv9/libw.so.1 755 bin bin
+s none usr/lib/sparcv9/libw.so=./libw.so.1
+s none usr/lib/sparcv9/libxnet.so=./libxnet.so.1
+f none usr/lib/sparcv9/libxnet.so.1 755 bin bin
+f none usr/lib/sparcv9/nss_compat.so.1 755 bin bin
+f none usr/lib/sparcv9/nss_dns.so.1 755 bin bin
+f none usr/lib/sparcv9/nss_files.so.1 755 bin bin
+f none usr/lib/sparcv9/nss_nis.so.1 755 bin bin
+f none usr/lib/sparcv9/nss_nisplus.so.1 755 bin bin
+f none usr/lib/sparcv9/straddr.so.2 755 bin bin
+s none usr/lib/sparcv9/straddr.so=straddr.so.2
+f none usr/lib/sparcv9/watchmalloc.so.1 755 bin bin
+f none usr/lib/sparcv9/liby.so.1 0755 bin bin
+s none usr/lib/sparcv9/liby.so=liby.so.1
+d none usr/lib/fp/libp/sparcv9 755 bin bin
+d none usr/lib/iconv/sparcv9 755 bin bin

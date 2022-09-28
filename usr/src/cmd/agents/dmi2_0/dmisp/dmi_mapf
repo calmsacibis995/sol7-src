@@ -1,0 +1,94 @@
+SUNWprivate_1.1 {
+	global:
+		InitDmiInfo; 
+
+		xdr_DmiRegisterIN;
+		xdr_DmiRegisterOUT;
+		xdr_DmiUnregisterOUT;
+		xdr_DmiUnregisterIN;
+		xdr_DmiGetVersionOUT;
+		xdr_DmiGetVersionIN;
+		xdr_DmiGetConfigOUT;
+		xdr_DmiGetConfigIN;
+		xdr_DmiSetConfigOUT;
+		xdr_DmiSetConfigIN;
+		xdr_DmiListComponentsOUT;
+		xdr_DmiListComponentsIN;
+		xdr_DmiListComponentsByClassOUT;
+		xdr_DmiListComponentsByClassIN;
+		xdr_DmiListLanguagesOUT;
+		xdr_DmiListLanguagesIN;
+		xdr_DmiListClassNamesOUT;
+		xdr_DmiListClassNamesIN;
+		xdr_DmiListGroupsOUT;
+		xdr_DmiListGroupsIN;
+		xdr_DmiListAttributesOUT;
+		xdr_DmiListAttributesIN;
+		xdr_DmiAddComponentOUT;
+		xdr_DmiAddComponentIN;
+		xdr_DmiAddLanguageOUT;
+		xdr_DmiAddLanguageIN;
+		xdr_DmiAddGroupOUT;
+		xdr_DmiAddGroupIN;
+		xdr_DmiDeleteComponentOUT;
+		xdr_DmiDeleteComponentIN;
+		xdr_DmiDeleteLanguageOUT;
+		xdr_DmiDeleteLanguageIN;
+		xdr_DmiDeleteGroupOUT;
+		xdr_DmiDeleteGroupIN;
+		xdr_DmiAddRowOUT;
+		xdr_DmiAddRowIN;
+		xdr_DmiDeleteRowOUT;
+		xdr_DmiDeleteRowIN;
+		xdr_DmiGetMultipleOUT;
+		xdr_DmiGetMultipleIN;
+		xdr_DmiSetMultipleOUT;
+		xdr_DmiSetMultipleIN;
+		xdr_DmiGetAttributeOUT;
+		xdr_DmiGetAttributeIN;
+		xdr_DmiSetAttributeOUT;
+		xdr_DmiSetAttributeIN;
+		xdr_DmiRegisterCiIN;
+		xdr_DmiRegisterCiOUT;
+		xdr_DmiUnregisterCiIN;
+		xdr_DmiUnregisterCiOUT;
+		xdr_DmiOriginateEventIN;
+		xdr_DmiOriginateEventOUT;
+
+		xdr_DmiGroupDeletedIN; 
+		xdr_DmiSubscriptionNoticeIN; 
+		xdr_DmiComponentAddedIN; 
+		xdr_DmiComponentDeletedIN;   
+		xdr_DmiDeliverEventIN; 
+		xdr_DmiErrorStatus_t;        
+		xdr_DmiLanguageAddedIN;      
+		xdr_DmiLanguageDeletedIN;    
+		xdr_DmiGroupAddedIN; 
+
+
+		xdr_CiGetNextAttributeIN; 
+		xdr_CiReserveAttributeIN; 
+		xdr_CiAddRowIN; 
+		xdr_CiGetNextAttributeOUT; 
+		xdr_CiSetAttributeIN; 
+		xdr_CiGetAttributeOUT; 
+		xdr_CiDeleteRowIN; 
+		xdr_CiGetAttributeIN; 
+		xdr_CiReleaseAttributeIN; 
+
+
+		error; 
+		trace; 
+		trace_on; 
+
+		dmi_error; 
+		freeDmiString; 
+		printDmiString; 
+		newDmiOctetStringFromString; 
+		newDmiString; 
+		newDmiAttributeValues; 
+		printDmiDataUnion; 
+
+	local:
+		*;
+}; 

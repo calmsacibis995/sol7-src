@@ -1,0 +1,35 @@
+\
+\ Copyright (c) 1997, by Sun Microsystems, Inc.
+\ All rights reserved.
+\
+\"@(#)pcb.dbg	1.13	98/01/19 SMI"
+
+#include <sys/param.h>
+#include <sys/types.h>
+#include <sys/pcb.h>
+#include <sys/user.h>
+#include "dummy.h"
+
+
+\
+\
+pcb		pcb_
+{adb_inline_begin}
+.>z
+<z+{OFFSET, pcb_flags}=""
+{adb_inline_end}
+	flags			hex
+#if defined(i386)
+	gpfault			hex
+#elif defined(sparc)
+	trap0addr		hex
+#endif
+	instr			hex
+#if defined(sparc)
+	xregstat		decimal
+	step			decimal
+	tracepc			hex
+#endif
+{adb_inline_begin}
+<z+{SIZEOF}=""
+{adb_inline_end}

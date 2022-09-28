@@ -1,0 +1,123 @@
+#ident "@(#)dispatcher.conf	1.3 25 Jan 1996 SMI"
+#
+#
+# Copyright 25 Jan 1996 Sun Microsystems, Inc. All Rights Reserved
+#
+
+#
+#  Example of Configuration file of the SNMP Relay
+#
+
+
+##########
+# macros # 
+##########
+
+macros = {
+	default =		mib-2
+
+	application =		mib-2.27
+	mta =			mib-2.28
+	dsa =			mib-2.29
+
+	applTable =			application.1
+	assocTable =			application.2
+	mtaTable =			mta.1
+	mtaGroupTable =			mta.2
+	mtaGroupAssociationTable =	mta.3
+
+	transmission =		mib-2.10
+	x25 =			transmission.5
+
+	example =		sun.1000
+}
+
+
+##########
+# agents #
+##########
+
+agents =
+{
+	{
+		name = "snmpd"
+		subtrees = { mib-2, sun }
+		tables = { }
+		timeout = 2000000
+		port = 4000
+	}
+
+	{
+		name = "snmpx400d"
+		subtrees = { assocTable, mtaGroupTable, mtaGroupAssociationTable }
+		tables =
+		{
+			{
+				table = applTable
+				columns = [2-15]
+				indexs = 1
+			}
+			{
+				table = applTable
+				columns = [2-15]
+				indexs = 2
+			}
+			{
+				table = assocTable
+				columns = [2-5]
+				indexs = 1
+			}
+			{
+				table =	mtaTable
+				columns = [1-9]
+				indexs = 1
+			}
+			{
+				table =	mtaTable
+				columns = [1-9]
+				indexs = 2
+			}
+		}
+		timeout = 4000000
+		port = 5000
+	}
+
+	{
+		name = "snmpsendmaild"
+		tables =
+		{
+			{
+				table = applTable
+				columns = [2-15]
+				indexs = 3
+			}
+			{
+				table = assocTable
+				columns = [2-5]
+				indexs = 3
+			}
+			{
+				table = mtaTable
+				columns = [1-9]
+				indexs = 3
+			}
+		}
+		timeout = 4000000
+		port = 5001
+	}
+
+	{
+		name = "snmpx25d"
+		subtrees = { x25 }
+		tables = { }
+		timeout = 2000000
+		port = 6000
+	}
+
+	{
+		name = "snmpexampled"
+		subtrees = { example }
+		timeout = 2000000
+		port = 7000
+	}
+}

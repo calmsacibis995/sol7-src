@@ -1,0 +1,33 @@
+#
+#pragma ident	"@(#)prototype_com	1.4	97/11/06 SMI"
+#
+# Copyright (c) 1997, by Sun Microsystems, Inc.
+# All rights reserved.
+#
+# This required package information file contains a list of package contents.
+# The 'pkgmk' command uses this file to identify the contents of a package
+# and their location on the development machine when building the package.
+# Can be created via a text editor or through use of the 'pkgproto' command.
+
+#!search <pathname pathname ...>	# where to find pkg objects
+#!include <filename>			# include another 'prototype' file
+#!default <mode> <owner> <group>	# default used if not specified on entry
+#!<param>=<value>			# puts parameter in pkg environment
+
+# packaging files
+i pkginfo
+i copyright
+i depend
+#
+# source locations relative to the prototype file
+#
+# SUNWgssk
+#
+d none kernel 755 root sys
+d none kernel/misc 755 root sys
+d none kernel/misc/kgss 755 root sys
+f none kernel/misc/kgssapi 755 root sys
+d none usr 0775 root sys
+d none usr/lib 0775 root bin
+d none usr/lib/gss 0755 bin bin
+f none usr/lib/gss/gssd 0555 bin bin

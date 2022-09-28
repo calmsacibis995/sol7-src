@@ -1,0 +1,12 @@
+SUNW_1.1 {
+	global:
+		DmiRegisterCi; 
+		DmiUnregisterCi; 
+		DmiOriginateEvent; 
+		ConnectToServer; 
+		DisconnectToServer; 
+start_svc_run_thread; 
+reg_ci_callback; 
+	local:
+		*;
+}; 

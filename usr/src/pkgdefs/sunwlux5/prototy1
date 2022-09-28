@@ -1,0 +1,38 @@
+#	Copyright (c) 1990-97 Sun Microsystems, Inc.
+#		All Rights Reserved
+#
+#pragma ident "@(#)prototype_sparc 1.3	97/05/20 SMI"
+#
+# This required package information file contains a list of package contents.
+# The 'pkgmk' command uses this file to identify the contents of a package
+# and their location on the development machine when building the package.
+# Can be created via a text editor or through use of the 'pkgproto' command.
+
+#!search <pathname pathname ...>	# where to find pkg objects
+#!include <filename>			# include another 'prototype' file
+#!default <mode> <owner> <group>	# default used if not specified on entry
+#!<param>=<value>			# puts parameter in pkg environment
+
+#
+# Include ISA independent files (prototype_com)
+#
+!include prototype_com
+#
+#
+# List files which are SPARC specific here
+#
+# source locations relative to the prototype file
+#
+#
+# SUNWluxop
+d none usr 0775 root sys
+d none usr/sbin 0775 root bin
+f none usr/sbin/luxadm 0555 bin bin
+d none usr/lib 0775 root bin
+d none usr/lib/firmware 0755 bin bin
+d none usr/lib/firmware/fc_s 0755 bin bin
+f none usr/lib/firmware/fc_s/fcal_s_fcode 0644 root bin
+d none usr/lib/locale 0755 bin bin
+d none usr/lib/locale/C 0755 bin bin
+d none usr/lib/locale/C/LC_MESSAGES 0755 bin bin
+f none usr/lib/locale/C/LC_MESSAGES/ibfirmware 644 root bin

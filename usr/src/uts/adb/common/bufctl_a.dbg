@@ -1,0 +1,37 @@
+\
+\ Copyright (c) 1997, by Sun Microsystems, Inc.
+\ All rights reserved.
+\
+\"@(#)bufctl_audit.dbg	1.7	98/01/28 SMI"
+
+#include <sys/kmem.h>
+#include <sys/kmem_impl.h>
+#include "dummy.h"
+
+\
+\
+kmem_bufctl_audit       bc_             bufctl_audit
+{adb_inline_begin}
+.>b
+<_>U;1>_
+<b+{OFFSET, bc_next}=""
+{adb_inline_end}
+        next            hex
+        addr            hex
+        slab            hex
+        cache           hex
+        timestamp       hex
+        thread          hex
+        lastlog         hex
+        contents        hex
+        depth           hex     "stackdepth"
+{adb_inline_begin}
+(<b+{OFFSET, bc_stack})>s
+#if defined(sparcv9)
+*(<b+{OFFSET, bc_depth})>/i/d
+#else
+*(<b+{OFFSET, bc_depth})>d
+#endif
+<U>_
+<s,<d/np
+{adb_inline_end}

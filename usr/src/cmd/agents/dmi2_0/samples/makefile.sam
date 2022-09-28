@@ -1,0 +1,23 @@
+# Copyright 10/02/96 Sun Microsystems, Inc. All Rights Reserved.
+#pragma ident  "@(#)Makefile.samples	1.1 96/10/02 Sun Microsystems"
+
+
+all:
+	make -f Makefile.namedir
+	make -f Makefile.util
+	make -f Makefile.miexample
+
+
+namedir: 
+	make -f Makefile.namedir
+
+util: 
+	make -f Makefile.util
+
+miexample: 
+	make -f Makefile.miexample
+
+clean:
+	make -f Makefile.namedir clean
+	make -f Makefile.util clean
+	make -f Makefile.miexample clean

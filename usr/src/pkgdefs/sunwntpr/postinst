@@ -1,0 +1,29 @@
+#
+#ident	"@(#)postinstall	1.6	97/06/27 SMI"
+#
+# Copyright (c) 1996-1997 by Sun Microsystems, Inc.
+#
+#
+
+# Create default /dev/pps1 link (/dev/cua/a exists on all architectures
+# where the machine has a serial port)
+
+# Perform work inside $BASEDIR/dev so symlinks are made relative.
+(cd $BASEDIR/dev; 
+  if [ -c cua/a ] ; then
+    if [ -h pps1 ] ; then
+      rm -f pps1
+    fi
+    ln -s cua/a pps1
+fi)
+
+#
+# if SUNWxntp is installed, copy ntp.conf to the location SUNWntpr
+# expects it to be.
+#
+if [ -r  $BASEDIR/etc/opt/SUNWxntp/ntp.conf ] ; then
+	cp $BASEDIR/etc/opt/SUNWxntp/ntp.conf $BASEDIR/etc/inet/ntp.conf
+	rm -f $BASEDIR/etc/opt/SUNWxntp/ntp.conf
+	removef $PKGINST $BASEDIR/etc/opt/SUNWxntp/ntp.conf >/dev/null 2>&1
+	removef  -f $PKGINST || exit 2
+fi

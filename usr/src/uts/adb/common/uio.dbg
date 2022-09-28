@@ -1,0 +1,31 @@
+\
+\ Copyright (c) 1997, by Sun Microsystems, Inc.
+\ All rights reserved.
+\
+\"@(#)uio.dbg	1.7	98/01/28 SMI"
+
+#include <sys/types.h>
+#include <sys/uio.h>
+#include "dummy.h"
+
+\ uio_iovcnt is a fixed-width (32-bit) data.
+\
+uio			uio_
+{adb_inline_begin}
+.>f
+<f+{OFFSET, uio_iovcnt}=""
+{adb_inline_end}
+	iovcnt			sdecimal
+	_uio_offset		hex		offset
+	segflg			hex
+	fmode			hex
+	_uio_limit		sdecimal	limit
+	resid			sdecimal
+{adb_inline_begin}
+#if defined(sparcv9)
+*(<f+{OFFSET, uio_iovcnt})>/i/F
+#else
+*(<f+{OFFSET, uio_iovcnt})>F
+#endif
+(*(<f+{OFFSET, uio_iov})),<F$<iovec
+{adb_inline_end}

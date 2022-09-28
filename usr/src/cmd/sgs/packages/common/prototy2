@@ -1,0 +1,34 @@
+# Copyright (c) 1997 Sun Microsystems, Inc.
+# All Rights Reserved
+#
+#ident	"@(#)prototype_sparc	1.3	98/02/04 SMI"
+#
+# This required package information file contains a list of package contents.
+# The 'pkgmk' command uses this file to identify the contents of a package
+# and their location on the development machine when building the package.
+# Can be created via a text editor or through use of the 'pkgproto' command.
+
+#!search <pathname pathname ...>	# where to find pkg objects
+#!include <filename>			# include another 'prototype' file
+#!default <mode> <owner> <group>	# default used if not specified on entry
+#!<param>=<value>			# puts parameter in pkg environment
+
+!include prototype_com
+
+f none usr/lib/libld.so.3 755 bin bin
+d none usr/lib/link_audit/sparcv9 755 bin bin
+f none usr/lib/link_audit/sparcv9/truss.so.1 755 bin bin
+f none usr/lib/link_audit/sparcv9/who.so.1 755 bin bin
+d none usr/lib/sparcv9 755 bin bin
+f none usr/lib/sparcv9/libld.so.3 755 bin bin
+f none usr/lib/sparcv9/liblddbg.so.4 755 bin bin
+f none usr/lib/sparcv9/ldprof.so.1 755 bin bin
+f none usr/lib/sparcv9/ld.so.1 755 bin bin
+f none usr/lib/sparcv9/libelf.so.1 755 bin bin
+s none usr/lib/sparcv9/libelf.so=./libelf.so.1
+f none usr/lib/sparcv9/libdl.so.1 755 bin bin
+s none usr/lib/sparcv9/libdl.so=./libdl.so.1
+f none usr/lib/sparcv9/librtld.so.1 755 bin bin
+f none usr/lib/sparcv9/librtld_db.so.1 755 bin bin
+s none usr/lib/sparcv9/librtld_db.so=./librtld_db.so.1
+f none usr/lib/sparcv9/lddstub 755 bin bin

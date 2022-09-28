@@ -1,0 +1,147 @@
+#!/sbin/sh
+#
+# Copyright (c) 1984, 1986, 1987, 1988, 1989 AT&T.
+# All rights reserved.
+#
+# THIS IS UNPUBLISHED PROPRIETARY SOURCE CODE OF AT&T
+# The copyright notice above does not evidence any
+# actual or intended publication of such source code.
+#
+# Copyright (c) 1997 by Sun Microsystems, Inc.
+# All rights reserved.
+#
+#ident	"@(#)keymap	1.9	97/12/08 SMI"
+
+# This file loads keyboard mappings and initializes keyboard defaults
+
+if [ ${_INIT_UTS_MACHINE:-`/sbin/uname -m`} = i86pc ]; then
+	#
+	# Load the default fonts. 
+	#
+	LOADFONT=/usr/bin/loadfont
+	ETC_DEFAULTFONT=/etc/defaultfont
+	SYS_DEFAULTFONT=/usr/share/lib/fonts/8859.bdf
+
+	if [ -x $LOADFONT ]; then
+		if [ -f $ETC_DEFAULTFONT ]; then
+			USEFONT=`cat $ETC_DEFAULTFONT`
+		else
+			[ -f $SYS_DEFAULTFONT ] && USEFONT=$SYS_DEFAULTFONT
+		fi
+		#
+		# Use keyboard layout to select default font in some cases
+		#
+		EEPROM=/usr/sbin/eeprom
+		if [ -x $EEPROM ]; then
+			KBDTYPE="`$EEPROM kbd-type | \
+			    /usr/bin/sed s/kbd-type=//`"
+		else
+			KBDTYPE="NotFound"
+		fi
+		FONTDIR=/usr/share/lib/fonts
+		case $KBDTYPE in
+		"Czech" )		USEFONT=$FONTDIR/8859-2.bdf ;;
+		"Danish" )		;;
+		"Dutch" )		;;
+		"French" )		;;
+		"French-Canadian" ) 	;;
+		"German" )		;;
+		"Greek" )		USEFONT=$FONTDIR/8859-7.bdf ;;
+		"Hungarian" )		USEFONT=$FONTDIR/8859-2.bdf ;;
+		"Italian" )		;;
+		"Japanese(106)" ) 	;;
+		"Japanese(J3100)" ) 	;;
+		"Latvian" )		USEFONT=$FONTDIR/8859-4.bdf ;;
+		"Lithuanian" )		USEFONT=$FONTDIR/8859-4.bdf ;;
+		"Polish" )		USEFONT=$FONTDIR/8859-2.bdf ;;
+		"Korean" )		;;
+		"Norwegian" )		;;
+		"Russian" )		USEFONT=$FONTDIR/8859-5.bdf ;;
+		"Spanish" )		;;
+		"Swedish" )		;;
+		"Swiss-French" ) 	;;
+		"Swiss-German" ) 	;;
+		"Taiwanese" )		;;
+		"Turkish" )		USEFONT=$FONTDIR/8859-9.bdf ;;
+		"UK-English" )		USEFONT=$FONTDIR/8859-1.bdf ;;
+		"US-English" )		USEFONT=$FONTDIR/8859-1.bdf ;;
+		"US-English(Microsoft-Natural)" ) USEFONT=$FONTDIR/8859-1.bdf ;;
+		"US-English(104-Key)" ) USEFONT=$FONTDIR/8859-1.bdf ;;
+		esac
+		if [ -f $USEFONT ]; then
+			$LOADFONT -f $USEFONT < /dev/console
+		else
+			echo "Failed to set the default font."
+			echo "$USEFONT does not exist."
+		fi
+	else
+		echo "Failed to set the default font."
+		echo "$LOADFONT does not exist or not executable."
+	fi
+
+	#
+	# Load the default keyboard mappings. 
+	#
+	PCMAPKEYS=/usr/bin/pcmapkeys
+	SYS_DEFAULTKB=/usr/share/lib/keyboards/8859/en_US
+
+	if [ -x $PCMAPKEYS ]; then
+		MAPDIR="/usr/share/lib/keyboards"
+		#
+		# Default to US english kbd if can't get a good eeprom value
+		#
+		MAPFILE=8859/en_US
+		EEPROM=/usr/sbin/eeprom
+		if [ -x $EEPROM ]; then
+			KBDTYPE="`$EEPROM kbd-type | \
+			    /usr/bin/sed s/kbd-type=//`"
+		else
+			KBDTYPE="US-English"
+		fi
+		case $KBDTYPE in
+		"Czech" )		MAPFILE=8859/cz_CZ ;;
+		"Danish" )		MAPFILE=8859/da_dk ;;
+		"Dutch" )		MAPFILE=8859/nl_NL ;;
+		"French" )		MAPFILE=8859/fr_FR ;;
+		"French-Canadian" ) 	MAPFILE=8859/fr_CA ;;
+		"German" )		MAPFILE=8859/de_DE ;;
+		"Greek" )		MAPFILE=8859/el_EL ;;
+		"Hungarian" )		MAPFILE=8859/hu_HU ;;
+		"Italian" )		MAPFILE=8859/it_IT ;;
+		"Japanese(106)" ) 	MAPFILE=japan/ja_JP ;;
+		"Japanese(J3100)" ) 	MAPFILE=japan/j3100 ;;
+		"Latvian" )		MAPFILE=8859/lv_LV ;;
+		"Lithuanian" )		MAPFILE=8859/lt_LT ;;
+		"Polish" )		MAPFILE=8859/pl_PL ;;
+		"Korean" )		MAPFILE=korean/ko_KR ;;
+		"Norwegian" )		MAPFILE=8859/no_NO ;;
+		"Russian" )		MAPFILE=8859/ru_RU ;;
+		"Spanish" )		MAPFILE=8859/es_ES ;;
+		"Swedish" )		MAPFILE=8859/sv_SE ;;
+		"Swiss-French" ) 	MAPFILE=8859/fr_CH ;;
+		"Swiss-German" ) 	MAPFILE=8859/de_CH ;;
+		"Taiwanese" )		MAPFILE=tchinese/zh_TW ;;
+		"Turkish" )		MAPFILE=8859/tr_TR ;;
+		"UK-English" )		MAPFILE=8859/en_UK ;;
+		"US-English" )		MAPFILE=8859/en_US ;;
+		"US-English(Microsoft-Natural)" ) MAPFILE=8859/en_US ;;
+		"US-English(104-Key)" ) MAPFILE=8859/en_US ;;
+		esac
+		if [ -f $MAPDIR/$MAPFILE ]; then
+			$PCMAPKEYS -f $MAPDIR/$MAPFILE < /dev/console
+		else
+			echo "Failed to set the default keyboard mappings."
+			echo "$MAPDIR/$MAPFILE does not exist."
+		fi
+	else
+		echo "Failed to set the default keyboard mappings."
+		echo "$PCMAPKEYS does not exist or not executable."
+	fi
+else
+	# Load the keymap for the attached keyboard.
+	[ -x /usr/bin/loadkeys ] && /usr/bin/loadkeys -e
+fi
+
+# Initialize the keyboard defaults
+
+[ -h /dev/kbd -a -x /usr/bin/kbd ] && /usr/bin/kbd -i >/dev/null 2>&1

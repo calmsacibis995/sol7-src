@@ -1,0 +1,61 @@
+#!/sbin/sh
+#
+# Copyright (c) 1996-1997 by Sun Microsystems, Inc.
+# All rights reserved.
+#
+#ident	"@(#)xntpd	1.6	97/12/08 SMI"
+
+[ ! -d /usr/sbin -o ! -d /usr/lib/inet ] && exit 1
+
+case "$1" in
+'start')
+	[ -f /etc/inet/ntp.conf ] || exit 0
+
+	ARGS=`/usr/bin/cat /etc/inet/ntp.conf | /usr/bin/nawk '
+	BEGIN {
+	    first = 1
+	}
+	/^#/ {
+	    next
+	}
+	/^multicastclient/ {
+	    if (first) {
+		first = 0
+		printf("-s -w -m")
+	    }
+	    if (NF == 1)
+		printf(" 224.0.1.1")
+	    else
+		printf(" %s", $2)
+	    next
+	}
+	/^server 127.127/ {
+	    next
+	}
+	/^server/ {
+	    if (first) {
+		first = 0
+		printf("-s -w")
+	    }
+	    printf(" %s", $2)
+	    next
+	}
+	'`
+	if [ -n "$ARGS" ]; then
+		# Wait until date is close before starting xntpd
+		(/usr/sbin/ntpdate $ARGS; sleep 2; /usr/lib/inet/xntpd) &
+	else
+		/usr/lib/inet/xntpd &
+	fi
+	;;
+
+'stop')
+	/usr/bin/pkill -x -u 0 '(ntpdate|xntpd)'
+	;;
+
+*)
+	echo "Usage: $0 { start | stop }"
+	exit 1
+	;;
+esac
+exit 0

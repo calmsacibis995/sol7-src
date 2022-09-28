@@ -1,0 +1,8 @@
+/* Copyright 09/12/96 Sun Microsystems, Inc. All Rights Reserved.
+*/
+#pragma ident  "@(#)snmpXdmid.conf	1.5 96/09/12 Sun Microsystems"
+
+WARNING_TIMESTAMP = 20101231110000.000000-420
+EXPIRATION_TIMESTAMP = 20101231120000.000000-420
+FAILURE_THRESHOLD = 1
+TRAP_FORWARD_TO_MAGENT = 1

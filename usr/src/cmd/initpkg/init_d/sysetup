@@ -1,0 +1,29 @@
+#!/sbin/sh
+#
+# Copyright (c) 1984-1997 by Sun Microsystems, Inc.
+# All rights reserved.
+#
+#ident	"@(#)sysetup	1.16	97/12/08 SMI"
+
+if [ -z "$_INIT_PREV_LEVEL" ]; then
+	set -- `/usr/bin/who -r`
+	_INIT_PREV_LEVEL="$9"
+fi
+
+[ $_INIT_PREV_LEVEL != S -a $_INIT_PREV_LEVEL != 1 ] && exit 0
+
+# Uncomment this line to print the complete system configuration on startup
+#[ -x /usr/sbin/prtconf ] && /usr/sbin/prtconf
+
+# If there are trademark files, print them.
+
+[ -d /etc/tm ] && /usr/bin/cat /etc/tm/* 2>/dev/null
+
+# Default is to not do a savecore.  Uncomment these lines to save
+# kernel crash dumps to /var/crash/<hostname>.
+
+#dumpdir=/var/crash/${_INIT_UTS_NODENAME:-`/usr/bin/uname -n`}
+#[ ! -d $dumpdir ] && /usr/bin/mkdir -m 0700 -p $dumpdir
+#echo 'checking for crash dump ... \c'
+#/usr/bin/savecore $dumpdir
+#echo ''

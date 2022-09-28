@@ -1,0 +1,19 @@
+#ident	"@(#)postinstall	1.1	97/11/09 SMI"
+#
+# Copyright (c) 1992 by Sun Microsystems, Inc.
+#
+
+# make symlink to international libcrypt
+#
+if [ ! -h $BASEDIR/usr/lib/libcrypt.so ] ; then
+	ln -s libcrypt_i.so $BASEDIR/usr/lib/libcrypt.so || exit 2
+fi
+if [ ! -h $BASEDIR/usr/lib/libcrypt.so.1 ] ; then
+	ln -s libcrypt_i.so.1 $BASEDIR/usr/lib/libcrypt.so.1 || exit 2
+fi
+#
+#	end with removef -f and exit message
+#
+removef -f $PKGINST || exit 2
+
+exit 0

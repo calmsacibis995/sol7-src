@@ -1,0 +1,70 @@
+# Copyright 04/24/97 Sun Microsystems, Inc. All Rights Reserved.
+#pragma ident  "@(#)Makefile.vars	1.17 97/04/24 Sun Microsystems"
+
+BIN		= bin$(TARGET_ARCH)
+
+CFLAGS		= -g
+
+LDFLAGS		+= -g $(LDLIBS)
+
+#
+#	Compiler selection
+#
+TARG_SYS:sh =                                   \
+ (                                              \
+   UNAME=` uname -r 2>/dev/null` ||.;           \
+   case $UNAME in                               \
+   '') echo SUNOS;;                             \
+   4.*) echo SUNOS;;                            \
+   5.*) PNAME=`uname -p 2>/dev/null` ||.;       \
+        case $PNAME in                          \
+        '') echo SVR4;;                         \
+        i386) echo INTEL;;                      \
+        *) echo SVR4;;                          \
+        esac;;                                  \
+   *)  echo SVR4;;                              \
+   esac                                         \
+ )
+
+SVR4_CC=cc
+INTEL_CC=cc
+SUNOS_CC=acc
+_CC=$(SVR4_CC)
+CC=$($(TARG_SYS)_CC)
+
+SVR4_CCC=CC
+INTEL_CCC=CC
+SUNOS_CCC=CC
+_CCC=$(SVR4_CCC)
+CCC=$($(TARG_SYS)_CCC)
+
+CCC += -norunpath -nolib -lC -lc
+
+SVR4_SCCS= /usr/ccs/bin/sccs
+INTEL_SCCS= /usr/ccs/bin/sccs
+_SCCS=$(SVR4_SCCS)
+SCCS=$($(TARG_SYS)_SCCS)
+
+SVR4_LD= /usr/ccs/bin/ld
+INTEL_LD= /usr/ccs/bin/ld
+_LD=$(SVR4_LD)
+LD=$($(TARG_SYS)_LD)
+
+SVR4_STRIP= /usr/ccs/bin/strip
+INTEL_STRIP= /usr/ccs/bin/strip
+SUNOS_STRIP=/bin/strip
+_STRIP=$(SVR4_STRIP)
+STRIP=$($(TARG_SYS)_STRIP)
+
+SVR4_SNMHOME=/opt/SUNWconn/snm
+INTEL_SNMHOME=
+SUNOS_SNMHOME=/usr/snm
+_SNMHOME=$(SVR4_SNMHOME)
+SNMHOME=$($(TARG_SYS)_SNMHOME)
+
+#
+#	Misc Tools
+#
+
+TEST	 = test
+

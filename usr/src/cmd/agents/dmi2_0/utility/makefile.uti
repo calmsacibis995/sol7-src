@@ -1,0 +1,48 @@
+# Copyright 12/13/96 Sun Microsystems, Inc. All Rights Reserved.
+#pragma ident  "@(#)Makefile.util	1.7 96/12/13 Sun Microsystems"
+
+ 
+LD_RUN_PATH		= /usr/lib
+LINKLIBDIR		= -L/usr/lib
+
+INCLUDES		= -I/usr/include/dmi
+DEBUG			= -g
+FLAGS           = -DSVR4 -D_REENTRANT 
+CCFLAGS         = $(DEBUG) $(FLAGS) $(INCLUDES)
+
+TARGETS=\
+	$(DMICMD) \
+	$(DMIGET) 
+
+DMICMD = dmi_cmd
+
+DMIGET = dmiget
+
+
+CMDOBJS = \
+	dmicmd.o 
+
+GETOBJS = \
+	dmiget.o 
+
+OBJECTS = \
+	$(CMDOBJS) \
+	$(GETOBJS)
+
+LIBS = $(LINKLIBDIR)  -ldmimi -ldmi -lnsl -lrwtool 
+
+%.o: %.cc
+	$(CCC) $(CCFLAGS) -c $< -o $@
+
+
+all:  $(TARGETS)
+
+$(DMICMD): $(CMDOBJS) 
+	$(CCC) -o $@ -R $(LD_RUN_PATH) $(CMDOBJS) $(LIBS)
+
+$(DMIGET): $(GETOBJS) 
+	$(CCC) -o $@ -R $(LD_RUN_PATH) $(GETOBJS) $(LIBS)
+
+clean:
+	$(RM) -f $(TARGETS) $(OBJECTS)
+	$(RM) -rf Templates.DB

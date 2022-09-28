@@ -1,0 +1,62 @@
+#
+#ident	"@(#)mapfile	1.6	97/05/28 SMI"
+#
+# Copyright (c) 1996 by Sun Microsystems, Inc.
+# All rights reserved.
+#
+#
+# Generic interface definition for usr/src/lib/libmapmalloc.
+#
+# For information regarding the establishment of versioned definitions see:
+#	The Linker and Libraries Manual (version 2.5 or greater)
+# This is part of the Developers Guide in the Answerbook.  Specifically refer
+# to Chapter 2 under section "Defining Additional Symbols" through section
+# "Reducing Symbol Scope", and Chapter 5 "Versioning".
+#
+# For specific OSNET rules for the modification (evolution) of these version
+# definitions see:
+#	Policy for Shared Library Version Names and Interface Definitions
+
+
+# Note: Even though the SUNW_1.2 version now contains no symbols
+# beyond what was present at Solaris 2.6, the SUNW_1.2 version MUST be 
+# present.  This is because applications built on 2.6 Beta 
+# (when it did contain symbols explicitly) may depend on it.
+#
+SUNW_1.2 {	# This empty version MUST BE preserved for 2.6Beta apps
+	global:
+		SUNW_1.2;
+} SUNW_1.1;
+
+SUNW_1.1 {	# Solaris ABI as of Solaris 2.6
+	global:
+		pam_getenv;		# SUNW_1.2 (add'l pam intfc)
+		pam_getenvlist;		# SUNW_1.2 (add'l pam intfc)
+		pam_putenv;		# SUNW_1.2 (add'l pam intfc)
+		pam_acct_mgmt;
+		pam_authenticate;
+		pam_chauthtok;
+		pam_close_session;
+		pam_end;
+		pam_get_data;
+		pam_get_item;
+		pam_get_user;
+		pam_open_session;
+		pam_set_data;
+		pam_set_item;
+		pam_setcred;
+		pam_start;
+		pam_strerror;
+};
+
+SUNWprivate_1.1 {
+	global:
+		# PAM Convenience Functions
+		__pam_display_msg;
+		__pam_free_resp;
+		__pam_get_authtok;
+		__pam_get_i18n_msg;
+		__pam_get_input;
+	local:
+		*;
+};

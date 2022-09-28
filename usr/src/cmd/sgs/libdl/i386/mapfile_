@@ -1,0 +1,16 @@
+#
+#ident	"@(#)mapfile-vers	1.3	97/05/28 SMI"
+#
+# Copyright (c) 1996 by Sun Microsystems, Inc.
+# All rights reserved.
+#
+# Intel386 specific interface definition for usr/src/lib/libdl.
+
+
+SUNW_0.7 {  # Solaris ABI as of Solaris 2.3
+	global:
+		 dlclose;
+		 dlerror;
+		 dlopen;
+		 dlsym;
+};

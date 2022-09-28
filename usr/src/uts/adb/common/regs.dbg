@@ -1,0 +1,17 @@
+\
+\ Copyright (c) 1997, by Sun Microsystems, Inc.
+\ All rights reserved.
+\
+\"@(#)regs.dbg	1.15	98/01/14 SMI"
+
+#include <sys/types.h>
+#if defined(sparc)
+#include <sys/privregs.h>
+#elif defined(i386)
+#include <sys/reg.h>
+#endif
+#include "dummy.h"
+
+\
+\
+regs		r_

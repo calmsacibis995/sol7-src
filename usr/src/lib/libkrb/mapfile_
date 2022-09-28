@@ -1,0 +1,95 @@
+#
+#ident	"@(#)mapfile-vers	1.7	97/05/28 SMI"
+#
+# Copyright (c) 1996 by Sun Microsystems, Inc.
+# All rights reserved.
+#
+#
+# Generic interface definition for usr/src/lib/libkrb.
+#
+# For information regarding the establishment of versioned definitions see:
+#	The Linker and Libraries Manual (version 2.5 or greater)
+# This is part of the Developers Guide in the Answerbook.  Specifically refer
+# to Chapter 2 under section "Defining Additional Symbols" through section
+# "Reducing Symbol Scope", and Chapter 5 "Versioning".
+#
+# For specific OSNET rules for the modification (evolution) of these version
+# definitions see:
+#	Policy for Shared Library Version Names and Interface Definitions
+
+
+# Note: Even though the SUNW_1.1 version now contains no symbols
+# beyond what was present at Solaris 2.3, the SUNW_1.1 version MUST be 
+# present.  This is because applications built on 2.6 Beta 
+# (when it did contain symbols explicitly) may depend on it.
+
+SUNW_1.1 {	# Solaris ABI as of Solaris 2.6
+	global:
+		SUNW_1.1;
+} SUNW_0.7;
+
+SUNW_0.7 {	# Solaris ABI as of Solaris 2.3
+	global:
+		ErrorMsg;
+		LineNbr;
+		_et_list;
+		_kmsgout;
+		_svcauth_kerb;
+		authkerb_create;
+		authkerb_getucred;
+		authkerb_seccreate;
+		create_auth_reply;
+		error_table_name;
+		kerb_error;
+		kerb_get_session_cred;
+		kerb_get_session_key;
+		klog;
+		krbONE;
+		krb_err_txt;
+		krb_get_admhst;
+		krb_get_cred;
+		krb_get_default_realm;
+		krb_get_krbhst;
+		krb_get_lrealm;
+		krb_get_phost;
+		krb_kntoln;
+		krb_mk_err;
+		krb_mk_req;
+		krb_mk_safe;
+		krb_net_read;
+		krb_net_write;
+		krb_rd_err;
+		krb_rd_req;
+		krb_rd_safe;
+		krb_realmofhost;
+		krb_recvauth;
+		krb_sendauth;
+		krb_set_key;
+		krb_set_tkt_string;
+		log;
+		pkt_cipher;
+		svc_kerb_reg;
+		tkt_string;
+		xdr_authkerb_cred;
+		xdr_authkerb_verf;
+};
+
+SUNWprivate_1.1 {
+	global:
+		dest_tkt;
+		k_gethostname;
+		k_isinst;
+		k_isname;
+		k_isrealm;
+		kname_parse;
+		krb_get_pw_in_tkt;
+		krb_get_svc_in_tkt;
+		krb_get_tf_realm;
+		tf_close;
+		tf_get_cred;
+		tf_get_pinst;
+		tf_get_pname;
+		tf_init;
+	local:
+		*;
+};

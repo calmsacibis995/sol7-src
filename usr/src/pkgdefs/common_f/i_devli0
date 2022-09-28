@@ -1,0 +1,80 @@
+#!/bin/sh
+#
+#ident	"@(#)i.devlinktab_i386	1.15	97/12/08 SMI"
+#
+# Copyright (c) 1997 by Sun Microsystems, Inc.
+#
+
+PATH="/usr/bin:/usr/sbin:${PATH}"
+export PATH
+
+while read src dest
+do
+	if [ ! -f $dest ] ; then
+		cp $src $dest
+	else
+		# update the SCCS id
+		grep '^#ident[ 	]*"@(#)devlink.tab' $src \
+		    > /tmp/newident.$$ 2>/dev/null
+		egrep -v '^#(pragma ident|ident)[ 	]*"@\(#\)devlink.tab' $dest \
+		    > /tmp/rest.$$ 2>/dev/null
+		cat /tmp/newident.$$ /tmp/rest.$$ > $dest
+
+		grep '^type=ddi_pseudo;name=tnf' $dest \
+		  >  /dev/null 2>&1
+		if [ $? != 0 ] ; then
+			grep '^type=ddi_pseudo;name=tnf' $src \
+			   >> $dest
+		fi
+		grep '^type=ddi_pseudo;name=pm	' $dest > /dev/null 2>&1
+		if [ $? != 0 ] ; then
+			grep '^type=ddi_pseudo;name=pm	' $src >> $dest
+		fi
+		grep '^type=ddi_pseudo;name=lockstat	' $dest > /dev/null 2>&1
+		if [ $? != 0 ] ; then
+			grep '^type=ddi_pseudo;name=lockstat	' $src >> $dest
+		fi
+
+		# Add entries for vts if they don't exist
+		grep '^type=ddi_pseudo;name=chanmux;minor=[1-9][ 	0-9]' $dest \
+		  >  /dev/null 2>&1
+		if [ $? != 0 ] ; then
+			grep '^type=ddi_pseudo;name=chanmux;minor=[1-9][ 	0-9]' $src \
+			   >> $dest
+		fi
+
+		# Add entries for term/[abcd] if they don't exist
+		grep '^type=ddi_serial:mb;name=asy;minor=[abcd]	term' $dest \
+		 > /dev/null 2>&1
+		if [ $? != 0 ] ; then
+			grep '^type=ddi_serial:mb;name=asy;minor=[abcd]	term' $src \
+			>> $dest
+		fi
+			
+		# begin updates
+ 		sed -e '/^type=ddi_pseudo;name=app	/d' \
+ 		    -e '/^type=ddi_pseudo;name=sw	/d' \
+ 		    -e '/^type=ddi_pseudo;name=tiqmouse	/d' \
+ 		    -e '/^type=ddi_pseudo;name=win	/d' \
+		    -e 's/^type=ddi_serial:mb;name=asy/type=ddi_serial:mb/' \
+		    -e 's/^type=ddi_serial:dialout,mb;name=asy/type=ddi_serial:dialout,mb/' \
+	      	    -e '/^type=ddi_pseudo;name=lp;addr=3BC,0	/s/3BC,0/1,3bc/' \
+	      	    -e '/^type=ddi_pseudo;name=lp;addr=3bc,0	/s/3bc,0/1,3bc/' \
+	      	    -e '/^type=ddi_pseudo;name=lp;addr=378,0	/s/378,0/1,378/' \
+	      	    -e '/^type=ddi_pseudo;name=lp;addr=278,0	/s/278,0/1,278/' \
+		$dest > /tmp/d.$$
+
+		if cmp -s /tmp/d.$$ $dest  > /dev/null 2>&1
+		then
+			: # Do not modify file unless changes are required.
+		else
+			cp /tmp/d.$$ $dest
+		fi
+
+		# remove temporary files
+		rm -f /tmp/d.$$
+	fi
+done
+
+exit 0
+

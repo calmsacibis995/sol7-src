@@ -1,0 +1,25 @@
+\
+\ Copyright (c) 1997, by Sun Microsystems, Inc.
+\ All rights reserved.
+\
+\"@(#)pollhead.dbg	1.4	98/01/19 SMI"
+
+#include <sys/types.h>
+#include <sys/poll.h>
+#include "dummy.h"
+
+\
+\       this macro is a submacro used by other macros that (possibly)
+\       use the "z" register. Use 'w'.
+\
+pollhead        ph_
+{adb_inline_begin}
+.>w
+<w+{OFFSET, ph_list}=""
+{adb_inline_end}
+        list                    hex
+        dummy                   hex
+        events                  hex
+{adb_inline_begin}
+<w+{SIZEOF}=""
+{adb_inline_end}

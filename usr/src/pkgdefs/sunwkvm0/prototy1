@@ -1,0 +1,58 @@
+#	Copyright (c) 1998 Sun Microsystems, Inc.
+#		All Rights Reserved
+#
+#ident	"@(#)prototype_sparc	1.3	98/02/10 SMI"
+#
+# This required package information file contains a list of package contents.
+# The 'pkgmk' command uses this file to identify the contents of a package
+# and their location on the development machine when building the package.
+# Can be created via a text editor or through use of the 'pkgproto' command.
+
+#!search <pathname pathname ...>	# where to find pkg objects
+#!include <filename>			# include another 'prototype' file
+#!default <mode> <owner> <group>	# default used if not specified on entry
+#!<param>=<value>			# puts parameter in pkg environment
+
+#
+# Include ISA independent files (prototype_com)
+#
+!include prototype_com
+#
+#
+#
+# List files which are SPARC specific here
+#
+# source locations relative to the prototype file
+#
+# SUNWkvmx.u
+#
+d none usr 775 root sys
+d none usr/platform 755 root sys
+d none usr/platform/sun4u 755 root sys
+d none usr/platform/sun4u/lib 755 bin bin 
+d none usr/platform/sun4u/lib/sparcv9 755 bin bin
+#
+# platform dependent libraries
+#
+f none usr/platform/sun4u/lib/sparcv9/libc_psr.so.1 755 bin bin
+d none usr/platform/sun4u/lib/cfgadm 755 bin bin 
+d none usr/platform/sun4u/lib/cfgadm/sparcv9 755 bin bin 
+f none usr/platform/sun4u/lib/cfgadm/sparcv9/sysctrl.so.1 755 bin bin
+s none usr/platform/sun4u/lib/cfgadm/sparcv9/sysctrl.so=./sysctrl.so.1
+#
+# platform dependent adb macros
+#
+d none usr/platform/sun4u/lib/adb 755 bin bin 
+d none usr/platform/sun4u/lib/adb/sparcv9 755 bin bin 
+f none usr/platform/sun4u/lib/adb/sparcv9/adaptive_mutex 644 root sys
+f none usr/platform/sun4u/lib/adb/sparcv9/ctx 644 root sys
+f none usr/platform/sun4u/lib/adb/sparcv9/hmetopmgrp 644 root sys
+f none usr/platform/sun4u/lib/adb/sparcv9/machpcb 644 root sys
+f none usr/platform/sun4u/lib/adb/sparcv9/msgbuf 644 root sys
+f none usr/platform/sun4u/lib/adb/sparcv9/mutex 644 root sys
+f none usr/platform/sun4u/lib/adb/sparcv9/pmgrp 644 root sys
+f none usr/platform/sun4u/lib/adb/sparcv9/pmgseg 644 root sys
+f none usr/platform/sun4u/lib/adb/sparcv9/regs 644 root sys
+f none usr/platform/sun4u/lib/adb/sparcv9/rwlock 644 root sys
+f none usr/platform/sun4u/lib/adb/sparcv9/sema 644 root sys
+f none usr/platform/sun4u/lib/adb/sparcv9/spin_mutex 644 root sys

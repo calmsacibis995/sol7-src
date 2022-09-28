@@ -1,0 +1,24 @@
+\
+\ Copyright (c) 1997, by Sun Microsystems, Inc.
+\ All rights reserved.
+\
+\"@(#)pid2proc.dbg	1.7	98/01/28 SMI"
+
+#include <sys/proc.h>
+#include "dummy.h"
+
+\  pid_hashsz is a 32-bit access.
+\
+__dummy         ""      pid2proc
+{adb_inline_begin}
+.>p
+#if defined(sparcv9)
+*pid_hashsz>/i/P
+#else
+*pid_hashsz>P
+#endif
+<P-1>P
+*pidhash+((<p&<P)*{PTRSIZE})>P
+*(<P)>P
+<P,#(#(<P))$<pid2proc.chain
+{adb_inline_end}

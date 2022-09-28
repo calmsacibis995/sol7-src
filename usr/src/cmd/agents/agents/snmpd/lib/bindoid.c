@@ -1,0 +1,117 @@
+/* Copyright 1988 - 07/23/96 Sun Microsystems, Inc. All Rights Reserved.
+ */
+
+#if !defined(lint) && !defined(NOID)
+#ifdef SVR4
+#pragma ident  "@(#)bindoid.c	2.15 96/07/23 Sun Microsystems"
+#else
+static char sccsid[] = "@(#)bindoid.c	2.15 96/07/23 Sun Microsystems";
+#endif
+#endif
+
+/*
+** Sun considers its source code as an unpublished, proprietary trade 
+** secret, and it is available only under strict license provisions.  
+** This copyright notice is placed here only to protect Sun in the event
+** the source is deemed a published work.  Disassembly, decompilation, 
+** or other means of reducing the object code to human readable form is 
+** prohibited by the license agreement under which this code is provided
+** to the user or company in possession of this copy.
+** 
+** RESTRICTED RIGHTS LEGEND: Use, duplication, or disclosure by the 
+** Government is subject to restrictions as set forth in subparagraph 
+** (c)(1)(ii) of the Rights in Technical Data and Computer Software 
+** clause at DFARS 52.227-7013 and in similar clauses in the FAR and 
+** NASA FAR Supplement.
+*/
+/****************************************************************************
+ *     Copyright (c) 1988, 1989  Epilogue Technology Corporation
+ *     All rights reserved.
+ *
+ *     This is unpublished proprietary source code of Epilogue Technology
+ *     Corporation.
+ *
+ *     The copyright notice above does not evidence any actual or intended
+ *     publication of such source code.
+ ****************************************************************************/
+
+/* $Header:   E:/SNMPV2/SNMP/BINDOID.C_V   2.0   31 Mar 1990 15:06:38  $	*/
+/*
+ * $Log:   E:/SNMPV2/SNMP/BINDOID.C_V  $
+ * 
+ *    Rev 2.0   31 Mar 1990 15:06:38
+ * Release 2.00
+ * 
+ *    Rev 1.0   11 Jan 1989 12:11:56
+ * Initial revision.
+ *
+ * Separated from buildpkt.c on January 11, 1989.
+*/
+
+#include <libfuncs.h>
+
+#include <asn1.h>
+#include <snmp.h>
+#include <objectid.h>
+#include <buildpkt.h>
+
+#define	then
+
+/****************************************************************************
+NAME:  SNMP_Bind_Object_ID
+
+PURPOSE:  Bind an object identifier into a VarBindList
+
+PARAMETERS:
+	SNMP_PKT_T *	Packet structure on which the data is to be bound
+	int		Index to the particular VarBind to be used.
+				NOTE: This index zero based.
+	int		Number of components in the data's object identifier
+	OIDC_T *	Components of the data's object identifier
+	int		Number of components in the object id to be bound
+	OIDC_T		Components in the object id to be bound
+
+NOTE: The first component-count/component list in the parameters refers
+to the object id which identifies the variable.  The second count/list
+pair is the actual data to be bound.
+
+RETURNS:  int	0 if OK, -1 if failed
+****************************************************************************/
+#if !defined(NO_PP)
+int
+SNMP_Bind_Object_ID(
+	SNMP_PKT_T	*pktp,
+	int		indx,
+	int		compc,
+	OIDC_T		*compl,
+	int		valc,
+	OIDC_T		*vall)
+#else	/* NO_PP */
+int
+SNMP_Bind_Object_ID(pktp, indx, compc, compl, valc, vall)
+	SNMP_PKT_T	*pktp;
+	int		indx;
+	int		compc;
+	OIDC_T		*compl;
+	int		valc;
+	OIDC_T		*vall;
+#endif	/* NO_PP */
+{
+VB_T	*vbp;
+
+if ((vbp = locate_vb(pktp, indx)) == (VB_T *)0)
+  then return -1;
+
+if (build_object_id(compc, compl, &(vbp->vb_obj_id)) == -1)
+   then return -1;
+
+if (build_object_id(valc, vall, &(vbp->value_u.v_object)) == -1)
+   then {
+	Clean_Obj_ID(&(vbp->vb_obj_id));
+	return -1;
+	}
+
+vbp->vb_data_flags_n_type = VT_OBJECT;
+
+return 0;
+}

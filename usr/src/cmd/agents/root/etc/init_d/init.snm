@@ -1,0 +1,24 @@
+#!/sbin/sh
+#
+# Copyright (c) 1997 by Sun Microsystems, Inc.
+# All rights reserved.
+#
+#ident	"@(#)init.snmpdx	1.12	97/12/08 SMI"
+
+case "$1" in
+'start')
+	if [ -f /etc/snmp/conf/snmpdx.rsrc -a -x /usr/lib/snmp/snmpdx ]; then
+		/usr/lib/snmp/snmpdx -y -c /etc/snmp/conf
+	fi
+	;;
+
+'stop')
+	/usr/bin/pkill -9 -x -u 0 '(snmpdx|snmpv2d|mibiisa)'
+	;;
+
+*)
+	echo "Usage: $0 { start | stop }"
+	exit 1
+	;;
+esac
+exit 0

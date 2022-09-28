@@ -1,0 +1,205 @@
+Language = "English"
+Start Component
+	Name = "DMTF Developers -  Direct Interface Version"
+	Description = "This is a list of the people who actually wrote the code."
+
+	start group
+		Name = "ComponentID"
+		id = 1
+		class = "DMTF|ComponentID|1.0"
+		description = "This group defines attributes common to all components.This group is required."
+
+			start attribute
+				name = "Manufacturer"
+				id = 1
+				description = "The name of the manufacturer that produces this component."
+				access = READ-ONLY
+				storage = Common
+				type = String(64)
+				value = "IBM Corp."
+			end attribute
+
+			start attribute
+				name = "Product"
+				id = 2
+				description = "The name of the component."
+				access = READ-ONLY
+				storage = Common
+				type = String(64)
+				value = "DMTF Demonstration"
+			end attribute
+
+			start attribute
+				name = "Version"
+				id = 3
+				description = "The version for the component."
+				access = READ-ONLY
+				storage = Common
+				type = String(64)
+				value = "Version 1.0"
+			end attribute
+
+			start attribute
+				name = "Serial Number"
+				id = 4
+				description = "The serial number for this instance of this component."
+				access = READ-ONLY
+				storage = Specific
+				type = String(64)
+				value = "1.00000"
+			end attribute
+
+			start attribute
+				name = "Installation"
+				id = 5
+				description = "The time and date of the last install of this component."
+				access = READ-ONLY
+				storage = Specific
+				type = Date
+				value = "19940603090000.000000+003"
+			end attribute
+
+			start attribute
+				name = "Verify"
+				id = 6
+				description = "Verification."
+				access = READ-ONLY
+				storage = Specific
+				type = Integer
+				value = 0
+			end attribute
+
+			start attribute
+				name = "ComponentId"
+				id = 7
+				description = "The trap info. of the new installed component."
+				access = READ-ONLY
+				storage = Specific
+				type = Integer
+				value = 0
+			end attribute
+
+			start attribute
+				name = "ComponentName"
+				id = 8
+				description = "The trap info for Component name."
+				access = READ-ONLY
+				storage = Specific
+				type = String(256)
+				value = ""
+			end attribute
+
+			start attribute
+				name = "ComponentDesc"
+				id = 9
+				description = "The trap info for Component Desc."
+				access = READ-ONLY
+				storage = Specific
+				type = String(256)
+				value = ""
+			end attribute
+
+			start attribute
+				name = "GroupId"
+				id = 10
+				description = "The trap info for Group Id."
+				access = READ-ONLY
+				storage = Specific
+				type = Integer
+				value = 0
+			end attribute
+
+			start attribute
+				name = "GroupName"
+				id = 11
+				description = "The trap info for Group Name."
+				access = READ-ONLY
+				storage = Specific
+				type = String(256)
+				value = ""
+			end attribute
+
+			start attribute
+				name = "LanguageName"
+				id = 12
+				description = "The trap info for Language Name."
+				access = READ-ONLY
+				storage = Specific
+				type = String(256)
+				value = ""
+			end attribute
+
+	end group
+	start group
+		Name = "Names"
+		id = 2
+		class = "DMTF|DevNames|1.0"
+		description = "DMTF Developers names. Direct Interface Version"
+		key = 10
+
+			start attribute
+				name = "Index"
+				id = 10
+				description = "Index into names table."
+				access = READ-ONLY
+				storage = Common
+				type = Integer
+				value = 1
+			end attribute
+
+			start attribute
+				name = "Name"
+				id = 20
+				description = "Name of the developer."
+				access = READ-WRITE
+				storage = Common
+				type = String(32)
+				value = "Name of dev."
+			end attribute
+
+			start attribute
+				name = "Company"
+				id = 30
+				description = "Corporation that this developer works for."
+				access = READ-WRITE
+				storage = Common
+				type = String(32)
+				value = "SunSoft"
+			end attribute
+
+			start attribute
+				name = "Operating System / Env."
+				id = 40
+				description = "The Operating system or Environment that this developer built code for."
+				access = READ-WRITE
+				storage = Common
+				type = String(32)
+				value = "Solaris 2.5"
+			end attribute
+
+	end group
+	start group
+		Name = "Software Template"
+		class = "DMTF|Software Example|001"
+		key = 1
+
+			start attribute
+				name = "Product Name"
+				id = 1
+				description = "The name of the product"
+				storage = Common
+				type = String(64)
+				value = 
+			end attribute
+
+			start attribute
+				name = "Product Version"
+				id = 2
+				description = "The product's version number"
+				storage = Common
+				type = String(32)
+				value = ""
+			end attribute
+
+	end group
+END Component

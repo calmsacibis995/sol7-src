@@ -1,0 +1,25 @@
+#ident "@(#)snmpd.snmprelay	1.3 25 Jan 1996 SMI"
+#
+#
+# Copyright 25 Jan 1996 Sun Microsystems, Inc. All Rights Reserved
+#
+
+#
+#  Personal/Configuration file of the relay agent
+#
+
+
+##########
+# agents #
+##########
+
+agents =
+{
+	{
+		name = "relay-agent"
+		subtrees = { sun.2.15 }
+		timeout = 900000000
+		port = 161
+	}
+}
+

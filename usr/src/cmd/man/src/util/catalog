@@ -1,0 +1,31 @@
+--@(#)catalog 1.4 98/02/12 SMI--
+-- Sun DocBook variant --
+PUBLIC "-//Sun Microsystems//DTD DocBook V2.4-Based SolBook Subset V1.0//EN" "solbookv1/solbook.dtd"
+PUBLIC "-//Sun Microsystems//DTD DocBook V3.0-Based SolBook Subset V2.0//EN" "solbookv2/solbook.dtd"
+DTDDECL "-//Sun Microsystems//DTD DocBook V3.0-Based SolBook Subset V2.0//EN" "solbookv2/solbook.dcl"
+
+PUBLIC "-//Sun Microsystems//ENTITIES SolBook ISO 8879:1986 Subset//EN" "../entities/sun_iso.gml"
+--  This section is for the eps figures used in printing --
+
+PUBLIC "-//SunSoft//ENTITIES Company Logo//EN" "figures/sunsoftlogo.epsi"
+PUBLIC "-//SunSoft//ENTITIES Adobe Logo//EN" "figures/adobe.logo.epsi"
+PUBLIC "-//SunSoft//ENTITIES Recycle Logo//EN" "figures/recycle.please.epsi"
+PUBLIC "-//SunSoft//ENTITIES USA Recycle Logo//EN" "figures/recycle.please_en.epsi"
+PUBLIC "-//SunSoft//ENTITIES Three Bar Logo//EN" "figures/threebar.epsi"
+PUBLIC "-//SunSoft//ENTITIES Graphics Logo//EN" "figures/graphic.epsi "
+PUBLIC "-//SunSoft//ENTITIES Warning Logo//EN" "figures/warning"
+PUBLIC "-//SunSoft//ENTITIES Caution Logo//EN" "figures/caution"
+PUBLIC "-//SunSoft//ENTITIES HotSurface Logo//EN" "figures/hotsurface"
+PUBLIC "-//SunSoft//ENTITIES Sun logo//EN" "figures/Sun.logo.epsi"
+PUBLIC "-//SunSoft//ENTITIES JavaCup Logo//EN" "figures/JavaCup-logo"
+
+PUBLIC "-//USA-DOD//DTD Table Model 951010//EN" "solbook/cals-tbl.dtd"
+PUBLIC "-//Davenport//ELEMENTS DocBook Information Pool V3.0-Based SolBook Subset V2.0//EN" "solbook/dbpool.mod"
+PUBLIC "-//Davenport//ELEMENTS DocBook Document Hierarchy V3.0-Based SolBook Subset V2.0//EN" "solbook/dbhier.mod"
+PUBLIC "-//Davenport//ENTITIES DocBook Additional General Entities//EN" "solbook/dbgenent.mod"
+
+
+--	This section for special events --
+
+PUBLIC "-//GCA//DTD GCAPAPER.DTD 19961213 Vers 2.0//EN" "gcapaper/gcapaper.dtd"
+PUBLIC "-//SGML Open//DTD Exchange Table Model 960430//EN" "gcapaper/cals-tbl.dtd"

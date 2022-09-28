@@ -1,0 +1,39 @@
+# Copyright 02/12/97 Sun Microsystems, Inc. All Rights Reserved.
+#pragma ident  "@(#)prototype_com	1.18 97/02/12 Sun Microsystems"
+#
+# pkgdefs/SUNWsasnm/prototype_com
+#
+#              Solstice Enterprise Agents Simple Network Management
+#
+# This required package information file contains a list of package
+# contents. The 'pkgmk' command uses this file to identify the
+# contents of a package and their location on the development
+# machine when building the package. Can be created via a text
+# editor or through use of the 'pkgproto' command.
+#
+#!search <pathname pathname ...>	# where to find pkg objects
+#!include <filename>			# include another prototype file
+#!default <mode> <owner> <group>	# default used if not specified
+#!<param>=<value>			# puts parameter in pkg environs
+#
+#
+#
+i copyright
+i depend
+i pkginfo
+#
+d none usr 0775 root sys
+d none usr/lib 0775 root bin
+d none usr/lib/snmp 0775 root sys
+#
+d none usr/sbin 0775 root bin
+#
+f none usr/lib/snmp/snmpdx 755 root sys
+#
+f none usr/sbin/snmp_trapsend 755 bin bin
+#
+f none usr/lib/libssagent.so.1 755 bin bin
+s none usr/lib/libssagent.so=./libssagent.so.1
+f none usr/lib/libssasnmp.so.1 755 bin bin
+s none usr/lib/libssasnmp.so=./libssasnmp.so.1
+#

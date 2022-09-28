@@ -1,0 +1,38 @@
+# Copyright 20 Feb 1996 Sun Microsystems, Inc. All Rights Reserved.
+#pragma ident  "@(#)Makefile	1.2 96/02/20 Sun Microsystems"
+
+#########################################################
+#
+# Makefile for all the SNMP story
+#
+#########################################################
+
+
+#
+# Makefile.vars
+#
+
+include ../Makefile.vars
+
+
+#
+# all
+#
+
+all:
+	cd snmplib; make all;
+	cd agent; make all;
+	cd parser; make all;
+	cd snmprelayd; make all;
+
+
+#
+# clean
+#
+
+clean:
+	cd snmplib; make clean;
+	cd agent; make clean;
+	cd parser; make clean;
+	cd snmprelayd; make clean;
+

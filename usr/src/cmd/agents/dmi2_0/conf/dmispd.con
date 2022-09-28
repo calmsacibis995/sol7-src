@@ -1,0 +1,10 @@
+# Copyright 11/15/96 Sun Microsystems, Inc. All Rights Reserved.
+#pragma ident  "@(#)dmispd.conf	1.5 96/11/15 Sun Microsystems"
+
+
+# dir for run time database file
+DBDIR /var/dmi/db
+
+# dir for mif files. 
+MIFDIR /var/dmi/mif
+

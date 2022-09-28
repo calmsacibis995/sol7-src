@@ -1,0 +1,23 @@
+#!/sbin/sh
+#
+# Copyright (c) 1993, 1997 by Sun Microsystems, Inc.
+# All rights reserved.
+#
+#ident	"@(#)autofs	1.5	97/12/08 SMI"
+
+case "$1" in
+'start')
+	/usr/lib/autofs/automountd </dev/null >/dev/console 2>&1
+	/usr/sbin/automount &
+	;;
+
+'stop')
+	/sbin/umountall -F autofs
+	/usr/bin/pkill -x -u 0 automountd
+	;;
+
+*)
+	echo "Usage: $0 { start | stop }"
+	;;
+esac
+exit 0

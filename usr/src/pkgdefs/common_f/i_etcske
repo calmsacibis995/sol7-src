@@ -1,0 +1,44 @@
+#!/bin/sh
+#
+#ident	"@(#)i.etcskel	1.1	98/02/06 SMI"
+#
+# Copyright (c) 1998 by Sun Microsystems, Inc.
+# All rights reserved.
+#
+
+PATH="/usr/bin:/usr/sbin:${PATH}"
+export PATH
+
+while read src dest
+do
+	if [ ! -f $dest ] ; then
+		cp $src $dest
+	else
+		#
+		# change the unadorned `tty` to quoted "`tty`" and
+		# the unadorned $TERM to quoted "$TERM" to avoid
+		# shell syntax errors when run w/o a controlling tty.
+		#
+		sed -e 's/ `tty` / "`tty`" /' \
+		    -e 's/ $TERM / "$TERM" /g' \
+		   $dest > /tmp/d.$$
+		cp /tmp/d.$$ $dest
+		rm -f /tmp/d.$$
+		#
+		# preserve the SCCS id string
+		#
+		if	grep '# @(#)' $src >/tmp/ident.$$ 2>/dev/null &&
+			grep '# @(#)' $dest >/dev/null 2>&1
+		then
+			ed - $dest <<-!
+				/# @(#)/d
+				.-1r /tmp/ident.$$
+				w
+				q
+			!
+		fi
+		rm -f /tmp/ident.$$
+	fi
+done
+
+exit 0

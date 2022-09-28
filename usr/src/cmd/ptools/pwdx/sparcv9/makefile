@@ -1,0 +1,57 @@
+#
+#ident	"@(#)Makefile	1.4	97/12/23 SMI"
+#
+# Copyright (c) 1994-1997 by Sun Microsystems, Inc.
+# All rights reserved.
+#
+# cmd/ptools/pwdx/sparcv9/Makefile
+#
+
+PROG = pwdx
+LIBS = libcwd.so.1
+
+include ../../../Makefile.cmd
+include ../../../Makefile.cmd.64
+include ../../Makefile.com
+
+OBJS = cwd.o
+
+SRCS = $(OBJS:%.o=../%.c)
+
+$(ROOTPROCBINPROG64) := FILEMODE = 0555
+$(ROOTPROCBINPROG64) := OWNER = bin
+$(ROOTPROCBINPROG64) := GROUP = bin
+
+$(PROG)	:= LDLIBS += -lproc
+lint	:= LDLIBS += -lproc
+
+
+# Optimization ruins libcwd
+$(OBJS)	:= CFLAGS64 +=	-K PIC ../$(MACH64).il
+
+.KEEP_STATE:
+
+%.o:	../%.c
+	$(COMPILE.c) $<
+
+all: $(PROG) $(LIBS)
+
+$(PROG):	$(PROG).o
+	$(LINK.c) $(PROG).o -o $@ $(LDLIBS)
+	$(POST_PROCESS)
+
+$(LIBS):	$(OBJS)
+	$(LD) -B local -z defs -z text -i -o $(LIBS) -e cwd -G $(OBJS)
+
+install: all $(ROOTPROCBINPROG64) $(ROOTPROCLIBLIB64)
+
+CLOBBERFILES += $(LIBS) $(OBJS)
+
+clean:
+	$(RM) $(OBJS) $(PROG).o $(CLOBBERFILES)
+
+lint:
+	$(LINT.c) $(SRCS) $(LDLIBS)
+	$(LINT.c) ../$(PROG).c $(LDLIBS)
+
+include ../../../Makefile.targ

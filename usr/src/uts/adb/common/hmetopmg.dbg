@@ -1,0 +1,19 @@
+\
+\ Copyright (c) 1997, by Sun Microsystems, Inc.
+\ All rights reserved.
+\
+\"@(#)hmetopmgrp.dbg	1.5	98/01/19 SMI"
+
+#include <sys/types.h>
+#if defined(sun4) || defined(sun4c) || defined(sun4e)
+#include <vm/hat_sunm.h>
+#endif
+#include "dummy.h"
+
+pmgrp		""              hmetopmgrp
+#if defined(sun4) || defined(sun4c) || defined(sun4e)
+{adb_inline_begin}
+.>P
+(((<P-*hments)%0x300)*{SIZEOF})+*pmgrps$<pmgrp
+{adb_inline_end}
+#endif

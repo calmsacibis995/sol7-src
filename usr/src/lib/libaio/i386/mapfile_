@@ -1,0 +1,17 @@
+#
+#ident	"@(#)mapfile-vers	1.6	97/08/29 SMI"
+#
+# Copyright (c) 1996-97 by Sun Microsystems, Inc.
+# All rights reserved.
+#
+# Intel386 specific interface definition for usr/src/lib/libaio.
+
+SUNW_0.7 {	# Solaris ABI as of Solaris 2.3
+	global:
+		# SPARC compliance definitions
+
+		aiocancel;
+		aioread;
+		aiowait;
+		aiowrite;
+};

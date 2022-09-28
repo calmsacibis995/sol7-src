@@ -1,0 +1,81 @@
+\
+\ Copyright (c) 1997, by Sun Microsystems, Inc.
+\ All rights reserved.
+\
+\"@(#)u.dbg	1.43	98/01/28 SMI"
+
+#include <sys/param.h>
+#include <sys/types.h>
+#include <sys/user.h>
+#include "dummy.h"
+
+\	u_nofiles is a 32-bit access.
+\
+user			u_		u
+{adb_inline_begin}
+.>c
+(*(<c+{OFFSET, u_flist}))>s
+#if defined(sparcv9)
+(*(<c+{OFFSET, u_nofiles}))>/i/v
+#else
+(*(<c+{OFFSET, u_nofiles}))>v
+#endif
+<c+{OFFSET, u_execid}=""
+{adb_inline_end}
+	execid			decimal
+	execsz			hex
+	tsize			hex
+	dsize			hex
+	start			hex
+	ticks			hex
+	cv			hex
+	exdata			.exdata
+#if defined(i386)
+{adb_inline_begin}
+<c+{OFFSET, u_auxv}/"aux vector"n42Xn
+<c+{OFFSET, u_psargs}=""
+{adb_inline_end}
+#elif defined(sparcv9)
+{adb_inline_begin}
+<c+{OFFSET, u_auxv}="aux vector"n
+.,0t19/X4+J
+<c+{OFFSET, u_psargs}=""n
+{adb_inline_end}
+#elif defined(sparc)
+{adb_inline_begin}
+<c+{OFFSET, u_auxv}/"aux vector"n38Xn
+<c+{OFFSET, u_psargs}=""
+{adb_inline_end}
+#endif
+	psargs			echar
+	comm			echar
+	cdir			hex
+	rdir			hex
+	cmask			hex
+	mem			hex
+	systrap			octal
+	entrymask		hex
+	exitmask		hex
+	signodefer		hex
+	sigonstack		hex
+	sigresethand		hex
+	sigrestart		hex
+	sigmask			hex
+	signal			hex
+	nshmseg			sdecimal
+	acflag			octal
+{adb_inline_begin}
+<c+{OFFSET, u_rlimit}/n"rlimit"n28X
+<c+{OFFSET, u_saved_rlimit}/n"saved_rlimit"n4X
+<c+{OFFSET, u_flock}=""
+{adb_inline_end}
+	flock			.mutex
+{adb_inline_begin}
+<c+{OFFSET, u_nofiles}=""
+{adb_inline_end}
+	nofiles			decimal
+	flist			hex
+{adb_inline_begin}
+<s,<v$<ufchunk.nxt
+<c+{SIZEOF}=""
+{adb_inline_end}

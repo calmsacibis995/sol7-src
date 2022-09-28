@@ -1,0 +1,32 @@
+# Copyright 12/13/96 Sun Microsystems, Inc. All Rights Reserved.
+#pragma ident  "@(#)Makefile.miexample	1.7 96/12/13 Sun Microsystems"
+
+LD_RUN_PATH		= /usr/lib
+LINKLIBDIR		= -L/usr/lib
+
+INCLUDES		= -I/usr/include/dmi
+DEBUG			= -g -DDEBUG
+FLAGS           = -DSVR4 -D_REENTRANT 
+CCFLAGS         = $(DEBUG) $(FLAGS) $(INCLUDES)
+
+
+TARGETS= miexample
+	 
+OBJECTS = miexample_svc.o
+
+LIBS = $(LINKLIBDIR)  -ldmimi -ldmi -lnsl -lrwtool 
+
+%.o: %.c
+	$(CC) $(CCFLAGS) -c $< -o $@
+
+# Targets 
+
+all:   $(TARGETS)
+
+$(TARGETS):  $(OBJECTS) 
+	$(CCC) -o $@ -R $(LD_RUN_PATH)  $(OBJECTS) $(LIBS)
+
+clean:
+	$(RM) -f $(TARGETS) $(OBJECTS)
+	$(RM) -rf Templates.DB
+

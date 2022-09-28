@@ -1,0 +1,208 @@
+# Copyright  1988 - 09/24/96 Sun Microsystems, Inc. All Rights Reserved.
+#pragma ident  "@(#)Makefile.agents.c++	2.17 96/09/24 Sun Microsystems"
+
+#
+
+# Master makefile for agents
+
+#################################################################
+# This is 'stock' .. you should not have to touch it.
+# Please see the project's Makefile guru to make changes.
+#################################################################
+
+.KEEP_STATE:
+
+#PR = pr
+PR = enscript -2r
+XSTR= xstr
+CXREF= cxref
+# this is the closest to the Sun guidelines ("Joy Normal Form") as possible
+# except indent does nasty things with comments
+INDENTOPTS = -bap -bad -nbc -di0 -i4 -nfc1 -l80 -lc79 -nlp -sc
+
+INCDIRS += -I. -I../../include
+
+LIBTOP = ../../lib
+NETLIBSRC = $(LIBTOP)/libnetmgt
+
+# Name of SNM services library
+NETLIB = netmgt
+
+# version of libnetmgt
+LIBVERS = 1.1
+
+DDEBUG=
+CFLAGS += $(DEFINES) $(DDEBUG) $(INCDIRS)
+
+# headers + C files make source code
+SCODE = $(HFILES) $(CFILES) $(YFILES) $(LFILES)
+
+# convert .c file list into .o file list
+OBJS = $(CFILES:.cc=.o)
+
+# where linted files live
+LINTDIR = static$(TARGET_ARCH)
+
+# name of lint output file
+LINTOUT = $(LINTDIR)/lint.out
+
+# convert .c files into lint files
+LINTFILES = $(CFILES:%.c=$(LINTDIR)/%.ln)
+
+DEBUG	= $(NAME:%=debug$(TARGET_ARCH)/%)
+PURIFY	= $(NAME:%=purify$(TARGET_ARCH)/%)
+STATIC	= $(NAME:%=static$(TARGET_ARCH)/%)
+SHARED	= $(NAME:%=shared$(TARGET_ARCH)/%)
+PROFILE	= $(NAME:%=profile$(TARGET_ARCH)/%)
+
+# where
+$(DEBUG)	:= LIBDIR.v = debug$(TARGET_ARCH)
+$(PURIFY)	:= LIBDIR.v = purify$(TARGET_ARCH)
+$(STATIC)	:= LIBDIR.v = static$(TARGET_ARCH)
+$(SHARED)	:= LIBDIR.v = shared$(TARGET_ARCH)
+$(PROFILE)	:= LIBDIR.v = profile$(TARGET_ARCH)
+
+# what
+$(DEBUG)   := LIBNAM.v = $(NETLIBSRC)/debug$(TARGET_ARCH)/lib$(NETLIB).a
+$(PURIFY)   := LIBNAM.v = $(NETLIBSRC)/purify$(TARGET_ARCH)/lib$(NETLIB).a
+$(STATIC)  := LIBNAM.v = $(NETLIBSRC)/static$(TARGET_ARCH)/lib$(NETLIB).a
+$(SHARED)  := LIBNAM.v = $(NETLIBSRC)/shared$(TARGET_ARCH)/lib$(NETLIB).so.$(LIBVERS)
+$(PROFILE) := LIBNAM.v = $(NETLIBSRC)/profile$(TARGET_ARCH)/lib$(NETLIB)_p.a
+
+LIBDIRS += -L$(NETLIBSRC)/$(LIBDIR.v)
+
+VARIANTS.o = $(OBJS)
+
+# Here's where we get the 'all' and 'install' targets
+# (because sun386 is different from the other two)
+# the path is here because this is called in the context of the agent directory
+include ../MFinclude$(TARGET_ARCH)
+
+bin:	all
+
+debug:	debug$(TARGET_ARCH) $(HFILES) $(DEBUG)
+purify:	purify$(TARGET_ARCH) $(HFILES) $(PURIFY)
+static:	stdir $(HFILES) $(STATIC)
+shared:	shared$(TARGET_ARCH) $(HFILES) $(SHARED)
+share dynamic: shared
+profile: profile$(TARGET_ARCH) $(HFILES) $(PROFILE)
+profiled: profile
+
+# XXX this is here because the lint stuff uses the same directory
+stdir:
+	@install -d static$(TARGET_ARCH)
+
+debug$(TARGET_ARCH) shared$(TARGET_ARCH) \
+ profile$(TARGET_ARCH) purify$(TARGET_ARCH):
+	@install -d $@
+
+# load info
+LDFLAGS = $(LIBDIRS)
+LLIBS = -Bstatic -l$(NETLIB) -Bdynamic $(LIBS)
+#LLIBS = -Bstatic $(NETLIBSRC)/static$(TARGET_ARCH)/libnetmgt.a -Bdynamic $(LIBS)
+
+# modifications for debugging
+$(DEBUG)	:=	CFLAGS += -g
+$(DEBUG)	:=	DDEBUG = -DDEBUG -DDEBUGGING
+$(DEBUG)	:=	MALLOC_LINE= $(AR) $(ARFLAGS) $@ $(DMALLOC)
+$(DEBUG)	:=	DMALLOC = /usr/lib/debug/malloc.o
+$(DEBUG)	:=	VARIANTS.o = $(OBJS:%=debug$(TARGET_ARCH)/%)
+
+# modifications for make purify
+$(PURIFY)	:=	CFLAGS += -g
+$(PURIFY)	:=	DDEBUG = -DDEBUG -DDEBUGGING
+$(PURIFY)	:=	MALLOC_LINE= $(AR) $(ARFLAGS) $@ $(DMALLOC)
+$(PURIFY)	:=	DMALLOC = /usr/lib/debug/malloc.o
+$(PURIFY)	:=	VARIANTS.o = $(OBJS:%=purify$(TARGET_ARCH)/%)
+
+# modifications for static (non-debugging)
+$(STATIC)	:=	CFLAGS += -O
+$(STATIC)	:=	VARIANTS.o = $(OBJS:%=static$(TARGET_ARCH)/%)
+
+# modifications for shared
+$(SHARED)	:=	CFLAGS += -O
+#$(SHARED)	:=	LDFLAGS += -X
+$(SHARED)	:=	LLIBS = -Bdynamic -l$(NETLIB) $(LIBS)
+$(SHARED)	:=	VARIANTS.o = $(OBJS:%=shared$(TARGET_ARCH)/%)
+
+# modifications for "make profile"
+$(PROFILE)	:=	CPPFLAGS += -DGPROF
+$(PROFILE)	:=	CFLAGS += -pg -O
+#$(PROFILE)	:=	LDFLAGS += -X
+$(PROFILE)	:=	VARIANTS.o = $(OBJS:%=profile$(TARGET_ARCH)/%)
+
+$(DEBUG) $(PURIFY) $(STATIC) $(SHARED) $(PROFILE): $$(VARIANTS.o) $$(LIBNAM.v)
+	$(LINK.c) -o $@ $(VARIANTS.o) $(LLIBS)
+
+# how to convert .c files into .o files
+debug$(TARGET_ARCH)/%.o static$(TARGET_ARCH)/%.o shared$(TARGET_ARCH)/%.o \
+ profile$(TARGET_ARCH)/%.o purify$(TARGET_ARCH)/%.o: %.cc
+	$(COMPILE.cc) $(CFLAGS) -o  $@ $<
+
+clean:
+	$(RM) a.out core *.s *.o *.ln errs *.bak *.BAK *.d *.tcov *mon.out tags TAGS
+	$(RM) -r debug$(TARGET_ARCH) static$(TARGET_ARCH) shared$(TARGET_ARCH) profile$(TARGET_ARCH) purify$(TARGET_ARCH) 
+
+
+# option flags passed to lint
+LINTFLAGS += -bhz $(DEFINES) $(INCDIRS)
+LINTLIBS += $(LIBTOP)/libnetmgt/$(LINTDIR)/llib-lnetmgt.ln
+
+LIBSLINT = $(LINTLIBS) -lkvm -lm
+
+lint:	$(LINTDIR) $(LINTOUT) $(SCODE) $(LINTLIBS) $(LINTFILES)
+	$(LINT.c) $(LINTFILES) $(LIBSLINT) | tee -a $(LINTOUT)
+	echo "**** end of lint run on `date` ****" >> $(LINTOUT)
+
+$(LINTDIR):
+	@install -d $@
+
+$(LINTOUT):
+	touch $@
+
+$(LINTDIR)/%.ln: %.c
+	$(LINT.c) -u -i -o $@ $< | tee -a $(LINTOUT)
+
+tags:	$(SCODE)
+	$(RM) tags; touch tags
+	ctags -t -w $(SCODE)
+
+etags:	$(SCODE)
+	$(RM) TAGS; touch TAGS
+	etags -t $(SCODE)
+
+size:
+	size $(DEBUG) $(PURIFY) $(STATIC) $(SHARED) $(PROFILE) | grep -v "not found"
+
+# char/word/line counts
+wc:
+	@wc $(SCODE)
+
+# source counts (any line with a semicolon in it)
+sc:
+	@grep -c \; $(SCODE)
+
+# generate hardcopy
+print:	$(SCODE)
+	@ls -ls | $(PR)
+	@$(PR) [Mm]akefile $(SUPP) $(SCODE)
+
+# cross reference
+# seems to choke on "void"
+xref:
+	$(CXREF) -c $(CPPFLAGS) $(CFLAGS) $(SCODE)
+
+# prettyprint
+indent:
+	for i in $(CFILES); do \
+		-indent $(INDENTOPTS) $$i; done
+
+pretty: indent
+
+crunch:
+	#load -Dlint $(CFLAGS) $(CFILES)
+
+wcrunch:
+	#load -w -Dlint $(CFLAGS) $(CFILES)
+
+FORCE:

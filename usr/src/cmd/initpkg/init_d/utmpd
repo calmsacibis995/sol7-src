@@ -1,0 +1,32 @@
+#!/sbin/sh
+#
+# Copyright (c) 1997 by Sun Microsystems, Inc.
+# All rights reserved.
+#
+#ident	"@(#)utmpd	1.5	97/12/08 SMI"
+
+case "$1" in
+'start')
+	[ ! -x /usr/lib/utmpd ] && exit 0
+
+	# If a utmppipe exists, check for a utmpd process and exit
+	# if the daemon is already running.
+
+	if [ -p /etc/utmppipe ]; then
+		/usr/bin/pgrep -x -u 0 utmpd >/dev/null 2>&1 && exit 0
+	fi
+
+	/usr/bin/rm -f /etc/utmppipe
+	/usr/lib/utmpd &
+	;;
+
+'stop')
+	/usr/bin/pkill -x -u 0 utmpd
+	;;
+
+*)
+	echo "Usage: $0 { start | stop }"
+	exit 1
+	;;
+esac
+exit 0

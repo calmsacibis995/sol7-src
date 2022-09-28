@@ -1,0 +1,21 @@
+# 
+# Copyright (c) 1997, by Sun Microsystems, Inc.
+# All rights reserved.
+#
+#ident  "@(#)gsscred.conf 1.2     97/10/09 SMI"
+#
+# gsscred configuration file
+#
+# This is an optional configuration file to
+# select the underlying gsscred backend used to store
+# the gsscred table. If this file does not exist or the
+# entry in invalid, then xfn will be used with the system
+# defined backend mechanism.
+#
+# Valid gsscred backend mechanisms are:
+#	file
+#	xfn_files
+#	xfn_nis
+#	xfn_nisplus
+#
+xfn_files

@@ -1,0 +1,174 @@
+#	Copyright (c) 1990-1993,1997-1998 by Sun Microsystems, Inc.
+#		All rights reserved.
+#
+#pragma ident	"@(#)prototype_com	1.70	98/02/09 SMI"
+#
+# This required package information file contains a list of package contents.
+# The 'pkgmk' command uses this file to identify the contents of a package
+# and their location on the development machine when building the package.
+# Can be created via a text editor or through use of the 'pkgproto' command.
+
+#!search <pathname pathname ...>	# where to find pkg objects
+#!include <filename>			# include another 'prototype' file
+#!default <mode> <owner> <group>	# default used if not specified on entry
+#!<param>=<value>			# puts parameter in pkg environment
+
+# packaging files
+i pkginfo
+i copyright
+i depend
+i postinstall
+i preremove
+#
+# source locations relative to the prototype file
+#
+# SUNWarc
+#
+d none usr 775 root sys
+d none usr/ccs 755 bin bin
+d none usr/lib/fp 755 bin bin
+d none usr/lib/fp/libp 755 bin bin
+f none usr/lib/libcurses.a 644 bin bin
+f none usr/lib/libgen.a 644 bin bin
+f none usr/lib/libmalloc.a 644 bin bin
+l none usr/lib/libtermcap.a=libcurses.a
+l none usr/lib/libtermlib.a=libcurses.a
+f none usr/lib/values-xpg4.o 644 bin bin
+f none usr/lib/values-Xa.o 644 bin bin
+f none usr/lib/values-Xc.o 644 bin bin
+f none usr/lib/values-Xs.o 644 bin bin
+f none usr/lib/values-Xt.o 644 bin bin
+d none usr/lib 775 root bin
+f none usr/lib/libauth.a 644 bin bin
+f none usr/lib/lib300.a 644 bin bin
+f none usr/lib/lib300s.a 644 bin bin
+f none usr/lib/lib4014.a 644 bin bin
+f none usr/lib/lib450.a 644 bin bin
+f none usr/lib/libTL.a 644 bin bin
+f none usr/lib/libadm.a 644 bin bin
+f none usr/lib/libbsdmalloc.a 644 bin bin
+f none usr/lib/libbsm.a 644 bin bin
+f none usr/lib/libc.a 644 bin bin
+s none usr/lib/libc2.a=./libc2stubs.a
+f none usr/lib/libc2stubs.a 644 bin bin
+f none usr/lib/libcmd.a 644 bin bin
+f none usr/lib/libcrypt_i.a 644 bin bin
+f none usr/lib/libelf.a 644 bin bin
+f none usr/lib/libform.a 644 bin bin
+f none usr/lib/libgenIO.a 644 bin bin
+s none usr/lib/libintl.a=./null.a
+f none usr/lib/libkrb.a 644 bin bin
+f none usr/lib/libmail.a 644 bin bin
+f none usr/lib/libmapmalloc.a 644 bin bin
+f none usr/lib/libmenu.a 644 bin bin
+f none usr/lib/libmp.a 644 bin bin
+f none usr/lib/libnisdb.a 644 bin bin
+f none usr/lib/libnls.a 644 bin bin
+f none usr/lib/libnsl.a 644 bin bin
+d none usr/lib/libp 775 bin bin
+f none usr/lib/libp/libc.a 644 bin bin
+f none usr/lib/libpanel.a 644 bin bin
+f none usr/lib/libpkg.a 644 bin bin
+f none usr/lib/libplot.a 644 bin bin
+f none usr/lib/librac.a 644 bin bin
+f none usr/lib/librpcsvc.a 644 bin bin
+f none usr/lib/libsec.a 644 bin bin
+f none usr/lib/libsocket.a 644 bin bin
+f none usr/lib/libvolmgt.a 644 bin bin
+f none usr/lib/libvt0.a 644 bin bin
+s none usr/lib/libw.a=./null.a
+f none usr/lib/llib-lTL 644 bin bin
+f none usr/lib/llib-lTL.ln 644 bin bin
+f none usr/lib/llib-ladm 644 bin bin
+f none usr/lib/llib-ladm.ln 644 bin bin
+f none usr/lib/llib-laio 644 bin bin
+f none usr/lib/llib-laio.ln 644 bin bin
+f none usr/lib/llib-lauth 644 bin bin
+f none usr/lib/llib-lauth.ln 644 bin bin
+f none usr/lib/llib-lbsdmalloc 644 bin bin
+f none usr/lib/llib-lbsdmalloc.ln 644 bin bin
+f none usr/lib/llib-lbsm 644 bin bin
+f none usr/lib/llib-lbsm.ln 644 bin bin
+f none usr/lib/llib-lc 644 bin bin
+f none usr/lib/llib-lc.ln 644 bin bin
+f none usr/lib/llib-lc2stubs 644 bin bin
+f none usr/lib/llib-lc2stubs.ln 644 bin bin
+s none usr/lib/llib-lc2=./llib-lc2stubs
+s none usr/lib/llib-lc2.ln=./llib-lc2stubs.ln
+f none usr/lib/llib-lcmd 644 bin bin
+f none usr/lib/llib-lcmd.ln 644 bin bin
+f none usr/lib/llib-lcrypt 644 bin bin
+f none usr/lib/llib-lcrypt.ln 644 bin bin
+f none usr/lib/llib-lcfgadm 644 bin bin
+f none usr/lib/llib-lcfgadm.ln 644 bin bin
+f none usr/lib/llib-ldevice 644 bin bin
+f none usr/lib/llib-ldevice.ln 644 bin bin
+f none usr/lib/llib-ldevid 644 bin bin
+f none usr/lib/llib-ldevid.ln 644 bin bin
+f none usr/lib/llib-ldoor 644 bin bin
+f none usr/lib/llib-ldoor.ln 644 bin bin
+f none usr/lib/llib-lcurses 644 bin bin
+f none usr/lib/llib-lcurses.ln 644 bin bin
+s none usr/lib/llib-ltermlib=./llib-lcurses
+s none usr/lib/llib-ltermlib.ln=./llib-lcurses.ln
+s none usr/lib/llib-ltermcap=./llib-lcurses
+s none usr/lib/llib-ltermcap.ln=./llib-lcurses.ln
+f none usr/lib/llib-lintl 644 bin bin
+f none usr/lib/llib-lintl.ln 644 bin bin
+f none usr/lib/llib-lkstat 644 bin bin
+f none usr/lib/llib-lkstat.ln 644 bin bin
+f none usr/lib/llib-lkvm 644 bin bin
+f none usr/lib/llib-lkvm.ln 644 bin bin
+f none usr/lib/llib-lmapmalloc 644 bin bin
+f none usr/lib/llib-lmapmalloc.ln 644 bin bin
+f none usr/lib/llib-lnls 644 bin bin
+f none usr/lib/llib-lnls.ln 644 bin bin
+f none usr/lib/llib-lnsl 644 bin bin
+f none usr/lib/llib-lnsl.ln 644 bin bin
+f none usr/lib/llib-lplot 644 bin bin
+f none usr/lib/llib-lplot.ln 644 bin bin
+f none usr/lib/llib-lposix4 644 bin bin
+f none usr/lib/llib-lposix4.ln 644 bin bin
+f none usr/lib/llib-lresolv 644 bin bin
+f none usr/lib/llib-lresolv.ln 644 bin bin
+f none usr/lib/llib-lsched 644 bin bin
+f none usr/lib/llib-lsched.ln 644 bin bin
+f none usr/lib/llib-lsec 644 bin bin
+f none usr/lib/llib-lsec.ln 644 bin bin
+f none usr/lib/llib-lsocket 644 bin bin
+f none usr/lib/llib-lsocket.ln 644 bin bin
+f none usr/lib/llib-ldl.ln 644 bin bin
+f none usr/lib/llib-lelf.ln 644 bin bin
+f none usr/lib/llib-lgen 644 bin bin
+f none usr/lib/llib-lgen.ln 644 bin bin
+f none usr/lib/llib-lpthread.ln 644 bin bin
+f none usr/lib/llib-lthread 644 bin bin
+f none usr/lib/llib-lthread.ln 644 bin bin
+f none usr/lib/llib-lxnet 644 bin bin
+f none usr/lib/llib-lxnet.ln 644 bin bin
+f none usr/lib/llib-lmalloc 644 bin bin
+f none usr/lib/llib-lmalloc.ln 644 bin bin
+f none usr/lib/llib-l300 644 bin bin
+f none usr/lib/llib-l300.ln 644 bin bin
+f none usr/lib/llib-l300s 644 bin bin
+f none usr/lib/llib-l300s.ln 644 bin bin
+f none usr/lib/llib-l4014 644 bin bin
+f none usr/lib/llib-l4014.ln 644 bin bin
+f none usr/lib/llib-l450 644 bin bin
+f none usr/lib/llib-l450.ln 644 bin bin
+f none usr/lib/llib-lvolmgt 644 bin bin
+f none usr/lib/llib-lvolmgt.ln 644 bin bin
+f none usr/lib/llib-lvt0 644 bin bin
+f none usr/lib/llib-lvt0.ln 644 bin bin
+f none usr/lib/llib-lform 644 bin bin
+f none usr/lib/llib-lform.ln 644 bin bin
+f none usr/lib/llib-lmenu 644 bin bin
+f none usr/lib/llib-lmenu.ln 644 bin bin
+f none usr/lib/llib-lpanel 644 bin bin
+f none usr/lib/llib-lpanel.ln 644 bin bin
+d none usr/lib/pics 755 bin bin
+f none usr/lib/pics/libc_pic.a 644 bin bin
+d none usr/xpg4 755 root bin
+d none usr/xpg4/lib 755 root bin
+f none usr/xpg4/lib/llib-lcurses 644 bin bin
+f none usr/xpg4/lib/llib-lcurses.ln 644 bin bin

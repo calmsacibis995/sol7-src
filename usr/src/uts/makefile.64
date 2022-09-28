@@ -1,0 +1,36 @@
+#
+# Copyright (c) 1996, 1997 by Sun Microsystems, Inc.
+# All rights reserved.
+#
+#pragma ident	"@(#)1.14	Makefile.uts.64	97/09/29 SMI"
+#
+# uts/Makefile.uts.64
+#
+#	This makefile contains the compiler fiddling needed to build
+#	64-bit objects.
+#
+include $(SRC)/Makefile.master.64
+ALWAYS_DEFS	+= -D__sparc -D__sparcv9 -D__sparcv9cpu
+ALWAYS_DEFS	+= -D_SYSCALL32_IMPL -D_ELF64
+CFLAGS64	+= -Wc,-xcode=abs32 $(INLINES)
+CCMODE		= -Xa
+LINTFLAGS64	+= -errchk=longptr64 -errtags=yes
+
+# Selectively disable certain noisy lint errors
+LENIENT_LINTFLAGS64 = -erroff=E_CAST_INT_TO_SMALL_INT
+LENIENT_LINTFLAGS64 += -erroff=E_CAST_INT_CONST_TO_SMALL_INT
+LENIENT_LINTFLAGS64 += -erroff=E_CAST_TO_PTR_FROM_INT
+LENIENT_LINTFLAGS64 += -erroff=E_ASSIGN_INT_TO_SMALL_INT
+LENIENT_LINTFLAGS64 += -erroff=E_ASSIGN_INT_FROM_BIG_CONST
+LENIENT_LINTFLAGS64 += -erroff=E_CONST_PROMOTED_UNSIGNED_LL
+LENIENT_LINTFLAGS64 += -erroff=E_CONST_PROMOTED_LONG_LONG
+LENIENT_LINTFLAGS64 += -erroff=E_CONST_TRUNCATED_BY_ASSIGN
+LENIENT_LINTFLAGS64 += -erroff=E_PASS_INT_FROM_BIG_CONST
+# These last three are still noisy but a bit more useful.
+# They shouldn't be used on new code.
+LENIENT_LINTFLAGS64 += -erroff=E_ASSIGN_NARROW_CONV
+LENIENT_LINTFLAGS64 += -erroff=E_PASS_INT_TO_SMALL_INT
+LENIENT_LINTFLAGS64 += -erroff=E_PTR_CONV_LOSES_BITS
+
+# Override LENIENT_LINTFLAGS64 to turn on pedantic 64-bit error checking
+LINTFLAGS64 += $(LENIENT_LINTFLAGS64)

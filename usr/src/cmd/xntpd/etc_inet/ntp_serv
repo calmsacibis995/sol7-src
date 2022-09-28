@@ -1,0 +1,58 @@
+# @(#)ntp.server	1.4	97/05/05 SMI
+#
+# /etc/inet/ntp.server
+#
+# An example file that could be copied over to /etc/inet/ntp.conf and
+# edited; it provides a configuration template for a server that
+# listens to an external hardware clock, synchronizes the local clock,
+# and announces itself on the NTP multicast net.
+#
+
+# This is the external clock device.  The following devices are
+# recognized by xntpd 3.4y:
+#
+# XType Device    Name           Description
+# -------------------------------------------------------
+# 1    (none)    LOCAL          Undisciplined Local Clock
+# 2    trak      GPS_TRAK       TRAK 8820 GPS Receiver
+# 3    pst       WWV_PST        PSTI/Traconex WWV/WWVH Receiver
+# 4    wwvb      WWVB_SPEC      Spectracom WWVB Receiver
+# 5    goes      GPS_GOES_TRUE  TrueTime GPS/GOES Receivers
+# 6    irig      IRIG_AUDIO     IRIG Audio Decoder
+# 7    chu       CHU            Scratchbuilt CHU Receiver
+# 8    refclock- GENERIC        Generic Reference Clock Driver
+# 9    gps       GPS_MX4200     Magnavox MX4200 GPS Receiver
+# 10   gps       GPS_AS2201     Austron 2201A GPS Receiver
+# 11   omega     OMEGA_TRUE     TrueTime OM-DC OMEGA Receiver
+# 12   tpro      IRIG_TPRO      KSI/Odetics TPRO/S IRIG Interface
+# 13   leitch    ATOM_LEITCH    Leitch CSD 5300 Master Clock Controller
+# 14   ees       MSF_EES        EES M201 MSF Receiver
+# 15   gpstm     GPS_TRUE       TrueTime GPS/TM-TMD Receiver
+# 17   datum     GPS_DATUM      Datum Precision Time System
+# 18   acts      NIST_ACTS      NIST Automated Computer Time Service
+# 19   heath     WWV_HEATH      Heath WWV/WWVH Receiver
+# 20   nmea      GPS_NMEA       Generic NMEA GPS Receiver
+# 22   pps       ATOM_PPS       PPS Clock Discipline
+# 23   ptbacts   PTB_ACTS       PTB Automated Computer Time Service
+#
+# Some of the devices benefit from "fudge" factors.  See the xntpd
+# documentation.
+
+# Either a peer or server.  Replace "XType" with a value from the
+# table above.
+server 127.127.XType.0 prefer
+fudge 127.127.XType.0 stratum 0
+
+broadcast 224.0.1.1 ttl 4
+
+enable auth monitor
+driftfile /var/ntp/ntp.drift
+statsdir /var/ntp/ntpstats/
+filegen peerstats file peerstats type day enable
+filegen loopstats file loopstats type day enable
+filegen clockstats file clockstats type day enable
+
+keys /etc/inet/ntp.keys
+trustedkey 0
+requestkey 0
+controlkey 0

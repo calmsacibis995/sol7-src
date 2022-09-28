@@ -1,0 +1,24 @@
+\
+\ Copyright (c) 1997, by Sun Microsystems, Inc.
+\ All rights reserved.
+\
+\"@(#)sema.dbg	1.9	98/01/19 SMI"
+
+#include <sys/machtypes.h>
+#include <sys/t_lock.h>
+#include <sys/mutex_impl.h>
+#include <sys/sema_impl.h>
+#include "dummy.h"
+
+\
+\
+_sema_impl              ""              sema
+{adb_inline_begin}
+.>w
+<w+{OFFSET, s_slpq}=""
+{adb_inline_end}
+        s_slpq                  hex             sleepq
+        s_count                 sdecimal        count
+{adb_inline_begin}
+<w+{SIZEOF}=""
+{adb_inline_end}

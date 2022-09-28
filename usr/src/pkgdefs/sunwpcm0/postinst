@@ -1,0 +1,134 @@
+#!/bin/sh
+#	Copyright (c) 1996 Sun Microsystems, Inc.
+#		All Rights Reserved
+
+# ident "@(#)postinstall	1.27	97/06/20 SMI"
+# SUNWpcmci postinstall script
+
+PATH="/usr/bin:/usr/sbin:${PATH}"
+export PATH
+EXIT=0
+
+ARCH="`uname -p`"
+
+ADDDRV=/usr/sbin/add_drv
+DRVALIAS="${BASEDIR}/etc/driver_aliases"
+NAMEMAJOR="${BASEDIR}/etc/name_to_major"
+DEVLINKTB="${BASEDIR}/etc/devlink.tab"
+
+if test ! -f ${DRVALIAS} -o ! -w ${DRVALIAS}; then
+	echo "SUNWpcmci: file ${DRVALIAS} is missing/inaccessible." >&2
+	exit 1
+fi
+
+if test ! -f ${NAMEMAJOR} -o ! -w ${NAMEMAJOR}; then
+	echo "SUNWpcmci: file ${NAMEMAJOR} is missing/inaccessible." >&2
+	exit 1
+fi
+
+if test ! -f ${DEVLINKTB} -o ! -w ${DEVLINKTB}; then
+	echo "SUNWpcmci: file ${DEVLINKTB} is missing/inaccessible." >&2
+	exit 1
+fi
+
+trap "rm -f /tmp/$$.*;exit" 0 1 2 3 13 15
+TMP=/tmp/$$
+
+#
+# add_drv_alias - add driver aliases
+#
+add_drv_alias()
+{
+	DRIVER="$1"
+	ALIAS="$2"
+
+	echo "$DRIVER \"$ALIAS\"" >>${DRVALIAS}
+}
+
+#
+# add_devlink - adds an entry to ${DEVLINKTB}
+#
+add_devlink()
+{
+	PATTERN="$1"
+	LINK="$2"
+
+	grep -v "^$PATTERN	$LINK$" ${DEVLINKTB} >$TMP.devlink
+	echo "$PATTERN\t$LINK" >>$TMP.devlink
+	mv $TMP.devlink ${DEVLINKTB}
+}
+
+#
+# create_minor - creates minor node in /dev for passed driver
+#
+#    Usage:	create_minor {driver_name}
+#
+create_minor()
+{
+	DRIVER="$1"
+	DEVNODE="${BASEDIR}/dev/${DRIVER}"
+	MINOR="0"
+
+	if MAJOR=`grep "^$DRIVER " ${NAMEMAJOR}`
+	    then
+		rm -f $DEVNODE
+		mknod $DEVNODE c `echo ${MAJOR} | awk '{print $2}'` $MINOR
+	    fi
+}
+
+#
+# We add the following drivers in this order:
+#
+#    SPARC:
+#	/kernel/drv/pcs
+#	/kernel/drv/stp4020
+#	/kernel/drv/pem
+#	/kernel/drv/pcic
+#
+#    x86 and PPC:
+#	/kernel/drv/ra
+#	/kernel/drv/pcs
+#	/kernel/drv/pcic
+#	/kernel/drv/pem
+#
+case "${ARCH}" in
+	sparc)
+		${ADDDRV} -b ${BASEDIR} -n pcs
+		${ADDDRV} -b ${BASEDIR} -n -i 'SUNW,pcmcia' -c 'pcmcia' stp4020
+		${ADDDRV} -b ${BASEDIR} -n -c 'pcmcia' pcic
+		;;
+	ppc|i386)
+		${ADDDRV} -b ${BASEDIR} -n pcs
+		${ADDDRV} -b ${BASEDIR} -n -c 'pcmcia' pcic
+		;;
+esac
+
+#
+# PCI-PCMCIA (generic) bridge PCI class codes
+#
+add_drv_alias pcic 'pciclass,060500'	# PCI-PCMCIA bridges
+add_drv_alias pcic 'pciclass,060700'	# PCI-CardBus (Yenta) bridges
+
+${ADDDRV} -b ${BASEDIR} -n -m '* 0666 bin bin' pem
+add_devlink 'type=pcmcia:event;name=pem' 'pem'
+add_devlink 'type=ddi_nexus;minor=initpcmcia' 'pcmcia/\N0'
+#
+# make sure we don't have left over /dev/ra, /dev/pcic or /dev/stp4020
+#
+
+if [ ! -h ${BASEDIR}/dev/ra ]
+then
+	rm -f ${BASEDIR}/dev/ra
+fi
+if [ ! -h ${BASEDIR}/dev/pcic ]
+then
+	rm -f ${BASEDIR}/dev/pcic
+fi
+if [ ! -h ${BASEDIR}/dev/stp4020 ]
+then
+	rm -f ${BASEDIR}/dev/stp4020
+fi
+
+touch ${BASEDIR}/reconfigure
+
+exit ${EXIT}

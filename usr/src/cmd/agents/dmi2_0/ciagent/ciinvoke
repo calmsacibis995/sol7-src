@@ -1,0 +1,17 @@
+#!/bin/sh
+# Copyright 11/15/96 Sun Microsystems, Inc. All Rights Reserved.
+#pragma ident  "@(#)ciinvoke	1.8 96/11/15 Sun Microsystems"
+
+
+SWD=`pwd`
+
+
+for ITEM in `find /etc/dmi/ciagent -name '*.cmd' -print`
+do
+	cd `dirname $ITEM`
+	echo "Executing: $ITEM"
+	./`basename $ITEM`&
+	cd $SWD
+done
+
+

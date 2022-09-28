@@ -1,0 +1,9 @@
+STRINGTABLE
+BEGIN
+  4000, "invalid option %1"
+  4001, "missing argument for option %1"
+  4002, "usage is %1"
+  4003, "SP version %1"
+  4004, "unknown BCTF %1"
+  4005, "cannot open output file %1 (%2)"
+END

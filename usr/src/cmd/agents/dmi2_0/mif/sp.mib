@@ -1,0 +1,285 @@
+
+DMTFDEVELOPERS-SP-MIB DEFINITIONS ::= BEGIN
+
+
+ -- This is a list of the people who actually wrote the code.
+
+IMPORTS
+    OBJECT-TYPE
+    FROM RFC-1212
+    enterprises
+    FROM RFC1155-SMI
+    DisplayString
+    FROM RFC1213-MIB;
+
+DmiInteger			::= INTEGER
+DmiDisplaystring	::= DisplayString
+DmiDate				::= OCTET STRING (SIZE (28))
+
+sunw                    OBJECT IDENTIFIER ::= {1 3 6 1 4 1 42 2000 1 1}
+dmtfGroups              OBJECT IDENTIFIER ::= {sunw 1}
+
+SComponentid ::= SEQUENCE {
+	a1Manufacturer                          	DmiDisplaystring,
+	a1Product                               	DmiDisplaystring,
+	a1Version                               	DmiDisplaystring,
+	a1SerialNumber                          	DmiDisplaystring,
+	a1Installation                          	DmiDate,
+	a1Verify                                	DmiInteger,
+	a1Componentid1                          	DmiInteger,
+	a1Componentname                         	DmiDisplaystring,
+	a1Componentdesc                         	DmiDisplaystring,
+	a1Groupid                               	DmiInteger,
+	a1Groupname                             	DmiDisplaystring,
+	a1Languagename                          	DmiDisplaystring
+}
+
+tComponentid OBJECT-TYPE
+	SYNTAX		SEQUENCE OF SComponentid
+	ACCESS		not-accessible
+	STATUS		mandatory
+	DESCRIPTION	"This group defines attributes common to all components.Th"
+	::= {dmtfGroups 1}
+
+eComponentid OBJECT-TYPE
+	SYNTAX		SComponentid
+	ACCESS		not-accessible
+	STATUS		mandatory
+	DESCRIPTION	""
+	INDEX		{INTEGER}
+	::= {tComponentid 1}
+
+a1Manufacturer OBJECT-TYPE
+	SYNTAX		DmiDisplaystring
+	ACCESS		read-only
+	STATUS		mandatory
+	DESCRIPTION	"The name of the manufacturer that produces this component."
+	::= {eComponentid 1}
+
+a1Product OBJECT-TYPE
+	SYNTAX		DmiDisplaystring
+	ACCESS		read-only
+	STATUS		mandatory
+	DESCRIPTION	"The name of the component."
+	::= {eComponentid 2}
+
+a1Version OBJECT-TYPE
+	SYNTAX		DmiDisplaystring
+	ACCESS		read-only
+	STATUS		mandatory
+	DESCRIPTION	"The version for the component."
+	::= {eComponentid 3}
+
+a1SerialNumber OBJECT-TYPE
+	SYNTAX		DmiDisplaystring
+	ACCESS		read-only
+	STATUS		mandatory
+	DESCRIPTION	"The serial number for this instance of this component."
+	::= {eComponentid 4}
+
+a1Installation OBJECT-TYPE
+	SYNTAX		DmiDate
+	ACCESS		read-only
+	STATUS		mandatory
+	DESCRIPTION	"The time and date of the last install of this component."
+	::= {eComponentid 5}
+
+a1Verify OBJECT-TYPE
+	SYNTAX		DmiInteger
+	ACCESS		read-only
+	STATUS		mandatory
+	DESCRIPTION	"A code that provides a level of verfication that the component
+is still installed and working."
+	::= {eComponentid 6}
+
+a1Componentid OBJECT-TYPE
+	SYNTAX		DmiInteger
+	ACCESS		read-only
+	STATUS		mandatory
+	DESCRIPTION	"The trap info. of the new installed component."
+	::= {eComponentid 7}
+
+a1Componentname OBJECT-TYPE
+	SYNTAX		DmiDisplaystring
+	ACCESS		read-only
+	STATUS		mandatory
+	DESCRIPTION	"The trap info for Component name."
+	::= {eComponentid 8}
+
+a1Componentdesc OBJECT-TYPE
+	SYNTAX		DmiDisplaystring
+	ACCESS		read-only
+	STATUS		mandatory
+	DESCRIPTION	"The trap info for Component Desc."
+	::= {eComponentid 9}
+
+a1Groupid OBJECT-TYPE
+	SYNTAX		DmiInteger
+	ACCESS		read-only
+	STATUS		mandatory
+	DESCRIPTION	"The trap info for Group Id."
+	::= {eComponentid 10}
+
+a1Groupname OBJECT-TYPE
+	SYNTAX		DmiDisplaystring
+	ACCESS		read-only
+	STATUS		mandatory
+	DESCRIPTION	"The trap info for Group Name."
+	::= {eComponentid 11}
+
+a1Languagename OBJECT-TYPE
+	SYNTAX		DmiDisplaystring
+	ACCESS		read-only
+	STATUS		mandatory
+	DESCRIPTION	"The trap info for Language Name."
+	::= {eComponentid 12}
+
+SSpIndicationSubscription ::= SEQUENCE {
+	a2SubscriberRpcType                     	DmiDisplaystring,
+	a2SubscriberTransportTypesubscriberTrans	DmiDisplaystring,
+	a2SubscriberAddressing                  	DmiDisplaystring,
+	a2SubscriberIdsubscriberId              	DmiInteger,
+	a2SubscriptionExpirationWarningDateStamp	DmiDate,
+	a2SubscriptionExpirationDatestamp       	DmiDate,
+	a2IndicationFailureThreshold            	DmiInteger
+}
+
+tSpIndicationSubscription OBJECT-TYPE
+	SYNTAX		SEQUENCE OF SSpIndicationSubscription
+	ACCESS		not-accessible
+	STATUS		mandatory
+	DESCRIPTION	"This group defines the subscription information for a "
+	::= {dmtfGroups 2}
+
+eSpIndicationSubscription OBJECT-TYPE
+	SYNTAX		SSpIndicationSubscription
+	ACCESS		not-accessible
+	STATUS		mandatory
+	DESCRIPTION	""
+	INDEX		{INTEGER, a2SubscriberRpcType, a2SubscriberTransportTypesubscriberTrans, a2SubscriberAddressing, a2SubscriberIdsubscriberId}
+	::= {tSpIndicationSubscription 1}
+
+a2SubscriberRpcType OBJECT-TYPE
+	SYNTAX		DmiDisplaystring
+	ACCESS		read-write
+	STATUS		mandatory
+	DESCRIPTION	"This is an identifier of the type of RPC in useby"
+	::= {eSpIndicationSubscription 1}
+
+a2SubscriberTransportTypesubscriberTrans OBJECT-TYPE
+	SYNTAX		DmiDisplaystring
+	ACCESS		read-write
+	STATUS		mandatory
+	DESCRIPTION	"This is an identifier of the type of Transport inu"
+	::= {eSpIndicationSubscription 2}
+
+a2SubscriberAddressing OBJECT-TYPE
+	SYNTAX		DmiDisplaystring
+	ACCESS		read-write
+	STATUS		mandatory
+	DESCRIPTION	"Addressing information of the managing node thath"
+	::= {eSpIndicationSubscription 3}
+
+a2SubscriberIdsubscriberId OBJECT-TYPE
+	SYNTAX		DmiInteger
+	ACCESS		read-only
+	STATUS		mandatory
+	DESCRIPTION	"An ID or handle passed by the managing node to theS"
+	::= {eSpIndicationSubscription 4}
+
+a2SubscriptionExpirationWarningDateStamp OBJECT-TYPE
+	SYNTAX		DmiDate
+	ACCESS		read-only
+	STATUS		mandatory
+	DESCRIPTION	"On this date and time, the DMI Service Providerwi"
+	::= {eSpIndicationSubscription 5}
+
+a2SubscriptionExpirationDatestamp OBJECT-TYPE
+	SYNTAX		DmiDate
+	ACCESS		read-only
+	STATUS		mandatory
+	DESCRIPTION	"On this date, after having issued the appropriaten"
+	::= {eSpIndicationSubscription 6}
+
+a2IndicationFailureThreshold OBJECT-TYPE
+	SYNTAX		DmiInteger
+	ACCESS		read-only
+	STATUS		mandatory
+	DESCRIPTION	"This is a number that corresponds to the number ofi"
+	::= {eSpIndicationSubscription 7}
+
+SSpFilterInformation ::= SEQUENCE {
+	a3SubscriberRpcType                     	DmiDisplaystring,
+	a3SubscriberTransportTypesubscriberTrans	DmiDisplaystring,
+	a3SubscriberAddressing                  	DmiDisplaystring,
+	a3SubscriberIdsubscriberId              	DmiInteger,
+	a3ComponentId                           	DmiInteger,
+	a3GroupClassString                      	DmiDisplaystring,
+	a3EventSeverity                         	DmiInteger
+}
+
+tSpFilterInformation OBJECT-TYPE
+	SYNTAX		SEQUENCE OF SSpFilterInformation
+	ACCESS		not-accessible
+	STATUS		mandatory
+	DESCRIPTION	"This group defines a row in a table of event filters.O"
+	::= {dmtfGroups 3}
+
+eSpFilterInformation OBJECT-TYPE
+	SYNTAX		SSpFilterInformation
+	ACCESS		not-accessible
+	STATUS		mandatory
+	DESCRIPTION	""
+	INDEX		{INTEGER, a3SubscriberRpcType, a3SubscriberTransportTypesubscriberTrans, a3SubscriberAddressing, a3SubscriberIdsubscriberId, a3ComponentId, a3GroupClassString}
+	::= {tSpFilterInformation 1}
+
+a3SubscriberRpcType OBJECT-TYPE
+	SYNTAX		DmiDisplaystring
+	ACCESS		read-write
+	STATUS		mandatory
+	DESCRIPTION	"This is an identifier of the type of RPC in useby"
+	::= {eSpFilterInformation 1}
+
+a3SubscriberTransportTypesubscriberTrans OBJECT-TYPE
+	SYNTAX		DmiDisplaystring
+	ACCESS		read-write
+	STATUS		mandatory
+	DESCRIPTION	"This is an identifier of the type of Transport inu"
+	::= {eSpFilterInformation 2}
+
+a3SubscriberAddressing OBJECT-TYPE
+	SYNTAX		DmiDisplaystring
+	ACCESS		read-write
+	STATUS		mandatory
+	DESCRIPTION	"Addressing information of the managing node thath"
+	::= {eSpFilterInformation 3}
+
+a3SubscriberIdsubscriberId OBJECT-TYPE
+	SYNTAX		DmiInteger
+	ACCESS		read-only
+	STATUS		mandatory
+	DESCRIPTION	"An ID or handle passed by the managing node to theS"
+	::= {eSpFilterInformation 4}
+
+a3ComponentId OBJECT-TYPE
+	SYNTAX		DmiInteger
+	ACCESS		read-write
+	STATUS		mandatory
+	DESCRIPTION	"The component ID, as assigned by the DMI ServiceP"
+	::= {eSpFilterInformation 5}
+
+a3GroupClassString OBJECT-TYPE
+	SYNTAX		DmiDisplaystring
+	ACCESS		read-write
+	STATUS		mandatory
+	DESCRIPTION	"The Class string corresponding to the groupsw"
+	::= {eSpFilterInformation 6}
+
+a3EventSeverity OBJECT-TYPE
+	SYNTAX		DmiInteger
+	ACCESS		read-write
+	STATUS		mandatory
+	DESCRIPTION	"The event severityevent severity level, at whicha"
+	::= {eSpFilterInformation 7}
+
+END

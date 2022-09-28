@@ -1,0 +1,3110 @@
+
+
+        <!SGML  "ISO 8879:1986"
+        -- SunBookAlpha SGML Declaration --
+ 
+                                CHARSET
+ 
+        BASESET "ISO Registration Number 100//CHARSET
+            ECMA-94 Right Part of Latin Alphabet Nr. 1//ESC 2/13 4/1"
+        DESCSET     0   9   UNUSED
+                    9   2     9  
+                   11   2   UNUSED
+                   13   1    13
+                   14  18   UNUSED
+                   32  95    32
+                  127   1   UNUSED
+ 
+        CAPACITY SGMLREF
+
+                TOTALCAP        4000000
+                ATTCAP           256000
+                AVGRPCAP         256000
+                ENTCAP           300000
+                ENTCHCAP         350000
+                GRPCAP           300000
+                IDCAP           2000000
+ 
+                            SCOPE DOCUMENT
+ 
+                                SYNTAX
+ 
+        SHUNCHAR CONTROLS    0   1   2   3   4   5   6   7   8   9
+                            10  11  12  13  14  15  16  17  18  19
+                            20  21  22  23  24  25  26  27  28  29
+                            30  31 127 255
+ 
+        BASESET  "ISO 646:1983//CHARSET
+            International Reference Version (IRV)//ESC 2/5 4/0"
+        DESCSET  0      128     0
+ 
+        FUNCTION RE             13
+                 RS             10
+                 SPACE          32
+                 TAB SEPCHAR     9
+ 
+        NAMING   LCNMSTRT ""
+                 UCNMSTRT ""
+                 LCNMCHAR ".-"
+                 UCNMCHAR ".-"
+                 NAMECASE GENERAL YES
+                          ENTITY  NO
+ 
+        DELIM    GENERAL SGMLREF
+                 SHORTREF SGMLREF
+ 
+        NAMES    SGMLREF
+        
+        QUANTITY SGMLREF
+                  ATTCNT    256
+                  GRPCNT    253
+                  GRPGTCNT  253
+                  LITLEN   8092
+                  NAMELEN    44
+                  TAGLVL    100
+ 
+                             FEATURES
+         MINIMIZE
+                  DATATAG  NO
+                  OMITTAG  NO
+                  RANK     NO
+                  --
+    While SHORTTAG is set to YES to accomodate FIXED attribute
+    values, the use of short tagging in instances is deprecated
+                  --
+                  SHORTTAG YES
+ 
+         LINK
+                  SIMPLE   NO
+
+                  IMPLICIT NO
+                  EXPLICIT NO
+ 
+         OTHER
+                  CONCUR   NO
+                  SUBDOC   NO
+                  FORMAL   NO
+ 
+         APPINFO
+                  NONE
+>
+ 
+<!--
+     Reference Concrete Syntax modifications for the DocBook DTD,
+                          $Revision: 2.1 $
+  -->
+ 
+
+<!DOCTYPE BOOK [
+<!-- ===================================================================== -->
+<!-- 
+
+THIS IS THE Beta  version of SunBook .  Changes included through 5/11/95
+							         
+This SunBookAlpha is based on the DocBook DTD $Revision: 2.2.1 $
+
+   Copyright 1992, 1993  HaL Computer Systems International, Ltd., and
+     O'Reilly & Associates, Inc.
+   Copyright 1995 Sun Microsystems, Inc. All rights reserved
+
+   Public Identifier:
+	"-//HaL and O'Reilly//DTD DocBook//EN"
+  -->
+
+<!-- ===================================================================== -->
+<!-- ##################################################################### -->
+<!-- ===================================================================== -->
+
+<!-- NOTATIONS -->
+
+
+<!--  
+**********************************************************  
+*                                                        * 
+* ADDED NOTATION FOR CGM-BINARY                          * 
+*                 See 11_08_94.minutes                   *   
+*							 * 
+**********************************************************   
+-->
+
+<!--    |||||||||||||||||||||||||||||||||||||||||||||||||||| 
+        DOCBOOK 2.2.1 CHANGE:  
+        added notations CGM-CHAR and CGM-CLEAR
+	deleted notation FAXTILE   
+        ||||||||||||||||||||||||||||||||||||||||||||||||||||   
+-->
+
+<!NOTATION CGM-CHAR     PUBLIC "ISO 8632/2//NOTATION Character encoding//EN" >
+<!NOTATION CGM-BINARY   PUBLIC "ISO 8632/3//NOTATION Binary encoding//EN" >
+<!NOTATION CGM-CLEAR    PUBLIC "ISO 8632/4//NOTATION Clear text encoding//EN" >
+<!NOTATION DITROFF	SYSTEM "DITROFF" >
+<!NOTATION DVI		SYSTEM "DVI" >
+<!NOTATION EPS		PUBLIC "+//ISBN 0-201-18127-4::Adobe//NOTATION 
+                                PostScript Language Ref. Manual//EN" >
+<!NOTATION EQN		SYSTEM "-//AT&T//NOTATION EQN-1//EN" >
+<!NOTATION FAX		PUBLIC "-//USA-DOD//NOTATION CCITT Group 4 Fascimile
+                                Type 1 Untiled Raster//EN" >
+<!NOTATION GIF		SYSTEM "GIF" >
+<!NOTATION IGES		PUBLIC "-//USA-DOD//NOTATION (ASME/ANSI Y14.26M-1987)
+                                Initial Graphics Exchange Specification//EN" >
+<!NOTATION PIC		SYSTEM "-//AT&T//NOTATION PIC-1//EN" >
+<!NOTATION PS		SYSTEM "PS" >
+<!NOTATION TBL		SYSTEM "-//AT&T//NOTATION TBL-1//EN" >
+<!NOTATION TEX		PUBLIC "+//ISBN 0-201-13448-9::Knuth//NOTATION
+                                The TeXbook//EN" >
+<!NOTATION TIFF		SYSTEM "TIFF" >
+<!NOTATION linespecific	SYSTEM 
+     "line ends and leading white space must be preserved in output" >
+
+<!--    |||||||||||||||||||||||||||||||||||||||||||||||||||| 
+        DOCBOOK 2.2.1 CHANGE:  
+        Moved entity notationtypes
+	added CGM-CHAR and CGM-CLEAR to notationtypes
+	deleted FAXTILE from notationtypes   
+        ||||||||||||||||||||||||||||||||||||||||||||||||||||   
+-->
+
+
+<!-- ===================================================================== -->
+<!-- ##################################################################### -->
+<!-- ===================================================================== -->
+<!-- EXTERNALLY DECLARED CHARACTER ENTITIES -->
+<!--
+**********************************************************
+*                                                        *
+* ADDED the following entities: ISOnum, ISOpub, ISOlat1, *
+* ISOgrk1, ISOtech, ISOdia. See 02_28_95.minutes.append  *
+*                                                        *
+**********************************************************
+-->
+
+<!ENTITY % ISOnum PUBLIC
+       "ISO 8879:1986//ENTITIES Numeric and Special Graphic//EN">
+
+<!ENTITY % ISOpub PUBLIC
+       "ISO 8879:1986//ENTITIES Publishing//EN">
+
+<!ENTITY % ISOlat1 PUBLIC
+       "ISO 8879:1986//ENTITIES Added Latin 1//EN">
+
+<!ENTITY % ISOgrk1 PUBLIC
+       "ISO 8879:1986//ENTITIES Greek Letters//EN">
+
+
+<!ENTITY % ISOtech PUBLIC
+       "ISO 8879:1986//ENTITIES General Technical//EN">
+
+<!ENTITY % ISOdia PUBLIC
+       "ISO 8879:1986//ENTITIES Diacritical Marks//EN">
+     %ISOnum;
+     %ISOpub;
+     %ISOlat1;
+     %ISOgrk1;
+     %ISOtech;
+     %ISOdia;
+
+<!--  
+
+<!ENTITY % ISOchars PUBLIC
+
+	"-//ENTITIES Public ISO Character Declarations//EN"
+
+	"iso-public" >
+
+<!ENTITY % ISOchars PUBLIC
+
+	"-//ENTITIES System ISO Character Declarations//EN"
+
+	"iso-system" >
+
+<!ENTITY % ISOchars SYSTEM "iso-public">
+
+<!ENTITY % ISOchars SYSTEM "iso-system">
+
+  -->
+
+<!--
+     %ISOchars;
+  -->
+
+<!--  
+     %ISOamsa;
+     %ISOamsb;
+     %ISOamsc;
+     %ISOamsn;
+     %ISOamso;
+     %ISOamsr;
+     %ISObox;
+     %ISOcyr1;
+     %ISOcyr2;
+     %ISOdia;
+     %ISOgrk1;
+     %ISOgrk2;
+     %ISOgrk3;
+     %ISOgrk4;
+     %ISOlat1;
+     %ISOlat2;
+     %ISOmfrk;
+     %ISOmopf;
+     %ISOmscr;
+     %ISOnum;
+     %ISOpub;
+     %ISOtech;
+
+  -->
+
+<!-- ===================================================================== -->
+<!-- ##################################################################### -->
+<!-- ===================================================================== -->
+
+<!--
+
+	PARAMETER ENTITIES to allow inclusion of local modifications.  
+	To include your local terms, table content model, graphics 
+	format, or other local item,
+	At the head of your instance, after the DOCTYPE line, include
+	a reference to an external entity file that that includes all
+	the local terms, table content models, and (or) graphics
+	formats you are using:
+
+	<!DOCTYPE Chapter SYSTEM "/yourpath/docbook.dtd" [
+	<!ENTITY % localmods SYSTEM "/yourpath/localmodfile" >
+		%localmods;
+	]>
+
+	You may need to set up attributes for your local elements.
+  -->
+
+<!-- CONTENT MODEL LOCALIZATIONS -->
+
+<!ENTITY % local.admonitions	"" >
+<!ENTITY % local.appendix	"" >
+<!ENTITY % local.book		"" >
+<!ENTITY % local.chapter	"" >
+<!ENTITY % local.cptrterms	"" >
+<!ENTITY % local.equations	"" >
+<!ENTITY % local.examples	"" >
+<!ENTITY % local.index		"" >
+<!ENTITY % local.links		"" >
+<!ENTITY % local.lists		"" >
+<!ENTITY % local.notations	"" >
+<!ENTITY % local.refclasses	"" >
+<!ENTITY % local.nav		"" >
+<!ENTITY % local.ndxterms	"" >
+<!ENTITY % local.synopsis	"" >
+<!ENTITY % local.tables		"" >
+<!ENTITY % local.terms		"" >
+
+<!-- ===================================================================== -->
+<!--
+
+	Many attributes have a Boolean value.  They are given the declared
+	value of "%yesorno;" rather then NUMBER to indicate this intent.  0
+	is interpreted as false; all other numbers as true.  This concept
+	is borrowed from the CALS MIL DTD.
+  -->
+
+<!ENTITY % yesorno "NUMBER" >
+<!ENTITY % yes     "1" >
+<!ENTITY % no      "0" >
+
+<!-- ===================================================================== -->
+<!-- 
+	ATTRIBUTE LIST for a set of common attributes.
+  -->
+<!--    
+********************************************************** 
+*                                                        *  
+* REMOVED Role FROM commonatts. Role should be defined   * 
+*                 where needed. See 01_31_95.minutes.    * 
+*                                                        * 
+**********************************************************   
+-->
+
+<!-- Added Name, FontAngle, FontWeight, FontSize, Eduardo 6/18/95 (conversion) -->
+<!ENTITY % commonatts
+		"Id		ID		#IMPLIED
+		Lang		CDATA		#IMPLIED
+		Remap		CDATA		#IMPLIED
+		XRefLabel	CDATA		#IMPLIED 
+			Changed		%yesorno;	%no;
+       Name        CDATA   #IMPLIED
+       FontAngle       CDATA   #IMPLIED
+       FontWeight     CDATA   #IMPLIED
+       FontSize       CDATA   #IMPLIED	"
+>
+
+
+<!-- ===================================================================== -->
+<!-- ##################################################################### -->
+<!-- ===================================================================== -->
+<!--                           PARAMETER ENTITIES                          -->
+<!-- ===================================================================== -->
+
+<!-- Book Contents -->
+
+<!ENTITY % appendix.gp	"Appendix %local.appendix;" >
+
+<!ENTITY % book.gp	"Book %local.book;" >
+
+<!ENTITY % chapter.gp	"Chapter %local.chapter;" >
+
+<!ENTITY % index.gp	"Index %local.index;" >
+
+<!--
+**********************************************************
+*                                                        *
+* REMOVED LoT, ToC, %index.gp, Preface and RefEntry      *
+*         FROM bookcontent.gp. See 10_25_94.minutes      *
+*                                                        *
+**********************************************************
+-->
+
+<!ENTITY % bookcontent.gp "%appendix.gp; | Bibliography | %chapter.gp; |
+		Glossary | Reference" >
+
+<!-- ===================================================================== -->
+
+<!--    Contents that can appear almost anywhere  -->
+
+<!ENTITY % ndxterm.gp "IndexTerm %local.ndxterms;" >
+
+<!ENTITY % xref.gp "FootnoteRef | XRef" >
+
+<!ENTITY % links.gp "Link | OLink | ULink %local.links;" >
+
+<!--    |||||||||||||||||||||||||||||||||||||||||||||||||||| 
+        DOCBOOK 2.2.1 CHANGE:
+        dropped %ndxterm.gp; and BeginPage from %basechar.gp 
+        |||||||||||||||||||||||||||||||||||||||||||||||||||| 
+-->
+<!ENTITY % basechar.gp "#PCDATA | Anchor" >
+
+
+<!ENTITY % phrase.gp "%basechar.gp; | Subscript | Superscript |
+		%links.gp;" >
+
+<!-- ===================================================================== -->
+
+<!ENTITY % bookinfo.content.gp "Author | AuthorInitials | Title | Copyright |
+		CorpAuthor | CorpName | Date | Editor | Edition |
+		InvPartNumber | ISBN | LegalNotice | OrgName | OtherCredit |
+		ProductName | ProductNumber | Publisher |
+		PubsNumber | ReleaseInfo | RevHistory | Subtitle |
+		VolumeNum" >
+
+<!-- ===================================================================== -->
+
+<!--	||||||||||||||||||||||||||||||||||||||||||||||||||||
+	DOCBOOK 2.2.1 CHANGE:
+	added ProductName and ProductNumber to %docinfo.content.gp;
+	||||||||||||||||||||||||||||||||||||||||||||||||||||
+-->
+
+<!ENTITY % docinfo.content.gp "Author | AuthorInitials | CorpAuthor | ModeSpec
+		| OtherCredit | ProductName | ProductNumber | RevHistory" >
+
+<!-- ===================================================================== -->
+
+<!--
+********************************************************** 
+*                                                        *
+* PRUNED words.gp to as shown below.		         *
+*                See 02_28_95.minutes.append	   	 *
+*      Added SGMLtag 06_02_95 (Eduardo)                * 
+*                                                        *
+********************************************************** 
+-->
+
+<!ENTITY % words.gp "Acronym | CiteTitle | CiteRefEntry | SGMLTag | Emphasis |
+                FirstTerm | GlossTerm | Footnote | Quote | Trademark" >
+
+
+<!-- ===================================================================== -->
+
+<!--
+********************************************************** 
+*                                                        * 
+* PRUNED computerterms.gp to as shown below.             *
+*                See 02_28_95.minutes.append             *
+*                                                        *
+**********************************************************  
+-->
+
+<!ENTITY % computerterms.gp "Application | Command | ComputerOutput |
+                ErrorName | ErrorType | Filename | Function | KeySym |
+                Literal | MediaLabel | MsgText | Option | Parameter |
+                Replaceable | ReturnValue | StructField | StructName |
+                SystemItem | Type | UserInput %local.cptrterms;" >
+
+<!-- ===================================================================== -->
+
+<!ENTITY % cptrphrase.gp "%phrase.gp; | %computerterms.gp;" >
+
+<!ENTITY % inlinechar.gp "%phrase.gp; | %computerterms.gp; |
+		%docinfo.content.gp; | %words.gp; | UnknownFont | ChangedFont
+    | %xref.gp; %local.terms;" >
+
+<!-- ===================================================================== -->
+<!-- ##################################################################### -->
+<!-- ===================================================================== -->
+
+<!-- ===================================================================== -->
+
+<!-- Contents of Equation -->
+
+<!ENTITY % eqncontent.gp "Graphic %local.equations;" >
+
+<!-- ===================================================================== -->
+
+<!-- Contents of Table -->
+
+<!ENTITY % tblcontent.gp "(Graphic+ | TGroup+ %local.tables;)" >
+
+<!-- All the varieties of lists -->
+
+<!--    ||||||||||||||||||||||||||||||||||||||||||||||||||||
+        DOCBOOK 2.2.1 CHANGE:
+        added GlossList to %list.gp; 
+        |||||||||||||||||||||||||||||||||||||||||||||||||||| 
+-->
+<!ENTITY % list.gp "GlossList | ItemizedList | OrderedList | SegmentedList |
+		SimpleList | VariableList %local.lists; " >
+
+<!-- ===================================================================== -->
+
+<!-- All of the varieties of admonitions -->
+
+<!ENTITY % admonition.gp "Caution | Note | Tip | Warning
+		%local.admonitions;" >
+
+<!-- ===================================================================== -->
+
+<!-- All of the varieties of code and whitespace-sensitive examples -->
+
+<!ENTITY % code.example.gp "LiteralLayout | ProgramListing | Screen |
+		ScreenShot %local.examples;" >
+
+<!ENTITY % synop.gp "Synopsis | CmdSynopsis | FuncSynopsis %local.synopsis;" >
+
+<!-- ===================================================================== -->
+
+<!-- Informal elements used within other paragraph elements -->
+
+<!--    ||||||||||||||||||||||||||||||||||||||||||||||||||||
+        DOCBOOK 2.2.1 CHANGE:
+        added InformalExample to %object.gp; 
+        |||||||||||||||||||||||||||||||||||||||||||||||||||| 
+-->
+<!ENTITY % object.gp "BlockQuote | InformalEquation | InformalTable |
+		InformalExample | %code.example.gp; | Graphic | %synop.gp;" >
+
+<!-- ===================================================================== -->
+
+<!-- Para elements -->
+
+<!-- 
+**********************************************************  
+*                                                        *
+* REMOVED ELEMENTS SimPara and FormalPara from ENTITY    * 
+*                 para.gp. See 12_13_94.minutes          *  
+*                                                        * 
+**********************************************************  
+-->
+
+<!ENTITY % para.gp "Para | UnknownTag | ChangedTag" >
+
+<!-- ===================================================================== -->
+
+<!-- Formal elements used within other paragraph elements -->
+
+<!ENTITY % formalobject.gp "Equation | Example | Figure | Table" >
+
+<!-- ===================================================================== -->
+
+<!-- A subset of component.gp for RefName use -->
+
+<!--
+**********************************************************
+*                                                        * 
+* ADDED the refname.gp ENTITY as shown below.            *
+*                 See 01_06_95.minutes                   * 
+*                                                        *
+**********************************************************
+-->
+
+<!ENTITY % refname.gp "Function | Command | Filename | Database | Hardware |
+                      Interface | MediaLabel | Action | Application" >
+
+<!-- ===================================================================== -->
+
+<!--   
+**********************************************************  
+*                                                        *  
+* REMOVED FROM ENTITY component.gp the following:        *
+*                 AuthorBlurb, Abstract, Epigraph 
+*                 See 11_01_94.minutes                   *    
+*                                                        * 
+**********************************************************    
+-->
+
+<!-- 
+**********************************************************  
+*                                                        *
+* REMOVED SideBar from ENTITY component.gp               * 
+*                 See 12_13_94.minutes                   *  
+*                                                        * 
+**********************************************************  
+-->
+
+<!--    ||||||||||||||||||||||||||||||||||||||||||||||||||||
+        DOCBOOK 2.2.1 CHANGE:
+        removed %ndxterm.gp; from component.gp; 
+        |||||||||||||||||||||||||||||||||||||||||||||||||||| 
+-->
+
+<!ENTITY % component.gp "Anchor | %admonition.gp; |
+		BridgeHead | %formalobject.gp; |
+		Highlights | %list.gp; | %object.gp; |
+		%para.gp; | MsgSet | Procedure" >
+
+<!--
+**********************************************************
+*                                                        * 
+* REMOVED ENTITY refclass.gp                             *
+*                 See 01_06_95.minutes                   * 
+*                                                        *
+**********************************************************
+-->
+
+
+<!--
+********************************************************** 
+*                                                        *   
+* REMOVED ENTITY nav.gp		                              *  
+*                 See 01_10_95.minutes                   *  
+*                                                        *  
+********************************************************** 
+-->  
+
+<!-- ===================================================================== -->
+
+<!ENTITY % inlineobj.gp "%inlinechar.gp; | InlineGraphic | InlineEquation |
+		%synop.gp;" >
+
+<!-- ===================================================================== -->
+
+<!-- The sect1.gp parameter entity is used in Chapter, Preface, and
+		Appendix -->
+
+<!ENTITY % sect1.gp "((%component.gp;)+, (Sect1* | RefEntry*)) | Sect1+ |
+		RefEntry+" >
+
+<!-- ===================================================================== -->
+
+<!--    ||||||||||||||||||||||||||||||||||||||||||||||||||||
+        DOCBOOK 2.2.1 CHANGE:
+        added entity %ubiq.gp; 
+        |||||||||||||||||||||||||||||||||||||||||||||||||||| 
+-->
+
+<!ENTITY % ubiq.gp "%ndxterm.gp; | BeginPage | UnknownFont | ChangedFont" >
+
+<!-- ==================================================================== -->
+
+<!ENTITY % primsee "PrimaryIE, (SeeIE | SeeAlsoIE)*" >
+
+<!--    ||||||||||||||||||||||||||||||||||||||||||||||||||||
+        DOCBOOK 2.2.1 CHANGE:
+        removed + occurrence indicator from %primsee & %secsee; 
+        |||||||||||||||||||||||||||||||||||||||||||||||||||| 
+-->
+<!ENTITY % secsee "SecondaryIE, (SeeIE | SeeAlsoIE | TertiaryIE)*" >
+
+<!--    ||||||||||||||||||||||||||||||||||||||||||||||||||||
+        DOCBOOK 2.2.1 CHANGE:
+        removed redundant parenthesis from %notationtypes; 
+        |||||||||||||||||||||||||||||||||||||||||||||||||||| 
+-->
+<!ENTITY % notationtypes "CGM-CHAR | CGM-CLEAR | CGM-BINARY | DITROFF | DVI | EPS |
+		EQN | FAX | GIF | IGES | PIC | PS | TBL | TEX |
+		TIFF | linespecific" >
+
+<!-- Common attributes for command synopses: -->
+
+<!ENTITY % argchcatt	"Choice	( opt | req | plain )	'opt'">
+<!ENTITY % grpchcatt	"Choice	( opt | req | plain | optmult | reqmult) 'opt'">
+<!ENTITY % repatt	"Rep	( norepeat | repeat )	'norepeat'">
+<!ENTITY % argchcatt	"Choice	( opt | req | plain )	'opt'">
+<!ENTITY % grpchcatt	"Choice	( opt | req | plain | optmult | reqmult 	'opt'">
+<!ENTITY % repatt	"Rep	( norepeat | repeat )	'norepeat'">
+
+<!-- ===================================================================== -->
+<!-- ##################################################################### -->
+<!-- ===================================================================== -->
+<!--                               ELEMENTS                                -->
+<!-- ===================================================================== -->
+
+<!-- ===================================================================== -->
+<!--                         GENERAL BOOK STRUCTURES                       -->
+<!-- ===================================================================== -->
+
+<!--    
+********************************************************** 
+*                                                        *  
+* REMOVED ELEMENTS Set and SetInfo FROM THIS SunBook DTD.*
+*                 These are not elements that authors    * 
+*                 will be using. See 01_31_95.minutes    * 
+*                                                        * 
+**********************************************************   
+
+	A Set contains at least two books.  A Book, which could be a
+	journal or an anthology, must have a Chapter or Reference or
+	Part, and may contain other contents as required.  We believe
+	this model accomodates the order of contents for English,
+	French, German, and Japanese books.
+
+	A Part contains at least one book content element.  A
+	Preface, Bibliography, Glossary, or Index can be a
+	chapter-level component, while Bibliography,
+	Glossary, RefEntry, and Index may also appear within
+	chapter-level components.
+  -->
+
+<!--	A prescriptive model for a Book  -->
+
+<!--    
+**********************************************************
+*                                                        *   
+* CHANGED Title to required for ELEMENT Book. 
+*                 See 10_11_94.minutes                   *    
+*                                                        * 
+**********************************************************   
+-->
+
+<!--   
+**********************************************************
+*                                                        *  
+* CHANGED in ELEMENT Book, Preface* to Preface+.	 *
+*                 See 10_18_94.minutes                   *   
+*                                                        * 
+**********************************************************  
+-->
+
+<!-- 
+**********************************************************
+*                                                        *
+* REMOVED Article from ELEMENT Book.		         *
+*                 See 10_25_94.minutes       		 * 
+*                                                        *
+**********************************************************
+-->
+
+<!--    
+********************************************************** 
+*                                                        *  
+* CHANGED ATTRIBUTE Label for ELEMENT Book as shown.     * 
+*                 See 01_31_95.minutes                   * 
+*                                                        * 
+**********************************************************   
+-->
+
+<!--    ||||||||||||||||||||||||||||||||||||||||||||||||||||
+        DOCBOOK 2.2.1 CHANGE:
+        added %ubiq.gp; as inclusion to Book 
+        |||||||||||||||||||||||||||||||||||||||||||||||||||| 
+-->
+
+<!ELEMENT Book - - ((Title, TitleAbbrev?), BookInfo,  Preface+,
+		(((%chapter.gp;)+, Reference*) | Part+ | Reference+), 
+                  (%appendix.gp;)*, Glossary?, Bibliography?,(%index.gp;)* )
+		  +(%ubiq.gp;) >
+<!ATTLIST Book	
+		%commonatts;
+		Role	(ALPHA | BETA | PRE-FCS) #IMPLIED
+		FPI		CDATA		#IMPLIED 
+		Label	(CONFIDENTIAL | NEED-TO-KNOW | REGISTERED)
+						#IMPLIED 
+>
+
+<!--     
+**********************************************************
+*                                                        *
+* CHANGED ELEMENT BookInfo (made LegalNotice 1 and	 *
+*	required from 0 more). Added exclusions		 * 
+*	shown in the 11_01_94 minutes, on 02_28_95.  The *
+*	exclusions were mistakenly not included on the   *
+*	first change. See 11_01_94.minutes               *
+*		                   			 *
+*                                                        *
+**********************************************************
+-->
+
+
+<!--     
+********************************************************** 
+*                                                        *  
+* REMOVED commonatts from ELEMENT BookInfo.	         *  
+*                 See 01_31_95.minutes                   * 
+*                                                        *  
+**********************************************************   
+--> 
+
+<!--    ||||||||||||||||||||||||||||||||||||||||||||||||||||
+        DOCBOOK 2.2.1 CHANGE:
+        added %ubiq.gp; to BookInfo as an exclusiion 
+        |||||||||||||||||||||||||||||||||||||||||||||||||||| 
+-->
+
+<!ELEMENT BookInfo - - (BookBiblio, LegalNotice, ModeSpec*) -(ISSN, IssueNum,
+			PageNums, ConfGroup, ContractNum, ContractSponsor,
+			%ubiq.gp;) >
+<!ATTLIST BookInfo
+	-- Contents points to the IDs of the book pieces (from
+		book.gp) in the order of their appearance --
+		Contents	IDREFS		#IMPLIED 
+>
+
+<!--     
+********************************************************** 
+*                                                        *   
+* FROM BookBiblio:					 *
+*	- REMOVED complete ISSN path (we don't do	 * 
+*	  articles)- ISSN, VolumeNum, IssueNum and	 * 
+*	  PageNums					 *
+*	- REMOVE InvPartNumber				 *
+*	- CHANGE PubsNumber to mandatory		 *
+*	- CHANGE PubDate to single occurrent		 *
+*	- CHANGE Copyright to mandatory			 *
+*	- REMOVE SeriesInfo				 *
+*	- CHANGE Abstract to 0 or 1 			 *
+*	- REMOVE ConfGroup 				 *
+*	- REMOVE ContractNum 				 *
+*	- REMOVE ContractSponsor			 *
+*                 See 10_11_94.minutes                   *     
+*                                                        * 
+**********************************************************    
+-->
+
+<!--     
+********************************************************** 
+*                                                        *   
+* CHANGED AuthorGroup to required for ELEMENT BookBiblio.*
+*                 See 10_11_94.minutes                   *     
+*                                                        * 
+**********************************************************    
+-->
+
+<!--     
+********************************************************** 
+*                                                        *  
+* REMOVED THE ATTLIST for ELEMENT BookBiblio.            *  
+*                 See 01_31_95.minutes                   * 
+*                                                        *  
+**********************************************************   
+--> 
+
+<!--    ||||||||||||||||||||||||||||||||||||||||||||||||||||
+        DOCBOOK 2.2.1 CHANGE:
+        added %ubiq.gp; to BookBiblio as an exclusion 
+        |||||||||||||||||||||||||||||||||||||||||||||||||||| 
+-->
+
+<!ELEMENT BookBiblio - - (Title, TitleAbbrev?, Subtitle?, Edition?,
+                           AuthorGroup, (ISBN, VolumeNum?), ProductNumber?,
+                           ProductName?, PubsNumber, ReleaseInfo?, PubDate, 
+                           Publisher*,Copyright, Abstract?,
+                           RevHistory?) -(%ubiq.gp;) >
+
+<!--   Most of the book component elements  -->
+
+<!--    
+********************************************************** 
+*                                                        *  
+* ADDED ATTRIBUTE Role to ELEMENT Appendix as shown      * 
+*                 See 02_07_95.minutes                   * 
+*                                                        * 
+**********************************************************   
+-->
+
+<!--  
+**********************************************************  
+*                                                        * 
+* REMOVED DocInfo from ELEMENT APPENDIX.                 * 
+*                 See 11_08_94.minutes                   *   
+*                                                        * 
+**********************************************************   
+-->
+
+<!--    ||||||||||||||||||||||||||||||||||||||||||||||||||||
+        DOCBOOK 2.2.1 CHANGE:
+        added %ubiq.gp; to Appendix as an inclusion 
+        |||||||||||||||||||||||||||||||||||||||||||||||||||| 
+-->
+
+<!ELEMENT Appendix - - (Title, TitleAbbrev?, (%sect1.gp;)) +(%ubiq.gp;) >
+<!ATTLIST Appendix
+		%commonatts;
+		Label		CDATA		#IMPLIED 
+		Role	(MANPAGES | MULTIPLE-NUMBERED | MULTIPLE-UNNUMBERED)
+						#REQUIRED
+>
+
+<!--   
+**********************************************************
+*                                                        *  
+* REMOVED Title and DocInfo from ELEMENT Chapter.	 *
+*                 See 10_18_94.minutes                   *   
+*                                                        * 
+**********************************************************  
+-->
+
+<!--    
+********************************************************** 
+*                                                        *  
+* ADDED ATTRIBUTE Role to ELEMENT Chapter as shown       * 
+*                 See 02_07_95.minutes                   * 
+*                                                        * 
+**********************************************************   
+-->
+
+<!--    ||||||||||||||||||||||||||||||||||||||||||||||||||||
+        DOCBOOK 2.2.1 CHANGE: 
+        added %ubiq.gp; to Chapter as an inclusion  
+        ||||||||||||||||||||||||||||||||||||||||||||||||||||  
+-->
+
+<!ELEMENT Chapter - - (Title, TitleAbbrev?, (%sect1.gp;),
+		(Glossary | Bibliography)*) >
+<!ATTLIST Chapter
+		%commonatts;
+		Label		CDATA		#IMPLIED 
+        	Role 	(MANPAGES | SINGLE | MULTIPLE-NUMBERED | 
+              	      	 MULTIPLE-UNNUMBERED)      #REQUIRED 
+>
+
+<!-- 
+********************************************************** 
+*                                                        * 
+* REMOVED ELEMENT DocInfo and from places referenced     *
+*                 (Glossary, Part, RefEntry, Reference)  *
+*                 See 01_03_95.minutes                   * 
+*                                                        * 
+**********************************************************
+-->
+
+<!--  
+********************************************************** 
+*                                                        *
+* REMOVED ATTRIBUTE Label FROM ELEMENT Part              * 
+*                 See 02_07_95.minutes                   *
+*                                                        * 
+********************************************************** 
+-->
+
+<!-- 
+**********************************************************  
+*                                                        *
+* CHANGED Part to accept only Appendix or everything     *
+* 	but Appendix.  See DocBook2.1 DTD for original   *
+*       code.                         			 * 
+*                 See 12_13_94.minutes                   *  
+*                                                        * 
+**********************************************************  
+-->
+
+<!--    |||||||||||||||||||||||||||||||||||||||||||||||||||| 
+        DOCBOOK 2.2.1 CHANGE:  
+        added %ubiq.gp; to Part as an inclusion   
+        ||||||||||||||||||||||||||||||||||||||||||||||||||||   
+-->
+
+<!ELEMENT Part - - (Title, TitleAbbrev?, PartIntro?,
+                 (((Bibliography | %chapter.gp; | Glossary | Reference)+ ) |
+                  (%appendix.gp;)+ )) +(%ubiq.gp;) >
+<!ATTLIST Part
+		%commonatts;
+>
+
+<!--
+**********************************************************
+*                                                        *
+* REMOVED Title and TitleAbbrev FROM ELEMENT PartIntro   *
+*                 See 10_25_94.minutes                   *
+*                                                        *
+**********************************************************
+-->
+
+<!--   
+********************************************************** 
+*                                                        * 
+* REMOVED ATTRIBUTE Label FROM ELEMENT PartIntro         * 
+*                 See 02_07_95.minutes                   *
+* ADDED ATTRIBUTE Role to ELEMENT PartIntro as shown	 *
+*		  See 02_07_95.minutes			 *			
+*                                                        * 
+**********************************************************  
+-->
+
+<!--    |||||||||||||||||||||||||||||||||||||||||||||||||||| 
+        DOCBOOK 2.2.1 CHANGE:  
+        added %ubiq.gp; to PartIntro as an inclusion   
+        ||||||||||||||||||||||||||||||||||||||||||||||||||||   
+-->
+
+<!ELEMENT PartIntro - - (%sect1.gp;) +(%ubiq.gp;) >
+<!ATTLIST PartIntro	
+		%commonatts;
+		Role 	(MANPAGES | NO-MANPAGES) NO-MANPAGES
+>
+
+<!--   
+**********************************************************
+*                                                        *  
+* REMOVED DocInfo from ELEMENT Preface. *
+*                 See 10_18_94.minutes                   *   
+*                                                        * 
+**********************************************************  
+-->
+
+<!--    
+********************************************************** 
+*                                                        *  
+* ADDED ATTRIBUTE Role to ELEMENT Preface as shown       * 
+*                 See 02_07_95.minutes                   * 
+*                                                        * 
+**********************************************************   
+-->
+
+<!--    |||||||||||||||||||||||||||||||||||||||||||||||||||| 
+        DOCBOOK 2.2.1 CHANGE:  
+        added %ubiq.gp; to Preface as an inclusion   
+        ||||||||||||||||||||||||||||||||||||||||||||||||||||   
+-->
+
+<!ELEMENT Preface - - (Title, TitleAbbrev?, (%sect1.gp;)) +(%ubiq.gp;) >
+<!ATTLIST Preface
+		%commonatts; 
+		Role	(PREFACE | INTRODUCTION) PREFACE
+>
+
+<!--    |||||||||||||||||||||||||||||||||||||||||||||||||||| 
+        DOCBOOK 2.2.1 CHANGE:  
+        added %ubiq.gp; to Reference as an inclusion   
+        ||||||||||||||||||||||||||||||||||||||||||||||||||||   
+-->
+
+<!ELEMENT Reference - - ( Title, TitleAbbrev?, PartIntro?, RefEntry+) +(%ubiq.gp;)
+>
+<!ATTLIST Reference
+		%commonatts; 
+		Label		CDATA		#IMPLIED 
+
+>
+
+<!--  
+********************************************************** 
+*                                                        *  
+* REMOVED ELEMENT SeriesInfo.                               *    
+*                 See 01_03_95.minutes                   * 
+*                                                        *  
+**********************************************************
+-->
+
+<!ELEMENT Title - -  ((%inlinechar.gp;)+) >
+<!ATTLIST Title
+		%commonatts; 
+		Pagenum		CDATA		#IMPLIED 
+>
+
+<!ELEMENT TitleAbbrev - - ((%inlinechar.gp;)+) >
+<!ATTLIST TitleAbbrev
+		%commonatts; 
+>
+
+<!--    |||||||||||||||||||||||||||||||||||||||||||||||||||| 
+        DOCBOOK 2.2.1 CHANGE:  
+        added element Subtitle   
+        ||||||||||||||||||||||||||||||||||||||||||||||||||||   
+-->
+
+<!ELEMENT Subtitle - - ((%inlinechar.gp;)+) >
+<!ATTLIST Subtitle
+		%commonatts;
+>
+<!-- ===================================================================== -->
+<!-- ##################################################################### -->
+<!-- ===================================================================== -->
+<!--                                SECTIONS                               -->
+<!-- ===================================================================== -->
+
+<!--
+********************************************************** 
+*                                                        *
+* REMOVED ENTITY nav.gp and ATTRIBUTE Renderas from      * 
+*                 ELEMENT Sect1, Sect2, Sect3 and Sect4  *
+*                 See 12_20_94.minutes                   * 
+*                                                        *
+********************************************************** 
+-->
+
+<!--    |||||||||||||||||||||||||||||||||||||||||||||||||||| 
+        DOCBOOK 2.2.1 CHANGE:  
+        added %ubiq.gp; to Sect1 as an inclusion   
+        ||||||||||||||||||||||||||||||||||||||||||||||||||||   
+-->
+
+<!ELEMENT Sect1 - - (Title, TitleAbbrev?, (((%component.gp;)+,
+       (RefEntry* | Sect2*)) | RefEntry+ | Sect2+)) +(%ubiq.gp;) >
+<!ATTLIST Sect1
+		%commonatts;
+		Label		CDATA		#IMPLIED 
+>
+
+<!--   
+********************************************************** 
+*                                                        * 
+* ADDED ATTRIBUTE Role to ELEMENT Sect2 as shown         * 
+*                 See 02_07_95.minutes                   *
+*                                                        * 
+**********************************************************  
+-->
+
+<!ELEMENT Sect2 - - (Title, TitleAbbrev?,(((%component.gp;)+,
+		(RefEntry* | Sect3*)) | RefEntry+ | Sect3+)) >
+<!ATTLIST Sect2
+		%commonatts;
+		Role		(PROCEDURE)	 #IMPLIED
+		Label		CDATA		 #IMPLIED 
+>
+
+<!--    
+********************************************************** 
+*                                                        *  
+* ADDED ATTRIBUTE Role to ELEMENT Sect3 as shown         * 
+*                 See 02_07_95.minutes                   * 
+*                                                        * 
+**********************************************************   
+-->
+
+<!ELEMENT Sect3 - - (Title, TitleAbbrev?,(((%component.gp;)+,
+		(RefEntry* | Sect4*)) | RefEntry+ | Sect4+)) >
+<!ATTLIST Sect3
+		%commonatts;
+		Role		(PROCEDURE)	 #IMPLIED
+		Label		CDATA		 #IMPLIED 
+>
+
+<!--
+**********************************************************
+*                                                        *
+* REMOVED RefEntry and Sect5 from ELEMENT Sect4          *
+*                 removed as an element)                 *
+*                 See 12_20_94.minutes                   *
+*                                                        *
+**********************************************************
+-->
+
+<!ELEMENT Sect4 - - (Title, TitleAbbrev?, ((%component.gp;)+)) >
+<!ATTLIST Sect4
+		%commonatts;
+		Label		CDATA		#IMPLIED 
+>
+
+<!--
+**********************************************************
+*                                                        *
+* REMOVED ELEMENT Sect5 			         *
+*                 See 12_20_94.minutes                   *
+*                                                        *
+**********************************************************
+-->
+
+<!-- ===================================================================== -->
+<!-- ##################################################################### -->
+<!-- ===================================================================== -->
+<!--                       OTHER SECTION-ISH ELEMENTS                      -->
+<!-- ===================================================================== -->
+
+<!ELEMENT MsgSet - - (MsgEntry+) >
+<!ATTLIST MsgSet
+		%commonatts; 
+>
+
+<!-- 
+**********************************************************
+*                                                        *
+* REMOVED ELEMENT MsgInfo FROM ELEMENT MsgEntry          *
+*                 See 02_28_95.minutes                   *
+*                                                        *
+********************************************************** 
+-->
+
+<!ELEMENT MsgEntry - - (Msg+, MsgExplan*) >
+<!ATTLIST MsgEntry
+		%commonatts; 
+>
+
+<!--
+**********************************************************
+*							 *
+* REMOVED ELEMENT MsgRel FROM ELEMENT Msg		 *
+*		  See 02_28_95.minutes			 *
+*							 *
+**********************************************************
+-->
+
+<!ELEMENT Msg - - (Title?, MsgMain, (MsgSub)*) >
+<!ATTLIST Msg
+		%commonatts; 
+>
+
+<!-- 
+**********************************************************
+*                                                        *
+* REMOVED ELEMENT Title FROM ELEMENT MsgMain             *
+*                 See 02_28_95.minutes                   *
+*                                                        *
+********************************************************** 
+-->
+
+<!ELEMENT MsgMain - - (MsgText) >
+<!ATTLIST MsgMain
+		%commonatts; 
+>
+
+<!-- 
+**********************************************************
+*                                                        *
+* REMOVED ELEMENT Title FROM ELEMENT MsgSub              *
+*                 See 02_28_95.minutes                   *
+*                                                        *
+********************************************************** 
+-->
+
+<!ELEMENT MsgSub - - (MsgText) >
+<!ATTLIST MsgSub
+		%commonatts; 
+>
+<!-- 
+***********************************************************
+*							  * 
+* REMOVED ELEMENTS MsgRel, MsgInfo, MsgLevel, MsgOrig,    *
+*  	           and MsgAud.  See 02_28_95.minutes 	  *
+*							  *
+***********************************************************
+-->
+
+<!ELEMENT MsgText - - ((%component.gp;)+) >
+<!ATTLIST MsgText
+		%commonatts; 
+>
+
+<!ELEMENT MsgExplan - - (Title?, (%component.gp)+) >
+<!ATTLIST MsgExplan
+		%commonatts; 
+>
+
+<!--    
+********************************************************** 
+*                                                        *  
+* ADDED ATTRIBUTE Role to ELEMENT Procedure as shown     * 
+*                 See 02_07_95.minutes                   * 
+*                                                        * 
+**********************************************************   
+-->
+
+<!ELEMENT Procedure - - ((Title, TitleAbbrev?)?, (%component.gp;)*, Step+) >
+<!ATTLIST Procedure
+		%commonatts;
+		Role 	(SINGLE-STEP)	 #IMPLIED 
+>
+
+<!--    |||||||||||||||||||||||||||||||||||||||||||||||||||| 
+        DOCBOOK 2.2.1 CHANGE:  
+        Step has been modified to allow block orientated elements
+	to occur between substeps   
+        ||||||||||||||||||||||||||||||||||||||||||||||||||||   
+-->
+
+<!ELEMENT Step - - (Title?, (((%component.gp;)+, (SubSteps,
+		(%component.gp;)*)?) | (SubSteps, (%component.gp;)*))) >
+<!ATTLIST Step
+		%commonatts; 
+		Performance	(Optional|Required)
+						Required
+>
+
+<!ELEMENT SubSteps - - (Step+) >
+<!ATTLIST SubSteps
+		%commonatts; 
+		Performance	(Optional|Required)
+						Required
+>
+
+<!--
+	Components not included are: Abstract, AuthorBlurb and 
+		Highlights.
+  -->
+
+<!-- ===================================================================== -->
+<!-- ##################################################################### -->
+<!-- ===================================================================== -->
+<!--                       PARAGRAPH-RELATED ELEMENTS                      -->
+<!-- ===================================================================== -->
+
+<!ELEMENT (Abstract | AuthorBlurb) - - (Title?, (%para.gp;)+) >
+<!ATTLIST (Abstract | AuthorBlurb)
+		%commonatts; 
+>
+
+<!--
+********************************************************** 
+*                                                        *
+* REMOVED Title from ELEMENT BlockQuote                  * 
+*                 See 12_13_94.minutes                   * 
+*                                                        *
+********************************************************** 
+-->
+
+<!ELEMENT BlockQuote - - ((%component.gp;)+) >
+<!ATTLIST BlockQuote
+		%commonatts; 
+>
+
+<!ELEMENT BridgeHead - - ((%inlinechar.gp;)+) >
+<!ATTLIST BridgeHead
+		%commonatts; 
+		Renderas	(Other | Sect1 | Sect2 | Sect3 | Sect4)		Other
+>
+
+<!--  
+********************************************************** 
+*                                                        *  
+* REMOVED ELEMENT Comment.                               *    
+*                 See 01_03_95.minutes                   * 
+*                                                        *  
+**********************************************************
+-->
+
+<!--     
+**********************************************************
+*                                                        *
+* REMOVED ELEMENT Epigraph.                              *
+*                 See 11_01_94.minutes                   *
+*                                                        *
+**********************************************************
+-->
+
+<!--    
+********************************************************** 
+*                                                        *  
+* REMOVED FROM ELEMENT Footnote the ATTRIBUTES Label     *
+*	          and Remap.  See 02_07_95.minutes       * 
+*                                                        * 
+**********************************************************   
+-->
+
+<!--    |||||||||||||||||||||||||||||||||||||||||||||||||||| 
+        DOCBOOK 2.2.1 CHANGE:  
+        added Footnote to Footnote as an exclusion 
+	changed the element order of ocurrence to match 2.2.1  
+        ||||||||||||||||||||||||||||||||||||||||||||||||||||   
+-->
+
+<!ELEMENT Footnote - -  ((%para.gp; | %list.gp; | %object.gp;)+) -(Footnote) >
+<!ATTLIST Footnote
+		Id		ID		#REQUIRED
+		Lang		CDATA		#IMPLIED
+		Role		CDATA		#IMPLIED
+		XRefLabel		CDATA		#IMPLIED
+>
+
+<!--    ||||||||||||||||||||||||||||||||||||||||||||||||||||
+        DOCBOOK 2.2.1 CHANGE:
+        changed the element order of ocurrence to match 2.2.1 
+        ||||||||||||||||||||||||||||||||||||||||||||||||||||
+-->
+
+<!ELEMENT Highlights - -  ((%para.gp; | %list.gp; | (%admonition.gp;))+) >
+<!ATTLIST Highlights
+		%commonatts; 
+>
+
+<!--    ||||||||||||||||||||||||||||||||||||||||||||||||||||
+        DOCBOOK 2.2.1 CHANGE:
+        added InlineGraphic and InlineEquation to Para 
+        ||||||||||||||||||||||||||||||||||||||||||||||||||||
+-->
+
+<!ELEMENT Para  - - ((%inlinechar.gp; | InlineGraphic | InlineEquation 
+		| ChangedTag | %list.gp; | %object.gp;)+) >
+<!ATTLIST Para
+		%commonatts; 
+>
+ 
+<!-- 
+**********************************************************  
+*                                                        *
+* REMOVED ELEMENTS SimPara and FormalPara                * 
+*                 See 12_13_94.minutes                   *  
+*                                                        * 
+**********************************************************  
+-->
+
+<!-- 
+**********************************************************  
+*                                                        *
+* REMOVED ELEMENT Important                              * 
+*                 See 11_22_94.minutes                   *  
+*                                                        * 
+**********************************************************  
+-->
+
+<!--	Components not included are: Abstract, AuthorBlurb, other admonitions,
+		and Highlights.
+  -->
+
+<!--   
+**********************************************************  
+*                                                        *  
+* Originally, all admonitions were contained in one      *
+*                 element declaration.  They were split  *
+*		  as shown below.                                    * 
+*                 See 11_01_94.minutes                   *    
+*                                                        * 
+**********************************************************    
+-->
+
+<!--     
+**********************************************************
+*                                                        *
+* REMOVED formalobject.gp, Sidebar and Title from the    *
+*         elements: Caution, Warning, Note and Tip.      *
+*							 *
+* REMOVED Procedure from Caution, Warning and Note.      *
+*                 See 11_01_94.minutes                   *
+*                                                        *
+**********************************************************
+-->
+
+<!--    ||||||||||||||||||||||||||||||||||||||||||||||||||||
+        DOCBOOK 2.2.1 CHANGE:
+        added Caution and Warning to Caution and Warning as
+	exclusions 
+        ||||||||||||||||||||||||||||||||||||||||||||||||||||
+-->
+
+<!ELEMENT (Caution | Warning) - - (Anchor | BridgeHead | %ndxterm.gp; |
+		%list.gp; | %object.gp; | %para.gp;)+ -(Caution, Warning) >
+<!ATTLIST (Caution | Warning)
+		%commonatts; 
+>
+
+<!--  
+********************************************************** 
+*                                                        *  
+* ADDED ATTRIBUTES for Element Note as shown in Role     *
+*		  below.                                 *    
+*                 See 12_20_94.minutes                   * 
+*                                                        *  
+**********************************************************
+-->
+
+<!--    |||||||||||||||||||||||||||||||||||||||||||||||||||| 
+        DOCBOOK 2.2.1 CHANGE: 
+        added Note to Note as an exclusion
+        |||||||||||||||||||||||||||||||||||||||||||||||||||| 
+-->
+
+<!ELEMENT Note - - (Anchor | BridgeHead | %ndxterm.gp; |
+		%list.gp; | %object.gp; | %para.gp;)+ -(Note) >
+<!ATTLIST Note
+		Id		ID		#IMPLIED
+		Lang		CDATA		#IMPLIED
+		Remap		CDATA		#IMPLIED
+		Role		(Note | MarginNote)		Note
+		XRefLabel		CDATA		#IMPLIED
+> 
+
+<!--    ||||||||||||||||||||||||||||||||||||||||||||||||||||  
+        DOCBOOK 2.2.1 CHANGE:  
+        added Tip to Tip as an exclusion
+        ||||||||||||||||||||||||||||||||||||||||||||||||||||  
+--> 
+
+<!ELEMENT Tip - - (Anchor | BridgeHead | %ndxterm.gp; |
+		%list.gp; | %object.gp; | %para.gp; | Procedure)+
+		-(Tip) >
+<!ATTLIST (Tip)
+		%commonatts; 
+>
+
+<!-- ===================================================================== -->
+<!-- ##################################################################### -->
+<!-- ===================================================================== -->
+<!--                                   LISTS                               -->
+<!-- ===================================================================== -->
+
+<!--    ||||||||||||||||||||||||||||||||||||||||||||||||||||  
+        DOCBOOK 2.2.1 CHANGE:  
+        added element GlossList 
+        ||||||||||||||||||||||||||||||||||||||||||||||||||||  
+-->
+
+<!ELEMENT GlossList - - (GlossEntry+) > 
+<!ATTLIST GlossList
+		%commonatts;
+
+>
+<!--
+	The Mark attribute specifies the mark that should appear
+
+	before each ListItem, such as Bullet, Dash, Box, Check.
+  -->
+
+<!-- 
+**********************************************************  
+*                                                        *
+* CHANGED ATTRIBUTE Mark from CDATA to as shown.         * 
+*                 See 11_22_94.minutes                   *  
+*                                                        * 
+**********************************************************  
+-->
+
+<!ELEMENT ItemizedList - -  (ListItem+) >
+<!ATTLIST ItemizedList	  
+		%commonatts;
+		Mark  (Bullet | Dash | Checkbox | Checkmark | None)
+						Bullet>
+<!--  
+********************************************************** 
+*                                                        *  
+* REMOVED SideBar from ELEMENT ListItem (SideBar also    *
+*		  removed as an element)                 *    
+*                 See 12_20_94.minutes                   * 
+*                                                        *  
+**********************************************************
+-->
+
+<!--  
+**********************************************************  
+*                                                        * 
+* ADDED to ELEMENT ListItem the exclusions shown         * 
+*                 See 11_22_94.minutes                   *   
+*                                                        * 
+**********************************************************   
+-->
+
+<!ELEMENT ListItem - - ((%component.gp;)+) -(Procedure,BridgeHead,Highlights)
+>
+<!ATTLIST ListItem
+		%commonatts; 
+		Override	CDATA		#IMPLIED
+>
+
+<!--  
+**********************************************************  
+*                                                        * 
+* REMOVED ATTRIBUTES Numeration and InheritNum from      * 
+*               ELEMENT OrderedList. See 11_22_94.minutes*   
+*                                                        * 
+**********************************************************   
+-->
+
+<!ELEMENT OrderedList - -  (ListItem+) >
+<!ATTLIST OrderedList  
+		%commonatts;
+		Continuation	(Continues | Restarts)
+						Restarts
+>
+
+<!ELEMENT SegmentedList - - ((Title, TitleAbbrev?)?, SegTitle*, SegListItem+)
+		>
+<!ATTLIST SegmentedList
+		%commonatts; 
+>
+
+<!ELEMENT SegTitle - -  ((%inlinechar.gp;)+) >
+<!ATTLIST SegTitle
+		%commonatts; 
+>
+
+<!ELEMENT SegListItem - -  (Seg, Seg+) >
+<!ATTLIST SegListItem
+		%commonatts; 
+>
+
+<!ELEMENT Seg - - ((%inlinechar.gp;)+) >
+<!ATTLIST Seg
+		%commonatts; 
+>
+
+<!ELEMENT VariableList - -  ((Title, TitleAbbrev?)?, VarListEntry+) >
+<!ATTLIST VariableList
+		%commonatts; 
+>
+
+<!ELEMENT VarListEntry - -  (Term+, ListItem) >
+<!ATTLIST VarListEntry
+		%commonatts; 
+>
+
+<!ELEMENT Term  - -  ((%inlinechar.gp;)+) >
+<!ATTLIST Term
+		%commonatts; 
+>
+
+<!-- ===================================================================== -->
+<!--
+
+	SimpleList allows you to list short strings (Members) in an array or
+	in a normal sentence.  The "inline" value of the Type attribute
+	presents the Members inline (you have to generate commas
+	and the "and" if need be).  "Horiz" means set up as many columns 
+	as are specified by the value of the Columns attribute, of equal 
+	width, indented as for a BlockQuote, and enter the Members in 
+	these slots from L to R, top to bottom, left justified.  "Vert" means
+	calculate the columns the same way and determine the number of rows
+	as if you were using Horiz; then just fill in the positions from
+	top to bottom, L to R left-justified.  In other words, you
+	don't set the number of rows, only the number of columns.
+	(This way, when on-line and the window resizes, you don't have to
+	readjust the text unless the window gets so narrow you can't
+	display the specified number of columns, then a renderer might
+	reduce the number of columns.)  When Column = 1, Vert and Horiz
+	provide the same rendition.  
+  -->
+
+<!ELEMENT SimpleList - -  (Member+) >
+<!ATTLIST SimpleList
+		%commonatts;
+		Columns		NUMBER		#IMPLIED
+		Type		(Inline | Vert | Horiz)
+						Vert
+>
+
+<!ELEMENT Member  - -  ((%inlinechar.gp;)+) >
+<!ATTLIST Member
+		%commonatts; 
+>
+
+<!-- ===================================================================== -->
+<!-- ##################################################################### -->
+<!-- ===================================================================== -->
+<!--                                OBJECTS                                -->
+<!-- ===================================================================== -->
+
+<!-- ===================================================================== -->
+<!--                                EXAMPLE                                -->
+<!-- ===================================================================== -->
+
+<!ELEMENT Example - - (Title, TitleAbbrev?, (%para.gp; | %list.gp; |
+		%object.gp;)+) >
+<!ATTLIST Example
+		%commonatts; 
+		Label		CDATA		#IMPLIED
+>
+
+<!--    ||||||||||||||||||||||||||||||||||||||||||||||||||||  
+        DOCBOOK 2.2.1 CHANGE:  
+        added element InformalExample 
+        ||||||||||||||||||||||||||||||||||||||||||||||||||||  
+--> 
+
+<!ELEMENT InformalExample - - ((%para.gp; | %list.gp; | %object.gp;)+) >
+<!ATTLIST InformalExample
+		%commonatts;
+>
+<!ELEMENT ProgramListing - - ((LineAnnotation | Optional | %inlinechar.gp;)+)	>
+<!ATTLIST ProgramListing
+		%commonatts; 
+		Format		NOTATION
+				(linespecific)	linespecific
+		Width		NUMBER		#IMPLIED
+>
+
+<!ELEMENT LiteralLayout - - ((LineAnnotation | Optional | %inlinechar.gp;)+) >
+<!ATTLIST LiteralLayout
+		%commonatts; 
+		Format		NOTATION
+				(linespecific)	linespecific
+		Width		NUMBER		#IMPLIED
+>
+
+<!ELEMENT Screen - - ((LineAnnotation | Optional | %inlinechar.gp;)+) >
+<!ATTLIST Screen
+		%commonatts; 
+		Format		NOTATION
+				(linespecific)	linespecific
+		Width		NUMBER		#IMPLIED
+>
+
+<!ELEMENT ScreenShot - -  (ScreenInfo?, Graphic) >
+<!ATTLIST ScreenShot
+		%commonatts; 
+		Width		NUMBER		#IMPLIED
+>
+
+<!--    ||||||||||||||||||||||||||||||||||||||||||||||||||||  
+        DOCBOOK 2.2.1 CHANGE:  
+        added %ubiq.gp; to ScreenInfo as an exclusion
+        ||||||||||||||||||||||||||||||||||||||||||||||||||||  
+--> 
+
+<!ELEMENT ScreenInfo - -  (#PCDATA) -(%ubiq.gp;) >
+<!ATTLIST ScreenInfo
+		%commonatts; 
+>
+
+<!-- ===================================================================== -->
+<!-- ##################################################################### -->
+<!-- ===================================================================== -->
+<!--                                FIGURE                                 -->
+<!-- ===================================================================== -->
+<!--
+	N.B.: Graphic occurs in object.gp, so does not appear
+	explicitly in Figure.
+  -->
+
+<!ELEMENT Figure - - (Title, TitleAbbrev?, (%object.gp; | %links.gp;)+) >
+<!ATTLIST Figure
+		%commonatts;
+		Float		%yesorno;	%no;
+		Label		CDATA		#IMPLIED
+>
+<!--
+	Graphical data can be the content of Graphic, or you can
+	reference an external file through the Fileref attribute,
+	either as an entity or a filename.
+  -->
+
+<!--    ||||||||||||||||||||||||||||||||||||||||||||||||||||  
+        DOCBOOK 2.2.1 CHANGE:  
+        removed attribute Id and added attribute SrcCredit to
+	Graphic 
+        ||||||||||||||||||||||||||||||||||||||||||||||||||||  
+		+++++++++++++++++++++++++++++++++++++++++++++++++++
+		Added ID - Eduardo 05/26/95
+		+++++++++++++++++++++++++++++++++++++++++++++++++++
+--> 
+
+<!ELEMENT Graphic - -  CDATA>
+<!ATTLIST Graphic 
+		Entityref	ENTITY		#IMPLIED	
+		Fileref 	CDATA		#IMPLIED 
+		Format		NOTATION
+				(%notationtypes;)	#IMPLIED
+	 	SrcCredit	CDATA		#IMPLIED	
+		Id      ID      #IMPLIED
+
+>
+
+<!--    ||||||||||||||||||||||||||||||||||||||||||||||||||||   
+        DOCBOOK 2.2.1 CHANGE:   
+        removed attribute Id and added attribute SrcCredit to 
+        InlineGraphic 
+        ||||||||||||||||||||||||||||||||||||||||||||||||||||   
+        +++++++++++++++++++++++++++++++++++++++++++++++++++
+        Added ID - Eduardo 05/26/95
+        +++++++++++++++++++++++++++++++++++++++++++++++++++
+-->
+
+<!ELEMENT InlineGraphic - -  CDATA>
+<!ATTLIST InlineGraphic 
+		Entityref	ENTITY		#IMPLIED	
+		Fileref 	CDATA		#IMPLIED 
+		Format		NOTATION
+				(%notationtypes;)	#IMPLIED
+		SrcCredit	CDATA		#IMPLIED
+		Id      ID      #IMPLIED
+>
+
+<!-- ===================================================================== -->
+<!-- ##################################################################### -->
+<!-- ===================================================================== -->
+<!--                               EQUATION                                -->
+<!-- ===================================================================== -->
+
+<!ELEMENT Equation - - ((Title, TitleAbbrev?)?, (InformalEquation |
+		%eqncontent.gp;)+) >
+<!ATTLIST Equation
+	 	%commonatts; 
+		Label		CDATA		#IMPLIED
+>
+
+<!ELEMENT InformalEquation - -  ((%eqncontent.gp;)+) >
+<!ATTLIST InformalEquation
+	 	%commonatts; 
+>
+
+<!ELEMENT InlineEquation - -  ((%eqncontent.gp;)+) >
+<!ATTLIST InlineEquation
+	 	%commonatts; 
+>
+
+<!-- ===================================================================== -->
+<!-- ##################################################################### -->
+<!-- ===================================================================== -->
+<!--                                 TABLE                                 -->
+<!-- ===================================================================== -->
+
+<!--
+
+	The CALS table specification derived from MIL-M-28001B.  The only
+		difference is the content of Entry.  InformalTable was derived
+		from Table by removing titling and the attributes: Label,
+		ShortEntry
+  -->
+
+<!ELEMENT Table - - (Title, TitleAbbrev?, (%tblcontent.gp;))
+		-(Table|InformalTable)>
+<!ATTLIST Table
+		%commonatts;
+		Colsep		%yesorno;	#IMPLIED
+		Frame		(Top|Bottom|Topbot|All|Sides|None)
+						#IMPLIED
+		Label		CDATA		#IMPLIED 
+		Orient		(Port | Land)	#IMPLIED
+		Pgwide		%yesorno;	#IMPLIED
+		Rowsep		%yesorno;	#IMPLIED
+		Shortentry	%yesorno;	#IMPLIED
+		Tabstyle	NMTOKEN		#IMPLIED
+		Tocentry	%yesorno;	%yes;
+>
+
+<!ELEMENT InformalTable - - ((%tblcontent.gp;)) -(Table|InformalTable)>
+<!ATTLIST InformalTable
+		%commonatts;
+		Colsep		%yesorno;	#IMPLIED
+		Frame		(Top|Bottom|Topbot|All|Sides|None)
+						#IMPLIED
+		Orient		(Port | Land)	#IMPLIED
+		Pgwide		%yesorno;	#IMPLIED
+		Rowsep		%yesorno;	#IMPLIED
+		Tabstyle	NMTOKEN		#IMPLIED
+>
+
+<!ELEMENT TGroup - O (ColSpec*, SpanSpec*, THead?, TFoot?, TBody) >
+<!ATTLIST TGroup
+		%commonatts;
+		Align		(Left|Right|Center|Justify|Char)
+						Left
+		Char		CDATA		""
+		Charoff		NUTOKEN		"50"
+		Cols		NUMBER		#REQUIRED
+		Colsep		%yesorno;	#IMPLIED
+		Rowsep		%yesorno;	#IMPLIED
+		TGroupStyle	NMTOKEN		#IMPLIED
+>
+
+<!ELEMENT ColSpec - O  EMPTY >
+<!ATTLIST ColSpec
+		%commonatts; 
+		Align		(Left|Right|Center|Justify|Char)
+						#IMPLIED
+		Char		CDATA		#IMPLIED
+		Charoff		NUTOKEN		#IMPLIED
+		Colname		NMTOKEN		#IMPLIED
+		Colnum		NUMBER		#IMPLIED
+		Colsep		%yesorno;	#IMPLIED
+		Colwidth	CDATA		#IMPLIED
+		Rowsep		%yesorno;	#IMPLIED
+>
+
+<!ELEMENT SpanSpec - O  EMPTY >
+<!ATTLIST SpanSpec
+		%commonatts; 
+		Align		(Left|Right|Center|Justify|Char)
+						"Center"
+		Char		CDATA		#IMPLIED
+		Charoff		NUTOKEN		#IMPLIED
+		Colsep		%yesorno;	#IMPLIED
+		Nameend		NMTOKEN		#REQUIRED
+		Namest		NMTOKEN		#REQUIRED
+		Rowsep 		%yesorno;	#IMPLIED
+		Spanname	NMTOKEN		#REQUIRED
+>
+
+<!ELEMENT THead - O (ColSpec*, Row+)			-(EntryTbl) >
+<!ATTLIST THead
+		%commonatts; 
+		VAlign		(Top | Middle | Bottom)
+						"Bottom"
+>
+
+<!ELEMENT TFoot - O (ColSpec*, Row+)			-(EntryTbl) >
+<!ATTLIST TFoot
+		%commonatts; 
+		VAlign		(Top | Middle | Bottom)
+						"Top"
+>
+
+<!ELEMENT TBody - O (Row+) >
+<!ATTLIST TBody
+		%commonatts; 
+		VAlign		(Top | Middle | Bottom)
+						"Top"
+>
+
+<!ELEMENT Row - O ((Entry | EntryTbl)+) >
+<!ATTLIST Row
+		%commonatts; 
+		Rowsep		%yesorno;	#IMPLIED
+		VAlign		(Top | Middle | Bottom)
+						#IMPLIED
+>
+
+<!--    ||||||||||||||||||||||||||||||||||||||||||||||||||||
+        DOCBOOK 2.2.1 CHANGE:
+        added the following descriptive paragraph 
+        ||||||||||||||||||||||||||||||||||||||||||||||||||||
+-->
+
+<!--
+
+        The content model of Entry is broken into two possibilities:
+        paragraph-like elements (Para, Note, LiteralLayout, lists,
+        etc., and inline text elements (PCDATA, Command, Link, etc.).
+        Because of the possibility that PCDATA can occur without
+        being contained, you can not allow for spurious record ends
+        to occur between the paragraph-like elements.  If the inline
+        text elements were contained in another element, e.g., Cell,
+        (it could be a sibling of Entry or part of the content model
+        for Entry), this issue would disappear.
+
+  -->
+
+<!--    ||||||||||||||||||||||||||||||||||||||||||||||||||||
+        DOCBOOK 2.2.1 CHANGE:
+        added %code.example.gp; to Entry 
+        ||||||||||||||||||||||||||||||||||||||||||||||||||||
+-->
+
+<!ELEMENT Entry - O ((%para.gp; | %admonition.gp; | %code.example.gp; | 
+		%list.gp; | Graphic)+ | (%inlineobj.gp;)+) >
+<!ATTLIST Entry
+		%commonatts;
+		Align		(Left|Right|Center|Justify|Char)
+						#IMPLIED
+		Char		CDATA		#IMPLIED
+		Charoff		NUTOKEN		#IMPLIED
+		Colname		NMTOKEN		#IMPLIED
+		Colsep		%yesorno;	#IMPLIED
+		Morerows	 NUMBER		"0"
+		Nameend		NMTOKEN		#IMPLIED
+		Namest		NMTOKEN		#IMPLIED
+		Rotate		%yesorno;	%no;
+		Rowsep		%yesorno;	#IMPLIED
+		Spanname	NMTOKEN		#IMPLIED
+		VAlign		(Top | Middle | Bottom)
+                               	#IMPLIED
+>
+
+<!ELEMENT EntryTbl - - ((ColSpec*, SpanSpec*, THead?, TBody)+)
+		-(EntryTbl) >
+<!ATTLIST EntryTbl
+		%commonatts;
+		Align		(Left|Right|Center|Justify|Char)
+						#IMPLIED
+		Char		CDATA		#IMPLIED
+		Charoff		NUTOKEN		#IMPLIED
+		Colname		NMTOKEN		#IMPLIED
+		Cols		NUMBER		#REQUIRED
+		Colsep		%yesorno;	#IMPLIED
+		Nameend		NMTOKEN		#IMPLIED
+		Namest		NMTOKEN		#IMPLIED
+		Rowsep		%yesorno;	#IMPLIED
+		Spanname	NMTOKEN		#IMPLIED
+		TGroupStyle	NMTOKEN		#IMPLIED
+>
+
+<!-- ===================================================================== -->
+<!-- ##################################################################### -->
+<!-- ===================================================================== -->
+<!--                                  LINKS                                -->
+<!-- ===================================================================== -->
+
+<!ELEMENT Anchor - O  EMPTY >
+<!ATTLIST Anchor
+		Id		ID		#REQUIRED
+		Pagenum		CDATA		#IMPLIED 
+		Remap		CDATA		#IMPLIED
+		Role		CDATA		#IMPLIED
+		XRefLabel	CDATA		#IMPLIED
+>
+
+<!--
+	The PageNum attribute of BeginPage, if given, specifies
+	the number of the page that begins at that point.
+  -->
+
+<!ELEMENT BeginPage - O  EMPTY >
+<!ATTLIST BeginPage
+		Id		ID		#REQUIRED
+		PageNum		CDATA		#IMPLIED 
+		Remap		CDATA		#IMPLIED
+		Role		CDATA		#IMPLIED
+		XRefLabel	CDATA		#IMPLIED
+>
+
+<!--
+	IndexTerms occur in the text flow for generating or linking an
+		Index.
+  -->
+
+<!--    ||||||||||||||||||||||||||||||||||||||||||||||||||||
+        DOCBOOK 2.2.1 CHANGE:
+        added Scope and Zone attibutes to IndexTerm - see
+	reference manual for descriptions of use.
+	added &ubiq.gp; as an exclusion
+        removed %ndxterm.gp; as an exclusion
+	||||||||||||||||||||||||||||||||||||||||||||||||||||
+-->
+
+<!ELEMENT IndexTerm - O (Primary, ((Secondary, ((Tertiary, (See | SeeAlso+)?)
+                | See | SeeAlso+)?) | See | SeeAlso+)?) -(%ubiq.gp;) >
+<!ATTLIST IndexTerm
+                %commonatts;
+                Pagenum         CDATA           #IMPLIED
+        -- local implementations of Scope define what the default should be --
+                Scope           (All | Global | Local)
+                                                #IMPLIED
+                Significance    (Preferred | Normal)
+                                                Normal
+-- FUTURE use: SpanEnd attribute will be renamed to indicate that it
+                points to the content of the indexterm being spanned.
+                Another attribute will be added to "flag" that the
+                indexterm is the other end of a spanned indexterm and
+                not just a point in the flow.
+--
+                SpanEnd         IDREF           #CONREF
+        -- if Zone is used, they point to elements where they originated --
+                Zone            IDREFS          #IMPLIED
+>
+
+
+<!ELEMENT (Primary | Secondary | Tertiary ) - -  ((%inlinechar.gp;)+) >
+<!ATTLIST (Primary | Secondary | Tertiary )
+		%commonatts;
+		SortAs		CDATA		#IMPLIED
+>
+
+<!ELEMENT (See | SeeAlso) - -  ((%inlinechar.gp;)+) >
+<!ATTLIST (See | SeeAlso)
+		%commonatts;
+>
+
+<!-- ===================================================================== -->
+<!--
+	Use of the HyTime terms Linkend and Endterm does not indicate
+	that HyTime processing is required.  Link has both Endterm and
+	Linkend attributes: Linkend is the spot linked to, Endterm
+	identifies information that may be used by the Link.  You
+	might, for example, make the Linkend a Sect2 and make the
+	Endterm its Title.
+  -->
+
+<!ELEMENT Link  - -  ((%inlinechar.gp;)+) >
+<!ATTLIST Link
+                Endterm		IDREF		#IMPLIED
+                Linkend         IDREF           #REQUIRED
+                Type            CDATA           #IMPLIED 
+>
+
+<!-- ===================================================================== -->
+<!-- 
+	Hytimeish link, after Eliot Kimber.  TargetDocEnt points
+	to an entity in the manner of HyTime's Docorsub; this could
+	be an FPI inside a text entity or could be a data entity.
+	LinkMode points to a ModeSpec, which may contain
+	application-specific information and may appear only in
+	BookInfo.
+  -->
+
+<!--    ||||||||||||||||||||||||||||||||||||||||||||||||||||  
+        DOCBOOK 2.2.1 CHANGE:  
+        replaced %inlinechar.gp; with %inlineobj.gp; in OLink 
+        |||||||||||||||||||||||||||||||||||||||||||||||||||| 
+-->
+
+<!ELEMENT OLink  - -  ((%inlineobj.gp;)+) >
+<!ATTLIST OLink
+		TargetDocEnt	ENTITY 		#IMPLIED
+		LinkMode	IDREF		#IMPLIED
+		LocalInfo 	CDATA		#IMPLIED
+		Type		CDATA		#IMPLIED 
+>
+
+<!--    ||||||||||||||||||||||||||||||||||||||||||||||||||||  
+        DOCBOOK 2.2.1 CHANGE:  
+        added %ubiq.gp; to ModeSpec as an exclusion 
+        |||||||||||||||||||||||||||||||||||||||||||||||||||| 
+-->
+
+<!ELEMENT ModeSpec	- - (#PCDATA) -(%ubiq.gp;) >
+<!ATTLIST ModeSpec
+		%commonatts;
+		Application	NOTATION	(%notationtypes;)
+						#IMPLIED 
+>
+
+<!--
+	URL link.  To point to a filename, use "file://pathname/filename" as
+	the value of the URL attribute
+  -->
+
+<!ELEMENT ULink  - -  ((%inlinechar.gp;)+) >
+<!ATTLIST ULink
+                URL		CDATA           #REQUIRED
+                Type            CDATA           #IMPLIED 
+>
+
+<!--    ||||||||||||||||||||||||||||||||||||||||||||||||||||   
+        DOCBOOK 2.2.1 CHANGE:   
+        added %ubiq.gp; to FootnoteRef as an exclusion 
+ 	added attribute Label comment (relating to future use
+	changed Mark attribute from CONREF to IMPLIED	
+        ||||||||||||||||||||||||||||||||||||||||||||||||||||  
+--> 
+
+<!ELEMENT FootnoteRef - O (#PCDATA) -(%ubiq.gp;) >
+<!ATTLIST FootnoteRef   
+		id		ID		#IMPLIED
+		Linkend		IDREF		#REQUIRED
+                Mark		CDATA		#IMPLIED
+-- FUTURE Use
+		Label		CDATE		#IMPLIED
+--
+>
+
+<!ELEMENT XRef - O  EMPTY >
+<!ATTLIST XRef   
+		Endterm		IDREF		#IMPLIED
+		Linkend		IDREF		#REQUIRED
+>
+
+<!-- ===================================================================== -->
+<!-- ##################################################################### -->
+<!-- ===================================================================== -->
+<!--                                DOCINFO                                -->
+<!-- ===================================================================== -->
+<!--  
+	DOCINFO elements; some appear in BiblioEntry, too
+  -->
+
+<!--     
+********************************************************** 
+*                                                        *   
+* REMOVED Honorific, Lineage, Affiliation and AuthorBlurb*
+*       from ELEMENTS Author, Editor and OtherCredit).   *
+* CHANGED Othername to 0 or 1 for ELEMENTS Author, 	 *
+*	Editor and OtherCredit.			         *
+* CHANGED or's in Firstname, Surname and Othername      *
+*	to commas (order of occurrence).  Othername	 *
+*	may be used for e-mail address of author.        *
+*                 See 10_11_94.minutes                   *     
+*                                                        * 
+**********************************************************    
+-->
+
+<!--    ||||||||||||||||||||||||||||||||||||||||||||||||||||   
+        DOCBOOK 2.2.1 CHANGE:   
+        added Contrib? to Author, Editor and OtherCredit 
+        ||||||||||||||||||||||||||||||||||||||||||||||||||||  
+--> 
+
+<!ELEMENT (Author | Editor | OtherCredit) - - (Firstname,
+		Surname, OtherName?, Contrib?) >
+
+<!--  
+********************************************************** 
+*                                                        *  
+* REMOVED ELEMENTS Lineage and Honorific.                *    
+*                 See 01_03_95.minutes                   * 
+*                                                        *  
+**********************************************************
+-->
+
+<!--    ||||||||||||||||||||||||||||||||||||||||||||||||||||   
+        DOCBOOK 2.2.1 CHANGE:   
+        added Contrib to list of elements starting with 
+	AuthorInitials 
+        ||||||||||||||||||||||||||||||||||||||||||||||||||||  
+--> 
+
+<!ELEMENT (AuthorInitials | Contrib | CorpAuthor | CorpName | Date |
+		Edition | Firstname | Holder | ISBN | InvPartNumber |
+		OtherName | ProductNumber | ReleaseInfo | RevNumber |
+		RevRemark | Surname | Year ) - - (#PCDATA) >
+
+<!ELEMENT Affiliation - - (ShortAffil?, JobTitle*, OrgName?, OrgDiv*,
+		Address*) >
+
+<!ELEMENT JobTitle	- - (#PCDATA) >
+
+<!-- ShortAffil is for places like ToCs -->
+
+<!ELEMENT ShortAffil	- - (#PCDATA) >
+
+<!ELEMENT Copyright - -  (Year+, Holder*) >
+
+<!--  
+**********************************************************
+*                                                        * 
+* REMOVED Title and BlockQuote from ELEMENT LegalNotice. *
+*                 See 10_18_94.minutes                   *  
+*                                                        * 
+********************************************************** 
+--> 
+
+<!--    ||||||||||||||||||||||||||||||||||||||||||||||||||||   
+        DOCBOOK 2.2.1 CHANGE:   
+        added %admonition.gp;, %code.example.gp; and %list.gp;
+	to LegalNotice 
+        ||||||||||||||||||||||||||||||||||||||||||||||||||||  
+--> 
+
+<!ELEMENT LegalNotice - -   (%admonition.gp; | %code.example.gp; |
+		%list.gp; | %para.gp;)+ >
+
+<!--     
+********************************************************** 
+*                                                        *  
+* REMOVED ELEMENT PrintHistory			         *  
+*                 See 01_10_95.minutes                   * 
+*                                                        *  
+**********************************************************   
+--> 
+
+<!--    ||||||||||||||||||||||||||||||||||||||||||||||||||||   
+        DOCBOOK 2.2.1 CHANGE:   
+        removed Logo from ProductName Class attribute 
+        ||||||||||||||||||||||||||||||||||||||||||||||||||||  
+--> 
+
+<!ELEMENT ProductName - -  ((%inlinechar.gp;)+) >
+<!ATTLIST ProductName
+		%commonatts;
+		Class	(Service|Trade|Registered|Copyright)
+						Trade
+>
+
+<!--    ||||||||||||||||||||||||||||||||||||||||||||||||||||   
+        DOCBOOK 2.2.1 CHANGE:   
+        added following "FUTURE use" comment on RevHistory 
+        ||||||||||||||||||||||||||||||||||||||||||||||||||||  
+--> 
+<!-- FUTURE Use
+<!ELEMENT RevHistory - - (Revision+) >
+  -->
+
+<!--    ||||||||||||||||||||||||||||||||||||||||||||||||||||    
+        DOCBOOK 2.2.1 CHANGE:    
+        added following "FUTURE use" comment on RevHistory  
+        ||||||||||||||||||||||||||||||||||||||||||||||||||||  
+--> 
+
+<!ELEMENT RevHistory - -  (Revision*) >
+
+<!ELEMENT Revision - -  (RevNumber, Date, AuthorInitials+, RevRemark) >
+
+<!--    ||||||||||||||||||||||||||||||||||||||||||||||||||||    
+        DOCBOOK 2.2.1 CHANGE:    
+        added numerous elements to following attlist  
+        ||||||||||||||||||||||||||||||||||||||||||||||||||||  
+--> 
+
+<!ATTLIST (Affiliation | Author | AuthorInitials | Contrib | Copyright |
+                CorpAuthor | CorpName | Date | Edition | Editor | Firstname |
+                Holder | ISBN | InvPartNumber | JobTitle |
+                LegalNotice | OtherCredit | OtherName 
+                | ProductNumber | ReleaseInfo | Revision | RevHistory |
+                RevNumber | RevRemark | ShortAffil | Surname | Year)
+ 
+                %commonatts;
+>
+
+
+<!-- ===================================================================== -->
+<!-- ##################################################################### -->
+<!-- ===================================================================== -->
+<!--                      COMPUTER TERM INLINES                            -->
+<!-- ===================================================================== -->
+
+<!--    ||||||||||||||||||||||||||||||||||||||||||||||||||||
+        DOCBOOK 2.2.1 CHANGE:
+        replace %cptrphrase.gp; with %inlinechar.gp; for element
+	Application 
+        ||||||||||||||||||||||||||||||||||||||||||||||||||||
+-->
+
+<!ELEMENT Application - - ((%inlinechar.gp;)+) >
+<!ATTLIST Application
+		%commonatts;
+		Class 		(Hardware|Software)
+						#IMPLIED
+		MoreInfo	(RefEntry|None)	None
+>
+
+<!ELEMENT Database - - ((%cptrphrase.gp;)+) >
+<!ATTLIST Database
+		%commonatts;
+		Class 		(Name|Table|Field|Key1|Key2|Record)
+						#IMPLIED
+		MoreInfo	(RefEntry|None)	None
+>
+
+<!ELEMENT Interface - - ((%cptrphrase.gp;)+) >
+<!ATTLIST Interface
+		%commonatts;
+		Class 		(Button|Icon|Menu|MenuItem)
+						#IMPLIED
+		MoreInfo	(RefEntry|None)	None
+>
+
+<!ELEMENT MediaLabel - - (#PCDATA) >
+<!ATTLIST MediaLabel
+		%commonatts;
+		Class 		(Cartridge|CDRom|Disk|Tape)
+						#IMPLIED
+>
+
+<!ELEMENT Parameter - - ((%cptrphrase.gp;)+) >
+<!ATTLIST Parameter
+		%commonatts;
+		Class 		(Command|Function|Option)
+						#IMPLIED
+		MoreInfo	(RefEntry|None)	None
+>
+
+<!ELEMENT Replaceable - - ((%phrase.gp;)+) >
+<!ATTLIST Replaceable
+		%commonatts; 
+		Class		(Command | Function | Option | Parameter)
+						#IMPLIED
+>
+
+<!ELEMENT SystemItem - - ((%cptrphrase.gp;)+) >
+<!ATTLIST SystemItem
+		%commonatts;
+		Class
+ 		(Constant|EnvironVar|Macro|OSname|Prompt|Resource|SystemName)
+						#IMPLIED
+		MoreInfo	(RefEntry|None)	None
+>
+
+<!ELEMENT (Command | Literal) - - ((%cptrphrase.gp;)+) >
+<!ATTLIST (Command | Literal)
+		%commonatts;
+		MoreInfo	(RefEntry|None)	None
+>
+
+<!--    ||||||||||||||||||||||||||||||||||||||||||||||||||||
+        DOCBOOK 2.2.1 CHANGE:
+        removed ProtocolRequest from the following element list 
+        ||||||||||||||||||||||||||||||||||||||||||||||||||||
+-->
+
+<!ELEMENT (Action | Filename | Function | Hardware | KeyCap |
+		InterfaceDefinition | Property) - -
+		((%cptrphrase.gp;)+) >
+<!ATTLIST (Action | Filename | Function | Hardware | KeyCap |
+		InterfaceDefinition | Property)
+		%commonatts;
+		MoreInfo	(RefEntry|None)	None
+>
+
+<!ELEMENT ComputerOutput - - ((%cptrphrase.gp;)+) >
+<!ATTLIST ComputerOutput
+		%commonatts;
+		MoreInfo	(RefEntry|None)	None
+>
+
+<!ELEMENT UserInput - - ((%cptrphrase.gp;)+) >
+<!ATTLIST UserInput
+		%commonatts;
+		MoreInfo	(RefEntry|None)	None
+>
+
+<!-- ===================================================================== -->
+<!-- ##################################################################### -->
+<!-- ===================================================================== -->
+
+<!--    ||||||||||||||||||||||||||||||||||||||||||||||||||||
+        DOCBOOK 2.2.1 CHANGE:
+        replace %cptrphrase.gp; with %inlinechar.gp; for 
+        CiteTitle 
+        ||||||||||||||||||||||||||||||||||||||||||||||||||||
+-->
+
+<!ELEMENT CiteTitle - - ((%inlinechar.gp;)+) >
+<!ATTLIST CiteTitle
+		%commonatts;
+	-- The kind of title in a published work being cited. --
+		Pubwork		(Article|Book|Chapter|RefEntry|Section)
+						#IMPLIED
+>
+
+<!ELEMENT CiteRefEntry - - (RefEntryTitle, ManVolNum?) >
+<!ATTLIST CiteRefEntry
+		%commonatts;
+>
+
+<!ELEMENT Option - - ((%cptrphrase.gp;)+) >
+<!ATTLIST Option
+		%commonatts;
+>
+
+<!--    ||||||||||||||||||||||||||||||||||||||||||||||||||||
+        DOCBOOK 2.2.1 CHANGE:
+        replace %cptrphrase.gp; with %inlinechar.gp; for 
+        Quote 
+        ||||||||||||||||||||||||||||||||||||||||||||||||||||
+-->
+
+<!ELEMENT Quote - - ((%inlinechar.gp;)+) >
+<!ATTLIST Quote
+		%commonatts;
+>
+
+<!ELEMENT Trademark - - ((%cptrphrase.gp;)+) >
+<!ATTLIST Trademark
+		%commonatts;
+		Class	(Service|Trade|Registered|Copyright|Logo)
+						Trade
+>
+
+<!--    ||||||||||||||||||||||||||||||||||||||||||||||||||||
+        DOCBOOK 2.2.1 CHANGE:
+        added Emphasis to Superscript and Subscript 
+        ||||||||||||||||||||||||||||||||||||||||||||||||||||
+-->
+
+<!ELEMENT (Subscript | Superscript) - -  ((%phrase.gp; | Emphasis | 
+		Replaceable)+) >
+<!ATTLIST (Subscript | Superscript)
+		%commonatts;
+>
+
+<!ELEMENT SGMLTag - -  (#PCDATA) >
+<!ATTLIST SGMLTag
+		%commonatts;
+		Class 		(Attribute|Element|GenEntity|ParamEntity)
+						#IMPLIED
+>
+
+<!--    ||||||||||||||||||||||||||||||||||||||||||||||||||||
+        DOCBOOK 2.2.1 CHANGE:
+        removed Character, Charset, Font, Glyph, EventStructure,
+	EventType and Mask from the following element list
+	starting with Abbrev 
+        ||||||||||||||||||||||||||||||||||||||||||||||||||||
+-->
+
+<!ELEMENT (Abbrev | Acronym | Citation | Classname | Emphasis | ErrorName 
+		| ErrorType |  FirstTerm | ForeignPhrase | KeySym | KeyCode 
+		| LineAnnotation | Markup | PubsNumber | ReturnValue 
+		| StructField | StructName | Symbol | Token | Type 
+		| VolumeNum | WordAsWord) - - (#PCDATA) >
+<!ATTLIST (Abbrev | Acronym | Citation | Classname | Emphasis | ErrorName
+                | ErrorType |  FirstTerm | ForeignPhrase | KeySym | KeyCode 
+                | LineAnnotation | Markup | PubsNumber | ReturnValue 
+                | StructField | StructName | Symbol | Token | Type 
+                | VolumeNum | WordAsWord) 
+		%commonatts;
+>
+
+<!--
+	The element named Optional is for use in syntax lines, as in a
+	RefEntry, where optional parameters are shown in square
+	brackets.  Optional should replace those brackets.
+  -->
+
+<!ELEMENT Optional - - ((%cptrphrase.gp;)+) >
+<!ATTLIST Optional
+		%commonatts; 
+>
+
+<!--   
+**********************************************************
+*                                                        *  
+* REMOVED DocInfo from ELEMENT Bibliography.		 *
+* CHANGED Title to required for ELEMENT Bibliography.
+*                 See 10_18_94.minutes                   *   
+*                                                        * 
+**********************************************************  
+-->
+
+<!--      
+********************************************************** 
+*                                                        *   
+* REMOVED ALL ELEMENTS UNDER NAVIGATION: ToC, ToCfront   *
+*                 ToCpart, ToCchap, ToClevel1, ToClevel2,*
+*		  ToClevel3, ToClevel4, ToClevel5,       *
+*		  ToCback, LoT
+*                 See 01_10_95.minutes                   *  
+*                                                        *  
+**********************************************************   
+-->
+
+<!ELEMENT Bibliography - - ((Title, TitleAbbrev?),(%component.gp;)*, 
+                           (BiblioDiv+ | BiblioEntry+)) >
+<!ATTLIST Bibliography
+		%commonatts; 
+>
+<!--   
+**********************************************************
+*                                                        *  
+* CHANGED Title to required for ELEMENT BiblioDiv	 *
+*                 See 10_18_94.minutes                   *   
+*                                                        * 
+**********************************************************  
+-->
+
+<!ELEMENT BiblioDiv - - ((Title, TitleAbbrev?), (%component.gp;)*,
+		BiblioEntry+) >
+<!ATTLIST BiblioDiv
+		%commonatts;
+>
+
+<!--
+	N.B. this model of BiblioEntry produces info in the order
+	"title, author"; TEI prefers "author, title".
+  -->
+
+<!--    
+**********************************************************
+*                                                        *   
+* REMOVED BiblioMisc, ArtHeader and Series Info from	 * 
+*	ELEMENT BiblioEntry.             		 *
+*                 See 10_18_94.minutes                   *    
+*                                                        * 
+**********************************************************   
+-->
+
+<!ELEMENT BiblioEntry - - (BookBiblio) >
+<!ATTLIST BiblioEntry
+		%commonatts; 
+>
+
+<!ELEMENT BiblioMisc - - (#PCDATA) >
+<!ATTLIST BiblioMisc
+		%commonatts; 
+>
+
+<!--    ||||||||||||||||||||||||||||||||||||||||||||||||||||
+        DOCBOOK 2.2.1 CHANGE:
+        added Bibliography? to Glossary 
+        ||||||||||||||||||||||||||||||||||||||||||||||||||||
+-->
+
+<!ELEMENT Glossary - - ((Title, TitleAbbrev?)?, (%component.gp;)*,
+		(GlossDiv+ | GlossEntry+), Bibliography?) >
+<!ATTLIST Glossary
+		%commonatts; 
+>
+
+<!ELEMENT GlossDiv - - (Title, TitleAbbrev?, (%component.gp;)*,
+		GlossEntry+) >
+<!ATTLIST GlossDiv
+		%commonatts;
+>
+
+<!ELEMENT GlossEntry - - (GlossTerm, Acronym?, Abbrev?, (GlossSee |
+		GlossDef+)) >
+<!ATTLIST GlossEntry
+		%commonatts; 
+>
+
+<!ELEMENT GlossTerm - - ((%inlineobj.gp;)+) >
+<!ATTLIST GlossTerm
+		%commonatts;
+>
+
+<!--    ||||||||||||||||||||||||||||||||||||||||||||||||||||
+        DOCBOOK 2.2.1 CHANGE:
+        changed attribute Subject from NMTOKENS to CDATA 
+        ||||||||||||||||||||||||||||||||||||||||||||||||||||
+-->
+
+<!ELEMENT GlossDef - - ((%para.gp; | %list.gp; | %object.gp;)+,
+		GlossSeeAlso*) >
+<!ATTLIST GlossDef
+		%commonatts; 
+		Subject		CDATA		#IMPLIED
+>
+
+<!--    ||||||||||||||||||||||||||||||||||||||||||||||||||||
+        DOCBOOK 2.2.1 CHANGE:
+        changed PCDATA to %inlineobj.gp; for GlossSee 
+        ||||||||||||||||||||||||||||||||||||||||||||||||||||
+-->
+
+<!ELEMENT GlossSee - O ((%inlineobj.gp;)+) >
+<!ATTLIST GlossSee
+		%commonatts;
+		OtherTerm	IDREF		#CONREF
+>
+
+<!--    ||||||||||||||||||||||||||||||||||||||||||||||||||||
+        DOCBOOK 2.2.1 CHANGE: 
+        changed PCDATA to %inlineobj.gp; for GlossSeeAlso  
+        |||||||||||||||||||||||||||||||||||||||||||||||||||| 
+-->
+
+<!ELEMENT GlossSeeAlso - O ((%inlineobj.gp;)+) >
+<!ATTLIST GlossSeeAlso
+		%commonatts;
+		OtherTerm	IDREF		#CONREF
+>
+
+<!--      
+********************************************************** 
+*                                                        *   
+* REMOVED ELEMENT SetIndex                               *  
+*                 See 01_10_95.minutes                   *  
+*                                                        *  
+**********************************************************   
+-->
+
+<!--    ||||||||||||||||||||||||||||||||||||||||||||||||||||
+        DOCBOOK 2.2.1 CHANGE: 
+        added %ndxterm.gp; as an exclusion to Index  
+        |||||||||||||||||||||||||||||||||||||||||||||||||||| 
+-->
+
+<!ELEMENT (Index) - - ((Title, TitleAbbrev?)?,
+		(%component.gp;)*, (IndexDiv+ | IndexEntry+))
+		-(%ndxterm.gp;) >
+<!ATTLIST Index
+               %commonatts;
+>
+<!--
+	The IndexDiv model allows a SegmentedList as the content of
+	IndexDiv so SegmentedList can be used for permuted indices.
+  -->
+
+<!ELEMENT IndexDiv - - ((Title, TitleAbbrev?)?, ((Anchor |
+		%links.gp; | ItemizedList | OrderedList | VariableList |
+		%object.gp; | %para.gp;)*, (IndexEntry+ | SegmentedList))) >
+<!ATTLIST IndexDiv
+		%commonatts; 
+>
+
+<!--  
+	IndexEntries appear in the Index, not the text.
+-->
+
+<!ELEMENT IndexEntry - - (%primsee;, (%secsee;)*) >
+<!ATTLIST IndexEntry  
+		%commonatts; 
+>
+
+<!--    ||||||||||||||||||||||||||||||||||||||||||||||||||||
+        DOCBOOK 2.2.1 CHANGE: 
+        changed PCDATA to %inlinechar.gp; for PrimaryIE, 
+	SecondaryIE, TertiaryIE, SeeIE and SeeAlsoIE.  Also
+	changed the attribute Linkends from REQUIRED to IMPLIED
+	for all the same elements  
+        |||||||||||||||||||||||||||||||||||||||||||||||||||| 
+-->
+
+<!ELEMENT PrimaryIE - - ((%inlinechar.gp;)+) >
+<!ATTLIST PrimaryIE
+		%commonatts;
+		Linkends	IDREFS		#IMPLIED
+>
+
+<!ELEMENT SecondaryIE - - ((%inlinechar.gp;)+) >
+<!ATTLIST SecondaryIE
+		%commonatts;
+		Linkends	IDREFS		#IMPLIED
+>
+
+<!ELEMENT TertiaryIE - - ((%inlinechar.gp;)+) >
+<!ATTLIST TertiaryIE
+		%commonatts;
+		Linkends	IDREFS		#IMPLIED
+>
+
+<!ELEMENT SeeIE - - ((%inlinechar.gp;)+) >
+<!ATTLIST SeeIE
+		%commonatts;
+		Linkend 	IDREF		#IMPLIED
+>
+
+<!ELEMENT SeeAlsoIE - -  ((%inlinechar.gp;)+) >
+<!ATTLIST SeeAlsoIE
+		%commonatts;
+		Linkends	IDREFS		#IMPLIED
+>
+
+<!--      
+********************************************************** 
+*                                                        *   
+* REMOVED ELEMENT LotEntry                               *  
+*                 See 01_10_95.minutes                   *  
+*                                                        *  
+**********************************************************   
+-->
+
+<!-- ===================================================================== -->
+
+<!-- ##################################################################### -->
+
+<!-- ===================================================================== -->
+
+<!--                            REFERENCE ENTRIES                          -->
+
+<!-- ===================================================================== -->
+
+
+<!--      
+********************************************************** 
+*                                                        *   
+* CHANGED  RefMeta in ELEMENT RefEntry to REQUIRED       *  
+*                 See 01_06_95.minutes                   *  
+*                                                        *  
+**********************************************************   
+-->
+
+<!--    ||||||||||||||||||||||||||||||||||||||||||||||||||||
+        DOCBOOK 2.2.1 CHANGE:  
+        added %ubiq.gp; to RefEntry as an inclusion   
+        ||||||||||||||||||||||||||||||||||||||||||||||||||||  
+-->
+
+<!ELEMENT RefEntry - - ( RefMeta, (%links.gp;)*,
+		RefNameDiv, RefSynopsisDiv?, RefSect1+) +(%ubiq.gp;) >
+<!ATTLIST RefEntry
+		%commonatts; 
+>
+
+<!--
+**********************************************************
+*                                                        *
+* CHANGED  RefMeta FROM:                                 *
+*	(RefEntryTitle, ManVolNum?, RefMiscInfo*)        *
+*	TO as shown below                                *
+*                 See 01_06_95.minutes                   *
+*                                                        *
+**********************************************************
+-->
+
+<!--    ||||||||||||||||||||||||||||||||||||||||||||||||||||
+        DOCBOOK 2.2.1 CHANGE:  
+        added BeginPage as an exclusion to RefMeta   
+        ||||||||||||||||||||||||||||||||||||||||||||||||||||  
+-->
+
+<!ELEMENT RefMeta - -  (RefEntryTitle, ManVolNum?, (RefMiscInfo,
+                		RefMiscInfo, RefMiscInfo, RefMiscInfo, RefMiscInfo),
+                		RefMiscInfo*) -(BeginPage) >
+<!ATTLIST RefMeta
+		%commonatts; 
+>
+
+<!ELEMENT RefEntryTitle - -  ((%inlinechar.gp;)+) >
+<!ATTLIST RefEntryTitle
+		%commonatts; 
+>
+
+<!ELEMENT ManVolNum - -  (#PCDATA) >
+<!ATTLIST ManVolNum
+		%commonatts; 
+>
+
+<!--
+**********************************************************
+*                                                        * 
+* CHANGED ATTRIBUTES FOR RefMiscInfo FROM:               *
+*       Class	CDATA	#IMPLIED	                 * 
+*       TO as shown below                                *
+*                 See 01_06_95.minutes                   * 
+*                                                        *
+**********************************************************
+-->
+
+<!ELEMENT RefMiscInfo - -  (#PCDATA) >
+<!ATTLIST RefMiscInfo
+		%commonatts; 
+		Class		(Date | SectDesc | Software | Arch | Copyright)	
+								#REQUIRED
+>
+
+<!--
+**********************************************************
+*                                                        * 
+* REMOVED RefClass FROM ELEMENT RefNameDiv.              *
+*                 See 01_06_95.minutes                   * 
+*                                                        *
+**********************************************************
+-->
+
+<!ELEMENT RefNameDiv - - (RefDescriptor?, RefName+, RefPurpose, 
+		(%links.gp;)*) >
+<!ATTLIST RefNameDiv
+		%commonatts; 
+>
+
+<!ELEMENT RefDescriptor - -  (#PCDATA) >
+<!ATTLIST RefDescriptor
+		%commonatts; 
+>
+
+<!--
+**********************************************************
+*                                                        * 
+* CHANGED ELEMENT RefName to include the new entity      *
+*       group called %refname.gp.                        * 
+*                 See 01_06_95.minutes                   * 
+*                                                        *
+**********************************************************
+-->
+
+<!ELEMENT RefName - -  ((%refname.gp;)+) >
+<!ATTLIST RefName
+		%commonatts; 
+>
+
+<!--
+**********************************************************
+*                                                        *
+* REMOVED ELEMENT RefClass                               *
+*                 See 01_31_95 man tag team minutes      *
+*                                                        *
+**********************************************************
+-->
+
+<!ELEMENT RefPurpose - -  ((%inlinechar.gp;)+) >
+<!ATTLIST RefPurpose
+		%commonatts; 
+>
+
+<!ELEMENT RefSynopsisDiv - - ((Title, TitleAbbrev?)?, (((%synop.gp;)+,
+		RefSect2*) | (RefSect2+))) >
+<!ATTLIST RefSynopsisDiv
+		%commonatts;
+>
+
+<!ELEMENT RefSect1 - - (Title, TitleAbbrev?, (((%component.gp;)+, RefSect2*) |
+		RefSect2+)) >
+<!ATTLIST RefSect1
+		%commonatts; 
+>
+
+<!ELEMENT RefSect2 - - (Title, TitleAbbrev?, (((%component.gp;)+, RefSect3*) |
+		RefSect3+)) >
+<!ATTLIST RefSect2
+		%commonatts; 
+>
+
+<!ELEMENT RefSect3 - - (Title, TitleAbbrev?, (%component.gp;)+) >
+<!ATTLIST RefSect3
+		%commonatts; 
+>
+
+<!-- 
+********************************************************** 
+*                                                        * 
+* CHANGED ATTRIBUTES Label and Role for ELEMENT          *    
+*       Synopsis TO as shown below.  These               *  
+*       attributes are the same for FuncSynopsis and     *       
+*       CmdSynopsis.                                     *       
+*                 See 01_06_95.minutes                   * 
+*                                                        * 
+**********************************************************
+-->
+
+<!ELEMENT Synopsis - - ((LineAnnotation | Optional | %inlinechar.gp; |
+		Graphic)+) >
+<!ATTLIST Synopsis
+		%commonatts;
+		Format		NOTATION
+				(linespecific)	linespecific 
+		Label	(Sparc | X86 | PowerPC)			#IMPLIED
+		Role	(Solaris | XPG4 | POSIX)		#IMPLIED
+>
+<!-- THE ABOVE LIST OF PRODUCT NAMES WILL GROW -->
+
+<!-- Example command synopsis in typical UNIX(tm) format:
+
+     rm [-f] [-r] [-i] [-] {filename|dirname}...
+     ^    ^    ^    ^   ^  ^   ^       ^     ^
+     |    |    |    |   |  |   |       |     |
+     |    optional args    |   |       |     repeat indicator
+     |    (contain options)|   |       |
+     |                     |   |       second child of group
+     command name          |   |
+                           |   first child of group
+                           |
+                           required repeatable group
+
+     SGML source for this example:
+
+     <CMDSYNOPSIS>
+     <COMMAND>rm</COMMAND>
+     <ARG Choice="opt">-f</ARG>		(<OPTION> not required for arg
+					contents unless doing extra-
+					special processing)
+     <ARG Choice="opt">-r</ARG>
+     <ARG Choice="opt">-i</ARG>
+     <ARG Choice="opt">-</ARG>		(UNIX(tm) synopsis format or other
+					format can be generated)
+     <GROUP Choice="req" Rep="repeat">
+       <REPLACEABLE>filename</REPLACEABLE>
+       <REPLACEABLE>dirname</REPLACEABLE>
+     </GROUP>
+     </CMDSYNOPSIS>
+-->
+
+<!-- 
+********************************************************** 
+*                                                        * 
+* CHANGED ATTRIBUTES Label and Role for ELEMENT          *    
+*       CmdSynopsis TO as shown below.  These            *  
+*       attributes are the same for Synopsis and         *       
+*       FuncSynopsis.                                    *       
+*                 See 01_06_95.minutes                   * 
+*                                                        * 
+**********************************************************
+-->
+
+<!ELEMENT CmdSynopsis - - ((Arg | Group)*, Command, (Arg | Group)*,
+		SynopFragment*) >
+<!ATTLIST CmdSynopsis
+                %commonatts;
+                Format          NOTATION
+                                (linespecific)  linespecific
+                Label   (Sparc | X86 | PowerPC)                 #IMPLIED
+                Role    (Solaris | XPG4 | POSIX)                #IMPLIED
+>
+<!-- THE ABOVE LIST OF PRODUCT NAMES WILL GROW -->
+
+<!ELEMENT Arg - - ((#PCDATA | Arg | Group | Option | SynopFragmentRef |
+		Replaceable)+) >
+<!ATTLIST Arg
+		%commonatts;
+		%argchcatt;
+		%repatt;
+>
+
+<!ELEMENT Group - - ((Arg | Group | SynopFragmentRef | Replaceable)+) >
+<!ATTLIST Group
+       %commonatts;
+       %grpchcatt;
+       %repatt;
+>
+
+<!ELEMENT SynopFragmentRef - - RCDATA >
+<!ATTLIST SynopFragmentRef
+		%commonatts;
+		Linkend		IDREF		#REQUIRED -- to 
+Fragment --
+>
+
+<!ELEMENT SynopFragment - - ((Arg | Group)+) >
+<!ATTLIST SynopFragment
+		Id		ID		#REQUIRED
+		Lang		CDATA		#IMPLIED
+		Remap		CDATA		#IMPLIED
+		Role		CDATA		#IMPLIED
+		XRefLabel	CDATA		#IMPLIED
+>
+
+<!--
+**********************************************************
+*                                                        * 
+* CHANGED ATTRIBUTES Label and Role for ELEMENT          *    
+*	FuncSynopsis TO as shown below.  These           *
+*	attributes are the same for Synopsis and         *
+*	CmdSynopsis.                                     *	
+*                 See 01_06_95.minutes                   *    
+**********************************************************
+-->
+
+<!--    ||||||||||||||||||||||||||||||||||||||||||||||||||||
+        DOCBOOK 2.2.1 CHANGE:  
+        removed attribute Format from FuncSynopsis   
+        ||||||||||||||||||||||||||||||||||||||||||||||||||||
+-->
+
+<!ELEMENT FuncSynopsis - - (FuncSynopsisInfo?, ((FuncDef, (void | varargs |
+		ParamDef+)))+ ) >
+<!ATTLIST FuncSynopsis
+                %commonatts;
+                Label   (Sparc | X86 | PowerPC)                 #IMPLIED
+                Role    (Solaris | XPG4 | POSIX)                #IMPLIED
+>
+<!-- THE ABOVE LIST OF PRODUCT NAMES WILL GROW -->
+
+<!ELEMENT FuncSynopsisInfo - - ((LineAnnotation | Optional | %cptrphrase.gp;)*
+		) >
+<!ATTLIST FuncSynopsisInfo
+		%commonatts;
+		Format  	NOTATION
+				(linespecific)	linespecific 
+>
+
+<!ELEMENT FuncDef - - ((#PCDATA | Replaceable | Function)*) >
+<!ATTLIST FuncDef
+		%commonatts;
+>
+
+<!ELEMENT void - O EMPTY >
+<!ATTLIST void
+		%commonatts;
+>
+
+<!ELEMENT varargs - O EMPTY >
+<!ATTLIST varargs
+		%commonatts;
+>
+
+<!--
+	Processing assumes that only one Parameter will appear in a 
+	ParamDef, and that funcparams will be used at most once, for 
+	providing information on the "inner parameters" for parameters
+	that are pointers to functions.
+  -->
+
+<!ELEMENT ParamDef - - ((#PCDATA | Replaceable | Parameter | FuncParams)*) >
+<!ATTLIST ParamDef
+		%commonatts;
+>
+
+<!ELEMENT FuncParams - - ((%cptrphrase.gp;)*) >
+<!ATTLIST FuncParams
+		%commonatts;
+>
+
+<!-- ===================================================================== -->
+<!-- ##################################################################### -->
+<!-- ===================================================================== -->
+<!-- ARTICLE, ARTHEADER, ARTPAGENUMS AND ACKNO REMOVED-we don't do articles -->
+<!-- ===================================================================== -->
+
+<!--
+********************************************************** 
+*                                                        *
+* REMOVED ELEMENTS Article, ArtHeader, ArtPageNums and   * 
+*               Ackno.  All are article specific and     *
+*               we don't do articles.See 12_20_94.minutes* 
+*                                                        *
+********************************************************** 
+-->
+
+<!--    ||||||||||||||||||||||||||||||||||||||||||||||||||||
+        DOCBOOK 2.2.1 CHANGE:  
+        added OtherAddr to Address and the following element list
+	starting with Street   
+        ||||||||||||||||||||||||||||||||||||||||||||||||||||
+-->
+
+<!ELEMENT Address - - (Street | POB | Postcode | City | State | Country |
+		Phone | Fax | Email | OtherAddr)*>
+
+
+<!ELEMENT (Street | POB | Postcode | City | State | Country | Phone | Fax |
+		Email | OtherAddr) - - (#PCDATA) >
+
+<!ELEMENT (OrgName | OrgDiv) - - (#PCDATA) >
+
+<!--     
+********************************************************** 
+*                                                        *   
+* REMOVED CorpAuthor from ELEMENT AuthorGroup.		 * 
+*                 See 10_11_94.minutes                   *     
+*                                                        * 
+**********************************************************    
+-->
+
+<!--    ||||||||||||||||||||||||||||||||||||||||||||||||||||
+        DOCBOOK 2.2.1 CHANGE:  
+        added Editor to the authorGroup    
+        ||||||||||||||||||||||||||||||||||||||||||||||||||||
+-->
+
+<!ELEMENT AuthorGroup - - ((Author | Editor | Collab)+) >
+
+<!ELEMENT Collab  - -  (CollabName, Affiliation*) >
+
+<!ELEMENT CollabName  - -  (#PCDATA) >
+
+<!ELEMENT ConfDates - - (#PCDATA) >
+
+<!ELEMENT ConfGroup - - ((ConfDates | ConfTitle | ConfNum | Address |
+		ConfSponsor)*) >
+
+<!ELEMENT ConfNum - - (#PCDATA) >
+
+<!ELEMENT ConfSponsor - - (#PCDATA) >
+
+<!ELEMENT ConfTitle - - (#PCDATA) >
+
+<!ELEMENT ContractNum - - (#PCDATA) >
+
+<!ELEMENT ContractSponsor - - (#PCDATA) >
+
+<!ELEMENT ISSN - - (#PCDATA) >
+
+<!ELEMENT IssueNum - - (#PCDATA) >
+
+<!ELEMENT PageNums - - (#PCDATA) >
+
+<!ELEMENT PubDate - - (#PCDATA) >
+
+<!ELEMENT Publisher - - (PublisherName, Address*) >
+
+<!ELEMENT PublisherName	- -  (#PCDATA) >
+
+<!ELEMENT SeriesVolNums - - (#PCDATA) >
+
+<!--    ||||||||||||||||||||||||||||||||||||||||||||||||||||
+        DOCBOOK 2.2.1 CHANGE:  
+        added following attlist   
+        ||||||||||||||||||||||||||||||||||||||||||||||||||||
+-->
+
+<!ATTLIST (Address | AuthorGroup | City | Collab |
+                CollabName | ConfDates | ConfGroup | ConfNum | ConfSponsor |
+                ConfTitle | ContractNum | ContractSponsor | Country | Email |
+                Fax | ISSN | IssueNum | OrgDiv | OrgName | OtherAddr | POB |
+                PageNums | Phone | Postcode | PubDate | Publisher |
+                PublisherName | SeriesVolNums | State | Street)
+
+                %commonatts;
+>
+
+
+<!-- ===================================================================== -->
+<!--                        End of the DocBook DTD                         -->
+<!-- ===================================================================== -->
+
+
+<!-- Added by Eduardo to enable location of conversion errors              -->
+
+<!ELEMENT UnknownFont - - (#PCDATA) >
+<!ELEMENT ChangedFont - - (#PCDATA) >
+
+<!ATTLIST (UnknownFont| ChangedFont )
+       FontName        CDATA   #IMPLIED
+       FontWeight      CDATA   #IMPLIED
+       FontAngle       CDATA   #IMPLIED
+       FontSize        CDATA   #IMPLIED
+>
+
+<!ELEMENT UnknownTag  - - ((%inlinechar.gp; | InlineGraphic | InlineEquation | 
+		%list.gp; | %object.gp;)+) >
+<!ELEMENT ChangedTag  - - ((%inlinechar.gp; | InlineGraphic | InlineEquation | 
+		%list.gp; | %object.gp;)+ | (Title, TitleAbbrev?,(((%component.gp;)+,
+				(RefEntry* | Sect3*)) | RefEntry+ | Sect3+))) >
+<!ATTLIST (UnknownTag | ChangedTag )
+       TagName        CDATA   #IMPLIED
+       FontAngle       CDATA   #IMPLIED
+       FontWeight     CDATA   #IMPLIED
+       FontSize       CDATA   #IMPLIED
+>
+
+]>

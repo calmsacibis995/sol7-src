@@ -1,0 +1,97 @@
+# Copyright 12/20/96 Sun Microsystems, Inc. All Rights Reserved.
+#pragma ident  "@(#)preinstall	1.8 96/12/20 Sun Microsystems"
+
+# SUNWsacom preinstall
+
+rc=0	# Set return code to success.
+
+if [ -d $BASEDIR/var/opt/SUNWconn/SSA/dmi/db ] ; then
+	if [ -d $BASEDIR/var/opt/SUNWconn/SSA/dmi/db.old ] ; then
+		echo "Removing $BASEDIR/var/opt/SUNWconn/SSA/dmi/db.old"
+		rm -rf $BASEDIR/var/opt/SUNWconn/SSA/dmi/db.old
+		rc=$?
+	fi
+	echo "Renaming $BASEDIR/var/opt/SUNWconn/SSA/dmi.db to db.old"
+	mv $BASEDIR/var/opt/SUNWconn/SSA/dmi/db $BASEDIR/var/opt/SUNWconn/SSA/dmi/db.old
+	rc=$?
+fi
+
+if [ -f $BASEDIR/etc/opt/SUNWconn/SSA/snmp/conf/snmpdx.rsrc ] ; then
+        if [ -f $BASEDIR/etc/opt/SUNWconn/SSA/snmp/conf/snmpdx.rsrc.old ] ; then
+                echo "Removing $BASEDIR/etc/opt/SUNWconn/SSA/snmp/conf/snmpdx.rsrc.old"
+                rm -f $BASEDIR/etc/opt/SUNWconn/SSA/snmp/conf/snmpdx.rsrc.old 
+                rc=$?
+        fi
+        echo "Renaming $BASEDIR/etc/opt/SUNWconn/SSA/snmp/conf.snmpdx.rsrc to snmpdx.rsrc.old"
+        mv $BASEDIR/etc/opt/SUNWconn/SSA/snmp/conf/snmpdx.rsrc $BASEDIR/etc/opt/SUNWconn/SSA/snmp/conf/snmpdx.rsrc.old 
+        rc=$?
+fi
+
+if [ -f $BASEDIR/etc/opt/SUNWconn/SSA/snmp/conf/snmpdx.reg ] ; then
+        if [ -f $BASEDIR/etc/opt/SUNWconn/SSA/snmp/conf/snmpdx.reg.old ] ; then
+                echo "Removing $BASEDIR/etc/opt/SUNWconn/SSA/snmp/conf/snmpdx.reg.old"
+                rm -f $BASEDIR/etc/opt/SUNWconn/SSA/snmp/conf/snmpdx.reg.old
+                rc=$?
+        fi
+        echo "Renaming $BASEDIR/etc/opt/SUNWconn/SSA/snmp/conf.snmpdx.reg to snmpdx.reg.old"
+        mv $BASEDIR/etc/opt/SUNWconn/SSA/snmp/conf/snmpdx.reg $BASEDIR/etc/opt/SUNWconn/SSA/snmp/conf/snmpdx.reg.old
+        rc=$?
+fi
+
+if [ -f $BASEDIR/etc/opt/SUNWconn/SSA/snmp/conf/snmpdx.acl ] ; then
+        if [ -f $BASEDIR/etc/opt/SUNWconn/SSA/snmp/conf/snmpdx.acl.old ] ; then
+                echo "Removing $BASEDIR/etc/opt/SUNWconn/SSA/snmp/conf/snmpdx.acl.old"
+                rm -f $BASEDIR/etc/opt/SUNWconn/SSA/snmp/conf/snmpdx.acl.old
+                rc=$?
+        fi
+        echo "Renaming $BASEDIR/etc/opt/SUNWconn/SSA/snmp/conf.snmpdx.acl to snmpdx.acl.old"
+        mv $BASEDIR/etc/opt/SUNWconn/SSA/snmp/conf/snmpdx.acl $BASEDIR/etc/opt/SUNWconn/SSA/snmp/conf/snmpdx.acl.old
+        rc=$?
+fi
+
+if [ -f $BASEDIR/etc/opt/SUNWconn/SSA/snmp/conf/snmpd.conf ] ; then
+        if [ -f $BASEDIR/etc/opt/SUNWconn/SSA/snmp/conf/snmpd.conf.old ] ; then
+                echo "Removing $BASEDIR/etc/opt/SUNWconn/SSA/snmp/conf/snmpd.conf.old"
+                rm -f $BASEDIR/etc/opt/SUNWconn/SSA/snmp/conf/snmpd.conf.old
+                rc=$?
+        fi
+        echo "Renaming $BASEDIR/etc/opt/SUNWconn/SSA/snmp/conf.snmpd.conf to snmpd.conf.old"
+        mv $BASEDIR/etc/opt/SUNWconn/SSA/snmp/conf/snmpd.conf $BASEDIR/etc/opt/SUNWconn/SSA/snmp/conf/snmpd.conf.old
+        rc=$?
+fi
+
+if [ -f $BASEDIR/etc/opt/SUNWconn/SSA/snmp/conf/snmpd.reg ] ; then
+        if [ -f $BASEDIR/etc/opt/SUNWconn/SSA/snmp/conf/snmpd.reg.old ] ; then
+                echo "Removing $BASEDIR/etc/opt/SUNWconn/SSA/snmp/conf/snmpd.reg.old"
+                rm -f $BASEDIR/etc/opt/SUNWconn/SSA/snmp/conf/snmpd.reg.old
+                rc=$?
+        fi
+        echo "Renaming $BASEDIR/etc/opt/SUNWconn/SSA/snmp/conf.snmpd.reg to snmpd.reg.old"
+        mv $BASEDIR/etc/opt/SUNWconn/SSA/snmp/conf/snmpd.reg $BASEDIR/etc/opt/SUNWconn/SSA/snmp/conf/snmpd.reg.old
+        rc=$?
+fi
+
+if [ -f $BASEDIR/etc/opt/SUNWconn/SSA/dmi/conf/snmpXdmid.conf ] ; then
+        if [ -f $BASEDIR/etc/opt/SUNWconn/SSA/dmi/conf/snmpXdmid.conf.old ] ; then
+                echo "Removing $BASEDIR/etc/opt/SUNWconn/SSA/dmi/conf/snmpXdmid.conf.old"
+                rm -f $BASEDIR/etc/opt/SUNWconn/SSA/dmi/conf/snmpXdmid.conf.old
+                rc=$?
+        fi
+        echo "Renaming $BASEDIR/etc/opt/SUNWconn/SSA/dmi/conf.snmpXdmid.conf to snmpXdmid.conf.old"
+        mv $BASEDIR/etc/opt/SUNWconn/SSA/dmi/conf/snmpXdmid.conf $BASEDIR/etc/opt/SUNWconn/SSA/dmi/conf/snmpXdmid.conf.old
+        rc=$?
+fi
+
+if [ -f $BASEDIR/etc/opt/SUNWconn/SSA/dmi/conf/dmispd.conf ] ; then
+        if [ -f $BASEDIR/etc/opt/SUNWconn/SSA/dmi/conf/dmispd.conf.old ] ; then
+                echo "Removing $BASEDIR/etc/opt/SUNWconn/SSA/dmi/conf/dmispd.conf.old"
+                rm -f $BASEDIR/etc/opt/SUNWconn/SSA/dmi/conf/dmispd.conf.old
+                rc=$?
+        fi
+        echo "Renaming $BASEDIR/etc/opt/SUNWconn/SSA/dmi/conf.dmispd.conf to dmispd.conf.old"
+        mv $BASEDIR/etc/opt/SUNWconn/SSA/dmi/conf/dmispd.conf $BASEDIR/etc/opt/SUNWconn/SSA/dmi/conf/dmispd.conf.old
+        rc=$?
+fi
+
+
+exit $rc

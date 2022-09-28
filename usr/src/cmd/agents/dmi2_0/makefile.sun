@@ -1,0 +1,57 @@
+#
+# ident	"@(#)Makefile.incl.sun	1.25	97/04/24 SMI"
+#
+# Copyright (c) 1996 by Sun Microsystems, Inc.
+# All rights reserved.
+#
+include $(SRC)/cmd/Makefile.cmd
+
+RANLIB        = /bin/true 
+AR            = ar      
+RM            = rm      
+RMF           = rm -f   
+CP            = cp      # Normal UNIX cp command
+LN            = ln      # Normal UNIX ln command
+MV            = mv      # Normal UNIX mv command
+DEBUG		  = -g -DDEBUG
+
+LINT			= lint
+
+TOP	            = ../..
+MAPPER_DIR		= $(TOP)/mapper
+DMISP_DIR               = $(TOP)/dmisp
+SNMPLIB_DIR		= ../../../snmp
+
+INCLUDES     =  -I../include 
+
+SHAREDCCFLAG		= -G
+SHAREDCFLAG			= -Kpic -xregs=no%appl
+SHAREDLFLAG         = -G -z text -norunpath -nolib -lC -lc
+SHAREDSUFFIX        = so
+SHAREDVER           = 1
+
+# use ANSI C
+
+OBJ_DIR = ../obj$(TARGET_ARCH)
+LIB_DIR = ../lib$(TARGET_ARCH)
+BIN_DIR = ../bin$(TARGET_ARCH)
+
+FLAGS           = -DSVR4 -D_REENTRANT -DSOLARIS2 
+
+CFLAGS          += $(FLAGS) $(INCLUDES)
+CCFLAGS		+= -ptr$(OBJ_DIR) $(FLAGS) $(INCLUDES)
+
+LINKLIBDIR		= $(LDLIBS) -L$(LIB_DIR) 
+
+LIBS			= $(LDLIBS) -lnsl -Bstatic  -lrwtool -Bdynamic
+THREADLIB		= -lthread
+YACCLIB			= -ly -ll
+
+LD_RUN_PATH		= /usr/lib
+
+
+$(OBJ_DIR)/%.o: %.c
+	$(CC) $(SHAREDCFLAG) $(CFLAGS) -c $< -o $@
+
+$(OBJ_DIR)/%.o: %.cc
+	$(CCC) $(SHAREDCCFLAG) $(CCFLAGS) -c $< -o $@

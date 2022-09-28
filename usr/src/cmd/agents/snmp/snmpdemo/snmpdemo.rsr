@@ -1,0 +1,28 @@
+#ident "@(#)snmpd.snmprelay	1.3 25 Jan 1996 SMI"
+#
+#
+# Copyright 25 Jan 1996 Sun Microsystems, Inc. All Rights Reserved
+#
+
+#
+#  Configuration file of the SNMP Relay
+#  for the SNMP agent bundled with SNM
+#
+
+
+##########
+# agents #
+##########
+
+resource =
+{
+        {
+                registration_file = "/etc/sea/snmp/conf/snmpdemo.reg"
+                security = "/etc/sea/snmp/conf/snmpdemo.acl"
+                policy = "spawn"
+                command = "/opt/SUNWconn/sea/snmp/sample/snmpdemod -k -p $PORT" 
+
+        }
+}
+
+

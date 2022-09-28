@@ -1,0 +1,67 @@
+# Copyright 1988 - 01/28/97 Sun Microsystems, Inc. All Rights Reserved.
+#pragma ident  "@(#)snmpd.conf	2.22 97/01/28 Sun Microsystems"
+
+# See below for file format and supported keywords
+
+sysdescr        ALLDESC
+syscontact      ALLCONT
+sysLocation     ALLLOC
+#
+system-group-read-community     public 
+#system-group-write-community    private 
+#
+read-community  public 
+#write-community private 
+#
+trap            localhost
+trap-community  SNMP-trap
+#
+#kernel-file     /vmunix
+#
+#managers        lvs golden
+#managers        swap
+
+#############################
+
+# File Format:
+
+# Each entry consists of a keyword followed by a parameter string,
+# terminated by a newline.  The keyword must begin in the first
+# position.  The parameters are separated from the keyword (and from
+# one another) by whitespace.  All text following (and including) a '#'
+# character is ignored.  Case in keywords is ignored, but case in
+# parameter strings is NOT ignored.
+
+# Supported Keywords:
+
+# sysdescr		String to use for sysDescr.
+# syscontact		String to use for sysContact.
+# syslocation		String to use for sysLocation.
+#
+# system-group-read-community	Community name needed for read access
+#					to the system group.
+# system-group-write-community	Community name needed for write access
+#					to the system group.
+# read-community	Community name needed for read access
+#				to the entire MIB.
+# write-community	Community name needed for write access
+#				to the entire MIB (implies read access).
+#
+# trap			Host names where traps should be sent.
+#				A maximum of 5 hosts may be listed.
+# trap-community	Community name to be used in traps.
+#
+# kernel-file		Filename to use for kernel symbols.
+#
+# managers		Hosts that can send SNMP queries.
+#			Only five hosts may be listed on any one line.
+#			This keyword may be repeated for a total of 32 hosts.
+#
+# newdevice             Additional devices which are not built in snmpd
+#                       format as below
+#
+# newdevice     type    speed   name
+#
+# where newdevice is keyword, type is an interger which has to match your
+# schema file, speed is the new device's speed, and name is this new
+# device's name

@@ -1,0 +1,36 @@
+\
+\ Copyright (c) 1997-1998 by Sun Microsystems, Inc.
+\ All rights reserved.
+\
+\"@(#)dumphdr.dbg	1.4	98/02/09 SMI"
+
+#include <sys/param.h>
+#include <sys/types.h>
+#include <sys/time.h>
+#include <sys/dumphdr.h>
+#include "dummy.h"
+
+\
+\
+dumphdr         dump_
+{adb_inline_begin}
+.>z
+<z+{OFFSET, dump_magic}=""
+{adb_inline_end}
+        magic                   hex
+        version                 hex
+        flags                   hex
+        pagesize                hex
+        chunksize               hex
+        bitmapsize              hex
+        nchunks                 hex
+        dumpsize                hex
+	crashtime.tv_sec	date		"crashtime"
+	crashtime.tv_usec	sdecimal	"crashtime.usec"
+        versionoff              hex
+        panicstringoff          hex
+        headersize              hex
+{adb_inline_begin}
+<z+{OFFSET, dump_versionoff}/"version"ns
+<z+{OFFSET, dump_panicstringoff}/"panic_string"ns
+{adb_inline_end}

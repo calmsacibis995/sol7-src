@@ -1,0 +1,29 @@
+#
+# Copyright (c) 1994-1998, by Sun Microsystems, Inc.
+# All rights reserved.
+#
+#ident	"@(#)Makefile	1.2	98/01/21 SMI"
+#
+# lib/sysctrl/Makefile
+
+include		../../Makefile.master
+
+SUBDIRS=	$(MACH) $(BUILD64) $(MACH64)
+
+all :=		TARGET= all
+clean :=	TARGET= clean
+clobber :=	TARGET= clobber
+delete :=	TARGET= delete
+install :=	TARGET= install
+lint :=		TARGET= lint
+catalog :=	TARGET= catalog
+package :=	TARGET= package
+
+.KEEP_STATE:
+
+all clean clobber delete install lint catalog package: $(SUBDIRS)
+
+$(MACH) $(MACH64):	FRC
+	@cd $@; pwd; $(MAKE) $(TARGET)
+
+FRC:

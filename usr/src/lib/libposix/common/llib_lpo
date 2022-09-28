@@ -1,0 +1,77 @@
+/*
+ * Copyright (c) 1997 by Sun Microsystems, Inc.
+ * All rights reserved.
+ */
+#pragma ident	"@(#)llib-lposix4 1.2	97/09/03 SMI"
+
+#include <sys/types.h>
+#include <unistd.h>
+#include <sys/fcntl.h>
+#include <aio.h>
+
+/*LINTLIBRARY*/
+/* PROTOLIB1 */
+
+int	aio_cancel64(int fildes, aiocb64_t *aiocb_tp);
+int	aio_error64(const aiocb64_t *aiocb_tp);
+int	aio_fsync64(int op, aiocb64_t *aiocb_tp);
+int	aio_read64(aiocb64_t *aiocb_tp);
+ssize_t	aio_return64(aiocb64_t *aiocb_tp);
+int	aio_suspend64(const aiocb64_t * const list[],
+		int nent, const struct timespec *timeout);
+int	aio_write64(aiocb64_t *aiocb_tp);
+int	lio_listio64(int mode, aiocb64_t * const list[], int nent,
+		struct sigevent *sig);
+
+int	aio_cancel(int fildes, aiocb_t *aiocb_tp);
+int	aio_error(const aiocb_t *aiocb_tp);
+int	aio_fsync(int op, aiocb_t *aiocb_tp);
+int	aio_read(aiocb_t *aiocb_tp);
+ssize_t	aio_return(aiocb_t *aiocb_tp);
+int	aio_suspend(const aiocb_t * const list[],
+		int nent, const struct timespec *timeout);
+int	aio_write(aiocb_t *aiocb_tp);
+int	clock_getres(clockid_t, struct timespec *);
+int	clock_gettime(clockid_t, struct timespec *);
+int	clock_settime(clockid_t, const struct timespec *);
+int	fdatasync(int);
+int	lio_listio(int mode, aiocb_t * const list[], int nent,
+		struct sigevent *sig);
+mqd_t	mq_open(const char *name, int oflag, ...);
+int	mq_close(mqd_t mqdes);
+int	mq_unlink(const char *name);
+int	mq_send(mqd_t mqdes, const char *msg_ptr, size_t msg_len,
+		unsigned int msg_prio);
+ssize_t	mq_receive(mqd_t mqdes, char *msg_ptr, size_t msg_len,
+		unsigned int *msg_prio);
+int	mq_notify(mqd_t mqdes, const struct sigevent *notification);
+int	mq_getattr(mqd_t mqdes, struct mq_attr *mqstat);
+int	mq_setattr(mqd_t mqdes, const struct mq_attr *mqstat,
+		struct mq_attr *omqstat);
+int	nanosleep(const struct timespec *, struct timespec *);
+int	sched_getparam(pid_t pid, struct sched_param *param);
+int	sched_setparam(pid_t pid, const struct sched_param *param);
+int	sched_getscheduler(pid_t pid);
+int	sched_setscheduler(pid_t pid, int policy,
+	    const struct sched_param *param);
+int	sched_yield(void);
+int	sched_get_priority_max(int policy);
+int	sched_get_priority_min(int policy);
+int	sched_rr_get_interval(pid_t pid, struct timespec *interval);
+int	sem_init(sem_t *sem, int pshared, unsigned int value);
+int	sem_destroy(sem_t *sem);
+sem_t	*sem_open(const char *name, int oflag, ...);
+int	sem_close(sem_t *sem);
+int	sem_unlink(const char *name);
+int	sem_wait(sem_t *sem);
+int	shm_open(const char *, int, mode_t);
+int	shm_unlink(const char *);
+int	sigwaitinfo(const sigset_t *, siginfo_t *);
+int	sigtimedwait(const sigset_t *, siginfo_t *, const struct timespec *);
+int	sigqueue(pid_t, int, const union sigval);
+int	timer_create(clockid_t, struct sigevent *, timer_t *);
+int	timer_delete(timer_t);
+int	timer_getoverrun(timer_t);
+int	timer_gettime(timer_t, struct itimerspec *);
+int	timer_settime(timer_t, int, const struct itimerspec *,
+		struct itimerspec *);

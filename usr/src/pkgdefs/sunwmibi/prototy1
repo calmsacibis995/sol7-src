@@ -1,0 +1,7 @@
+# Copyright 09/30/96 Sun Microsystems, Inc. All Rights Reserved.
+#pragma ident  "@(#)prototype_i386	1.16 96/09/30 Sun Microsystems"
+
+#
+# pkgdefs/SUNWmibii/prototype_i386
+#
+!include prototype_com

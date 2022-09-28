@@ -1,0 +1,94 @@
+# Copyright 05/13/97 Sun Microsystems, Inc. All Rights Reserved.
+#pragma ident  "@(#)postinstall	1.27 97/05/13 Sun Microsystems"
+
+#
+# pkgdefs/SUNWsacom/postinstall
+#
+
+#
+# Retain original SNMPD configuration file they might have from an
+# earlier SunNet Manager installation.
+#
+
+if [ -f $BASEDIR/etc/opt/SUNWconn/snm/snmpd.conf ] ; then
+    cp $BASEDIR/etc/snmp/conf/snmpd.conf $BASEDIR/etc/snmp/conf/snmpd.conf.original
+    echo 'Copying $BASEDIR/etc/opt/SUNWconn/snm/snmpd.conf (existing SNMPD configuration file)'
+    echo 'to $BASEDIR/etc/snmp/conf/snmpd.conf'
+    cp $BASEDIR/etc/opt/SUNWconn/snm/snmpd.conf $BASEDIR/etc/snmp/conf/snmpd.conf
+fi
+
+def_read="public"
+def_write="private"
+def_desc="Sun SNMP Agent, SPARCStation 10, Company Property Number 123456"
+def_cont="System administrator"
+def_loc="System administrators office"
+
+READSTR=$def_read
+WRITESTR=$def_write
+
+        desc=`/etc/prtconf |/usr/bin/head -5|/usr/bin/grep SUNW |awk -F, '{print $2}'`
+	if [ "$desc" = "" ]; then
+		desc=`/etc/prtconf |/usr/bin/head -5|/usr/bin/grep SUNW |awk '{print $1}'`
+	fi
+        case $desc in
+
+                "SUNW,SPARCstation-10") def="SPARCstation 10";;
+
+                "SUNW,SPARCstation-LX") def="LX";;
+
+		"SUNW,SPARCclassic") def="SPARCclassic";;
+
+                "SUNW,SPARCsystem-600") def="SPARCsystem 600";;
+
+                "SUNW,SPARCcenter-1000") def="sc1000";;
+
+                "SUNW,SPARCcenter-2000") def="sc2000";;
+
+                "3_140"|"3_150"|"3_160"|"3_50"|"3_260"|"3_280"|"3_110"|"3_60") def="Sun3";;
+
+                "4_40") def="IPC";;
+
+                "4_50") def="IPX";;
+
+                "4_60") def="SPARCstation 1";;
+
+                "4_65") def="SPARCstation 1+";;
+
+                "4_75") def="SPARCstation 2";;
+
+                "4_330") def="SPARCstation 330";;
+
+                "4_370") def="SPARCstation 370";;
+
+                "4_470") def="sun470";;
+
+                "386i") def="sun386";;
+
+                *) def=$desc;;
+        esac
+
+        def_desc="Sun SNMP Agent, $def"
+
+DESCSTR=$def_desc
+CONTSTR=$def_cont
+LOCSTR=$def_loc
+export READSTR WRITESTR DESCSTR CONTSTR LOCSTR
+
+# main ()
+
+#
+# Update the snmpd.conf file with the default community strings
+# for the system on which this is installed.
+#
+
+/usr/bin/ed -s $BASEDIR/etc/snmp/conf/snmpd.conf <<SNMPEOF>/dev/null
+1,\$s!ALLDESC!$DESCSTR!g
+1,\$s!ALLCONT!$CONTSTR!g
+1,\$s!ALLLOC!$LOCSTR!g
+w
+q
+SNMPEOF
+
+installf -f $PKGINST
+
+exit 0

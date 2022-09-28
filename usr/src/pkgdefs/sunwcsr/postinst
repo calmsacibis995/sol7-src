@@ -1,0 +1,103 @@
+#
+#ident	"@(#)postinstall	1.20	97/11/10 SMI"
+#
+# Copyright (c) 1996-97 by Sun Microsystems, Inc.
+# All rights reserved.
+#
+#
+
+if [ -h $BASEDIR/var/mail.ABCsavedXYZ ] ; then
+	rmdir $BASEDIR/var/mail/:saved >/dev/null 2>&1
+	if [ $? = 0 ] ; then
+		rmdir $BASEDIR/var/mail >/dev/null 2>&1
+		if [ $? = 0 ] ; then
+			mv $BASEDIR/var/mail.ABCsavedXYZ $BASEDIR/var/mail
+		fi
+	fi
+	rm -fr $BASEDIR/var/mail.ABCsavedXYZ
+fi
+
+if [ -h $BASEDIR/var/news.ABCsavedXYZ ] ; then
+	rmdir $BASEDIR/var/news >/dev/null 2>&1
+	if [ $? = 0 ] ; then
+		mv $BASEDIR/var/news.ABCsavedXYZ $BASEDIR/var/news
+	fi
+	rm -fr $BASEDIR/var/news.ABCsavedXYZ
+fi
+
+if [ -f $BASEDIR/kernel/drv/classes ] ; then
+	removef $PKGINST /kernel/drv/classes >/dev/null 2>&1
+	removef -f $PKGINST >/dev/null 2>&1
+	rm -f $BASEDIR/kernel/drv/classes
+fi
+
+PMTAB=$BASEDIR/etc/saf/tcp/_pmtab
+if [ -f $PMTAB ] ; then
+	sed -e 's/\\x00020ACE......../\\x00020ACE00000000/' \
+	    -e 's/\\x00020203......../\\x0002020300000000/' $PMTAB >/tmp/t.$$
+	cp /tmp/t.$$ $PMTAB
+fi
+
+DEVIP=$BASEDIR/devices/pseudo/clone@0:ip
+if [ -c $DEVIP ] ; then
+	chmod 0660 $DEVIP >/dev/null 2>&1
+fi
+
+
+#
+#  The devices/pseudo entries for any new clone drivers that are needed
+#  for initial boot of Solaris are now created in this postinstall
+#  script rather than in the SUNWcsd package.  To create the 
+#  devices/pseudo entry for a new clone device, add it to the DRIVERS variable.
+#  This method is primarily intended for drivers transitioning from
+#  unbundled to bundled with Solaris.
+#
+
+case "${ARCH}" in
+    sparc)
+	DRIVERS="be qe hme rts"
+	;;
+    i386)
+	DRIVERS="smc rts"
+	;;
+esac
+
+	for i in $DRIVERS
+	do
+	    major_name=`eval "sed -n 's/^"$i" \(.*\)/\1/p' \
+		$BASEDIR/etc/name_to_major"`
+	    if [ "X$major_name" = "X" ] ; then
+# didn't find a number associated with the driver, so skip the rest.
+		continue
+	    fi
+	    DPATH="$BASEDIR/devices/pseudo/clone@0:$i"
+	    installf -c none $PKGINST $DPATH c 11 $major_name 0600 root sys \
+		 || exit 2
+	    rm -f $DPATH
+	    mknod $DPATH c 11 $major_name || exit 2
+	    chown root $DPATH
+	    chgrp sys $DPATH
+	    chmod 0600 $DPATH
+	done
+#
+# add the devinfo driver, which is needed to boot
+# The script is adapted from the above
+#
+	major_name=`eval "sed -n 's/^"devinfo" \(.*\)/\1/p' \
+		$BASEDIR/etc/name_to_major"`
+	if [ "X$major_name" = "X" ] ; then
+# didn't find a number associated with devinfo, you must have it to boot!
+		exit 2
+	fi
+	DPATH="$BASEDIR/devices/pseudo/devinfo@0:devinfo"
+	installf -c none $PKGINST $DPATH c $major_name 0 0640 root sys \
+	    || exit 2
+	rm -f $DPATH
+	mknod $DPATH c $major_name 0 || exit 2
+	chown root $DPATH
+	chgrp sys $DPATH
+	chmod 0640 $DPATH
+
+	installf  -f $PKGINST || exit 2
+		
+exit 0

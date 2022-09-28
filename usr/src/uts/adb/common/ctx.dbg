@@ -1,0 +1,16 @@
+\
+\ Copyright (c) 1997, by Sun Microsystems, Inc.
+\ All rights reserved.
+\
+\"@(#)ctx.dbg	1.8	98/01/14 SMI"
+
+#include <sys/types.h>
+#if defined(sun4) || defined(sun4c) || defined(sun4e)
+#include <vm/hat_sunm.h>
+#endif
+#if defined (sun4m) || defined(sun4d)
+#include <vm/hat_srmmu.h>
+#endif
+#include "dummy.h"
+
+ctx

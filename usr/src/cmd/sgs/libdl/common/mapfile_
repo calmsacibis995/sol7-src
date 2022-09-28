@@ -1,0 +1,72 @@
+#
+#ident	"@(#)mapfile-vers	1.12	97/07/08 SMI"
+#
+# Copyright (c) 1996 by Sun Microsystems, Inc.
+# All rights reserved.
+#
+#
+# Generic interface definition for usr/src/lib/libdl.
+#
+# For information regarding the establishment of versioned definitions see:
+#	The Linker and Libraries Manual (version 2.5 or greater)
+# This is part of the Developers Guide in the Answerbook.  Specifically refer
+# to Chapter 2 under section "Defining Additional Symbols" through section
+# "Reducing Symbol Scope", and Chapter 5 "Versioning".
+#
+# For specific OSNET rules for the modification (evolution) of these version
+# definitions see:
+#	Policy for Shared Library Version Names and Interface Definitions
+
+
+# Note (re: SUNW_1.2 .. SUNW_1.3):
+# 	Even though the SUNW_1.2 and SUNW_1.3 versions now contain no 
+#	symbols these versions MUST be present.  This is because applications
+#	built on 2.6 Beta (when they did contain symbols explicitly) may 
+#	depend on them. 
+#
+#	All symbol content for Solaris2.6 is now contained in SUNW_1.1,
+#	and (the now empty) versions SUNW_1.2 and SUNW_1.3 must be kept.
+#
+SUNW_1.3 {	# This empty version MUST BE preserved for 2.6Beta apps
+	global:
+		SUNW_1.3;
+} SUNW_1.2;
+
+SUNW_1.2 {	# This empty version MUST BE preserved for 2.6Beta apps
+	global:
+		SUNW_1.2;
+} SUNW_1.1;
+
+SUNW_1.1 {	# Solaris ABI as of Solaris 2.6
+	global:
+		dlmopen;	# SUNW_1.3
+		dlinfo;		# SUNW_1.3
+		dldump;		# SUNW_1.2
+} SUNW_0.8;
+
+SUNW_0.8 {	# Solaris ABI as of Solaris 2.4
+	global:
+		dladdr;
+} SUNW_0.7;
+
+# Note: 
+#	SUNW_0.7 inherits Standard ABI syms (SCD2.3) but this is
+# done via the processor-specific mapfiles
+#
+SUNW_0.7 {	# Solaris ABI as of Solaris 2.3
+};
+
+SUNWprivate_1.1 {
+	global:
+		_dladdr;
+		_dlclose;
+		_dldump;
+		_dlerror;
+		_dlopen;
+		_dlinfo;
+		_dlmopen;
+		_dlsym;
+		_ld_concurrency;
+	local:
+		*;
+};

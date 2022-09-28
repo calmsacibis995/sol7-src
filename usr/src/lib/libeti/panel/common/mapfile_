@@ -1,0 +1,42 @@
+#
+#pragma ident   "@(#)mapfile-vers 1.3     97/09/17 SMI"
+#
+# Copyright (c) 1997 by Sun Microsystems, Inc.
+# All rights reserved.
+#
+# lib/libeti/panel/common/mapfile-vers
+#
+
+SUNW_1.1 {
+        global:
+		bottom_panel;
+		del_panel;
+		hide_panel;
+		move_panel;
+		new_panel;
+		panel_above;
+		panel_below;
+		panel_hidden;
+		panel_userptr;
+		panel_window;
+		set_panel_userptr;
+		show_panel;
+		replace_panel;
+		top_panel;
+		update_panels;
+};
+
+SUNWprivate_1.1 {
+	global:
+		_Bottom_panel;
+		_Panel_cnt;
+		_Top_panel;
+		_alloc_overlap;
+		_fini;
+		_free_overlap;
+		_init;
+		_intersect_panel;
+		_lib_version;
+		_remove_overlap;
+		_unlink_obs;
+};

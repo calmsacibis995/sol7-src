@@ -1,0 +1,20 @@
+# Copyright 06/09/97 Sun Microsystems, Inc. All Rights Reserved.
+#pragma ident  "@(#)pkginfo.tmpl	1.9 97/06/09 Sun Microsystems"
+#
+# pkginfo: SA SNMP
+#
+ARCH="ISA"
+BASEDIR=/
+CATEGORY="system"
+CLASSES="none"
+DESC="Solstice Enterprise Agent Simple Network Management Protocol"
+MAXINST="1000"
+NAME="Solstice Enterprise Agent Simple Network Management Protocol"
+PKG="SUNWsasnm"
+PRODNAME="SunOS"
+PRODVERS="RELEASE/VERSION"
+VENDOR="Sun Microsystems, Inc."
+VERSION="1.1,REV=0.0.0"
+SUNW_PKGTYPE="usr"
+EMAIL=""
+HOTLINE="Please contact your local service provider"

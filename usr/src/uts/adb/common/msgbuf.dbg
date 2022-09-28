@@ -1,0 +1,26 @@
+\
+\ Copyright (c) 1997, by Sun Microsystems, Inc.
+\ All rights reserved.
+\
+\"@(#)msgbuf.dbg	1.8	98/01/28 SMI"
+
+#include <sys/types.h>
+#include <sys/machparam.h>
+#include <sys/msgbuf.h>
+#include "dummy.h"
+
+\ msgbuf+0t8 and msgbuf+0t12 are 32-bit accesses.
+\
+msgbuf
+{adb_inline_begin}
+#if defined(sparcv9)
+*(msgbuf+0t8)>/i/m
+*(msgbuf+0t12)>/i/n
+#else
+*(msgbuf+0t8)>m
+*(msgbuf+0t12)>n
+#endif
+msgbuf+{OFFSET, msg_hd.msgh_magic}/n"magic"16t"size"16t"bufx"16t"bufr"n4X
++,(<m-<n)&0x80000000$<msgbuf.wrap
+.+<n,(<m-<n)/c
+{adb_inline_end}

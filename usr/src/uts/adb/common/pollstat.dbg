@@ -1,0 +1,39 @@
+\
+\ Copyright (c) 1997, by Sun Microsystems, Inc.
+\ All rights reserved.
+\
+\"@(#)pollstate.dbg	1.3	98/01/19 SMI"
+
+\       arg             : address of a struct pollstate
+\       uses            : mutex
+\       registers       : z
+\       description     : prints the contents of pollstate structure
+
+#include <sys/poll.h>
+#include "dummy.h"
+
+\
+\
+pollstate               ps_
+{adb_inline_begin}
+.>z
+<z+{OFFSET, ps_nfds}=""
+{adb_inline_end}
+        nfds                    sdecimal
+        flag                    hex
+        pollfd                  hex
+        polldat                 hex
+        lock                    .mutex
+{adb_inline_begin}
+<z+{OFFSET, ps_no_exit}=""
+{adb_inline_end}
+        no_exit                 .mutex
+{adb_inline_begin}
+<z+{OFFSET, ps_busy}=""
+{adb_inline_end}
+        busy                    sdecimal
+        busy_cv                 hex
+        cv                      hex
+{adb_inline_begin}
+<z+{SIZEOF}=""
+{adb_inline_end}

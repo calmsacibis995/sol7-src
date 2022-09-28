@@ -1,0 +1,19 @@
+#
+# Copyright (c) 1996 by Sun Microsystems, Inc.
+# All rights reserved.
+#
+#pragma ident   "@(#)mapfile-vers 1.1     97/10/09 SMI"
+#
+# i386 specific interface definition for usr/src/lib/libpoisix4
+
+SUNW_1.1 {	# Solaris ABI as of Solaris 2.6
+	global:
+		aio_cancel64;
+                aio_error64;
+                aio_fsync64;
+                aio_read64;
+                aio_return64;
+                aio_suspend64;
+                aio_write64;
+                lio_listio64;
+};

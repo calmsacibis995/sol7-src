@@ -1,0 +1,13 @@
+#
+# Copyright (c) 1996, by Sun Microsystems, Inc.
+# All rights reserved.
+#
+#pragma ident	"@(#)1.4	Makefile.cmd.64	97/07/16 SMI"
+#
+# cmd/Makefile.cmd.64
+#
+#	This makefile contains the compiler fiddling needed to build
+#	64-bit objects.
+#
+
+include $(SRC)/Makefile.master.64

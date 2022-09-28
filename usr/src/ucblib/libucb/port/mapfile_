@@ -1,0 +1,127 @@
+#
+#ident	"@(#)mapfile-vers	1.15	97/06/09 SMI"
+#
+# Copyright (c) 1996 by Sun Microsystems, Inc.
+# All rights reserved.
+#
+#
+# Generic interface definition for usr/src/ucblib/libucb.
+#
+# For information regarding the establishment of versioned definitions see:
+#	The Linker and Libraries Manual (version 2.5 or greater)
+# This is part of the Developers Guide in the Answerbook.  Specifically refer
+# to Chapter 2 under section "Defining Additional Symbols" through section
+# "Reducing Symbol Scope", and Chapter 5 "Versioning".
+#
+# For specific OSNET rules for the modification (evolution) of these version
+# definitions see:
+#	Policy for Shared Library Version Names and Interface Definitions
+
+
+# Note: Even though the SUNW_1.2 version now contains no symbols
+# beyond what was present at Solaris 2.6, the SUNW_1.2 version MUST be 
+# present.  This is because applications built on 2.6 Beta 
+# (when it did contain symbols explicitly) may depend on it.
+#
+SUNW_1.2 {	# This empty version MUST BE preserved for 2.6Beta apps
+	global:
+		SUNW_1.2;
+} SUNW_1.1;
+
+SUNW_1.1 {	# Solaris ABI as of Solaris 2.6
+	global:
+		alphasort64;	# (large files)
+		fopen64;	# (large files)
+		freopen64;	# (large files)
+		readdir64;	# (large files)
+		scandir64;	# (large files)
+} SUNW_0.7;
+
+SUNW_0.7 {	# Solaris ABI as of Solaris 2.3
+	global:
+		alphasort;
+		bcmp;
+		bcopy;
+		bzero;
+		flock;
+		fopen;
+		fprintf;
+		freopen;
+		fstatfs;
+		ftime;
+		getdtablesize;
+		gethostid;
+		gethostname;
+		getpagesize;
+		getpriority;
+		getrusage;
+		gettimeofday;
+		getwd;
+		index;
+		killpg;
+		longjmp;
+		mctl;
+		nice;
+		nlist;
+		printf;
+		psignal;
+		rand;
+		re_comp;
+		re_exec;
+		readdir;
+		reboot;
+		rindex;
+		scandir;
+		setbuffer;
+		sethostname;
+		setjmp;
+		setlinebuf;
+		setpgrp;
+		setpriority;
+		settimeofday;
+		sigblock;
+		siginterrupt;
+		signal;
+		sigpause;
+		sigsetmask;
+		sigstack;
+		sigvec;
+		sigvechandler;
+		sleep;
+		sprintf;
+		srand;
+		statfs;
+		sys_siglist;
+		times;
+		ualarm;
+		usignal;
+		usigpause;
+		usleep;
+		vfprintf;
+		vprintf;
+		vsprintf;
+		wait3;
+		wait4;
+};
+
+SUNWprivate_1.1 {
+	global:
+		_doprnt;
+		_getarg;
+		_longjmp;
+		_mkarglst;
+		_setjmp;
+		_sigblock;
+		_siginterrupt;
+		_sigsetmask;
+		_sigstack;
+		_sigvec;
+		_sigvechandler;
+		ucbsigblock;
+		ucbsiginterrupt;
+		ucbsigpause;
+		ucbsigsetmask;
+		ucbsigvec;
+	local:
+		*;
+};

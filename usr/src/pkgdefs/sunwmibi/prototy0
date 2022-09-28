@@ -1,0 +1,15 @@
+# Copyright 01/10/97 Sun Microsystems, Inc. All Rights Reserved.
+#pragma ident  "@(#)prototype_com	1.11 97/01/10 Sun Microsystems"
+#
+# pkgdefs/SUNWmibii/prototype_com
+#
+i pkginfo
+i copyright
+i depend
+i postinstall
+#
+d none usr 0775 root sys
+d none usr/lib 0775 root bin
+d none usr/lib/snmp 0775 root sys
+#
+f none usr/lib/snmp/mibiisa 0755 root sys

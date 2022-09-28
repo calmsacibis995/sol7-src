@@ -1,0 +1,20 @@
+# Copyright 09/30/96 Sun Microsystems, Inc. All Rights Reserved.
+#pragma ident  "@(#)postinstall	1.12 96/09/30 Sun Microsystems"
+
+#
+# Postinstall script for mibii daemon package
+#
+ 
+#
+# This part is different from the SNM 2.3 revB FCS version.
+# We do not want to set up any rc startup file for mibiisa.
+# That gets handled by the pkgadd of SUNWsacom, which does the startup.
+# mibiisa gets spawned as a child process of snmpdx,
+# which will use its own configuration file.
+# Do not start the mibiisa here.
+# Do not kill off any existing snmpd here.
+# They already gave the ok to get here in the request file
+# before the execution of this postinstall script.
+#
+
+exit 0

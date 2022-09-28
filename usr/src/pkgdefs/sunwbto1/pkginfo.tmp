@@ -1,0 +1,26 @@
+#       Copyright (c) 1997 Sun Microsystems, Inc.
+#               All Rights Reserved
+#
+#
+#pragma ident	"@(#)pkginfo.tmpl	1.2	97/12/08 SMI"
+#
+# This required package information file describes characteristics 
+# of the package, such as package abbreviation, full package name, 
+# package version, and package architecture.
+
+PKG="SUNWbtoox"
+ARCH="ISA"
+BASEDIR=/
+CATEGORY="system"
+CLASSES="none"
+DESC="64-bit libraries for software development utilities, including lex and yacc"
+EMAIL=""
+HOTLINE="Please contact your local service provider"
+MAXINST="1000"
+NAME="64-bit CCS libraries bundled with SunOS"
+SUNW_PKGTYPE="usr"
+SUNW_ISA="sparcv9"
+PRODNAME="SunOS"
+PRODVERS="RELEASE/VERSION"
+VENDOR="Sun Microsystems, Inc."
+VERSION="11.6.0,REV=0.0.0"

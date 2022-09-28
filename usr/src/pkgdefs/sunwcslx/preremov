@@ -1,0 +1,16 @@
+#!/bin/sh
+#
+#ident  "@(#)preremove	1.1	97/11/09 SMI"
+#
+# Copyright (c) 1997 by Sun Microsystems, Inc.
+#
+#
+
+#       remove the libcrypt.* symlinks
+#
+
+rm -f $BASEDIR/usr/lib/sparcv9/libcrypt.so
+rm -f $BASEDIR/usr/lib/sparcv9/libcrypt.so.1
+
+exit 0
+

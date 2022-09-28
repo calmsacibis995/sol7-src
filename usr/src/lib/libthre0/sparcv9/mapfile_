@@ -1,0 +1,75 @@
+#
+#ident	"@(#)mapfile-vers	1.2	97/08/21 SMI"
+#
+# Copyright (c) 1997 by Sun Microsystems, Inc.
+# All rights reserved.
+#
+# SPARCV9 specific interface definition for usr/src/lib/libthread.
+
+SUNW_1.1 {	# Solaris ABI as of Wyoming
+	global:
+		siglongjmp;	# SPARC processor specific implementation
+		sigsetjmp;	# SPARC processor specific implementation
+} SISCD_2.3a SISCD_2.3b;
+
+# SPARC International SPARC compliance definition 2.3.
+
+SISCD_2.3b {	# Remainder of SCD2.3 content (as of Solaris 2.5)
+	global:
+		thr_main;
+		thr_stksegment;
+};
+
+SISCD_2.3a {	# SCD2.3 content present as of Solaris 2.3
+
+	global:
+		cond_broadcast;
+		cond_destroy;
+		cond_init;
+		cond_signal;
+		cond_timedwait;
+		cond_wait;
+		fork1;
+		mutex_destroy;
+		mutex_init;
+		mutex_lock;
+		mutex_trylock;
+		mutex_unlock;
+		rw_rdlock;
+		rw_tryrdlock;
+		rw_trywrlock;
+		rw_unlock;
+		rw_wrlock;
+		rwlock_destroy;
+		rwlock_init;
+		sema_destroy;
+		sema_init;
+		sema_post;
+		sema_trywait;
+		sema_wait;
+		sigwait;
+		thr_continue;
+		thr_create;
+		thr_exit;
+		thr_getconcurrency;
+		thr_getprio;
+		thr_getspecific;
+		thr_join;
+		thr_keycreate;
+		thr_kill;
+		thr_min_stack;
+		thr_self;
+		thr_setconcurrency;
+		thr_setprio;
+		thr_setspecific;
+		thr_sigsetmask;
+		thr_suspend;
+		thr_yield;
+};
+
+SUNWprivate_1.1 {
+	global:
+		_getsp;
+		_sigsetjmp;
+		_siglongjmp;
+};
